@@ -1,0 +1,196 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+      </div>
+      <div class="content-body"><!-- Hospital Info cards -->
+<div class="row">
+<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+  <div class="card pull-up">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="media d-flex">
+          <div class="align-self-center">
+            <i class="la la-user-md font-large-2 success"></i>
+          </div>
+          <div class="media-body text-right">
+            <h5 class="text-muted text-bold-500">Doctors Available</h5>
+            <h3 class="text-bold-600">122</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+  <div class="card pull-up">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="media d-flex">
+          <div class="align-self-center">
+            <i class="la la-stethoscope font-large-2 warning"></i>
+          </div>
+          <div class="media-body text-right">
+            <h5 class="text-muted text-bold-500">Visiting Doctors</h5>
+            <h3 class="text-bold-600">34</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+  <div class="card pull-up">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="media d-flex">
+          <div class="align-self-center">
+            <i class="la la-calendar-check-o font-large-2 info"></i>
+          </div>
+          <div class="media-body text-right">
+            <h5 class="text-muted text-bold-500">Today's Inquiry</h5>
+            <h3 class="text-bold-600">3.5K</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-xl-3 col-lg-6 col-md-6 col-12">
+  <div class="card pull-up">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="media d-flex">
+          <div class="align-self-center">
+            <i class="la la-bed font-large-2 danger"></i>
+          </div>
+          <div class="media-body text-right">
+            <h5 class="text-muted text-bold-500">Rooms Available</h5>
+            <h3 class="text-bold-600">179</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Hospital Info cards Ends -->
+
+<!-- Appointment Bar Line Chart -->
+<div class="row">
+<div class="col-12">
+  <div class="card">
+     <section id="chartjs-bar-charts">
+      <div class="row">
+        <div class="col-12" *blockUI="'barCharts'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadBarCharts($event)">
+            <ng-container mCardHeaderTitle>
+              Appointment
+            </ng-container>
+            <ng-container mCardBody>
+              <div class="z">
+                <canvas class="barchart" height="328" baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                  [options]="barChartOptions" [legend]="barChartLegend"
+                  [chartType]="barChartType"></canvas>
+              </div>
+             </ng-container>
+          </m-card>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+<!-- Appointment Bar Line Chart Ends -->
+
+<!-- Appointment Table -->
+<div class="row" matchHeight="card">
+<div class="col-12 col-md-4">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Doctors Available</h4>
+    </div>
+    <div class="card-content">
+      <div class="table-responsive">
+        <table id="recent-orders" class="table table-hover table-xl mb-0">
+        <tbody>
+          <tr *ngFor = "let doctor of doctors ">
+            <td class="text-truncate p-1 border-top-0">
+              <div class="avatar avatar-md">
+                <img class="media-object rounded-circle" [src]= doctor.image
+                  alt="Avatar">
+              </div>
+            </td>
+            <td class="text-truncate pl-0 border-top-0">
+              <div class="name">{{doctor.name}}</div>
+              <div class="designation text-light font-small-2">Dentist</div>
+            </td>
+            <td class="text-right border-top-0">
+              <a href="hospital-book-appointment.html" class="btn btn-sm btn-outline-success">Book Appointment</a>
+            </td>
+          </tr>
+      
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="recent-appointments" class="col-12 col-md-8">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Recent Appointments</h4>
+      <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+      <div class="heading-elements">
+        <ul class="list-inline mb-0">
+          <li><a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right" href="hospital-book-appointment.html"
+              target="_blank">View all</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card-content mt-1">
+      <div class="table-responsive">
+          <table id="recent-orders-doctors" class="table table-hover table-xl mb-0">
+              <thead>
+          <tr>
+            <th class="border-top-0">Doctor</th>
+            <th class="border-top-0">Patients</th>
+            <th class="border-top-0">Specialities</th>
+            <th class="border-top-0">Timings</th>
+            <th class="border-top-0">Amount</th>
+          </tr>
+              </thead>
+              <tbody>
+          <tr class="pull-up" *ngFor="let doctor of doctorList">
+            <td class="text-truncate">{{doctor.name}}</td>
+            <td class="text-truncate p-1">
+              <ul class="list-unstyled users-list m-0">
+                <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons" class="avatar avatar-sm pull-up" *ngFor="let imageUrl of doctor.image">
+                    <img class="media-object rounded-circle" [src]="imageUrl" alt="Avatar">
+                   
+                </li>
+               
+                <li class="avatar avatar-sm">
+                  <span class="badge badge-info">{{doctor.bagde}}</span>
+                </li>
+              </ul>
+            </td>
+            <td>
+              <button type="button" class="btn btn-sm btn-outline-{{doctor.type}} round">{{doctor.designation}}</button>
+            </td>
+            <td class="text-truncate">{{doctor.time}}</td>
+            <td class="text-truncate">{{doctor.amount}}</td>
+          </tr>
+    
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!-- Appointment Table Ends -->
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->

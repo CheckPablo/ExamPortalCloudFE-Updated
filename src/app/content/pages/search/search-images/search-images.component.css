@@ -1,0 +1,10 @@
+:host ::ng-deep .my-gallery img{
+    height: 168px ;
+    margin-right: 1px;
+    margin-left: 1px;
+    max-width: 100%
+  }
+:host ::ng-deep .ngx-gallery {
+  grid-template-columns: auto !important 
+  ;
+}

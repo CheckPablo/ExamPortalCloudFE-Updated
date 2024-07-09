@@ -1,0 +1,170 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Base style table -->
+      <section id="base-style">
+        <div class="row">
+          <div class="col-12" *blockUI="'baseStyle'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadBaseStyle($event)">
+              <ng-container mCardHeaderTitle>
+                Base style
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-dashboard">
+                  <p class="card-text">The DataTables default style file has a number of features which can be enabled
+                    based on the
+                    class name of the table.</p>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                      <div class="dataTables_filter">
+                        <h5>Search:<input type='text'
+                            style='padding:4px;margin:0px auto; margin-left:8px; width:200px;border-radius: .22rem; border: 1px solid #BABFC7;'
+                            placeholder='Type to filter the name column...' (keyup)='updateFilter($event)' /></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table table-striped table-bordered base-style">
+                    <ngx-datatable class="bootstrap ps" [limit]="6" [rows]="rows" [columnMode]="'force'"
+                      [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="config">
+
+                      <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                          {{row.name}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                      </ngx-datatable-column>
+
+                      <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                      </ngx-datatable-column>
+                    </ngx-datatable>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!--/ Base style table -->
+
+      <!-- No styling classes -->
+      <section id="no-style">
+        <div class="row">
+          <div class="col-12" *blockUI="'noStylingClasses'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadNoStylingClasses($event)">
+              <ng-container mCardHeaderTitle>
+                No styling classes
+              </ng-container>
+              <ng-container mCardBody>
+                <p class="card-text">This example shows the base DataTables style file being used, with none of the
+                  additional
+                  feature style classes being used.</p>
+                <div class="row">
+                  <div class=" col-sm-12 col-md-12">
+                    <div class="dataTables_filter">
+                      <h5>Search:<input type='text'
+                          style='padding:4px;margin:0px auto; margin-left:8px; width:200px;border-radius: .22rem; border: 1px solid #BABFC7;'
+                          placeholder='Type to filter the name column...' (keyup)='updatedefaultFilter($event)' /></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="no-style-no no-style">
+                  <ngx-datatable [rows]="stylerows" [columnMode]="'force'" fxFlex="auto" [perfectScrollbar]="config" >
+                    <ngx-datatable-column name="Name">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.name}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Position">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Office">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Age">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Salary">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Startdate">
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- No styling classes -->
+
+      <!-- Base style - compact table -->
+      <section id="compact-style">
+        <div class="row">
+          <div class="col-12">
+            <m-card>
+              <ng-container mCardHeaderTitle>
+                Base style - compact
+              </ng-container>
+              <ng-container mCardBody>
+                <p>The material class is used to reduce the amount of white-space the default styling for the
+                  DataTable uses,
+                  increasing the information density on screen, as shown below.</p>
+                <div class="row">
+                  <div class=" col-sm-12 col-md-12">
+                    <div class="dataTables_filter">
+                      <h5>Search : <input type='text'
+                          style='padding:4px;margin:0px auto; margin-left:8px; width:200px;border-radius: .22rem; border: 1px solid #BABFC7;'
+                          placeholder='Type to filter the name column...' (keyup)='updatecompactFilter($event)' /></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="table table-striped table-bordered compact">
+                  <ngx-datatable class="material" [limit]="10" [rows]="baserows" [columnMode]="'force'"
+                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="config">
+
+                    <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                      <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.name}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Base style - compact table -->
+
+
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

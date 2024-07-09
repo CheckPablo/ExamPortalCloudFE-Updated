@@ -1,0 +1,269 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row ">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <section id="description" class="card">
+        <m-card [options]="imageOptions" (reloadFunction)="reloadImageGallery()">
+          <ng-container mCardHeaderTitle>
+            Description
+          </ng-container>
+       
+          <ng-container mCardContent>
+          <div class="card-body">
+              <div class="card-text">
+                  <p>Video & Image gallery grid with title, description & photo-swipe integration. Display gallery in 4-2-1 columns.</p>
+                  <p>Please read the photo-swipe gallery <a href="http://photoswipe.com/documentation/getting-started.html" target="_blank">documentation</a> for usage information.</p>
+              </div>
+          </div>
+      </ng-container>
+      </m-card>
+    </section>
+    
+      <!-- Image grid -->
+      <section id="image-grid" class="card" *blockUI="'imageGallery'; message: 'Loading'">
+        <m-card [options]="imageOptions" (reloadFunction)="reloadImageGallery(  )">
+          <ng-container mCardHeaderTitle>
+            Image gallery
+          </ng-container>
+          <ng-container mCardContent>
+            <div class="card-body">
+              <div class="card-text">
+                <p>Image gallery grid with title, description & photo-swipe integration. Display images gallery in 4-2-1
+                  columns and photo-swipe provides gallery features.</p>
+              </div>
+            </div>
+            <div class="card-body my-gallery">
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image1"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 1</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image2"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 2</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image3"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 3</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image4"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 4</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image5"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 5</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image6"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 6</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image7"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 7</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image8"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 8</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image9"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 9</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image10"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 10</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image11"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 11</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image12"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title 12</h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+              </div>
+              <ngxps-lightbox></ngxps-lightbox>
+            </div>
+          </ng-container>
+        </m-card>
+      </section>
+      <!--/ Image grid -->
+
+      <!-- Video grid -->
+      <section id="video-grid" class="card">
+        <div class="card-header">
+          <h4 class="card-title">Video gallery</h4>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body">
+            <div class="card-text">
+              <p>This section contain responsive embedded video gallery with grid 3-2-1 columns with title &
+                description. This demo contain vimeo and youtube embedded videos.</p>
+            </div>
+          </div>
+
+          <div class="card-body">
+
+            <div class="card-deck-wrapper">
+              <h5 class="card-header ">Vimeo</h5>
+              <div class="card-deck">
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail" src="https://player.vimeo.com/video/118589137?title=0&byline=0"
+                      width="640" height="360"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail"
+                      src="https://player.vimeo.com/video/173541384?color=ff9933&title=0&byline=0" width="640"
+                      height="360"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail"
+                      src="https://player.vimeo.com/video/161753790?color=ff9933&title=0&byline=0" width="640"
+                      height="360"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This card has even longer content than the first to show that equal height
+                      action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-deck-wrapper">
+              <div class="card-header">
+                <h4 class="card-title">You Tube</h4>
+              </div>
+              <div class="card-deck collapse show">
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail"
+                      src="https://www.youtube.com/embed/SsE5U7ta9Lw?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
+                      additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail"
+                      src="https://www.youtube.com/embed/zqDxfHvZ3DU?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+                <div class="card border-grey border-lighten-2">
+                  <div class="card-img-top embed-responsive embed-responsive-item embed-responsive-16by9">
+                    <iframe class="gallery-thumbnail"
+                      src="https://www.youtube.com/embed/hunYLg8I1Os?rel=0&amp;controls=0&amp;showinfo=0"></iframe>
+                  </div>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                      additional content. This card has even longer content than the first to show that equal height
+                      action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Video grid -->
+    </div>
+  </div>
+</div>

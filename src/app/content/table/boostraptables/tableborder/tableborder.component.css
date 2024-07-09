@@ -1,0 +1,13 @@
+
+:host ::ng-deep .bouble-border{
+  border-bottom-style: double;
+  border-bottom-color: #e3ebf3;
+}
+:host ::ng-deep .table-striped tbody tr:nth-of-type(odd) {
+  border-bottom-color:red !important;
+}
+:host ::ng-deep .border-solid {
+  border-bottom-style: solid;
+  border-bottom-color: #e3ebf3;
+  
+}

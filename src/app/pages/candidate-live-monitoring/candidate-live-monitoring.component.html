@@ -1,0 +1,486 @@
+<section>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <button type="button" class="btn btn-info btn-min-width" (click)="goToBackliveMonitoring()">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+    <h4>Live monitoring for: {{student.name}} {{student.surname}}</h4>
+    <h6>Test start time: {{student.startDate | date:'full'}} End date: {{(student.endDate | date:'dd MMM yyyy')
+        || "Test not yet completed"}}</h6>
+</section>
+<div class="row">
+    <div class="content-body col-md-9">
+        <section id="horizontal-form-layouts">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content collpase show">
+                            <div class="card-body">
+                                <form class="form form-horizontal">
+                                    <div class="form-body">
+                                        <div class="row mb-2" *ngIf="hasAnswerProgress">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-info"
+                                                    (click)="onExportClick('answersTrackingProgress')">
+                                                    Export to Excel
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive">
+                                                    <div id="CentreListDatatable_wrapper"
+                                                        class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-6">
+                                                                <div class="dataTables_length"
+                                                                    id="CentreListDatatable_length">
+                                                                    <label>
+                                                                        Show
+                                                                        <select name="CentreListDatatable_length"
+                                                                            aria-controls="tickets-table"
+                                                                            name="pageSize"
+                                                                            [(ngModel)]="paginationService.pageSize"
+                                                                            class="form-control form-control-sm mx-2"
+                                                                            (ngModelChange)="paginationService.setPageSize($event)">
+                                                                            <option [ngValue]="10">10</option>
+                                                                            <option [ngValue]="25">25</option>
+                                                                            <option [ngValue]="50">50</option>
+                                                                            <option [ngValue]="100">100</option>
+                                                                        </select>
+                                                                        entries
+                                                                    </label>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-12 col-md-6">
+                                                                <div id="CentreListDatatable_filter"
+                                                                    class="dataTables_filter text-md-end">
+                                                                    <label class="d-inline-flex align-items-candidate">
+                                                                        Search:
+                                                                        <input type="text" name="searchTerm"
+                                                                            class="form-control form-control-sm ms-2"
+                                                                            aria-controls="tickets-table"
+                                                                            [(ngModel)]="paginationService.searchTerm"
+                                                                            (input)="paginationService.onSearchInputChange($event.target.value)">
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="table table-striped table-bordered no-footer dataTable" id="answersTrackingProgress">
+                                                                <thead class="bg-info white">
+                                                                    <tr >
+                                                                        <th sortable="name">
+                                                                            Answers
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                        <th sortable="name">
+                                                                            Answer Word Count
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                        <th sortable="name">
+                                                                            Date Last Saved
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <!--*ngFor="let answer of studentTestAnswers">-->
+                                                                    <tr *ngFor="let answer of studentTestAnswers" (dblclick)="openAnswerTextModal(viewAnswerModal, answer)">
+                                                                        <td><div>{{answer.answerText}}</div></td>
+                                                                       <!--  <td><pre>{{answer.answerText}}</pre></td> -->
+                                                                        <td><div>{{answer.answerCount}}</div></td>
+                                                                        <td><div>{{answer.dateModified | date:'  dd MMM yyyy HH:mm:ss'}}</div></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-md-between align-items-md-candidate mt-2"
+                                            *ngIf="paginationService.totalItems">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                    aria-live="polite">Showing
+                                                    {{paginationService.startIndex}} to
+                                                    {{paginationService.endIndex}} of
+                                                    <span
+                                                        *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}}
+                                                        search results from
+                                                    </span>
+                                                    {{paginationService.totalItems}} entries
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="text-md-right float-md-end pagination-rounded">
+                                                    <ul class="pagination">
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                            (click)="paginationService.setPage(1)">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">««</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                            (click)="paginationService.goToPreviousPage()">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">«</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted" aria-current="page"
+                                                            [ngClass]="{ 'active': paginationService.currentPage == page }"
+                                                            *ngFor="let page of paginationService.paginationLinks"
+                                                            (click)="paginationService.setPage(page)">
+                                                            <a href="javascript:void(0);"
+                                                                class="page-link ng-star-inserted">
+                                                                {{ page }}
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                            (click)="paginationService.goToNextPage()">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                            (click)="paginationService.setPage(paginationService.totalPages)">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»»</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="horizontal-form-layouts">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content collpase show">
+                            <div class="card-body">
+                                <form class="form form-horizontal">
+                                    <div class="form-body">
+                                        <div class="row mb-2" *ngIf="hasIrregularities">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-info" (click)="onExportClick('irregularities')">
+                                                    Export to Excel
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="table-responsive" style="width:100%">
+                                                    <div id="CentreListDatatable_wrapper"
+                                                        class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-6">
+                                                                <div class="dataTables_length"
+                                                                    id="CentreListDatatable_length">
+                                                                    <label>
+                                                                        Show
+                                                                        <select name="CentreListDatatable_length"
+                                                                            aria-controls="tickets-table"
+                                                                            name="pageSize"
+                                                                            [(ngModel)]="paginationService.pageSize"
+                                                                            class="form-control form-control-sm mx-2"
+                                                                            (ngModelChange)="paginationService.setPageSize($event)">
+                                                                            <option [ngValue]="10">10</option>
+                                                                            <option [ngValue]="25">25</option>
+                                                                            <option [ngValue]="50">50</option>
+                                                                            <option [ngValue]="100">100</option>
+                                                                        </select>
+                                                                        entries
+                                                                    </label>
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-sm-12 col-md-6">
+                                                                <div id="CentreListDatatable_filter"
+                                                                    class="dataTables_filter text-md-end">
+                                                                    <label class="d-inline-flex align-items-candidate">
+                                                                        Search:
+                                                                        <input type="text" name="searchTerm"
+                                                                            class="form-control form-control-sm ms-2"
+                                                                            aria-controls="tickets-table"
+                                                                            [(ngModel)]="paginationService.searchTerm"
+                                                                            (input)="paginationService.onSearchInputChange($event.target.value)">
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="table-responsive">
+                                                            <table
+                                                                class="table table-striped table-bordered no-footer dataTable"
+                                                                id="irregularities">
+                                                                <thead class="bg-info white">
+                                                                    <tr>
+                                                                        <th sortable="name">
+                                                                            Event
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                        <th sortable="name">
+                                                                            Reason
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                        <th sortable="name">
+                                                                            Date
+                                                                            <i class="la la-sort float-md-end"></i>
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr
+                                                                        *ngFor="let item of irregularityPaginationService.paginatedData">
+                                                                        <td>{{item.event}}</td>
+                                                                        <td>{{item.reason}}</td>
+                                                                        <!--<td>{{item.dateModified | date:'dd MMM yyyy'}}-->
+                                                                        <td>{{item.dateModified | date:'yyyy/MM/dd HH:mm:ss'}}
+                                                                 
+                                                
+                                                                        </td>
+                                                                   
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row justify-content-md-between align-items-md-candidate mt-2"
+                                            *ngIf="irregularityPaginationService.totalItems">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                    aria-live="polite">Showing
+                                                    {{irregularityPaginationService.startIndex}} to
+                                                    {{irregularityPaginationService.endIndex}} of
+                                                    <span
+                                                        *ngIf="irregularityPaginationService.searchTerm">{{irregularityPaginationService.searchTotal}}
+                                                        search results from
+                                                    </span>
+                                                    {{irregularityPaginationService.totalItems}} entries
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="text-md-right float-md-end pagination-rounded">
+                                                    <ul class="pagination">
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': irregularityPaginationService.currentPage == 1 }"
+                                                            (click)="irregularityPaginationService.setPage(1)">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">««</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': irregularityPaginationService.currentPage == 1 }"
+                                                            (click)="irregularityPaginationService.goToPreviousPage()">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">«</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted" aria-current="page"
+                                                            [ngClass]="{ 'active': irregularityPaginationService.currentPage == page }"
+                                                            *ngFor="let page of irregularityPaginationService.paginationLinks"
+                                                            (click)="irregularityPaginationService.setPage(page)">
+                                                            <a href="javascript:void(0);"
+                                                                class="page-link ng-star-inserted">
+                                                                {{ page }}
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': irregularityPaginationService.currentPage == irregularityPaginationService.totalPages }"
+                                                            (click)="irregularityPaginationService.goToNextPage()">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': irregularityPaginationService.currentPage == irregularityPaginationService.totalPages }"
+                                                            (click)="irregularityPaginationService.setPage(irregularityPaginationService.totalPages)">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»»</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="content-body col-md-3">
+        <div class="row">
+            <div class="content-body col-md-12">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <h5>Irregularities</h5>
+                        </label>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" [checked] = "student.keyPress === 'true'" >
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Invalid Key Press
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked] = "student.leftExamArea === 'true'">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Lost focus on exam area
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked] = "student.offline2 > 3">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Got disconnected(offline)
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" [checked] = "student.fullScreenClosed === 'true'">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Full screen closed
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <button type="button" class="btn btn-info btn-min-width" (click)="openLiveCandidateChat()">
+                        Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #CandidateLiveChatModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1"></h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="form" (ngSubmit)="onInvigilatorMesssageSend()">
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Private Message
+                <div class="form-group row">
+                    <div>
+                         <br>
+                    <div  class="col-md-9 mx-auto" style="text-align:left;">
+<textarea readonly class="form-control"id="testChatMessageArea"style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:left" rows="15" cols="90" wrap="hard">
+    {{messages}}
+</textarea>
+                    </div> 
+                </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="testChatMessage" id="testChatMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #viewAnswerModal let-c="close" let-d="dismiss">
+    <div  id="AnswerTracking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Answer View</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <fieldset class="form-group floating-label-form-group">
+                        <label for="title1">Answer Description</label>
+                        <textarea id="answerArea" class="form-control" rows="3" placeholder="Answer Description" onkeypress="return false;">{{modalAnswerText.answerText}}</textarea>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary btn-lg"  (click)="d('Close modal')" >Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--     <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Answer View</h4>
+        <button type="button" class="btn-close" aria-hidden="true"
+            (click)="d('Cross click')"></button>
+    </div> -->
+</ng-template>

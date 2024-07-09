@@ -1,0 +1,25 @@
+agm-map {
+  height: 450px;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+:host ::ng-deep .my-gallery img{
+  max-width: 100% !important;
+  padding: .25rem;
+  background-color: #F4F5FA;
+  border: 1px solid #626E82;
+  border-radius: .25rem;
+  margin-bottom: 15px;
+}
+:host ::ng-deep .my-gallery .img-thumbnail {
+  padding: .25rem;
+  background-color: #F4F5FA;
+  border: 1px solid #626E82;
+  border-radius: .25rem;
+}
+:host ::ng-deep .ngx-gallery {
+  grid-template-columns: auto !important 
+  ;
+}

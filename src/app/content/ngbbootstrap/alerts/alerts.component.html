@@ -1,0 +1,818 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <!-- Basic Alerts start -->
+    <section id="basic-alerts">
+      <div class="row" matchHeight="card">
+        <div class="col-xl-6 col-lg-12" *blockUI="'basicAlerts'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadBasicAlerts($event)">
+            <ng-container mCardHeaderTitle>
+              Basic Alerts
+            </ng-container>
+            <ng-container mCardBody>
+              <p>Alert is a component to provide contextual feedback messages for user.
+                Bootstrap provides styles for the following types : <code>'success', 'info', 'warning', 'danger', 'primary', 'secondary', 'light' and 'dark'</code>
+              </p>
+              <h6>Primary Alert</h6>
+
+              <ngb-alert [dismissible]="false" [type]="'primary'" role="alert" class="mb-2">
+                <strong>Good Morning!</strong> Start your day with some alerts.
+              </ngb-alert>
+              <h6>Secondary Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'secondary'" role="alert" class="mb-2">
+                <strong>Hello!</strong> This is secondary alert - check it out.
+              </ngb-alert>
+              <h6>Success Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'success'" role="alert" class="mb-2">
+                <strong>Well done!</strong> You successfully read this important alert message.
+              </ngb-alert>
+              <h6>Danger Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'danger'" role="alert" class="mb-2">
+                <strong>Oh snap!</strong> Change a few things up and submit again.
+              </ngb-alert>
+              <h6>Warning Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'warning'" role="alert" class="mb-2">
+                <strong>Warning!</strong> Better check yourself, you're not looking too good.
+              </ngb-alert>
+              <h6>Info Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'info'" role="alert" class="mb-2">
+                <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+              </ngb-alert>
+              <h6>Light Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'light'" role="alert" class="mb-2">
+                <strong>Hello!</strong> This is light alert - check it out.
+              </ngb-alert>
+              <h6>Dark Alert</h6>
+              <ngb-alert [dismissible]="false" [type]="'dark'" role="alert" class="mb-2">
+                <strong>Hello!</strong> This is dark alert - check it out.
+              </ngb-alert>
+            </ng-container>
+          </m-card>
+        </div>
+        <div class="col-xl-6 col-lg-12" *blockUI="'dismissibleAlerts'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadDismissible($event)">
+            <ng-container mCardHeaderTitle>
+              Dismissible Alerts
+            </ng-container>
+            <ng-container mCardBody>
+              <p>To add dismiss button use input <code>[dismissible]="true"</code> which adds <code>close (X)</code> button to the right.</p>
+              <h6>Primary Alert</h6>
+              <ngb-alert *ngIf="!isPrimaryClosed2" [dismissible]="true" [type]="'primary'"
+                (close)="isPrimaryClosed2=true" role="alert" class="mb-2">
+                <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some alerts.
+              </ngb-alert>
+              <h6>Secondary Alert</h6>
+              <ngb-alert *ngIf="!isSecondaryClosed2" [dismissible]="true" [type]="'secondary'"
+                (close)="isSecondaryClosed2=true" role="alert" class="mb-2">
+                <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">secondary alert</a> - check it out.
+              </ngb-alert>
+              <h6>Success Alert</h6>
+              <ngb-alert *ngIf="!isSuccessClosed2" [dismissible]="true" [type]="'success'"
+                (close)="isSuccessClosed2=true" role="alert" class="mb-2">
+                <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                alert message.
+              </ngb-alert>
+              <h6>Danger Alert</h6>
+              <ngb-alert *ngIf="!isDangerClosed2" [dismissible]="true" [type]="'danger'"
+              (close)="isDangerClosed2=true" role="alert" class="mb-2">
+                <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                again.
+              </ngb-alert>
+              <h6>Warning Alert</h6>
+              <ngb-alert *ngIf="!isWarningClosed2" [dismissible]="true" [type]="'warning'"
+                (close)="isWarningClosed2=true" role="alert" class="mb-2">
+                <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                  too good</a>.
+              </ngb-alert>
+              <h6>Info Alert</h6>
+              <ngb-alert *ngIf="!isInfoClosed2" [dismissible]="true" [type]="'info'"
+              (close)="isInfoClosed2=true" role="alert" class="mb-2">
+                <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>, but
+                it's not super important.
+              </ngb-alert>
+              <h6>Light Alert</h6>
+              <ngb-alert *ngIf="!isLightClosed2" [dismissible]="true" [type]="'light'" class="mb-2"
+              (close)="isLightClosed2=true" role="alert">
+                <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">light alert</a> - check it out.
+              </ngb-alert>
+              <h6>Dark Alert</h6>
+              <ngb-alert *ngIf="!isDarkClosed2" [dismissible]="true" [type]="'dark'" class="mb-2"
+              (close)="isDarkClosed2=true" role="alert">
+                <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">dark alert</a> - check it out.
+              </ngb-alert>
+            </ng-container>
+          </m-card>
+        </div>
+      </div>
+    </section>
+    <!-- Basic Alerts end -->
+
+    <!-- Alerts with No Border start -->
+    <section id="alert-border-0" class="mb-2">
+      <div class="row" matchHeight="card">
+        <div class="col-xl-6 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Alerts with Links</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p> Add <code>.alert-link</code> class to add links to alerts. And use input <code>[routerLink]=""</code> to add url link.</p>
+                <h6>Primary Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'primary'" class="mb-2" role="alert">
+                  <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some alerts.
+                </ngb-alert>
+                <h6>Secondary Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'secondary'" class="mb-2" role="alert">
+                  <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">secondary alert</a> - check it out.
+                </ngb-alert>
+                <h6>Success Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'success'" class="mb-2" role="alert">
+                  <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                  alert message.
+                </ngb-alert>
+                <h6>Danger Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'danger'" class="mb-2" role="alert">
+                  <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit again.
+                </ngb-alert>
+                <h6>Warning Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'warning'" class="mb-2" role="alert">
+                  <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking too
+                    good</a>.
+                </ngb-alert>
+                <h6>Info Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'info'" class="mb-2" role="alert">
+                  <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>, but
+                  it's not super important.
+                </ngb-alert>
+                <h6>Light Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'light'" class="mb-2" role="alert">
+                  <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">light alert</a> - check it out.
+                </ngb-alert>
+                <h6>Dark Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'dark'" class="mb-2" role="alert">
+                  <strong>Hello!</strong> This is <a [routerLink]="" class="alert-link">dark alert</a> - check it out.
+                </ngb-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Alerts with No Border</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p> Add <code>.border-0</code> class along with <code>.alert</code> class for alerts with no borders.
+                </p>
+                <h6>Primary Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'primary'" class="border-0 mb-2" role="alert">
+                  <strong>Good Morning!</strong> Start your day with some alerts.
+                </ngb-alert>
+                <h6>Secondary Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'secondary'" class="border-0 mb-2" role="alert">
+                  <strong>Hello!</strong> This is secondary alert - check it out.
+                </ngb-alert>
+                <h6>Success Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'success'" class="border-0 mb-2" role="alert">
+                  <strong>Well done!</strong> You successfully read this important alert message.
+                </ngb-alert>
+                <h6>Danger Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'danger'" class="border-0 mb-2" role="alert">
+                  <strong>Oh snap!</strong> Change a few things up and submit again.
+                </ngb-alert>
+                <h6>Warning Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'warning'" class="border-0 mb-2" role="alert">
+                  <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                </ngb-alert>
+                <h6>Info Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'info'" class="border-0 mb-2" role="alert">
+                  <strong>Heads up!</strong> This alert needs your attention, but it's not super important.
+                </ngb-alert>
+                <h6>Light Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'light'" class="border-0 mb-2" role="alert">
+                  <strong>Hello!</strong> This is light alert - check it out.
+                </ngb-alert>
+                <h6>Dark Alert</h6>
+                <ngb-alert [dismissible]="false" [type]="'dark'" class="border-0 mb-2" role="alert">
+                  <strong>Hello!</strong> This is dark alert - check it out.
+                </ngb-alert>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Alerts with No Border end -->
+
+    <!-- Alerts with icons start -->
+    <section id="alerts-with-icons" class="mb-2">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Alerts with icons</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>To add left/right icons to the alert, use class <code>.alert-icon-left</code> or
+                  <code>alert-icon-right</code>
+                  with icon class <code>.alert-icon</code>.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed5" class="alert-icon-left mb-2" [dismissible]="true" [type]="'primary'"
+                      (close)="isPrimaryClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-heart"></i></span>
+                      <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some
+                      alerts.
+                    </ngb-alert>
+                    <h6>Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed5" class="alert-icon-left mb-2" [dismissible]="true" [type]="'success'"
+                      (close)="isSuccessClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+                      <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                      alert message.
+                    </ngb-alert>
+                    <h6>Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed5" class="alert-icon-left mb-2" [dismissible]="true" [type]="'danger'"
+                      (close)="isDangerClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+                      <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                      again.
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed5" class="alert-icon-right  mb-2" [dismissible]="true"
+                      [type]="'warning'" (close)="isWarningClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-warning"></i></span>
+                      <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                        too good</a>.
+                    </ngb-alert>
+                    <h6>Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed5" class="alert-icon-right  mb-2" [dismissible]="true" [type]="'info'"
+                      (close)="isInfoClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-info-circle"></i></span>
+                      <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>,
+                      but it's not super important.
+                    </ngb-alert>
+                    <h6>Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed5" class="alert-icon-right  mb-2" [dismissible]="true"
+                      [type]="'blue-grey'" (close)="isCustomClosed5=true" role="alert">
+                      <span class="alert-icon"><i class="la la-photo"></i></span>
+                      <strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom
+                      colors.
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Alerts with icons end -->
+
+
+    <!-- Alerts with icons & Arrow start -->
+    <section id="alerts-with-icons-arrow" class="mb-2">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Alerts with icons &amp; Arrow</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>To add left/right icons with arrow to the alert, use class <code>.alert-arrow-left</code> or
+                  <code>alert-arrow-right</code>
+                  as required.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed6" class="alert-icon-left alert-arrow-left mb-2" [dismissible]="true"
+                      [type]="'primary'" (close)="isPrimaryClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-heart"></i></span>
+                      <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some
+                      alerts.
+                    </ngb-alert>
+                    <h6>Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed6" class="alert-icon-left alert-arrow-left mb-2" [dismissible]="true"
+                      [type]="'success'" (close)="isSuccessClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+                      <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                      alert message.
+                    </ngb-alert>
+                    <h6>Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed6" class="alert-icon-left alert-arrow-left mb-2" [dismissible]="true"
+                      [type]="'danger'" (close)="isDangerClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+                      <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                      again.
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed6" class="alert-icon-right alert-arrow-right mb-2" [dismissible]="true"
+                      [type]="'warning'" (close)="isWarningClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-warning"></i></span>
+                      <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                        too good</a>.
+                    </ngb-alert>
+                    <h6>Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed6" class="alert-icon-right alert-arrow-right mb-2" [dismissible]="true"
+                      [type]="'info'" (close)="isInfoClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-info-circle"></i></span>
+                      <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>,
+                      but it's not super important.
+                    </ngb-alert>
+                    <h6>Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed6" class="alert-icon-right alert-arrow-right mb-2" [dismissible]="true"
+                      [type]="'blue-grey'" (close)="isCustomClosed6=true" role="alert">
+                      <span class="alert-icon"><i class="la la-photo"></i></span>
+                      <strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom
+                      colors.
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Alerts with icons & Arrow end -->
+
+    <!-- Solid Alerts start -->
+<section id="solid-alerts">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Solid Alerts</h4>
+				</div>
+				<div class="card-content collapse show">
+					<div class="card-body">
+						<p>To use solid alert, add background color class to the <code>.alert</code> container class. Alerts also support custom color classes from theme color system. To use a custom color, add <code>.bg-*</code> to the <code>.alert</code> class.</p>
+						<div class="row">
+							<div class="col-xl-6 col-lg-12">
+								<h6>Primary Alert</h6>
+                <ngb-alert *ngIf="!isPrimaryClosed7" [dismissible]="true" [type]="''" class="bg-primary mb-2"
+                (close)="isPrimaryClosed7=true" role="alert">
+									<strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some alerts.
+								</ngb-alert>
+								<h6>Success Alert</h6>
+                <ngb-alert *ngIf="!isSuccessClosed7" [dismissible]="true" [type]="''" class="mb-2 bg-success"
+                (close)="isSuccessClosed7=true" role="alert">
+								<strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a> alert message.
+								</ngb-alert>
+								<h6>Danger Alert</h6>
+                <ngb-alert *ngIf="!isDangerClosed7" [dismissible]="true" [type]="''" class="mb-2 bg-danger"
+                (close)="isDangerClosed7=true" role="alert">
+									<strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit again.
+								</ngb-alert>
+							</div>
+							<div class="col-xl-6 col-lg-12">
+								<h6>Warning Alert</h6>
+                <ngb-alert *ngIf="!isWarningClosed7" [dismissible]="true" [type]="''" class="mb-2 bg-warning"
+                (close)="isWarningClosed7=true" role="alert">
+									<strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking too good</a>.
+								</ngb-alert>
+								<h6>Info Alert</h6>
+                <ngb-alert *ngIf="!isInfoClosed7" [dismissible]="true" [type]="''" class="mb-2 bg-info"
+                (close)="isInfoClosed7=true"  role="alert">
+									<strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>, but it's not super important.
+								</ngb-alert>
+								<h6>Custom Alert</h6>
+                <ngb-alert *ngIf="!isCustomClosed7" [dismissible]="true" [type]="''" class="mb-2 bg-cyan"
+                (close)="isCustomClosed7=true" role="alert">
+									<strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom colors.
+								</ngb-alert>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Solid Alerts end -->
+
+
+<!-- Solid Alerts with icons start -->
+<section id="solid-alerts-with-icons">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Solid Alerts with icons</h4>
+				</div>
+				<div class="card-content collapse show">
+					<div class="card-body">
+						<p>To use solid alert with icons, add class <code>.alert-icon-left</code> or <code>alert-icon-right</code> to <code>.alert</code> container class.</p>
+						<div class="row">
+							<div class="col-xl-6 col-lg-12">
+								<h6>Primary Alert</h6>
+                <ngb-alert *ngIf="!isPrimaryClosed8" [dismissible]="true" [type]="''"
+                (close)="isPrimaryClosed8=true" class="alert-icon-left mb-2 bg-primary" role="alert">
+									<span class="alert-icon"><i class="la la-heart"></i></span>
+									<strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some alerts.
+								</ngb-alert>
+								<h6>Success Alert</h6>
+                <ngb-alert *ngIf="!isSuccessClosed8" [dismissible]="true" [type]="''"
+                (close)="isSuccessClosed8=true" class="alert-icon-left bg-success mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+									<strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a> alert message.
+								</ngb-alert>
+								<h6>Danger Alert</h6>
+                <ngb-alert *ngIf="!isDangerClosed8" [dismissible]="true" [type]="''"
+                (close)="isDangerClosed8=true" class="alert-icon-left bg-danger mb-2"role="alert">
+									<span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+									<strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit again.
+								</ngb-alert>
+							</div>
+							<div class="col-xl-6 col-lg-12">
+								<h6>Warning Alert</h6>
+                <ngb-alert *ngIf="!isWarningClosed8" [dismissible]="true" [type]="''"
+                (close)="isWarningClosed8=true" class="alert-icon-left bg-warning mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-warning"></i></span>
+									<strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking too good</a>.
+                </ngb-alert>
+								<h6>Info Alert</h6>
+                <ngb-alert *ngIf="!isInfoClosed8" [dismissible]="true" [type]="''"
+                (close)="isInfoClosed8=true" class="alert-icon-left bg-info mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-info-circle"></i></span>
+									<strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>, but it's not super important.
+								</ngb-alert>
+								<h6>Custom Alert</h6>
+                <ngb-alert *ngIf="!isCustomClosed8" [dismissible]="true" [type]="''"
+                (close)="isCustomClosed8=true" class="alert-icon-left bg-cyan mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-photo"></i></span>
+									<strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom colors.
+								</ngb-alert>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Solid Alerts with icons end -->
+
+<!-- Solid Alerts with icons & Arrow start -->
+<section id="solid-alerts-with-icons-arrows">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-header">
+					<h4 class="card-title">Solid Alerts with icons &amp; arrow</h4>
+				</div>
+				<div class="card-content collapse show">
+					<div class="card-body">
+						<p>To use solid alert with icons, add class <code>.alert-arrow-left</code> or <code>alert-arrow-right</code> with icon classes to <code>.alert</code> container class.</p>
+						<div class="row">
+							<div class="col-xl-6 col-lg-12">
+								<h6>Primary Alert</h6>
+                <ngb-alert *ngIf="!isPrimaryClosed9" [dismissible]="true" [type]="''"
+                (close)="isPrimaryClosed9=true" class="alert-icon-left alert-arrow-left bg-primary mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-heart"></i></span>
+									<strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some alerts.
+								</ngb-alert>
+								<h6>Success Alert</h6>
+                <ngb-alert *ngIf="!isSuccessClosed9" [dismissible]="true" [type]="''"
+                (close)="isSuccessClosed9=true" class="alert-icon-left alert-arrow-left bg-success mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+									<strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a> alert message.
+								</ngb-alert>
+								<h6>Danger Alert</h6>
+                <ngb-alert *ngIf="!isDangerClosed9" [dismissible]="true" [type]="''"
+                (close)="isDangerClosed9=true" class="alert-icon-left alert-arrow-left bg-danger mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+									<strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit again.
+								</ngb-alert>
+							</div>
+							<div class="col-xl-6 col-lg-12">
+								<h6>Warning Alert</h6>
+                <ngb-alert *ngIf="!isWarningClosed9" [dismissible]="true" [type]="''"
+                (close)="isWarningClosed9=true" class="alert-icon-right alert-arrow-right bg-warning mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-warning"></i></span>
+									<strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking too good</a>.
+								</ngb-alert>
+								<h6>Info Alert</h6>
+                <ngb-alert *ngIf="!isInfoClosed9" [dismissible]="true" [type]="''"
+                (close)="isInfoClosed9=true" class="alert-icon-right alert-arrow-right bg-info mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-info-circle"></i></span>
+									<strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>, but it's not super important.
+								</ngb-alert>
+								<h6>Custom Alert</h6>
+                <ngb-alert *ngIf="!isCustomClosed9" [dismissible]="true" [type]="''"
+                (close)="isCustomClosed9=true" class="alert-icon-right alert-arrow-right bg-cyan mb-2" role="alert">
+									<span class="alert-icon"><i class="la la-photo"></i></span>
+									<strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom colors.
+								</ngb-alert>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Solid Alerts with icons & Arrow end -->
+
+    <!-- Round Alerts start -->
+    <section id="round-alerts">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Round Alerts</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>To use round alert, add class <code>.round</code> to <code>.alert</code> container class.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed10" class="bg-primary round mb-2" [dismissible]="true"
+                      [type]="''" (close)="isPrimaryClosed10=true" role="alert">
+                      <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some
+                      alerts.
+                    </ngb-alert>
+                    <h6>Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed10" class="bg-success round mb-2" [dismissible]="true"
+                      [type]="''" (close)="isSuccessClosed10=true" role="alert">
+                      <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                      alert message.
+                    </ngb-alert>
+                    <h6>Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed10" class="round bg-danger mb-2" [dismissible]="true" [type]="''"
+                      (close)="isDangerClosed10=true" role="alert">
+                      <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                      again.
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed10" class="bg-warning round mb-2" [dismissible]="true"
+                      [type]="''" (close)="isWarningClosed10=true" role="alert">
+                      <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                        too good</a>.
+                    </ngb-alert>
+                    <h6>Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed10" class="round bg-info mb-2" [dismissible]="true" [type]="''"
+                      (close)="isInfoClosed10=true" role="alert">
+                      <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>,
+                      but it's not super important.
+                    </ngb-alert>
+                    <h6>Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed10" class="round bg-cyan mb-2" [dismissible]="true" [type]="''"
+                      (close)="isCustomClosed10=true" role="alert">
+                      <strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom
+                      colors.
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Round Alerts end -->
+
+
+    <!-- Round Alerts with icons start -->
+    <section id="round-alerts-with-icons">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Round Alerts with icons</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>To use round alert, add class <code>.round</code> to <code>.alert</code> container class. To use
+                  Icons, add class <code>.alert-icon-left</code> or <code>alert-icon-right</code> to
+                  <code>.alert</code>
+                  container class.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed11" class="round bg-primary alert-icon-left mb-2" [dismissible]="true"
+                      [type]="''" (close)="isPrimaryClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-heart"></i></span>
+                      <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some
+                      alerts.
+                    </ngb-alert>
+                    <h6>Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed11" class="round bg-success alert-icon-left mb-2" [dismissible]="true"
+                      [type]="''" (close)="isSuccessClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+                      <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                      alert message.
+                    </ngb-alert>
+                    <h6>Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed11" class="round bg-danger alert-icon-left mb-2" [dismissible]="true"
+                      [type]="''" (close)="isDangerClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+                      <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                      again.
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed11" class="round bg-warning alert-icon-right mb-2" [dismissible]="true"
+                      [type]="''" (close)="isWarningClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-warning"></i></span>
+                      <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                        too good</a>.
+                    </ngb-alert>
+                    <h6>Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed11" class="bg-info round alert-icon-right mb-2" [dismissible]="true"
+                      [type]="''" (close)="isInfoClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-info-circle"></i></span>
+                      <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>,
+                      but it's not super important.
+                    </ngb-alert>
+                    <h6>Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed11" class="bg-cyan round alert-icon-right mb-2" [dismissible]="true"
+                      [type]="''" (close)="isCustomClosed11=true" role="alert">
+                      <span class="alert-icon"><i class="la la-photo"></i></span>
+                      <strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom
+                      colors.
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Round Alerts with icons end -->
+
+    <!-- Round Alerts with icons & Arrow start -->
+    <section id="round-alerts-with-icons-arrows">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Round Alerts with icons &amp; arrow</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>To use round alert, add class <code>.round</code> to <code>.alert</code> container class. To add
+                  left/right icons with arrow to the alert, use class <code>.alert-arrow-left</code> or
+                  <code>alert-arrow-right</code>
+                  with icon classes.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed12" class="bg-primary round alert-icon-left alert-arrow-left mb-2"
+                      [dismissible]="true" [type]="''" (close)="isPrimaryClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-heart"></i></span>
+                      <strong>Good Morning!</strong> Start <a [routerLink]="" class="alert-link">your day</a> with some
+                      alerts.
+                    </ngb-alert>
+                    <h6>Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed12" class="bg-success round alert-icon-left alert-arrow-left mb-2"
+                      [dismissible]="true" [type]="''" (close)="isSuccessClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-up"></i></span>
+                      <strong>Well done!</strong> You successfully read this <a [routerLink]="" class="alert-link">important</a>
+                      alert message.
+                    </ngb-alert>
+                    <h6>Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed12" class="bg-danger round alert-icon-left alert-arrow-left mb-2"
+                      [dismissible]="true" [type]="''" (close)="isDangerClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-thumbs-o-down"></i></span>
+                      <strong>Oh snap!</strong> Change a <a [routerLink]="" class="alert-link">few things up</a> and submit
+                      again.
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed12" class="bg-warning round alert-icon-right alert-arrow-right mb-2"
+                      [dismissible]="true" [type]="''" (close)="isWarningClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-warning"></i></span>
+                      <strong>Warning!</strong> Better check yourself, you're not <a [routerLink]="" class="alert-link">looking
+                        too good</a>.
+                    </ngb-alert>
+                    <h6>Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed12" class="bg-info round alert-icon-right alert-arrow-right mb-2"
+                      [dismissible]="true" [type]="''" (close)="isInfoClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-info-circle"></i></span>
+                      <strong>Heads up!</strong> This alert needs <a [routerLink]="" class="alert-link">your attention</a>,
+                      but it's not super important.
+                    </ngb-alert>
+                    <h6>Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed12" class="bg-cyan round alert-icon-right alert-arrow-right mb-2"
+                      [dismissible]="true" [type]="''" (close)="isCustomClosed12=true" role="alert">
+                      <span class="alert-icon"><i class="la la-photo"></i></span>
+                      <strong>Great!</strong> You are using some <a [routerLink]="" class="alert-link">gorgeous</a> custom
+                      colors.
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Round Alerts with icons & Arrow end -->
+
+
+    <!-- Alerts with Additional Content start -->
+    <section id="additional-content-alerts">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Alerts with Additional Content</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <p>Alerts can also contain additional HTML elements like headings and paragraphs.</p>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Primary Alert</h6>
+                    <ngb-alert *ngIf="!isPrimaryClosed13" class="alert-primary" [dismissible]="true" [type]="'primary'"
+                      (close)="isPrimaryClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Good Morning!</h4>
+                      <p>Aww yeah, you successfully read this <a [routerLink]="" class="alert-link">important alert</a>
+                        message. This example text is going to run a bit longer so that you can see how spacing
+                        within an alert works with this kind of content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and
+                        tidy.</p>
+                    </ngb-alert>
+                    <h6>No Border Success Alert</h6>
+                    <ngb-alert *ngIf="!isSuccessClosed13" class="alert-success border-0 mb-2" [dismissible]="true"
+                      [type]="'success'" (close)="isSuccessClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Well done!</h4>
+                      <p>Aww yeah, you successfully read this important alert message. This example text is going to
+                        run a bit longer so that you can see how <a [routerLink]="" class="alert-link">spacing within</a> an
+                        alert works with this kind of content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and
+                        tidy.</p>
+                    </ngb-alert>
+                    <h6>Solid Danger Alert</h6>
+                    <ngb-alert *ngIf="!isDangerClosed13" class="alert-danger mb-2" [dismissible]="true" [type]="'danger'"
+                      (close)="isDangerClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Oh snap!</h4>
+                      <p>Aww yeah, you successfully read this important alert message. This example text is going to
+                        run a bit longer so that you can see how spacing within an alert works with this kind of
+                        content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things <a [routerLink]=""
+                          class="alert-link">nice and tidy</a>.</p>
+                    </ngb-alert>
+                  </div>
+                  <div class="col-xl-6 col-lg-12">
+                    <h6>Warning Alert</h6>
+                    <ngb-alert *ngIf="!isWarningClosed13" class="alert-warning mb-2" [dismissible]="true" [type]="'warning'"
+                      (close)="isWarningClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Warning!</h4>
+                      <p>Aww yeah, you successfully read this important alert message. This example text is <a [routerLink]=""
+                          class="alert-link">going to run</a> a bit longer so that you can see how spacing
+                        within an
+                        alert works with this kind of content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and
+                        tidy.</p>
+                    </ngb-alert>
+                    <h6>No Border Info Alert</h6>
+                    <ngb-alert *ngIf="!isInfoClosed13" class="alert-info border-0 mb-2" [dismissible]="true" [type]="'info'"
+                      (close)="isInfoClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Heads up!</h4>
+                      <p>Aww yeah, you successfully read this important alert message. This example text is going to
+                        run a bit longer so that you can see how spacing within <a [routerLink]="" class="alert-link">an
+                          alert</a> works with this kind of content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and
+                        tidy.</p>
+                    </ngb-alert>
+                    <h6>Solid Custom Alert</h6>
+                    <ngb-alert *ngIf="!isCustomClosed13" class="alert-amber mb-2" [dismissible]="true" [type]="'custom'"
+                      (close)="isCustomClosed13=true" role="alert">
+                      <h4 class="alert-heading mb-2">Great!</h4>
+                      <p>Aww yeah, you successfully read this important alert message. This example text is going to
+                        run a bit longer so that you can see how spacing within an alert works with this kind of
+                        content.</p>
+                      <p class="mb-0">Whenever you need to, be sure to use margin <a [routerLink]="" class="alert-link">utilities</a>
+                        to keep things nice and tidy.</p>
+                    </ngb-alert>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Alerts with Additional Content end -->
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

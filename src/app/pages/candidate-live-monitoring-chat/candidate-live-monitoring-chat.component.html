@@ -1,0 +1,458 @@
+<div class="content-header-left col-md-6 col-12 mb-2" style="margin-left:-35px;margin-top:-35px;">
+    <div class="sidebar-left">
+        <div class="sidebar">
+            <div class="chat-sidebar card ">
+                <span class="chat-sidebar-close">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="0.425em" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z"/></svg>
+                </span>
+                <br>
+                <div class="chat-sidebar-search">
+                    <div class="d-flex align-items-center">
+                        <fieldset class="form-group position-relative has-icon-left mx-75 mb-0">
+                            <input type="text" class="form-control round" id="chat-search" placeholder="Search">
+                            <div class="form-control-position">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div> 
+                <div class="chat-sidebar-list-wrapper pt-2">
+                        <fieldset class="form-group  has-icon-left mx-75 mb-0 ">
+                            <label for="ddlUsers">Test:</label>
+                            <select class="form-control form-select" id="testId" name="testId"
+                                formControlName="testId" (change)="onChangeTest($any($event.target).value)"
+                                [ngClass]="{ 'is-invalid': submitted && f['testId'].errors }">
+                                <option value="" disabled>--Select Test</option>
+                                <option *ngFor="let test of tests" [value]="test.id">
+                                    {{test.testName}}</option>
+                            </select>
+
+                        </fieldset>
+                    <br>
+      
+                    <div id="divContactList"  *ngFor="let candidateList of liveMonitoringCandidateList">
+                        <h4 class="px-2 pb-25 mb-0">Select a new chat<i class="ft-plus float-right cursor-pointer"></i></h4>
+                        <h6 class="px-2 pt-2 pb-25 mb-0">CHATS</h6>
+                        <br>
+                        <ul class="chat-sidebar-list" id="contacts">
+                        <li class="contactUsers">
+                            <div class="d-flex align-items-center" [value]=candidateList.studentID (click)="onStudentClick(candidateList.studentID)">
+                            <div class="avatar m-0 mr-50 bg-success">
+                            <span class="avatar-content">{{candidateList.name.charAt(0)}}&nbsp;{{candidateList.surname.charAt(0)}} </span>
+                            <span class="avatar-status-offline"></span>
+                            </div>
+                            &nbsp;
+                            <div class="chat-sidebar-name">
+                            <h6 class="mb-0">{{candidateList.name}} &nbsp; {{candidateList.surname}} </h6><span class="text-muted"> {{candidateList.testName}} </span>
+                            </div>
+                            </div>
+                        </li>bul
+                            </ul>
+              
+                    </div> 
+                </div>
+            </div>
+            <!-- app chat sidebar ends -->
+        </div>
+    </div>
+</div>
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h4 class="form-section"><i></i></h4>
+    </div>
+    <div *ngIf="show" class="content-header-right col-md-6 col-12">
+        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+        <button  type="button" id="btnNew"
+            class="btn btn-info btn-min-width mr-1 mb-1"  (click)="onSendOTPClicked()">
+            Send OTP
+        </button>
+        <button  type="button" id="btnSend"
+            class="btn btn-info btn-min-width mr-1 mb-1"  (click)="onBulkSendClicked()">
+            Send Bulk Message (Test)
+
+        </button>
+        <button type="button" id="btnReSend"
+            class="btn btn-info btn-min-width mr-1 mb-1" (click)="openCustomChatListModal(customChatListModal)">
+            Custom Chat List
+        </button>
+        </div>
+    </div>
+    <div class="content-body">
+        <section id="horizontal-form-layouts">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-content collpase show">
+                            <div class="card-body">
+                                <form class="form form-horizontal" >
+                                    <div class="form-body">
+                                        <div class="row">
+                                    </div>
+                                </div>
+                                </form>
+    
+                                <div class="row mb-md-2">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="dataTables_length" id="tickets-table_length">
+                                            <label class="d-inline-flex align-items-center">
+                                                Show
+                                                <select name="pageSize" 
+                                                    class="form-control form-control-sm mx-2"
+                                                    >
+                                                    <option [ngValue]="10">10</option>
+                                                    <option [ngValue]="25">25</option>
+                                                    <option [ngValue]="50">50</option>
+                                                    <option [ngValue]="100">100</option>
+                                                </select>
+                                                entries
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                                            <label class="d-inline-flex align-items-center">
+                                                Search:
+                                                <input type="text" name="searchTerm"
+                                                    class="form-control form-control-sm ms-2" aria-controls="tickets-table">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered no-footer dataTable" id="studentsTable">
+                                        <thead class="bg-info white">
+                                            <tr>
+                                                <th sortable="code" (sort)="onSort($event)">
+                                                    Name
+                                                    <i class="la la-sort float-md-end"></i>
+                                                </th>
+                                                <th sortable="code" (sort)="onSort($event)">
+                                                    Message
+                                                    <i class="la la-sort float-md-end"></i>
+                                                </th>
+                                                <th sortable="code" (sort)="onSort($event)">
+                                                    Read Status
+                                                    <i class="la la-sort float-md-end"></i>
+                                                </th>
+                                                <th sortable="code" (sort)="onSort($event)">
+                                                    Mark Read Status
+                                                    <i class="la la-sort float-md-end"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let testchat of studentsChatlist ">
+                                                <td>
+                                                    {{testchat.name}}
+                                                </td>
+                                                <td>
+                                                    {{testchat.message}}
+                                                </td>
+                                                <td>
+                                                    {{testchat.studentReadStatus}}
+                                                </td>
+                                                <td>
+                                                  <button class="btn btn-block btn-primary glow" (click)="onTestChatClick(testchat)">Mark as Read</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+    
+                     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+</div>
+
+<ng-template #InvigilatorChatModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1"></h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="form" (ngSubmit)="onInvigilatorMessageSend()">
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Private Message
+                <div class="form-group row">
+                    <div>
+                        <br>
+                        <div class="col-md-9 mx-auto" style="text-align:center ;">
+                        <textarea readonly class="message-text"  id="testChatMessageArea" style="text-align:center" rows="15" cols="90" wrap="hard">
+                            {{messages}}
+                        </textarea>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="testChatMessage" id="testChatMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+       <!-- <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>-->
+        <button type="button" class="btn grey btn-outline-secondary" (click)="closeStudentChatModal()" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #bulkMessagingModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1"></h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="bulkMessagingForm" (ngSubmit)="onInvigilatorBulkMessageSend()">
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Bulk Message
+                <div  class="form-group row" >    
+                    <!--<textarea >{{messages}}</textarea>-->
+                   <div>
+                        <br>
+                        <div class="card-body chat-container">
+                        <textarea readonly class="message-text"  id="chatBroadcastMessageArea" wrap="off">{{messages}}</textarea>
+                        </div> 
+                    </div>
+                    <!--<div class="card-body chat-container" id="componentRef">
+                        <perfect-scrollbar [config]="config" #chatPS>
+                          <div class="chat-content" #content>
+                            
+                            
+                            
+                            
+               
+                           </div>
+                        </perfect-scrollbar>
+                        </div>-->
+                   </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="bulkMessage" id="bulkMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #sendBulkOTPModal let-c="close" let-d="dismiss">   
+   
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1" style="text-align:center">Hello {{user.firstName}}</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="otpMessagingForm" (ngSubmit)="onOTPBulkSend()"> 
+ 
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>   
+        
+        <div class="row">
+            <span style="text-align:center">One Time Pin:</span><br>
+            <div class="col-lg-12">
+                <div class="form-group row">
+                   
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="otpMessage" id="otpMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #customChatListModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Custom Chat</h4>
+        <button type="button" class="btn-close" aria-hidden="true"
+            (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="customMessageForm" (ngSubmit)="onInvigilatorCustomMessageSend()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+          
+            <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                <br /><br />
+                <!--<input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()">-->
+                <!--<input type="checkbox" id="cbxCheckAll" name="cbxCheckAll">-->
+                <!--<label for="cbxCheckAll"> Select All</label>-->
+                <div class="row mb-md-2">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="tickets-table_length">
+                            <label class="d-inline-flex align-items-center">
+                                Show
+                                <select name="pageSize" 
+                                    class="form-control form-control-sm mx-2"
+                                    >
+                                    <option [ngValue]="10">10</option>
+                                    <option [ngValue]="25">25</option>
+                                    <option [ngValue]="50">50</option>
+                                    <option [ngValue]="100">100</option>
+                                </select>
+                                entries
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                            <label class="d-inline-flex align-items-center">
+                                Search:
+                                <input type="text" name="searchTerm"
+                                    class="form-control form-control-sm ms-2" aria-controls="tickets-table">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="table-responsive" style="width:100%">
+                    <table id="StudentListTable" style="width:100%">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th style="display:none">StudentID</th>
+                                <th>Check</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <tr  *ngFor="let candidateList of liveMonitoringCandidateList">            
+                                <td>
+                                    <input  type="checkbox" id="cbxCheckStudentLink"  [value]="candidateList.studentID" (click)="onStudentCustomChatClick(candidateList.studentID)"
+                                        [checked]="isStudentSelected(candidateList.studentID)">
+                                </td>
+                                <td>
+                                   {{candidateList.name}}
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                       
+                    </table>
+                </div>
+    
+            <div class="row justify-content-md-between align-items-md-center mt-2"
+                     *ngIf="paginationService.totalItems">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                            aria-live="polite">Showing
+                            {{paginationService.startIndex}} to
+                            {{paginationService.endIndex}} of
+                            <span *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}} search results from
+                            </span>
+                            {{paginationService.totalItems}} entries
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                        <div class="text-md-right float-md-end pagination-rounded">
+                            <ul class="pagination">
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                    (click)="paginationService.setPage(1)">
+                                    <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                        <span aria-hidden="true" class="ng-star-inserted">««</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                    (click)="paginationService.goToPreviousPage()">
+                                    <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                        <span aria-hidden="true" class="ng-star-inserted">«</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted" aria-current="page"
+                                    [ngClass]="{ 'active': paginationService.currentPage == page }"
+                                    *ngFor="let page of paginationService.paginationLinks"
+                                    (click)="paginationService.setPage(page)">
+                                    <a href="javascript:void(0);" class="page-link ng-star-inserted">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                    (click)="paginationService.goToNextPage()">
+                                    <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                        <span aria-hidden="true" class="ng-star-inserted">»</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                    (click)="paginationService.setPage(paginationService.totalPages)">
+                                    <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                        <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-9 mx-auto">
+                    <input  class="form-control" type="text"  formControlName="customChatMessage" id="customChatMessage" 
+                        placeholder="Enter Message">
+                </div>
+             </div>
+        </div>
+        <div class="modal-footer">
+        
+            <button type="button" class="btn grey btn-outline-secondary"
+                (click)="d('Close modal')" ngbAutofocus>
+                Close
+            </button>
+           <button type="submit" class="btn btn-outline-primary">
+            Send
+           </button>
+        </div>
+    </form>
+</ng-template>

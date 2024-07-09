@@ -1,0 +1,141 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- HTML5 export buttons table -->
+      <section id="html5">
+        <div class="row">
+          <div class="col-12" *blockUI="'exportButtons'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadExportButtons($event)">
+              <ng-container mCardHeaderTitle>
+                HTML5 export buttons
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="collapse show">
+                  <div class=" card-dashboard">
+                    <p class="card-text">The HTML5 export buttons plug-in for Buttons provides three export buttons:</p>
+                    <p>CopyHtml5 - Copy to clipboard</p>
+                    <p>ExcelHtml5 - Save to XLSX file</p>
+                    <p>PdfHtml5 - Save to PDF file </p>
+                    <div class=" justify-content">
+                      <button class="btn btn-secondary buttons-excel buttons-html5"
+                        (click)="callServiceToCopy()">Copy</button>
+                      <button class="btn btn-secondary buttons-excel buttons-html5"
+                        (click)="getExcelData()">Excel</button>
+                      <button class="btn btn-secondary buttons-excel buttons-html5" (click)="getPdfData()">Pdf</button>
+                    </div>
+                    <div class="table table-striped table-bordered dataex-html5-export">
+                      <ngx-datatable class="bootstrap" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50"
+                        [rowHeight]="'auto'" [rows]="row" [limit]="7" [columnMode]="'force'"
+                        [loadingIndicator]="loadingIndicator" fxFlex="auto" [perfectScrollbar]="config">
+
+                        <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.name}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.position}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.office}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.age}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.salary}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.startdate}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                      </ngx-datatable>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <section id="html5">
+          <div class="row " id="printMe">
+          <div class="col-12 printMe" *blockUI="'printButtons'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadPrintButtons($event)">
+              <ng-container mCardHeaderTitle>
+                HTML5 print buttons
+              </ng-container>
+              <ng-container mCardBody>
+
+                <div class="collapse show">
+                  <div class="card-dashboard">
+                    <p class="card-text">The HTML5 print buttons plug-in for Buttons provides print button:</p>
+                    <p>This simple example shows Buttons configured with the print button type only. The print button
+                      will open a new window in the end user's browser and, by default, automatically trigger the print
+                      function allowing the end user to print the table. The window will be closed once the print is
+                      complete, or has been cancelled.</p>
+
+                    <div class="justify-content">
+                      <button class="btn btn-secondary buttons-excel buttons-html5" (click)="getPrint('printMe')">Print</button>
+                    </div>
+                    <div class="table table-striped table-bordered dataex-html5-export">
+                      <ngx-datatable class="bootstrap" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="40"
+                        [rowHeight]="'auto'" [rows]="row" [limit]="7" [columnMode]="'force'"
+                        [loadingIndicator]="loadingIndicator" fxFlex="auto" [perfectScrollbar]="config">
+
+                        <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.name}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.position}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.office}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.age}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.salary}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                          <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.startdate}}</span>
+                          </ng-template>
+                        </ngx-datatable-column>
+                      </ngx-datatable>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!--/ HTML5 export buttons table -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

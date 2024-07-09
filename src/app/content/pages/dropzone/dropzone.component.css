@@ -1,0 +1,31 @@
+* {
+    font-family: Lato;
+  }
+  
+  ngx-dropzone,
+  .custom-dropzone {
+    margin: 20px;
+  }
+  
+ :host ::ng-deep .dropzone {
+    max-width: fit-content !important;
+}
+:host ::ng-deep .dropzone1 {
+   position: unset !important; 
+  overflow-wrap: break-word;
+}
+:host ::ng-deep .dz-default  { 
+  font-size: 2rem;
+  color: #666ee8 !important;
+  text-align: center;
+}
+
+:host ::ng-deep ._dropzone{
+  border: 2px dashed #666ee8;
+}
+:host ::ng-deep .custom-dropzone {
+  height: 250px;
+  background: #333;
+  color: #fff;
+  border: 5px dashed  #666ee8 !important; 
+}

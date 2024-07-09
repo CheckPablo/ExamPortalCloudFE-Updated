@@ -1,0 +1,131 @@
+// @import url('../../../assets/css/bootstrap.min.css');
+// @import url('../../../assets/css/corporate.min.css');
+// @import url('../../../assets/css/extras.min.css');
+// @import url('../../../assets/css/theme.css');
+
+.home-container {
+  font-family: "Raleway", sans-serif;
+}
+.container,
+.container-fullwidth {
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+* {
+  box-sizing: border-box;
+}
+.top-header {
+  background-color: #00315a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.top-header .text-widget {
+  color: white;
+  font-size: 12px;
+}
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.nav .branding {
+  color: #1c1c1c;
+}
+.nav-menu {
+  float: right;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center vertically */
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+}
+
+.nav-menu li {
+  margin-right: 50px;
+  position: relative;
+}
+
+.nav-menu li::before {
+  content: "";
+  position: absolute;
+  top: -65px;
+  left: 0;
+  width: 100%;
+  height: 3px; /* Set height of bar */
+  background-color: transparent; /* Set initial color of bar */
+  transition: background-color 0.2s ease; /* Add transition for color change */
+}
+
+.nav-menu li:last-child {
+  margin-right: 0;
+}
+
+.nav-menu li {
+  text-decoration: none;
+  color: #ef9503;
+  font-weight: bold;
+}
+
+.nav-menu li:hover {
+  color: #00315a;
+}
+
+.nav-menu li.active {
+  color: #00315a;
+}
+
+.nav-menu li:hover::before,
+.nav-menu a.active::before {
+  background-color: #00315a;
+}
+.main {
+  background-image: url("../../../assets/images/s09.jpg");
+  background-size: cover;
+  background-position: center;
+  height: calc(75vh);
+  margin-top: -30px;
+}
+.main h1 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+.main img {
+    display: block; 
+    margin: 0 auto;}
+#footer {
+  background-color: #00315a;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: rgba(255, 255, 255, 0.6);
+}

@@ -1,0 +1,57 @@
+:host ::ng-deep .card-block .h4 {
+    font-size: 1.32rem;
+    font-family: bold;
+}
+
+:host ::ng-deep .content-sub-header {
+    margin-top: 0;
+    margin-bottom: 3rem;
+}
+
+:host ::ng-deep .mb-3,
+.my-3 {
+    margin-bottom: 2rem !important;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .ngb-datepicker-month-view {
+    display: block;
+    background-color: red !important;
+}
+
+@media screen and (max-width: 767px) {
+    .bottom_space {
+        padding-bottom: 1rem !important;
+        text-align: unset !important;
+        padding-left: 0px !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .pull-right {
+        float: left !important;
+    }
+}
+
+.close {
+    outline: none;
+}
+/* 
+::ng-deep ngb-modal-backdrop {
+    z-index: 1050 !important;
+} */
+
+:host ::ng-deep .ngb-dp-header {
+    background-color: var(--light) !important;
+}
+
+:host ::ng-deep .ngb-dp-weekdays {
+    background-color: var(--light);
+}
+
+:host ::ng-deep .ngb-dp-month-name {
+    background-color: var(--light);
+}

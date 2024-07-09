@@ -1,0 +1,68 @@
+input[type='checkbox'][readonly]{
+    pointer-events: none;
+}
+
+#loading{ 
+    position: absolute; 
+    left: 50%; 
+    top: 50%; 
+    z-index: 1; 
+    width: 150px; 
+    height: 150px; 
+    margin: -75px 0 0 -75px; 
+    border: 16px solid #f3f3f3; 
+    border-radius: 50%; 
+    border-top: 16px solid #3498db; 
+    width: 120px; 
+    height: 120px; 
+    animation: spin 2s linear infinite; 
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    } 
+      
+    @keyframes spin { 
+      0% { transform: rotate(0deg); } 
+      100% { transform: rotate(360deg); } 
+    }
+    .modal-content {
+      background-color: transparent !important;
+      border: 0px !important
+  }
+  
+  .modal-header {
+      border: 0px !important
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(0,0,0,0.7);
+    background-color:transparent !important; }
+   /* .modal-backdrop.fade {
+      opacity: 0; }
+    .modal-backdrop.show {
+      opacity: 0.5; }*/
+     /*.modal-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      
+   }
+
+   .modal {
+
+
+    background-color: transparent;
+    border: 1px solid black;
+    box-shadow: 10px 10px 5px #888888;
+ }
+ .modal-dialog modal-dialog-centered{
+  background-color: transparent !important;
+ } */

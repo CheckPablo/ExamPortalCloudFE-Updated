@@ -1,0 +1,5 @@
+@media only screen and (max-width:767px) {
+    ._left {
+        left: calc(100% - 120px) !important;
+    }
+}

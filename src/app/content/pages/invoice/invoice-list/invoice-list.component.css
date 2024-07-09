@@ -1,0 +1,26 @@
+:host ::ng-deep .group {
+    background-color: #EDEDED !important;
+
+
+}
+
+:host ::ng-deep .table tbody+tbody {
+    border-top: 0px solid #626e82;
+}
+
+:host ::ng-deep .btn-primary {
+    margin-right: 3px;
+}
+
+:host ::ng-deep .btn-warning {
+    margin-right: 3px;
+}
+
+.show>.dropdown-menu {
+  transform: translate3d(-140px, 0px, 0px) !important;
+}
+
+.table_dropdown {
+  top: 40px !important;
+  left: 40px !important;
+}

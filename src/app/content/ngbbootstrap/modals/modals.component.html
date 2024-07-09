@@ -1,0 +1,3197 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Basic Modals start -->
+      <section id="basic-modals">
+        <div class="row">
+          <div class="col-12" *blockUI="'basicModals'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadBasicModals($event)">
+              <ng-container mCardHeaderTitle>
+                Basic Modals
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="row my-2">
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Default Modal</h5>
+                      <p>Toggle a modal via ng-bootstrap by clicking the button above.</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-primary block btn-lg"
+                        (click)="openDefaultModel(DefaultModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #DefaultModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel1">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')" ngbAutofocus>Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Modal With Icons</h5>
+                      <p> With some icons and success alert to give success message.</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-primary block btn-lg" (click)="openModelIcon(modalIconContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #modalIconContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel2"><i class="la la-road2"></i>Basic Modal
+                          </h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                          <div class="alert alert-success" role="alert">
+                            <span class="text-bold-600">Well done!</span> You successfully read this important
+                            alert
+                            message.
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Disable Keyboard</h5>
+                      <p> By Default, closes the modal when escape key is pressed. Disable keyboard
+                        interaction using <code>keyboard: false</code>.</p>
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-outline-primary block btn-lg"
+                        (click)="openDisableKeyboard(disableKeyboardContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #disableKeyboardContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel3">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Disable Backdrop</h5>
+                      <p>Disable backdrop element using <code>backdrop: 'static'</code>, it includes a modal-backdrop
+                        element.
+                        Alternatively,
+                        specify static for a backdrop which doesn't close the modal on click.</p>
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-outline-primary block btn-lg" data-backdrop="false"
+                        (click)="openDisableBackDrop(DisableBackDropContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #DisableBackDropContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel4">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Modal Show</h5>
+                      <p>Manually opens a modal. Returns to the caller before the modal has actually been
+                        shown.</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-primary block btn-lg"
+                        (click)="OpenShowModel(OpenShowModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #OpenShowModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel5">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Disable Animation</h5>
+                      <p>For modals that simply appear rather than fade in to view, set <code>windowClass:""</code>
+                        in modal config.</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-primary block btn-lg"
+                        (click)="OpenDisableAnimation(DisableAnimationContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #DisableAnimationContent let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel2"><i class="la la-tree"></i>Basic Modal
+                          </h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                          <div class="alert alert-success" role="alert">
+                            <span class="text-bold-600">Well done!</span> You successfully read this important
+                            alert
+                            message.
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Basic Modals end -->
+
+      <!-- Modal Themes start -->
+      <section id="modal-themes">
+        <div class="row">
+          <div class="col-12" *blockUI="'modalThemes'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadModalThemes($event)">
+              <ng-container mCardHeaderTitle>
+                Modal Themes
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="row my-2">
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Primary Modal Template</h5>
+                      <p>To use primary modal theme, add <code>.bg-primary</code> class to the
+                        <code>.modal-header</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-primary block btn-lg" (click)="PrimaryModel(PrimaryModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #PrimaryModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header bg-primary">
+                          <h4 class="modal-title white" id="myModalLabel1">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Success Modal Template</h5>
+                      <p>To use success modal theme, add <code>.bg-success</code> class to the
+                        <code>.modal-header</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-success block btn-lg" (click)="SuccessModel(SuccessModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template class="modal text-left" #SuccessModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header bg-success">
+                          <h4 class="modal-title white" id="myModalLabel22"><i class="la la-tree"></i> Basic
+                            Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                          <div class="alert alert-success" role="alert">
+                            <span class="text-bold-600">Well done!</span> You successfully read this important
+                            alert
+                            message.
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-success">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Danger Modal Template</h5>
+                      <p>To use danger modal theme, add <code>.bg-danger</code> class to the
+                        <code>.modal-header</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-danger block btn-lg" (click)="DangerModel(DangerModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #DangerModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header bg-danger">
+                          <h4 class="modal-title white" id="myModalLabel1">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-danger">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Info Modal Template</h5>
+                      <p>To use info modal theme, add <code>.bg-info</code> class to the
+                        <code>.modal-header</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-info block btn-lg" (click)="InfoModel(InfoModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template #InfoModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header bg-info">
+                          <h4 class="modal-title white" id="myModalLabel1">Basic Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5>Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5>Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-info">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Warning Modal Template</h5>
+                      <p> To use warning modal theme, add <code>.bg-warning</code> class to the
+                        <code>.modal-header</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-warning block btn-lg" (click)="WarningModel(WarningModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template class="modal text-left" #WarningModelContent let-c="close" let-d="dismiss">
+                        <div class="modal-header bg-warning">
+                          <h4 class="modal-title white" id="myModalLabel22"><i class="la la-tree"></i> Basic
+                            Modal</h4>
+                          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                          <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple
+                            pie.
+                            Brownie carrot
+                            cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                            cookie
+                            chocolate cake
+                            liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                          <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                            cream.
+                            Danish candy
+                            cake.</p>
+                          <hr>
+                          <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                          <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                            bonbon
+                            toffee danish.
+                            Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                            candy
+                            cookie biscuit pie.</p>
+                          <div class="alert alert-success" role="alert">
+                            <span class="text-bold-600">Well done!</span> You successfully read this important
+                            alert
+                            message.
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn grey btn-outline-secondary"
+                            (click)="d('Close modal')">Close</button>
+                          <button type="button" class="btn btn-outline-warning">Save changes</button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="form-group">
+                      <h5>Border Modal Template</h5>
+                      <p>To use Border color modal theme, add <code>.border-COLORNAME</code> class to the
+                        <code>.modal-content</code>
+                        container</p>
+                      <!-- Button trigger modal -->
+                      <button class="btn btn-outline-pink block btn-lg" (click)="BorderModel(BorderModelContent)">
+                        Launch Modal
+                      </button>
+
+                      <!-- Modal -->
+                      <ng-template class="modal border-pink text-left" #BorderModelContent let-c="close"
+                        let-d="dismiss">
+                        <div class="modal-content border-pink">
+                          <div class="modal-header border-bottom-pink">
+                            <h4 class="modal-title" id="myModalLabel22"><i class="la la-tree"></i>Basic Modal
+                            </h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée
+                              apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake
+                              cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice
+                              cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll
+                              bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop
+                              candy
+                              cookie biscuit pie.</p>
+                            <div class="alert alert-success" role="alert">
+                              <span class="text-bold-600">Well done!</span> You successfully read this
+                              important
+                              alert message.
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-pink">Save changes</button>
+                          </div>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+
+
+          </div>
+        </div>
+
+      </section>
+      <!-- Modal Themes end -->
+
+      <!-- Modal Sizes start -->
+      <section id="modal-sizes">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Modal Sizes</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="row my-2">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Small Modal Size</h5>
+                        <p>Add class <code>.modal-sm</code> with <code>.modal-dialog</code> to use small size of modal.
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="SmallModel(SmallModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #SmallModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-sm">
+                            <div class="modal-header">
+                              <h6 id="myModalLabel21">Basic Modal</h6>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <h5>Check First Paragraph</h5>
+                              <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                                Brownie carrot
+                                cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                                cookie chocolate cake
+                                liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                              <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                                Danish candy
+                                cake.</p>
+                              <hr>
+                              <h5>Some More Text</h5>
+                              <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                                toffee danish.
+                                Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                                cookie biscuit pie.</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn grey btn-outline-secondary"
+                                (click)="d('Close modal')">Close</button>
+                              <button type="button" class="btn btn-outline-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Default Modal Size</h5>
+                        <p>For <code>default size</code>, modal markup doesn't require any additional sizing class.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg"
+                          (click)="DefaultSizeModel(DefaultSizeModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #DefaultSizeModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel22"><i class="la la-tree"></i> Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5><i class="la la-arrow-right"></i> Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5><i class="la la-lightbulb-o"></i> Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                            <div class="alert alert-success" role="alert">
+                              <span class="text-bold-600">Well done!</span> You successfully read this important alert
+                              message.
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Large Modal</h5>
+                        <p>Add class <code>.modal-lg</code> with <code>.modal-dialog</code> to use large size of modal.
+                        </p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="LargeModel(LargeModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #LargeModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-lg">
+                            <div class="modal-header">
+                              <h6 id="myModalLabel23">Basic Modal</h6>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <h5>Check First Paragraph</h5>
+                              <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                                Brownie carrot
+                                cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                                cookie chocolate cake
+                                liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                              <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                                Danish candy
+                                cake.</p>
+                              <hr>
+                              <h5>Some More Text</h5>
+                              <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                                toffee danish.
+                                Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                                cookie biscuit pie.</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn grey btn-outline-secondary"
+                                (click)="d('Close modal')">Close</button>
+                              <button type="button" class="btn btn-outline-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Different Heading Options start -->
+      <section id="modal-heading-options">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Different Heading Options</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row my-2">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Default heading Modal</h5>
+                        <p> Use <code>.modal-title</code> class for basic modal title.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg"
+                          (click)="openDefaultHeadingModel(DefaultHeadingModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #DefaultHeadingModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <label class="modal-title" id="myModalLabel25">Basic Modal</label>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Modal with subtitle</h5>
+                        <p>Add <code>span</code> after Modal title for subtitle.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg"
+                          (click)="openSubtitleModel(SubtitleModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #SubtitleModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h3 class="modal-title" id="myModalLabel26">Main Modal Title</h3>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span class="modal-subtitle">This is modal subtitle</span>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H1 heading Modal</h5>
+                        <p>Use <code>H1</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH1Model(H1ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H1ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h1 id="myModalLabel27">Basic Modal</h1>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H2 heading Modal</h5>
+                        <p>Use <code>H2</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH2Model(H2ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H2ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h2 id="myModalLabel28">Basic Modal</h2>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H3 heading Modal</h5>
+                        <p>Use <code>H3</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH3Model(H3ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H3ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h3 id="myModalLabel29">Basic Modal</h3>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H4 heading Modal</h5>
+                        <p>Use <code>H4</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH4Model(H4ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H4ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h4 id="myModalLabel30">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H5 heading Modal</h5>
+                        <p>Use <code>H5</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH5Model(H5ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H5ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h5 id="myModalLabel31">Basic Modal</h5>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>H6 heading Modal</h5>
+                        <p>Use <code>H6</code> for Modal title</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-primary block btn-lg" (click)="openH6Model(H6ModelContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template #H6ModelContent let-c="close" let-d="dismiss">
+                          <div class="modal-header">
+                            <h6 id="myModalLabel32">Basic Modal</h6>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake cookie
+                              chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button> </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Different Heading Options end -->
+
+      <!-- Form Components start -->
+      <section id="form-components">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Form Components</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="row my-2">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Login Form</h5>
+                        <p> Created Simple Login Form.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-warning warning block btn-lg"
+                          (click)="openLoginForm(LoginFormContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #LoginFormContent let-d="dismiss">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <label class="modal-title text-text-bold-600" id="myModalLabel33">Inline Login
+                                Form</label>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form>
+                              <div class="modal-body">
+                                <label>Email: </label>
+                                <div class="form-group">
+                                  <input type="text" placeholder="Email Address" class="form-control">
+                                </div>
+
+                                <label>Password: </label>
+                                <div class="form-group">
+                                  <input type="password" placeholder="Password" class="form-control">
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="reset" class="btn grey btn-outline-secondary btn-lg"
+                                  (click)="d('Close modal')">Close</button>
+                                <button type="button" class="btn btn-outline-primary btn-lg">Login</button>
+                              </div>
+                            </form>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Form with Icons</h5>
+                        <p>Login Form With Icon.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-warning warning block btn-lg"
+                          (click)="openLoginFormIcon(LoginFormIconContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #LoginFormIconContent let-d="dismiss">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h3 class="modal-title text-600" id="myModalLabel34">Modal Title</h3>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form>
+                              <div class="modal-body">
+                                <label>Email: </label>
+                                <div class="form-group position-relative has-icon-left">
+                                  <input type="text" placeholder="Email Address" class="form-control">
+                                  <div class="form-control-position">
+                                    <i class="la la-envelope font-medium-5 line-height-1 text-muted icon-align"></i>
+                                  </div>
+                                </div>
+
+                                <label>Password: </label>
+                                <div class="form-group position-relative has-icon-left">
+                                  <input type="password" placeholder="Password" class="form-control">
+                                  <div class="form-control-position">
+                                    <i class="la la-lock font-large-1 line-height-1 text-muted icon-align"></i>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="reset" class="btn grey btn-outline-secondary btn-lg"
+                                  (click)="d('Close modal')">Close</button>
+                                <button type="button" class="btn btn-outline-primary btn-lg">Login</button>
+                              </div>
+                            </form>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bootstrap Input Style Form</h5>
+                        <p>Bootstrap Form using Floating Label fields.</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-warning warning block btn-lg"
+                          (click)="openBootstrapInputForm(BootstrapInputFormContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BootstrapInputFormContent let-d="dismiss">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h3 class="modal-title text-600" id="myModalLabel34">Modal Title</h3>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <form>
+                              <div class="modal-body">
+                                <fieldset class="form-group floating-label-form-group">
+                                  <label for="email">Email Address</label>
+                                  <input type="text" class="form-control" id="email" placeholder="Email Address">
+                                </fieldset>
+                                <br>
+                                <fieldset class="form-group floating-label-form-group">
+                                  <label for="title">Password</label>
+                                  <input type="password" class="form-control" id="title" placeholder="Password">
+                                </fieldset>
+                                <br>
+                                <fieldset class="form-group floating-label-form-group">
+                                  <label for="title1">Description</label>
+                                  <textarea class="form-control" id="title1" rows="3"
+                                    placeholder="Description"></textarea>
+                                </fieldset>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="reset" class="btn grey btn-outline-secondary btn-lg"
+                                  (click)="d('Close modal')">Close</button>
+                                <button type="button" class="btn btn-outline-primary btn-lg">Login</button>
+                              </div>
+                            </form>
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Form Components end -->
+
+
+      <!-- Modal Animations start -->
+      <section id="modal-animations">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Modal Animations</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>animate.css is a bunch of cool, fun, and cross-browser animations for you to use in your projects.
+                    Great for
+                    emphasis, home pages, sliders, and general just-add-water-awesomeness. <strong>Add the class
+                      <code>.animated</code>
+                      to the element you want to animate. </strong></p>
+                  <div class="row my-2">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce Animation</h5>
+                        <p>Bounce Animation using <code>.bounce</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openBounceAnimation(BounceContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel36">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Flash Animation</h5>
+                        <p>Flash Animation using <code>.flash</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openFlashAnimation(FlashContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FlashContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel37">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Pulse Animation</h5>
+                        <p>Pulse Animation using <code>.pulse</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openPulseAnimation(PulseContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #PulseContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel38">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>RubberBand Animation</h5>
+                        <p>RubberBand Animation using <code>.rubberBand</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openRubberBandAnimation(RubberBandContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RubberBandContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel39">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Shake Animation</h5>
+                        <p>Shake Animation using <code>.shake</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openShakeAnimation(ShakeContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #ShakeContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel40">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Roll In Animation</h5>
+                        <p>Roll In Animation using <code>.rollIn</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openRollInAnimation(RollInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RollInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel41">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Swing Animation</h5>
+                        <p>Swing Animation using <code>.swing</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openSwingAnimation(SwingContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #SwingContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel42">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Tada Animation</h5>
+                        <p>Tada Animation using <code>.tada</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg" (click)="openTadaAnimation(TadaContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #TadaContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel43">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Wobble Animation</h5>
+                        <p>Wobble Animation using <code>.wobble</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openWobbleAnimation(WobbleContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #WobbleContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel44">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Jello Animation</h5>
+                        <p>Jello Animation using <code>.jello</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="openJelloAnimation(JelloContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #JelloContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel45">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce In Animation</h5>
+                        <p>Bounce In Animation using <code>.bounceIn</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="BounceInAnimation(BounceInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce In Down Animation</h5>
+                        <p>Bounce In Down Animation using <code>.bounceInDown</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="BounceInDownAnimation(BounceInDownContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceInDownContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel47">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce In Left Animation</h5>
+                        <p>Bounce In Left Animation using <code>.bounceInLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="BounceInLeftAnimation(BounceInLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceInLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel48">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce In Right Animation</h5>
+                        <p>Bounce In Right Animation using <code>.bounceInRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="BounceInRightAnimation(BounceInRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceInRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel49">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Bounce In Up Animation</h5>
+                        <p>Bounce In Up Animation using <code>.bounceInUp</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="BounceInUpAnimation(BounceInUpContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #BounceInUpContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel50">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Animation</h5>
+                        <p>Use <code>.fadeIn</code> class for fade in animation to modal</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg" (click)="FadeInAnimation(FadeInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Down Animation</h5>
+                        <p>Fade In Down Animation using <code>.fadeInDown</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInDownAnimation(FadeInDownContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInDownContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Down Big Animation</h5>
+                        <p>Fade In Down Big Animation using <code>.fadeInDownBig</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInDownBigAnimation(FadeInDownBigContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInDownBigContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Left Animation</h5>
+                        <p>Fade In Left Animation using <code>.fadeInLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInLeftAnimation(FadeInLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Left Big Animation</h5>
+                        <p>Fade In Left Big Animation using <code>.fadeInLeftBig</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInLeftBigAnimation(FadeInLeftBigContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInLeftBigContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Right Animation</h5>
+                        <p>Fade In Right Animation using <code>.fadeInRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInRightAnimation(FadeInRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Right Big Animation</h5>
+                        <p>Fade In Right Big Animation using <code>.fadeInRightBig</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInRightBigAnimation(FadeInRightBigContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInRightBigContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Up Animation</h5>
+                        <p>Fade In Up Animation using <code>.fadeInUp</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInUpAnimation(FadeInUpContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInUpContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Fade In Up Big Animation</h5>
+                        <p>Fade In Up Big Animation using <code>.fadeInUpBig</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FadeInUpBigAnimation(FadeInUpBigContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FadeInUpBigContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>FlipInX Animation</h5>
+                        <p>FlipInX Animation using <code>.flipInX</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FlipInXAnimation(FlipInXContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FlipInXContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>FlipInY Animation</h5>
+                        <p>FlipInY Animation using <code>.flipInY</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="FlipInYAnimation(FlipInYContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #FlipInYContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Light Speed In Animation</h5>
+                        <p>Light Speed In Animation using <code>.lightSpeedIn</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="LightSpeedInAnimation(LightSpeedInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #LightSpeedInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Rotate In Animation</h5>
+                        <p>Use <code>.rotateIn</code> class for Rotate In Animation to modal</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="RotateInAnimation(RotateInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RotateInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Rotate In Down Left Animation</h5>
+                        <p>Rotate In Down Left Animation using <code>.rotateInDownLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="RotateInDownLeftAnimation(RotateInDownLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RotateInDownLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Rotate In Down Right Animation</h5>
+                        <p>Rotate In Down Right Animation using <code>.rotateInDownRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="RotateInDownRightAnimation(RotateInDownRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RotateInDownRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Rotate In Up Left Animation</h5>
+                        <p>Rotate In Up Left Animation using <code>.rotateInUpLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="RotateInUpLeftAnimation(RotateInUpLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RotateInUpLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Rotate In Up Right Animation</h5>
+                        <p>Rotate In Up Right Animation using <code>.rotateInUpRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="RotateInUpRightAnimation(RotateInUpRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #RotateInUpRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Zoom In Animation</h5>
+                        <p>Use <code>.zoomIn</code> class for Zoom In Animation to modal</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg" (click)="ZoomInAnimation(ZoomInContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #ZoomInContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Zoom In Down Animation</h5>
+                        <p>Zoom In Down Animation using <code>.zoomInDown</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="ZoomInDownAnimation(ZoomInDownContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #ZoomInDownContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Zoom In Left Animation</h5>
+                        <p>Zoom In Left Animation using <code>.zoomInLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="ZoomInLeftAnimation(ZoomInLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #ZoomInLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Zoom In Right Animation</h5>
+                        <p>Zoom In Right Animation using <code>.zoomInRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="ZoomInRightAnimation(ZoomInRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #ZoomInRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Zoom In Up Animation</h5>
+                        <p>Zoom In Up Animation using <code>.zoomInUp</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="zoomInUpAnimation(zoomInUpContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #zoomInUpContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Slide In Up Animation</h5>
+                        <p>Slide In Up Animation using <code>.slideInUp</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="slideInUpAnimation(slideInUpContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #slideInUpContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Slide In Left Animation</h5>
+                        <p>Slide In Left Animation using <code>.slideInLeft</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="SlideInLeftAnimation(SlideInLeftContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #SlideInLeftContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Slide In Right Animation</h5>
+                        <p>Slide In Right Animation using <code>.slideInRight</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="SlideInRightAnimation(SlideInRightContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #SlideInRightContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                      <div class="form-group">
+                        <h5>Slide In Down Animation</h5>
+                        <p>Slide In Down Animation using <code>.slideInDown</code> class</p>
+                        <!-- Button trigger modal -->
+                        <button class="btn btn-outline-blue blue block btn-lg"
+                          (click)="SlideInDownAnimation(SlideInDownContent)">
+                          Launch Modal
+                        </button>
+
+                        <!-- Modal -->
+                        <ng-template class="modal text-left" #SlideInDownContent let-c="close" let-d="dismiss">
+
+                          <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel46">Basic Modal</h4>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <h5>Check First Paragraph</h5>
+                            <p>Oat cake ice cream candy chocolate cake chocolate cake cotton candy dragée apple pie.
+                              Brownie carrot
+                              cake candy canes bonbon fruitcake topping halvah. Cake sweet roll cake cheesecake
+                              cookie chocolate cake
+                              liquorice. Apple pie sugar plum powder donut soufflé.</p>
+                            <p>Sweet roll biscuit donut cake gingerbread. Chocolate cupcake chocolate bar ice cream.
+                              Danish candy
+                              cake.</p>
+                            <hr>
+                            <h5>Some More Text</h5>
+                            <p>Cupcake sugar plum dessert tart powder chocolate fruitcake jelly. Tootsie roll bonbon
+                              toffee danish.
+                              Biscuit sweet cake gummies danish. Tootsie roll cotton candy tiramisu lollipop candy
+                              cookie biscuit pie.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn grey btn-outline-secondary"
+                              (click)="d('Close modal')">Close</button>
+                            <button type="button" class="btn btn-outline-primary">Save changes</button>
+                          </div>
+
+                        </ng-template>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Modal Animations end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

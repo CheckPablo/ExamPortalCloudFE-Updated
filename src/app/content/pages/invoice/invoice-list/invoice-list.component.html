@@ -1,0 +1,275 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+        <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <section class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-header">
+                <h4 class="card-title">Invoices</h4>
+                <div class="heading-elements">
+                  <button class="btn btn-primary btn-sm"><i class="feather ft-plus white"></i> Create Invoice</button>
+                  <span ngbDropdown class="dropdown">
+                    <button id="btnSearchDrop1" type="button" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="true" class="btn btn-warning btn-sm dropdown-toggle dropdown-menu-right" ngbDropdownToggle><i
+                        class="feather ft-download-cloud white"></i></button>
+                    <span ngbDropdownMenu aria-labelledby="btnSearchDrop1" class="dropdown-menu mt-1 dropdown-menu-right">
+                      <a [routerLink]="" class="dropdown-item"><i class="la la-calendar"></i> Due Date</a>
+                      <a [routerLink]="" class="dropdown-item"><i class="la la-random"></i> Priority </a>
+                      <a [routerLink]="" class="dropdown-item"><i class="la la-bar-chart"></i> Balance Due</a>
+                      <a [routerLink]="" class="dropdown-item"><i class="la la-user"></i> Assign to</a>
+                    </span>
+                  </span>
+                  <button class="btn btn-success btn-sm"><i class="feather ft-settings white"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <!-- Invoices List table -->
+                <div class="table-responsive">
+                  <table id="invoices-list"
+                    class="table table-white-space table-bordered row-grouping display no-wrap icheck table-middle">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Invoice #</th>
+                        <th>Order No</th>
+                        <th>Customer Name</th>
+                        <th>Due</th>
+                        <th>Amount</th>
+                        <th>Balance Due</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="group">
+                        <td><span class="badge badge-success badge-lg">Paid</span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr *ngFor="let invoice of INVOICE; index as i">
+                        <td>{{ invoice.date }} </td>
+                        <td>{{ invoice.invoice }}</td>
+                        <td>{{ invoice.orderno }}</td>
+                        <td>{{ invoice.customername }}</td>
+                        <td>{{ invoice.due }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.balancedue }}</td>
+                        <td>
+                          <!-- <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" > -->
+                          <span class="dropdown" ngbDropdown>
+                            <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle
+                              class="btn btn-primary dropdown-toggle dropdown-menu-right"><i
+                                class="feather ft-settings"></i></a>
+                            <span ngbDropdownMenu aria-labelledby="dropdownBasic1" class="table_dropdown">
+                              <a [routerLink]="" class="dropdown-item"><i class="la la-eye"></i>
+                                Open Task</a>
+                              <a [routerLink]="" class="dropdown-item"><i class="la la-pencil"></i>Edit Task</a>
+                              <a [routerLink]="" class="dropdown-item"><i class="la la-check"></i>
+                                Complete Task</a>
+                              <a [routerLink]="" class="dropdown-item"><i class="feather ft-upload"></i>
+                                Assign To</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-trash"></i>
+                                  Delete Task</a>
+                            </span>
+                          </span>
+                          <!-- </button> -->
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr class="group">
+                        <td><span class="badge badge-warning badge-lg">Overdue By 1-15 Days
+                          </span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr *ngFor="let invoice of INVOICE1; index as i">
+                        <td>{{ invoice.date }} </td>
+                        <td>{{ invoice.invoice }}</td>
+                        <td>{{ invoice.orderno }}</td>
+                        <td>{{ invoice.customername }}</td>
+                        <td>{{ invoice.due }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.balancedue }}</td>
+                        <td>
+                          <!-- <button id="btnSearchDrop2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" > -->
+                          <span class="dropdown" ngbDropdown>
+                            <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle
+                              class="btn btn-primary dropdown-toggle dropdown-menu-right"><i
+                                class="feather ft-settings"></i></a>
+                            <span ngbDropdownMenu aria-labelledby="dropdownBasic1" class="table_dropdown">
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-eye"></i>
+                                  Open Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-pencil"></i>Edit Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-check"></i>
+                                  Complete Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="feather ft-upload"></i>
+                                  Assign To</a>
+                                  <a [routerLink]="" class="dropdown-item"><i class="la la-trash"></i>
+                                    Delete Task</a>
+                            </span>
+                          </span>
+                          <!-- </button> -->
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr class="group">
+                        <td><span class="badge badge-warning badge-lg">Overdue By 16-30 Days
+                          </span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr *ngFor="let invoice of INVOICE2; index as i">
+
+                        <td>{{ invoice.date }} </td>
+                        <td>{{ invoice.invoice }}</td>
+                        <td>{{ invoice.orderno }}</td>
+                        <td>{{ invoice.customername }}</td>
+                        <td>{{ invoice.due }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.balancedue }}</td>
+                        <td>
+                          <span class="dropdown" ngbDropdown>
+                            <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle
+                              class="btn btn-primary dropdown-toggle dropdown-menu-right"><i
+                                class="feather ft-settings"></i></a>
+                            <span ngbDropdownMenu aria-labelledby="dropdownBasic1" class="table_dropdown">
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-eye"></i>
+                                  Open Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-pencil"></i>Edit Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-check"></i>
+                                  Complete Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="feather ft-upload"></i>
+                                  Assign To</a>
+                                  <a [routerLink]="" class="dropdown-item"><i class="la la-trash"></i>
+                                    Delete Task</a>
+                            </span>
+                          </span>
+                          <!-- </button> -->
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr class="group">
+                        <td><span class="badge badge-danger badge-lg">Overdue By 31-45 Days</span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr *ngFor="let invoice of INVOICE3; index as i">
+
+                        <td>{{ invoice.date }} </td>
+                        <td>{{ invoice.invoice }}</td>
+                        <td>{{ invoice.orderno }}</td>
+                        <td>{{ invoice.customername }}</td>
+                        <td>{{ invoice.due }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.balancedue }}</td>
+                        <td>
+                          <span class="dropdown" ngbDropdown>
+                            <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle
+                              class="btn btn-primary dropdown-toggle dropdown-menu-right"><i
+                                class="feather ft-settings"></i></a>
+                            <span ngbDropdownMenu aria-labelledby="dropdownBasic1" class="table_dropdown">
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-eye"></i>
+                                  Open Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-pencil"></i>Edit Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-check"></i>
+                                  Complete Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="feather ft-upload"></i>
+                                  Assign To</a>
+                                  <a [routerLink]="" class="dropdown-item"><i class="la la-trash"></i>
+                                    Delete Task</a>
+                            </span>
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tbody>
+                      <tr class="group">
+                        <td><span class="badge badge-danger badge-lg">Overdue By 45+ Days</span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr *ngFor="let invoice of INVOICE4; index as i">
+
+                        <td>{{ invoice.date }} </td>
+                        <td>{{ invoice.invoice }}</td>
+                        <td>{{ invoice.orderno }}</td>
+                        <td>{{ invoice.customername }}</td>
+                        <td>{{ invoice.due }}</td>
+                        <td>{{ invoice.amount }}</td>
+                        <td>{{ invoice.balancedue }}</td>
+                        <td>
+                          <span class="dropdown" ngbDropdown>
+                            <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle
+                              class="btn btn-primary dropdown-toggle dropdown-menu-right"><i
+                                class="feather ft-settings"></i></a>
+                            <span ngbDropdownMenu aria-labelledby="dropdownBasic1" class="table_dropdown">
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-eye"></i>
+                                  Open Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-pencil"></i>Edit Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="la la-check"></i>
+                                  Complete Task</a>
+                                <a [routerLink]="" class="dropdown-item"><i class="feather ft-upload"></i>
+                                  Assign To</a>
+                                  <a [routerLink]="" class="dropdown-item"><i class="la la-trash"></i>
+                                    Delete Task</a>
+                            </span>
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Date</th>
+                        <th>Invoice #</th>
+                        <th>Order No</th>
+                        <th>Customer Name</th>
+                        <th>Due</th>
+                        <th>Amount</th>
+                        <th>Balance Due</th>
+                        <th>Actions</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!--/ Invoices table -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

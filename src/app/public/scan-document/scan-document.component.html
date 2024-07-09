@@ -1,0 +1,145 @@
+<div class="app-content content">
+    <!-- <div id="loader" style="z-index: 100; height: 100%; width: 100%; background: #0000009c; position: fixed;">
+        <img src="~/Images/loader.gif" id="bg" alt="" style=" top: 0; left: 0; position: absolute; margin: auto; right: 0; bottom: 0; display: block;">
+    </div> -->
+
+    <div class="navbar-header">
+        <input type="hidden" id="HiddenStudentID" value="@StudentID">
+        <input type="hidden" id="HiddenTestID" value="@TestID">
+    </div>
+    <!--  <div class="col-lg-12 control-section">
+        <div class="e-img-editor-sample">
+          <ejs-imageeditor id="image-editor" (created)="created()">
+          </ejs-imageeditor>
+        </div>
+      </div> -->
+
+    <div id="scanDiv">
+        <div *ngIf="isOtpResponse" class="text-center otpMainDiv" id="otpDiv">
+            <div>
+                <label style="font-weight: bold; font-size: 25px;">
+                    OTP
+                </label>
+                <br />
+                <label id="otpData" style="font-size: 22px; border: black;">
+                    {{scanResultOTP}}
+                </label>
+            </div>
+        </div>
+        <div *ngIf="!isOtpResponse" id="instructions" class="text-center" style="margin-top:25px">
+            <h2>Photograph your work</h2>
+            <br />
+            <p>
+                Note that only work may be photograph
+            </p>
+        </div>
+        <div class="wrapper">
+            <!--<div *ngIf="!isOtpResponse && isOtherAgent" id="scanButtonDiv" class="scanButtoncontent">
+                <label class="scanButton">
+                    <input type="file" accept="image/*" capture="camera" style="Display:None" multiple
+                        (change)="fileChangeNoCompress($event)"/>
+                    <i class="ft ft-camera" style="margin: 10px;"></i>
+                    <span style="margin: 10px;">Scan Work</span>
+                </label>
+            </div>
+            
+            <div *ngIf="!isOtpResponse && isAndroidAgent" id="scanButtonDiv" class="scanButtoncontent">
+                <label class="scanButton">
+
+                    <input type="file" accept="image/*" capture="camera" style="Display:None" multiple
+                        (change)="fileChangeAndroidCompress($event)"/>
+                    <i class="ft ft-camera" style="margin: 10px;"></i>
+                    <span style="margin: 10px;">Scan Work</span>
+                </label>
+            </div>-->
+
+            <!--<div *ngIf="!isOtpResponse && isIphoneAgent" id="scanButtonDiv" class="scanButtoncontent">-->
+            <div *ngIf="!isOtpResponse">
+                    <label (click)="compressFileAlternative()"class="scanButton">
+                        <!--<input id="fileUpload" type="file" accept="image/*" capture="camera" style="Display:None" />-->
+                    <!--     <input type="file" accept=".jpg,.png,.jpeg"  capture="camera" style="Display:None" multiple (change)="fileChange($event)"/> -->
+                        <i class="ft ft-camera" style="margin: 10px;"></i>
+                        <span style="margin: 10px;">Scan Work</span>
+                    </label>
+            </div>
+        </div>
+        <div *ngIf="!isOtpResponse" id="imageDiv" style=" margin-bottom: 65px; overflow: scroll;">
+            <div id="canvas-container" class="text-center col-12">
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <img [src]="output?.base64" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </div>
+            <div *ngIf="isImageEditorSelected" id="currentImageDiv" class="text-center">
+                <!--<img id="currentImage" style="max-height:600px;max-width:600px;" />-->
+
+                <!-- <img *ngFor='let preview of previews' [src]="preview" class="preview" style="max-height:600px;max-width:600px"> -->
+                <!--<img src="{{ image.url }}" alt="{{ image.name }}" height="80px" />-->
+                <br />
+                <button class="btn" id="cancelImage" (click)="deleteImage()">Delete</button>
+                <!-- <button class="btn" id="rotateimage" (click)="rotateImage()">Rotate</button> -->
+            </div>
+            <div class="card mt-3">
+                <div *ngIf="images.length > 0" class="card-header text-center">List of Images(Select image to Edit)
+                </div>
+                <ul class="list-group list-group-flush" *ngFor="let image of images; index as id">
+                    <li class="list-group-item">
+                     <!--- can pop up as a modal here-->
+                 
+
+                        <div class="imageWrapper">
+                            <img [src]="image.src" height="80px" [id]="id" alt="{{ image.name }}"
+                                (click)="selectImage(id)" />
+                            <button class="btn" id="deleteImage" (click)="deleteImage(id)">Delete</button>
+                        </div>
+                        <!-- </a> -->
+                        <!-- <i *ngIf="!image.status">processing</i> -->
+                    </li>
+                </ul>
+                
+            </div>
+          <!--   <div *ngIf= "isImageEditorSelected"id="imageEditotWrapperDiv">
+                            
+           
+              <ejs-imageeditor #imageEditor  [toolbar]="toolbar"></ejs-imageeditor> 
+              <div class="col-lg-12 control-section">
+                <div class="e-img-editor-sample">
+                    <ejs-imageeditor #imageEditor  [toolbar]="toolbar"></ejs-imageeditor> 
+                    <ejs-imageeditor id="image-editor">
+                  </ejs-imageeditor>
+                </div>
+              </div>
+        </div> -->
+            <!--<div *ngIf="!isOtpResponse" class="text-center">-->
+                <div *ngIf="isImageSelected" class="text-center">
+                <!--[disabled]="!selectedFiles"-->
+                <button  type="button" (click)="uploadFiles()" class="btn uploadButton">
+                    <i class="ft ft-cloud-upload"></i>
+                    <span>Upload</span>
+                </button><br />
+                <!-- <button type="button" id="btnUpload" class="btn uploadButton">
+                <i class="ft ft-cloud-upload"></i>
+                <span>Upload</span>
+            </button><br />-->
+                <!--<button type="button" id="btnCloseDiv" class="btn scanButton">
+                    <span>Close</span>
+            </button-->
+            </div>
+        </div>
+
+    </div>
+
+    <ng-template #spinnerLoaderModalScannedImage  >
+       <!--<div id="loader" style="z-index: 99999; height: 100%; width: 100%; background: transparent; position: fixed;">
+            <img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" style=" top: 0; left: 0; position: absolute; margin: auto; right: 0; bottom: 0; display: block;">
+        </div> -->
+        <div class="loader-container">
+            <div id="loadingGIF" class="loader"></div>
+          </div>
+           <!--<div id="loader" class="image-container">
+            <img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" >
+          </div> -->
+    </ng-template>

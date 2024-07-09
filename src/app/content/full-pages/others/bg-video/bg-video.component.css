@@ -1,0 +1,23 @@
+html body {
+  height: max-content !important;
+}
+
+:host ::ng-deep .fixed-navbar {
+  padding-top: 0rem !important;
+}
+
+:host ::ng-deep .countdown {
+  color: white !important;
+  font-size: 3rem !important;
+  display: block !important;
+}
+
+:host ::ng-deep .measurements-text {
+  font-size: 1.5rem !important;
+}
+
+:host ::ng-deep .countdown .measurements {
+  padding: 1.5rem !important;
+  float: left;
+  border-radius: 0.5rem;
+}

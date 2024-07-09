@@ -1,0 +1,361 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- News Feed section starting point -->
+      <section id="news-feed">
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+
+            <!-- Social Card -->
+
+            <div class="card news-feed-card-bg text-white">
+              <img src="../../../../../assets/images/gallery/17.jpg" alt="" class=" card-img-top img-fluid">
+              <div class="card-img-overlay">
+                <div class="badge badge-danger badge-sm float-left">Social</div>
+                <a [routerLink]="">
+                  <h2 class="card-title mt-2 text-white">Social Media, Selfies, and Addiction.
+                  </h2>
+                </a>
+                <p class="font-small-3 text-left">Selfie-taking is more than just the taking of a
+                  photograph and can include the editing of the colour and contrast, changing backgrounds,
+                  and
+                  adding other effects. </p>
+                <span class="text-white float-right font-small-1">Oct 10, 9:13am</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+
+                <!-- Nature Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/20.jpg" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay
+                      "><span
+                      class="badge badge-success badge-sm float-right news-feed-badge news-feed-badge-nature position-absolute">Nature</span>
+                  </div>
+                  <div class="card-body">
+                    <a [routerLink]="" class="text-dark">
+                      <h6 class="card-title font-small-3"> Why Nature beats Nurture when it comes to success
+                      </h6>
+                    </a>
+                    <span class="float-left font-small-1 text-muted">Oct 1, 3:00pm</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+
+                <!-- Real Estate Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/29.jpg" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay">
+                    <span
+                      class="badge badge-primary badge-sm news-feed-badge news-feed-badge-real-estate position-absolute">Real
+                      Estate
+                    </span></div>
+                  <div class="card-body">
+                    <a [routerLink]="" class="text-dark">
+                      <p class="card-title font-small-3">Real Estate In 2030 Will Be Radically Different</p>
+                    </a>
+                    <span class="float-left font-small-1 text-muted">Oct 4, 10:05am</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+
+                <!-- Road Trip Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/2.jpg" alt=""
+                      class=" card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay
+                      "><span
+                      class="badge badge-sm badge-primary float-left news-feed-badge news-feed-badge-trip position-absolute">Trip</span>
+                  </div>
+                  <div class="card-body">
+                    <a [routerLink]="">
+                      <h6 class="card-title font-medium-1">
+                        Magical mystery tour: a road trip through Mexico
+                      </h6>
+                    </a>
+                    <p class="float-left font-small-1 text-muted">Oct 20, 1:00pm</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6">
+
+                <!-- User Data Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/34.png" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="card-body">
+                    <a [routerLink]="" class="text-dark">
+                      <p class="card-title font-small-3">new portal shows what user data it keeps</p>
+                    </a>
+                    <div class="text-muted">
+                      <p class="float-left text-muted font-small-1">Oct 12, 10:50pm</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6">
+
+                <!-- AI Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/36.png" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay"></div>
+                  <div class="card-body">
+                    <a [routerLink]="" class="text-dark">
+                      <span class="card-title font-small-3">AI On The Job:New Technologies
+                      </span>
+                    </a>
+                    <span class="text-muted">
+                      <span class="float-left text-muted font-small-1"> Oct 14, 7:15am </span><button
+                        class=" btn news-feed-btn btn-sm float-right btn-round btn-float btn-warning"><i
+                          class="feather ft-arrow-right"></i></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-lg-12 col-md-12">
+
+                <!-- Android Card -->
+
+                <div class="card bg-gradient-x-danger mb-1">
+                  <div class="card-body">
+                    <a [routerLink]="">
+                      <h6 class="card-title font-medium-1 text-white">
+                        Over 75 percent of Pixel users are on Android Pie
+                      </h6>
+                    </a>
+                    <p class="font-small-2 text-white">
+                      It speaks to the huge benefits that Google can bring to devices when it fully
+                      controls the hardware and software experience like Apple does
+                      <p class="float-left font-small-1 text-white">Oct 15, 12:50pm</p>
+                      <span class="badge badge-secondary badge-sm float-right">Android</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-6">
+
+                <!-- Radio Card -->
+
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/19.jpg" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay
+                  "><span
+                      class="badge badge-info badge-sm float-right news-feed-badge news-feed-badge-radio position-absolute">Radio</span>
+                  </div>
+                  <div class="card-body">
+                    <h6 class="card-title font-small-2">
+                      <a href="" class="text-dark">
+                        Radio, what's new... someone still loves you
+                      </a>
+                    </h6>
+                    <p class="float-left text-muted font-small-1">Oct 21, 8:50pm</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-6">
+                <div class="card">
+                  <a [routerLink]=""><img src="../../../../../assets/images/gallery/16.jpg" alt=""
+                      class="card-img-top img-fluid"></a>
+                  <div class="news-feed-overlay"><span
+                      class="badge badge-danger badge-sm float-left news-feed-badge news-feed-badge-travel position-absolute">Travel</span>
+                  </div>
+                  <div class="card-body">
+                    <a [routerLink]="">
+                      <h6 class="card-title font-small-2">
+                        Trains And Anything But Automobiles
+                      </h6>
+                    </a>
+                    <p class="float-left text-muted font-small-1">Oct 25, 7:50pm</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+
+                <!-- Game Card -->
+
+                <div class="card bg-gradient-x-primary">
+                  <div class="card-body">
+                    <a [routerLink]="">
+                      <h6 class="card-title font-medium-1 text-white">
+                        The 13 Scariest Horror Games You Should Play For Halloween
+                      </h6>
+                    </a>
+                    <p class="font-small-3 text-white">
+                      Genre classics like Silent Hill 2, Resident Evil Remake, and Dead Space are
+                      represented here.There's a lot of horror-related media out right now that isn't
+                      just games.
+                    </p>
+                    <a [routerLink]=""><span class="font-small-2 text-white"><i class="feather ft-heart pr-1"></i><i
+                          class="feather ft-share"></i></span></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+
+                <!-- List Of Popular News -->
+
+                <div class="card">
+                  <div class="card-header">
+                    <h6>Popular<span class="float-right"><i class="feather ft-chevron-up"></i></span></h6>
+                  </div>
+                  <div class="card-body p-0">
+                    <ul class="list-group">
+                      <li class="list-group-item news-feed-item-1 pl-2">
+                        <a [routerLink]="" class="text-dark"> <span class="font-small-3 news-feed-item-text">Top
+                            10 New Rules Of
+                            Marketing With
+                            Technology To Win</span></a>
+                        <span class="font-small-1 text-muted float-right p-md-2 p-sm-2 news-feed-item-text-time">Oct
+                          15, 11:00am</span>
+                      </li>
+                      <li class="list-group-item news-feed-item-img">
+                        <a [routerLink]=""><img src="../../../../../assets/images/gallery/18.jpg" alt=""
+                            class="img-fluid"></a>
+                      </li>
+                      <li class="list-group-item news-feed-item-2">
+                        <a [routerLink]="" class="text-dark"> <span class="font-small-3 news-feed-item-text">Health
+                            benefits of social
+                            media: Here's all
+                            you need to
+                            know</span></a>
+                        <span class="font-small-1 text-muted float-right p-md-2 p-sm-2 news-feed-item-text-time">Oct
+                          9, 5:00am</span>
+                      </li>
+                      <li class="list-group-item news-feed-item-3">
+                        <a [routerLink]="" class="text-dark"> <span class="font-small-3 news-feed-item-text">5
+                            workout apps and
+                            exercises to keep you
+                            fit this whole
+                            year</span></a>
+                        <span class="font-small-1 text-muted float-right p-md-2 p-sm-2 news-feed-item-text-time">Oct
+                          7, 4:00pm</span>
+                      </li>
+                      <li class="list-group-item news-feed-item-4">
+                        <a [routerLink]="" class="text-dark"> <span class="font-small-3 news-feed-item-text">What
+                            next for photography
+                            in the new age of
+                            smartphones?</span></a>
+                        <span class="font-small-1 text-muted float-right p-md-2 p-sm-2 news-feed-item-text-time">Oct
+                          4, 11:00am</span>
+                      </li>
+                      <li class="list-group-item news-feed-item-5">
+                        <a [routerLink]="" class="text-dark"> <span class="font-small-3 news-feed-item-text">Photography
+                            awards
+                            capture life at its wildest</span></a>
+                        <span class="font-small-1 text-muted float-right p-md-2 p-sm-2 news-feed-item-text-time">Oct
+                          16, 3:00am</span>
+                      </li>
+
+                    </ul>
+                    <div class="card-footer p-1">
+                      <button class="btn btn-outline-success btn-sm mx-auto">Load More</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Card -->
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card tech-card-bg">
+                  <h5 class="card-header font-medium-1">
+                    Hong Kong's Tech Dreams Are Becoming a Nightmare
+                    <span class="badge badge-success badge-sm float-right">Tech</span>
+                  </h5>
+                  <div class="card-body">
+                    <h6 class="font-small-3 tech-card-text">
+                      At the time, Xiaomi Corp., China’s hottest startup, was shopping around for a listing
+                      venue. Founder Lei Jun was determined to retain control of the company through this
+                      ownership structure.Hong Kong had already missed out on Alibaba Group Holding Ltd.The
+                      situation was clear: Allow dual-class listings
+                    </h6>
+                    <button class="btn btn-primary btn-sm float-left">More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Food Cards -->
+
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6">
+            <div class="card">
+              <div class="card-body news-feed-food-card-bg">
+                <a [routerLink]="">
+                  <h6 class="card-title font-medium-1 text-white">The Best High-Fiber Foods, According
+                    to
+                    Experts
+                    <span class="badge badge-primary badge-sm float-right">Food</span>
+                  </h6>
+                </a>
+                <button class="btn btn-info btn-sm">More</button><span
+                  class="font-small-1 float-right p-md-2 p-sm-2 float-right text-white">Oct15,
+                  2:00am</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="card">
+              <div class="card-body news-feed-food-card2-bg">
+                <a [routerLink]="">
+                  <h6 class="card-title font-small-3 text-white">You're Sprinkling Plastic On Food
+                  </h6>
+                </a>
+                <button class="btn btn-warning btn-sm">More </button><span
+                  class="font-small-1 float-right p-md-2 p-sm-2 float-right text-white">Oct
+                  14, 5:00am</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-3 col-md-3">
+            <div class="card">
+              <div class="card-body news-feed-food-card3-bg">
+                <a [routerLink]="">
+                  <h6 class="card-title font-small-3 text-white">Foods With Lowest Fat Content</h6>
+                </a>
+                <button class="btn btn-primary btn-sm">More </button><span
+                  class="font-small-1 float-right p-md-2 p-sm-2 float-right text-white">Oct
+                  14, 5:00am</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // News Feed section ending point -->
+    </div>
+  </div>
+</div>

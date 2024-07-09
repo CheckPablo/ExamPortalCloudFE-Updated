@@ -1,0 +1,43 @@
+<div class="home-container">
+    <div class="top-header">
+        <div class="text-widget">Exam Portal Cloud</div>
+        <div class="text-widget">Powered by V-Soft</div>
+    </div>
+    <div class="nav">
+        <div class="branding">
+            <img src="../../../assets/images/EP-cloud-resize.png" />
+        </div>
+        <!--<nav class="nav-menu">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/invigilator-login">Invigilator Login</a></li>
+                <li><a href="/student-login">Student Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+        </nav>-->
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <li [routerLink]="['/invigilator-login']">Invigilator Login</li>
+                <li [routerLink]="['/student-login']">Student Login</li>
+                <li [routerLink]="['/register']">Register</li>
+
+                <!--<li (click)="redirectToLogin()"><a> Invigilator Login</a></li>
+                <li (click)="redirectToStudentLogin()"><a>Student Login</a></li>
+                <li (click)="redirectToRegister()"><a>Register</a></li>-->
+                <!--    1   1<li (click)="redirectToRegister()">Register</li>-->
+                <!--<td><a [routerLink]="['/public-page']" routerLinkActive="true">[PUBLIC-PAGE]</a></td>
+                <td><a [routerLink]="['/restricted-page']" routerLinkActive="true" *ngIf="msIsLoggedIn()">[RESTRICTED-PAGE]</a></td>
+                <td><button (click)="login()" *ngIf="!msIsLoggedIn()">SIGN IN</button></td>
+                <td><button (click)="logout()" *ngIf="msIsLoggedIn()">SIGN OUT</button></td>-->
+            </ul>
+        </nav>
+    </div>
+    <div class="main">
+        <h1>Welcome to Exam Portal Cloud</h1>
+        <img src="../../../assets/images/Exam Portal Cloud white navy.png" />
+    </div>
+    <footer id="footer">
+        <div class="textwidget">Exam Portal Cloud © 2020</div>
+    </footer>
+</div>

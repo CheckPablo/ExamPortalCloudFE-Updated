@@ -1,0 +1,146 @@
+<div class="templatemo-top-bar" id="templatemo-top">
+    <div class="container">
+        <div class="subheader">
+            <div id="phone" class="pull-left">
+                Exam Portal Cloud
+            </div>
+            <div id="email" class="pull-right">
+                Powered by <a herf="https://www.v-soft.co.za">V-Soft Technologies</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="templatemo-top-menu">
+    <div class="containers">
+        <div class="navbar navbar-default" role="navigation">
+            <div class="containers" style="width: 100%">
+                <div class="navbar-header" style="width: 100%">
+                    <table width="100%" style="font-size: 0px;" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th width="15%" valign="top">
+                                    <img width="100%" height="32" align="top" alt="" src="../../../assets/images/navbar.gif">
+                                </th>
+                                <th valign="top">
+                                    <img height="150" border="0" alt="IEB" src="../../../assets/images/logo-150-header.png">
+                                </th>
+                                <th width="85%" valign="top">
+                                    <img width="100%" height="32" align="top" alt="" src="../../../assets/images/navbar.gif">
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <div id="templatemo-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container text-center">
+                    <br>
+                    <br>
+                    <!--<form action="/Account/LogOn/" method="post">-->
+                        <form class="form-horizontal" [formGroup]="StudentloginForm" (ngSubmit)="loginStudent()">
+                        <div
+                            style="width:50%;height:80%;background-color:rgba(29, 30, 33, 0.80) ;border:solid;padding:20px;margin:auto auto;-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
+                            <h2 style="color:white"><u>Log On</u></h2>
+                            <p style="color:white">
+                                Please enter your Exam No and Password.
+                            </p>
+                            <legend style="color:white">Account Information</legend>
+                            <fieldset class="form-group position-relative has-icon-left">
+                                    <input type="text" formControlName="studentExamNo" class="form-control"
+                                     id="student-examNo"
+                                    placeholder="Exam Number" required> 
+                                    <div class="form-control-position">
+                                        <i class="la la-user"></i>
+                                    </div>
+                                    <!--<div *ngIf="submitted && f.studentExamNo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.studentExamNo.errors.required">ExamNo is required</div>
+                                    </div>-->
+                            </fieldset>
+
+                                <fieldset class="form-group position-relative has-icon-left">                
+                                    <input type="password" placeholder="Enter Password" formControlName="password"
+                                    class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                    <div class="form-control-position">
+                                    <i class="la la-key"></i>
+                                    </div>
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    </div>
+                                 </fieldset>
+                                <br>
+                                <button type="submit" class="btn btn-outline-info btn-block">
+                                    <i class="fa fa-refresh fa-spin" *ngIf="submitted"></i>
+                                    <i class="la la-unlock-alt" *ngIf="!submitted"></i> Login
+                                </button>
+                                <br>
+                               <button  (click)="loginPopup()" *ngIf="!isLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"/><path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"/><path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"/><path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"/></svg>
+                    
+                                </button>
+                                 
+                                <button  (click)="logout()" *ngIf="isLoggedIn()"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 48 48" width="48px" height="48px"><path fill="#ff5722" d="M6 6H22V22H6z" transform="rotate(-180 14 14)"/><path fill="#4caf50" d="M26 6H42V22H26z" transform="rotate(-180 34 14)"/><path fill="#ffc107" d="M26 26H42V42H26z" transform="rotate(-180 34 34)"/><path fill="#03a9f4" d="M6 26H22V42H6z" transform="rotate(-180 14 34)"/></svg>
+                                     Sign Out Microsoft
+                               </button> 
+                        </div>
+                         <div>
+                 
+                    
+                    </div>
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="expireModal" tabindex="-1" aria-labelledby="myModalLabel8" aria-hidden="true"
+    style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title white" id="myModalLabel8">Account Expired</h4>
+            </div>
+            <div class="modal-body" style="text-align: center!important">
+                <p id="counter">
+                    Dear Exam Portal Cloud User,
+                </p>
+                <p>
+                    Unfortunately, your Exam Portal Cloud license has expired. Please contact the support desk from
+                    V-Soft Technologies at the following email address: support&#64;v-soft.co.za
+                </p>
+                <p>Thank you for your support.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" id="btnClose">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="approveModal" tabindex="-1" aria-labelledby="myModalLabel9" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title white" id="myModalLabel9">Account Expired</h4>
+            </div>
+            <div class="modal-body" style="text-align: center!important">
+                <p id="counter">
+                    Dear Exam Portal Cloud User,
+                </p>
+                <p>
+                    Please note your account is still awaiting approval, this approval should come through in the
+                    next 24hrs.
+                </p>
+                <p>Thank you for your patience</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" id="btnClose2">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<app-pop-up content = "{{content}}" title="{{title}}"  show="{{show}}" />

@@ -1,0 +1,48 @@
+html body {
+  height: max-content !important;
+}
+
+:host ::ng-deep .fixed-navbar {
+  padding-top: 0rem !important;
+}
+
+:host ::ng-deep .countdown {
+  color: white !important;
+  font-size: 3rem !important;
+  display: block !important;
+}
+
+:host ::ng-deep .measurements-text {
+  font-size: 1.5rem !important;
+}
+
+:host ::ng-deep .countdown .measurements {
+  padding: 1.5rem !important;
+  float: left;
+  border-radius: 0.5rem;
+}
+
+:host ::ng-deep .count-down-timer {
+  text-align: center;
+  max-width: 400px;
+  margin: 20px auto;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+:host ::ng-deep .count-down-timer .wrapper .description {
+  display: grid;
+  grid-template-columns: repeat(5, calc(25% - 5px));
+  grid-column-gap: 10px;
+  font-size: 1.5rem;
+
+}
+
+:host ::ng-deep .count-down-timer .wrapper .times {
+  display: grid;
+  grid-template-columns: repeat(5, calc(25% - 5px));
+  grid-column-gap: 10px;
+  font-size: 3.0rem;
+}

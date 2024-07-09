@@ -1,0 +1,13 @@
+:host ::ng-deep .round-pagination .page-item:first-child .page-link {
+    border-top-left-radius: 1.25rem !important;
+    border-bottom-left-radius: 1.25rem !important;
+}
+
+:host ::ng-deep .round-pagination .page-item:last-child .page-link {
+    border-top-right-radius: 1.25rem !important;
+    border-bottom-right-radius: 1.25rem !important;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}

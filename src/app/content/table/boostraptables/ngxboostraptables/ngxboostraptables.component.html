@@ -1,0 +1,230 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <!-- <app-breadcrumb class="col-sm-12" [breadcrumb]="breadcrumb"></app-breadcrumb> -->
+    </div>
+    <div class="content-body">
+      <!-- Basic Tables start -->
+      <div class="row">
+        <div class="col-sm-12" *blockUI="'basicTables'; message: 'Loading'">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Basic table</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables
+                look in Bootstrap. You can use any example of below table for your table and it can be use with
+                any type of ng-bootstrap tables. </p>
+            </div>
+            <div class="table-responsive card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let element of PERSON; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ element.firstname }}</td>
+                    <td>{{ element.lastname }}</td>
+                    <td>{{ element.username }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="content-body">
+      <!-- Basic Tables start -->
+      <div class="row">
+        <div class="col-sm-12" *blockUI="'basicTables'; message: 'Loading'">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Pagination table</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Using the most basic table markup, here’s how <code>.table</code>-based tables
+                look in Bootstrap. You can bind our <code>NgbPagination</code> component with slicing the data list.</p>
+            </div>
+            <div class="table-responsive card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let element of PaginationData">
+                    <th scope="row">{{ element.id }}</th>
+                    <td>{{ element.firstname }}</td>
+                    <td>{{ element.lastname}}</td>
+                    <td>{{ element.username  }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+                </ngb-pagination>
+
+                <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                  <option [ngValue]="2">2 items per page</option>
+                  <option [ngValue]="4">4 items per page</option>
+                  <option [ngValue]="6">6 items per page</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *blockUI="'basicTables'; message: 'Loading'">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Serch and Filtering table</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">You can do filter table data, in this case with observables and our
+                <code>NgbHighlight</code> component used in Typeahead. </p>
+            </div>
+            <div class="table-responsive card-body">
+              <form>
+                <div class="form-group form-inline">
+                  Full text search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+                </div>
+              </form>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Lastname</th>
+                    <th scope="col">Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let element of employeeSearch | async; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                      <ngb-highlight [result]="element.firstname" [term]="filter.value"></ngb-highlight>
+                    </td>
+                    <td>
+                      <ngb-highlight [result]="element.lastname " [term]="filter.value"></ngb-highlight>
+                    </td>
+                    <td>
+                      <ngb-highlight [result]="element.username " [term]="filter.value"></ngb-highlight>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *blockUI="'basicTables'; message: 'Loading'">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Sortable table</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">You can introduce custom directives for table headers to sort columns.</p>
+            </div>
+            <div class="table-responsive card-body">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col" sortable="firstname" (sort)="onSort$($event)">Firstname</th>
+                    <th scope="col" sortable="lastname" (sort)="onSort$($event)">Lastname</th>
+                    <th scope="col" sortable="username" (sort)="onSort$($event)">Username</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let element of employeeSortable">
+                    <th scope="row">{{ element.id }}</th>
+                    <td>{{ element.firstname }}</td>
+                    <td>{{ element.lastname }}</td>
+                    <td>{{ element.username }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *blockUI="'basicTables'; message: 'Loading'">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Complate table</h4>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Table example with sorting,pagination and filtering.</p>
+            </div>
+            <div class="table-responsive card-body">
+              <form>
+                <div class="form-group form-inline">
+                  Full text search: <input class="form-control ml-2" type="text" name="searchTerm"
+                    [(ngModel)]="service.searchTerm" />
+                  <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+                </div>
+
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col" sortable="firstname" (sort)="onSort($event)">Firstname</th>
+                      <th scope="col" sortable="lastname" (sort)="onSort($event)">lastname</th>
+                      <th scope="col" sortable="username" (sort)="onSort($event)">username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let element of countries$ | async">
+                      <th scope="row">{{ element.id }}</th>
+                      <td>
+                        <ngb-highlight [result]="element.firstname" [term]="service.searchTerm"></ngb-highlight>
+                      </td>
+                      <td>
+                        <ngb-highlight [result]="element.lastname " [term]="service.searchTerm"></ngb-highlight>
+                      </td>
+                      <td>
+                        <ngb-highlight [result]="element.username" [term]="service.searchTerm">
+                        </ngb-highlight>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <div class="d-flex justify-content-between p-2">
+                  <ngb-pagination [collectionSize]="total$ | async" [(page)]="service.page"
+                    [pageSize]="service.pageSize">
+                  </ngb-pagination>
+
+                  <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <option [ngValue]="2">2 items per page</option>
+                    <option [ngValue]="4">4 items per page</option>
+                    <option [ngValue]="6">6 items per page</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!------Basic table end--->

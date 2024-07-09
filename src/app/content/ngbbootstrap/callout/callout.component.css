@@ -1,0 +1,11 @@
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+.d-flex {
+  display: center !important;
+}
+
+.align-items-center {
+  align-items: center!important;
+}

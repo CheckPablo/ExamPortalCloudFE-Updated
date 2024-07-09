@@ -1,0 +1,3 @@
+<app-invigilator-dashboard *ngIf="user.role < 3"></app-invigilator-dashboard>
+<app-student-dashboard *ngIf="user.role == 3"></app-student-dashboard>
+<!--Center admin cannot logon with the above conditions-->

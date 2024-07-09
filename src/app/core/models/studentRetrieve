@@ -1,0 +1,11 @@
+import { EntityBase } from "./entityBase";
+import { Student } from "./student";
+
+export interface StudentRetrieve extends EntityBase{
+    id: number;
+    encryptedText: string | null;
+    createdDate: string;
+    studentId: number | null;
+    oldStudentId: number | null;
+    student: Student | null;
+}

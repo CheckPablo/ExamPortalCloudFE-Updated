@@ -1,0 +1,5 @@
+:host ::ng-deep .ql-snow .ql-tooltip {
+    z-index:1 !important;
+    left: -1.7969px !important;
+    top: 26px !important;
+}

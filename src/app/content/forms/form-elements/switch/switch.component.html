@@ -1,0 +1,285 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Switchery Switch start -->
+      <section class="switchery-toggle" id="switchery-toggle">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Switchery Toggle</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-lg-6 col-md-12" *blockUI="'basicSwitcheryToggle'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadBasicSwitcheryToggle($event)">
+              <ng-container mCardHeaderTitle>
+                Basic Switchery Toggle
+              </ng-container>
+              <ng-container mCardBody>
+                <p>To set Switchery toggle, add <code>.switchery</code> class to checkbox.</p>
+                <div class="form-group pb-1">
+                  <div class="float-left">
+                  <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                  </div>
+                  <label class="font-medium-2 text-bold-600 ml-1 ml-2">Switchery Default</label>
+                </div>
+                <div class="form-group pb-1">
+                    <div class="float-left">
+                  <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)"></ui-switch>
+                    </div>
+                  <label class="font-medium-2 text-bold-600 ml-1">Switchery Unchecked</label>
+                </div>
+                <div class="form-group pb-1">
+                    <div class="float-left">
+                  <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" disabled checked>
+                  </ui-switch>
+                  </div>
+                  <label class="font-medium-2 text-bold-600 ml-1">Switchery Checked &amp; Disabled</label>
+                </div>
+                <div class="form-group pb-1">
+                    <div class="float-left">
+                  <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" disabled></ui-switch>
+                    </div>
+                  <label class="font-medium-2 text-bold-600 ml-1">Switchery Disable</label>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+          <div class="col-lg-6 col-md-12" *blockUI="'rightSwitcheryToggle'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadRightSwitcheryToggle($event)">
+              <ng-container mCardHeaderTitle>
+                Right Switchery Toggle
+              </ng-container>
+              <ng-container mCardBody>
+                <p> To set Switchery toggle to right, wrap checkbox with <code>.float-right</code> class.</p>
+                <div class="form-group pb-1">
+                  <div class="float-right">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                  </div>
+                  <label for="switchery0" class="font-medium-2 text-bold-600">Switchery Default</label>
+                </div>
+                <div class="form-group pb-1">
+                  <div class="float-right">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)"></ui-switch>
+                  </div>
+                  <label for="switchery01" class="font-medium-2 text-bold-600">Switchery Unchecked</label>
+                </div>
+                <div class="form-group pb-1">
+                  <div class="float-right">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked disabled>
+                    </ui-switch>
+                  </div>
+                  <label for="switchery02" class="font-medium-2 text-bold-600">Switchery Checked & Disabled</label>
+                </div>
+                <div class="form-group pb-1">
+                  <div class="float-right">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" disabled>
+                    </ui-switch>
+                  </div>
+                  <label for="switchery03" class="font-medium-2 text-bold-600">Switchery Disabled</label>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Switchery Sizes</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="form-group pb-1">
+                    <p class="text-muted"> To set Large Switchery toggle, add <code>data-size="lg"</code> to checkbox
+                      with <code>.switchery</code> class.</p>
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" size="large" color="rgb(55, 188, 155)" checked>
+                    </ui-switch>
+                  </div>
+                    <label for="switcherySize" class="font-medium-2 text-bold-600 ml-1 ls-1">Large Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                    <p class="text-muted"> To set Default Switchery toggle, add <code>.switchery</code> class to
+                      checkbox.</p>
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                      </div>
+                    <label for="switcherySize1" class="font-medium-2 text-bold-600 ml-1 ds-1">Default Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                    <p class="text-muted"> To set Small Switchery toggle, add <code>data-size="sm"</code> to checkbox
+                      with <code>.switchery</code> class.</p>
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" size="small" color="rgb(55, 188, 155)" checked>
+                    </ui-switch>
+                      </div>
+                    <label for="switcherySize2" class="font-medium-2 text-bold-600 ml-1">Small Switchery</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Switchery Labels on both sides</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="form-group pb-1">
+
+                    <label for="switcherySize10" class="font-medium-2 text-bold-600 mr-1">Left Label</label>
+                    <ui-switch class="switchery switch-large" switchColor="white" size="large" color="rgb(55, 188, 155)" checked>
+                    </ui-switch>
+                    <label for="switcherySize10" class="font-medium-2 text-bold-600 ml-1">Right Label</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                    <label for="switcherySize11" class="font-medium-2 text-bold-600 mr-1">Left Label</label>
+                    <ui-switch class="switchery switch-medium" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                    <label for="switcherySize11" class="font-medium-2 text-bold-600 ml-1">Right Label</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                    <label for="switcherySize12" class="font-medium-2 text-bold-600 mr-1">Left Label</label>
+                    <ui-switch class="switchery switch-small" switchColor="white" size="small" color="rgb(55, 188, 155)" checked>
+                    </ui-switch>
+                    <label for="switcherySize12" class="font-medium-2 text-bold-600 ml-1">Right Label</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Template Color Switchery start -->
+      <section class="theme-switchery" id="theme-switchery">
+        <div class="row">
+          <div class="col-12">
+            <h4>Template Color Switchery</h4>
+            <hr>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Color Switchery</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="form-group pb-1">
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(150, 122, 220)" checked></ui-switch>
+                      </div>
+                    <label for="switcheryColor" class="card-title ml-1 ds-1">Primary Color Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                      </div>
+                    <label for="switcheryColor4" class="card-title ml-1 ds-1">Success Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(218, 68, 83)" checked></ui-switch>
+                      </div>
+                    <label for="switcheryColor3" class="card-title ml-1 ds-1">Danger Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(59, 175, 218)" checked></ui-switch>
+                      </div>
+                    <label for="switcheryColor2" class="card-title ml-1 ds-1">Info Switchery</label>
+                  </div>
+                  <div class="form-group mt-1 pb-1">
+                      <div class="float-left">
+                    <ui-switch class="switchery" switchColor="white" color="rgb(246, 187, 66)" checked></ui-switch>
+                      </div>
+                    <label for="switcheryColor1" class="card-title ml-1 ds-1">Warning Switchery</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">COLOR SWITCHERY WITH LABELS ON BOTH SIDES</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="form-group row overflow-hidden">
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor10" class="card-title primary ">Primary Color Label &amp;
+                        Switchery</label>
+                    </div>
+                    <div class="col-sm-4 col-2 text-center mb-1">
+                      <ui-switch class="switchery" switchColor="white" color="rgb(150, 122, 220)" checked></ui-switch>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor10" class="card-title primary ">Primary Color Label &amp;
+                        Switchery</label>
+                    </div>
+                  </div>
+                  <div class="form-group row overflow-hidden mt-1">
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor14" class="card-title success">Success Color Label &amp;
+                        Switchery</label>
+                    </div>
+                    <div class="col-sm-4 col-2 text-center mb-1">
+                      <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" checked></ui-switch>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor14" class="card-title success">Success Color Label &amp;
+                        Switchery</label>
+                    </div>
+                  </div>
+                  <div class="form-group row overflow-hidden mt-1">
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor13" class="card-title danger">Danger Color Label &amp; Switchery</label>
+                    </div>
+                    <div class="col-sm-4 col-2 text-center mb-1">
+                      <ui-switch class="switchery" switchColor="white" color="rgb(218, 68, 83)" checked></ui-switch>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor13" class="card-title danger">Danger Color Label &amp; Switchery</label>
+                    </div>
+                  </div>
+                  <div class="form-group row overflow-hidden mt-1">
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor12" class="card-title info">Info Color Label &amp; Switchery</label>
+                    </div>
+                    <div class="col-sm-4 col-2 text-center mb-1">
+                      <ui-switch class="switchery" switchColor="white" color="rgb(59, 175, 218)" checked></ui-switch>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor12" class="card-title info">Info Color Label &amp; Switchery</label>
+                    </div>
+                  </div>
+                  <div class="form-group row mt-1">
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor11" class="card-title warning">Warning Color Label &amp;
+                        Switchery</label>
+                    </div>
+                    <div class="col-sm-4 col-2 text-center overflow-hidden mb-1">
+                      <ui-switch class="switchery" switchColor="white" color="rgb(246, 187, 66)" checked></ui-switch>
+                    </div>
+                    <div class="col-sm-4 col-5">
+                      <label for="switcheryColor11" class="card-title warning">Warning Color Label &amp;
+                        Switchery</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Template Color Switchery end-->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

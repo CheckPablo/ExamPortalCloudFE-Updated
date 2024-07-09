@@ -1,0 +1,11 @@
+:host ::ng-deep .always-visible .ps__rail-x {
+  opacity: 0.6 !important;
+}
+
+:host ::ng-deep .always-visible .ps__rail-y {
+  opacity: 0.6 !important;
+}
+
+vertical-scroll {
+    overflow: auto !important;
+}

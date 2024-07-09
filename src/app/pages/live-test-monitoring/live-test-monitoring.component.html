@@ -1,0 +1,403 @@
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h4 class="form-section"><i class="la la-eye"></i>Search Uploaded Tests</h4>
+    </div>
+    <div *ngIf="show" class="content-header-right col-md-6 col-12">
+        <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" id="btnNew" class="btn btn-info btn-min-width mr-1 mb-1" (click)="onSendOTPClicked()">
+                Send OTP
+            </button>
+            <button type="button" id="btnSend" class="btn btn-info btn-min-width mr-1 mb-1"
+                (click)="onBulkSendClicked()">
+                Send Bulk Message (Test)
+
+            </button>
+
+            <button type="button" class="btn btn-info btn-min-width mr-1 mb-1" type="button" id="addExtraTime"
+                (click)="openExtraTimeModal(addExtraTimeModal)">
+                Add Extra Time
+            </button>
+        </div>
+    </div>
+
+    <div class="content-body">
+        <section class="users-list-wrapper">
+            <div class="users-list-filter px-1">
+                <div class="row card">
+                    <form class="form form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="ddlCenters">Grade:</label>
+                                    <fieldset class="form-group">
+                                        <select id="gradeId" name="gradeId" class="form-control form-select"
+                                            formControlName="gradeId"
+                                            (change)="onGradeChange($any($event.target).value)"
+                                            [ngClass]="{ 'is-invalid': submitted && f['gradeId'].errors }">
+                                            <option value="0" disabled>--Select Grade--</option>
+                                            <option *ngFor="let grade of grades" [value]="grade.id">
+                                                {{grade.code}}</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        <label for="ddlUsers">Subject:</label>
+                                        <select class="form-control form-select" id="subjectId" name="subjectId"
+                                            formControlName="subjectId"
+                                            (change)="onChangeSubject($any($event.target).value)"
+                                            [ngClass]="{ 'is-invalid': submitted && f['subjectId'].errors }">
+
+                                            <option value="0">--Select Subject--</option>
+                                            <option *ngFor="let subject of subjects" [value]="subject.id">
+                                                {{subject.description}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f['subjectId'].errors" class="invalid-feedback">
+                                            <div *ngIf="f['subjectId'].errors.required">Subject is
+                                                required
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <fieldset class="form-group">
+                                        <label for="ddlUsers">Test:</label>
+                                        <select class="form-control form-select" id="testId" name="testId"
+                                            formControlName="testId" (change)="onChangeTest($any($event.target).value)"
+                                            [ngClass]="{ 'is-invalid': submitted && f['testId'].errors }">
+                                            <option value="0">--Select Test</option>
+                                            <option *ngFor="let test of tests" [value]="test.id">
+                                                {{test.testName}}</option>
+                                        </select>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="candidateSearchType">Candidate Filter:</label>
+                                        <select class="form-control form-select" id="candidateSearchType"
+                                            formControlName="candidateSearchType">
+                                            <option value="1">All</option>
+                                            <option value="2">Linked to me</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label" for="name" data-toggle="tooltip" title="Name">
+                                            Name (optional)
+                                        </label>
+                                        <input class="form-control" type="text" id="name" name="name"
+                                            formControlName="name">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label class="control-label"></label>
+                                    <button id="btnLink" class="btn btn-block btn-primary glow" [disabled]="onload">
+                                        Filter
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="row">
+            <div class="irregularity-container">
+                <div class="float-left" *ngFor="let item of liveMonitoringCanidateList">
+
+                    <!--<div  style="background-color:#fff;text-align:right;padding-right:-1900px;margin:0;padding:0;width:auto; margin-top:100px;">-->
+                    <!--<i class="fa fa-clock-o"></i>&nbsp;-->
+                    <h4 *ngIf="item.studentExtraTime !='00:00:00'"> <svg xmlns="http://www.w3.org/2000/svg" width="32"
+                            height="32" fill="primaryColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z" />
+                            <path
+                                d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z" />
+                        </svg><span>extra-time</span></h4>
+                   <!--      <div class="card border-blue" [class.yellow]="item.startDate && item.isIrregularity" [class.pink]="!item.offline && item.startDate && item.offline2 >= 5"
+                            (click)="goToCandidateLiveMonitor(item)"> -->
+                    <div class="card border-blue" [class.yellow]="item.startDate && item.isIrregularity" [class.pink]="!item.offline && item.startDate && item.offline2 >= 5"
+                        (click)="goToCandidateLiveMonitor(item)">
+                        <div class="text-center text-dark">
+                            <div class="card-body">
+                                <h4 class="card-title"> {{item.name}} {{item.surname}} </h4>
+                                <h6 class="card-subtitle text-muted"> {{ item.testName }} </h6>
+                            </div>
+                            <div class="text-center">
+                                   <h6 *ngIf ="item.endDate" class="card-title">Test has been completed</h6>
+                             
+                                    <h6 *ngIf ="!item.startDate" class="card-title">Test not yet started </h6>
+                                    <h6 *ngIf = "item.startDate && !item.endDate" class="card-title">Test time started: {{ item.startDate | date:'yyyy/MM/dd HH:mm:ss'}} </h6>
+                           
+                                    <h4 *ngIf ="item.endDate" class="card-title"> Connection Status: Offline (Test Completed) </h4>
+
+                                    <!-- <h4 *ngIf ="!item.offline2 && this.StartDate" class="card-title"> Connection Status: Offline</h4> -->
+
+                                    
+                                    <h4 *ngIf ="!item.offline && item.startDate && item.offline2 >= 5" class="card-title"> User has gone offline at approx: {{
+                                        item.lastSaved | date:'yyyy/MM/dd HH:mm:ss'}} </h4>
+
+                                    <!-- <h4 *ngIf ="item.startDate && !item.offline" class="card-title"> Connection Status: Online: {{
+                                        item.lastSaved | date:'yyyy/MM/dd HH:mm:ss'}} </h4>
+ -->
+                                    <h4 *ngIf ="item.offline" class="card-title"> Connection Status: Offline: {{
+                                        item.lastSaved | date:'yyyy/MM/dd HH:mm:ss'}} </h4>
+
+                                    <h4 *ngIf ="!item.offline && item.startDate && item.offline2 < 5" class="card-title"> Connection Status: Online: {{
+                                        item.lastSaved | date:'yyyy/MM/dd HH:mm:ss'}} </h4>
+
+                              <!--   <h4 class="card-title" *ngIf="item.offline">User has gone offline at approx: {{
+                                    item.lastSaved | date:'yyyy/MM/dd HH:mm:ss'}} </h4> -->
+                               <!--  <h4 class="card-title" *ngIf="item.offline">{{ "Irregularity: User offline" }} </h4> -->
+                                <h4 class="card-title"
+                                    *ngIf="item.fullScreenClosed || item.leftExamArea || item.keyPress">{{
+                                    "Irregularity: Detected" }} </h4>
+
+                                <!--<h4 class="card-title" *ngIf="item.leftExamArea">{{ "Irregularity: User left exam area"
+                                    }} </h4>
+                                <h4 class="card-title" *ngIf="item.keyPress">{{ "Irregularity: User key Press" }} </h4>-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #addExtraTimeModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">Extra Time</h4>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+            </div>
+            <form [formGroup]="extraTimeForm" (ngSubmit)="onExtraTimeSubmit()">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="CenterID" class="form-control">
+                    </div>
+
+                    <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                        <button id="btnLinkTest" class="btn btn-info" [disabled]="!studentIds.length"
+                            (click)="onExtraTimeClick()">
+                            <i class="la la-check-square-o"></i>
+                            Add Time
+                        </button>
+
+                        <br /><br />
+                        <input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll"
+                            [checked]="isAllSelected" (change)="onSelectAll()">
+                        <label for="cbxCheckAll"> Select All</label>
+
+                        <div class="table-responsive" style="width:100%">
+                            <table id="StudentListTable" style="width:100%">
+                                <thead class="bg-info white">
+                                    <tr>
+                                        <th style="display:none">StudentID</th>
+                                        <th>Link</th>
+                                        <th>Surname</th>
+                                        <th>Fore Names</th>
+                                        <th>Exam Number</th>
+                                        <th>ID Number</th>
+                                        <!--<th style="display:none">Extra Time Val</th>-->
+                                        <th>Extra Time (Minutes)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let link of links">
+                                        <td>
+                                            <input type="checkbox" id="cbxCheckStudentLink" [value]="link.studentID"
+                                                (click)="onStudentClick(link.studentID)"
+                                                [checked]="isStudentSelected(link.studentID)">
+                                        </td>
+                                        <td>
+                                            {{link.surname}}
+                                        </td>
+                                        <td>
+                                            {{link.name}}
+                                        </td>
+                                        <td>
+                                            {{link.examN}}
+                                        </td>
+                                        <td>
+                                            {{link.idNumber}}
+                                        </td>
+
+                                        <td>
+                                            <select class="form-control" id="extraTimeDuration" [name]="link.studentID"
+                                                [value]="0" (change)="onChangeExtraTime($event, link.studentId)">
+                                                <option value="0" disabled>--Select Extra--</option>
+                                                <option *ngFor="let extraTimeDuration of extraTimeDurations"
+                                                    [value]="extraTimeDuration.key">
+                                                    {{extraTimeDuration.value}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <!-- <td>
+                                        <input class="form-control" type="text" [(ngModel)]="extraTimeIds[link.studentID]">
+                                    </td> -->
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <!--<div class="row justify-content-md-between align-items-md-center mt-2">
+                       
+                </div>
+                         *ngIf="paginationService.totalItems">
+                        <div class="col-sm-12 col-md-5">
+                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                aria-live="polite">Showing
+                                {{paginationService.startIndex}} to
+                                {{paginationService.endIndex}} of
+                                <span *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}} search results from
+                                </span>
+                                {{paginationService.totalItems}} entries
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                            <div class="text-md-right float-md-end pagination-rounded">
+                                <ul class="pagination">
+                                    <li class="page-item ng-star-inserted"
+                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                        (click)="paginationService.setPage(1)">
+                                        <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                            <span aria-hidden="true" class="ng-star-inserted">««</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ng-star-inserted"
+                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                        (click)="paginationService.goToPreviousPage()">
+                                        <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                            <span aria-hidden="true" class="ng-star-inserted">«</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ng-star-inserted" aria-current="page"
+                                        [ngClass]="{ 'active': paginationService.currentPage == page }"
+                                        *ngFor="let page of paginationService.paginationLinks"
+                                        (click)="paginationService.setPage(page)">
+                                        <a href="javascript:void(0);" class="page-link ng-star-inserted">
+                                            {{ page }}
+                                        </a>
+                                    </li>
+                                    <li class="page-item ng-star-inserted"
+                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                        (click)="paginationService.goToNextPage()">
+                                        <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                            <span aria-hidden="true" class="ng-star-inserted">»</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ng-star-inserted"
+                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                        (click)="paginationService.setPage(paginationService.totalPages)">
+                                        <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                            <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                        ngbAutofocus>
+                        Close
+                    </button>
+
+                    <!--<button type="submit" class="btn btn-outline-primary">
+                    Save changes
+                </button>-->
+                </div>
+            </form>
+        </ng-template>
+
+        <ng-template #monitoringChatModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1"></h4>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+            </div>
+            <form [formGroup]="bulkMessagingForm" (ngSubmit)="onInvigilatorBulkMessageSend()">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="TestID" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            Bulk Message
+                            <div class="form-group row">
+                                <div>
+                                    <br>
+                                    <div class="col-md-9 mx-auto" style="text-align:center ;">
+<textarea readonly class="message-text" id="testChatMessageArea" style="text-align:center" rows="15" cols="90" wrap="hard">
+    {{bulkMessages}}
+</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-9 mx-auto">
+                                    <input class="form-control" type="text" formControlName="bulkMessage"
+                                        id="bulkMessage" placeholder="Enter Message">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                        ngbAutofocus>
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+
+        <ng-template #sendBulkOTPModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1"></h4>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+            </div>
+            <form [formGroup]="otpMessagingForm" (ngSubmit)="onOTPBulkSend()">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="TestID" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            One Time Pin
+                            <div class="form-group row">
+                                <div class="col-md-9 mx-auto">
+                                    <input class="form-control" type="text" formControlName="otpMessage" id="otpMessage"
+                                        placeholder="Enter Message">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                        ngbAutofocus>
+                        Close
+                    </button>
+                    <button type="submit" class="btn btn-outline-primary">
+                        Send
+                    </button>
+                </div>
+            </form>
+        </ng-template>
+        <app-pop-up content="{{message}}" title="{{title}}" show="{{showModal}}" />
+

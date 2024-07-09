@@ -1,0 +1,264 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Add rows table -->
+      <section id="add-row">
+        <div class="row">
+          <div class="col-12" *blockUI="'addRows'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadAddRows($event)">
+              <ng-container mCardHeaderTitle>
+                Add rows
+              </ng-container>
+              <ng-container mCardBody>
+                <p class="card-text">New rows can be added to a DataTable very easily using the
+                  (addFieldValue()) function.
+                </p>
+                <button id="addRow" class="btn btn-secondary my-1 mb-2" (click)="addFieldValue()"><i class="feather ft-plus"></i>&nbsp;
+                  Add new row</button>
+                <div class="table table-striped table-bordered add-rows">
+                  <ngx-datatable class="bootstrap" [sortType]="'multi'" [headerHeight]="50" [limit]="7"
+                    [footerHeight]="40" [rowHeight]="40" [rows]="rows" [columnMode]="'force'"
+                    [loadingIndicator]="loadingIndicator" fxFlex="auto" [perfectScrollbar]="config">
+                    <ngx-datatable-column name="ID" [flexGrow]="1" [minWidth]="20">
+                      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" *ngfor let element of rows>
+                        <b>{{element.id}}</b>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="70">
+                      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" *ngfor let element of rows>
+                        <span>
+                          {{element.name}}
+                        </span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" *ngfor let element
+                        of rows>
+                        <span>
+                          {{element.position}}
+                        </span>
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                        {{element.office}}
+                      </ng-template>
+                    </ngx-datatable-column>
+
+                    <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                      <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                        {{element.age}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                        {{element.salary}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                        {{element.startdate}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+
+      <section id="selection-n-deletion">
+        <div class="row">
+          <div class="col-12" *blockUI="'rowSelection'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadRowSelection($event)">
+              <ng-container mCardHeaderTitle>
+                Row selection and deletion (single row)
+              </ng-container>
+              <ng-container mCardBody>
+                <p class="card-text">This example shows a modification of the multiple row selection
+                  example, where just a single can now be selected. This is done simply by checking to
+                  see if the row already has a selected class or not, and if so removing it, if not
+                  then the class is removed from any other row in the table which does have it and
+                  applied to the row to be selected.
+                </p>
+                <br />
+                  <button type="button" class="btn btn-secondary my-1 delete-all" (click)=" deleteCheckedRow()">Delete
+                        All</button>
+                        <div class="table table-striped table-bordered add-rows">
+                       <ngx-datatable class="bootstrap" [sortType]="'multi'" [headerHeight]="50" [limit]="7"
+                        [footerHeight]="40" [rowHeight]="40" [rows]="rows" [columnMode]="'force'"
+                        [loadingIndicator]="loadingIndicator"  [selected]="selected"
+                        [selectionType]="'checkbox'"
+                        (select)='onSelect($event)' fxFlex="auto" [perfectScrollbar]="config">
+
+                  <ngx-datatable-column [flexGrow]="1" [maxWidth]="140">
+                    <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                      let-selectFn="selectFn">
+                    <span class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="selectAll" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)" />
+                      <label class="custom-control-label" for="selectAll"></label>
+                    </span>
+                    </ng-template>
+                    <ng-template ngx-datatable-cell-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                      let-onCheckboxChangeFn="onCheckboxChangeFn" let-isSelected="isSelected">
+                      <span class="custom-control custom-checkbox" >
+                      <input type="checkbox" class="custom-control-input" id="select{{rowIndex}}" [checked]="isSelected" (change)="onCheckboxChangeFn($event)" />
+                      <label class="custom-control-label" for="select{{rowIndex}}"></label>
+                      </span>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="ID" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" *ngfor let element of rows>
+                      <b>{{element.id}}</b>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" *ngfor let element of rows>
+                      <span>
+                        {{element.name}}
+                      </span>
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" *ngfor let element
+                      of rows>
+                      <span>
+                        {{element.position}}
+                      </span>
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                      {{element.office}}
+                    </ng-template>
+                  </ngx-datatable-column>
+
+                  <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                    <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                      {{element.age}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                      {{element.salary}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                    <ng-template ngx-datatable-cell-template *ngfor let element of rows>
+                      {{element.startdate}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                    </ngx-datatable>
+                        </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+
+      <section id="selection-n-deletion">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Row Editing Content </h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <p>Double click on any content to edit that section.</p>
+                  <br />
+                  <div class="table table-striped table-bordered selection-deletion-row">
+
+                    <ngx-datatable class="bootstrap" [headerHeight]="50" [limit]="7" [columnMode]="'force'"
+                      [footerHeight]="50" [rowHeight]="40" [rows]="row" fxFlex="auto" [perfectScrollbar]="config">
+
+                      <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                          let-row="row">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-name'] = true"
+                            *ngIf="!editing[rowIndex + '-name']">
+                            {{value}}
+                          </span>
+                          <input autofocus (blur)="updateValue($event, 'name', rowIndex)"
+                            *ngIf="editing[rowIndex+ '-name']" type="text" [value]="value" />
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                          let-row="row">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-position'] = true"
+                            *ngIf="!editing[rowIndex + '-position']">
+                            {{value}}
+                          </span>
+                          <input autofocus (blur)="updateValue($event, 'position', rowIndex)"
+                            *ngIf="editing[rowIndex+ '-position']" type="text" [value]="value" />
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                          let-row="row">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-office'] = true"
+                            *ngIf="!editing[rowIndex + '-office']">
+                            {{value}}
+                          </span>
+                          <input autofocus (blur)="updateValue($event, 'office', rowIndex)"
+                            *ngIf="editing[rowIndex+ '-office']" type="text" [value]="value" />
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                          let-row="row">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-age'] = true"
+                            *ngIf="!editing[rowIndex + '-age']">
+                            {{value}}
+                          </span>
+                          <input autofocus (blur)="updateValue($event, 'age', rowIndex)"
+                            *ngIf="editing[rowIndex+ '-age']" type="text" [value]="value" />
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"
+                          let-row="row">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-salary'] = true"
+                            *ngIf="!editing[rowIndex + '-salary']">
+                            {{value}}
+                          </span>
+                          <input autofocus (blur)="updateValue($event, 'salary', rowIndex)"
+                            *ngIf="editing[rowIndex+ '-salary']" type="text" [value]="value" />
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Gender" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row"
+                          let-value="value">
+                          <span title="Double click to edit" (dblclick)="editing[rowIndex + '-gender'] = true"
+                            *ngIf="!editing[rowIndex + '-gender']">
+                            {{value}}
+                          </span>
+                          <select *ngIf="editing[rowIndex + '-gender']"
+                            (change)="updateValue($event, 'gender', rowIndex)" [value]="value">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                          </select>
+                        </ng-template>
+                      </ngx-datatable-column>
+
+                    </ngx-datatable>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////-->

@@ -1,0 +1,159 @@
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-line {
+    stroke:#1e9ff2;
+}
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-line {
+    stroke: url(#gradient1);
+    stroke-width: 5px;
+    stroke-linecap: round;
+}
+:host ::ng-deep .areaChartLegend {
+    -webkit-filter: drop-shadow(0px 20px 11px rgba(0, 0, 0, 0.5)) !important;
+    filter: drop-shadow(0px 20px 11px rgba(0, 0, 0, 0.5));
+}
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-area {
+    fill: #ffffff;
+}
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-line {
+    stroke: #3da2ea;
+}
+
+:host ::ng-deep .earningchart .ct-series-a .ct-line {
+   stroke: #FF4961;
+ }
+:host ::ng-deep .earningchart .ct-series-a .ct-point-circle {
+    stroke-width: 3px;
+    stroke: #FF4961;
+    fill: #ffffff;
+}
+:host ::ng-deep .barchart .ct-series-a .ct-bar {
+    stroke: #ff394f !important;
+    stroke-width: 7px !important;
+}
+:host ::ng-deep .Revenuechartist .ct-series-a .ct-line {
+
+    stroke: url(#gradient2);
+    stroke-linecap: round;
+   }
+:host ::ng-deep .Revenuechartist {
+    filter: drop-shadow(0px 20px 11px rgba(252, 198, 198, 0.8)) !important;
+
+}
+:host ::ng-deep .Revenuechartist .ct-grid{
+    stroke-dasharray: 0px;
+    stroke: rgba(0, 0, 0, 0.4);
+    stroke-width: 0.6px;
+}
+:host ::ng-deep .Revenuechartist .ct-series-a .ct-line {
+    stroke: #ff4961;
+}
+:host ::ng-deep .Revenuechartist .ct-series-b .ct-line {
+    stroke: #c8c2c3;
+    stroke-dasharray: 8px 3px;
+}
+
+:host ::ng-deep .Revenuechartist .ct-label.ct-vertical.ct-start {
+    font-weight: 600;
+    color: #636161;
+    font-size: 12px;
+}
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-point-circle {
+    stroke-width: 5px;
+    stroke: #ffffff;
+    fill: #1e9ff2;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-point-circle {
+    stroke-width: 5px;
+    stroke: #ffffff;
+    fill: #58e0cd;
+    ;
+}
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-area {
+    fill: #4105f9f5;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-area {
+    fill: #03f7b2fa;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-line {
+    stroke: #58e0cd;
+}
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-line {
+    stroke: #1e9ff2;
+}
+:host ::ng-deep .donut-chart2{
+    margin-bottom: -25px;
+    margin-top: -17px;
+}
+
+:host ::ng-deep .donut-chart2 .ct-series-a .ct-slice-donut {
+    stroke: #28d094;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart2 .ct-series-b .ct-slice-donut {
+    stroke: #ff4961;
+    stroke-width: 5.5px !important;
+}
+:host ::ng-deep .donut-chart2 {
+-webkit-filter: drop-shadow(0px 10px 11px rgba(187,187,187)) !important;
+    filter: drop-shadow(0px 10px 11px rgba(187,187,187));
+    height: 288px;
+}
+:host ::ng-deep .donut-chart2 .ct-label {
+    fill: #ff4b62;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1.75rem;
+    line-height: 1;
+}
+:host ::ng-deep .donut-chart1 {
+    margin-bottom: -25px;
+    margin-top: -17px;
+    height: 288px;
+}
+:host ::ng-deep .donut-chart1 .ct-series-a .ct-slice-donut {
+    stroke: #ff7889;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart1 .ct-series-b .ct-slice-donut {
+    stroke: #ffffff;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart1 .ct-label {
+    fill: #ffffff;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1.75rem;
+    line-height: 1;
+}
+:host ::ng-deep .donut .ct-done .ct-slice-donut {
+    stroke: #28d094;
+    stroke-width: 24px !important;
+}
+
+:host ::ng-deep .donut .ct-progress .ct-slice-donut {
+    stroke: #ff4558;
+    stroke-width: 16px !important;
+}
+
+:host ::ng-deep .donut .ct-outstanding .ct-slice-donut {
+    stroke: #ff7d4d;
+    stroke-width: 8px !important;
+}
+
+:host ::ng-deep .donut .ct-started .ct-slice-donut {
+    stroke: #666ECC;
+    stroke-width: 32px !important;
+}
+
+:host ::ng-deep .donut .ct-label {
+    text-anchor: middle;
+    font-size: 20px;
+    fill: #868e96;
+}
+
+:host ::ng-deep .dountchartheader{
+    margin-top: 10px;
+}

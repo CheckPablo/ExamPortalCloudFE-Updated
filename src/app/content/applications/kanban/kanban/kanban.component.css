@@ -1,0 +1,496 @@
+.mr-25, .mx-25 {
+  margin-right: .25rem!important;
+}
+.mr-50, .mx-50 {
+  margin-right: .5rem!important;
+}
+.dropdown .dropdown-menu 
+{
+  transform: translate3d(-130px, 24px, 0px) !important;
+}
+:host ::ng-deep .ng-select .ng-select-container {
+color: #fff;
+background-color: #666ee8  !important;
+}
+:host ::ng-deep .ng-arrow {
+top: -2px;
+border-color: transparent transparent #fff !important;
+}
+:host ::ng-deep .ng-arrow-wrapper {
+top: -2px;
+border-color: transparent transparent #fff !important;
+border-width: 0 5px 5px !important; 
+
+}
+:host ::ng-deep .ng-select .ng-select-container {
+ height: calc(1.25em + 1.5rem + 2px)!important;
+ padding: .75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+:host ::ng-deep .ng-select {
+position: relative;
+display: block;
+box-sizing: border-box;
+}
+:host ::ng-deep .ml-25, .mx-25 {
+margin-left: .25rem!important;
+}
+:host ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+box-sizing: border-box;
+cursor: pointer;
+display: block;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+min-height: 1.2em;
+padding: 0px 5px 1px;
+}
+:host ::ng-deep .text {
+/* display: block;
+width: 100%; */
+height: calc(1.25em + 1.5rem + 2px);
+padding: .75rem 1rem;
+font-size: 1rem;
+line-height: 1.25;
+/* color: #4e5154; */
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #babfc7;
+border-radius: .25rem;
+/* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}
+:host ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option .bg-primary {
+background-color: #666ee8!important;
+}
+ng-reflect-ng-item-label{
+background-color: #ff4961!important;
+}
+:host ::ng-deep .bg-danger {
+background-color: #ff4961!important;
+}
+:host ::ng-deep .justify-scontent-between {
+justify-content: space-between!important;
+}
+/* datepicker css */
+:host ::ng-deep .btn-light:not(:disabled):not(.disabled):active {
+color: unset !important;
+background-color: unset !important;
+border-color: #d3d9df !important;
+}
+
+:host ::ng-deep .btn-light:hover:not(.disabled):active {
+background-color: #e2e6ea !important;
+border-color: #dae0e5 !important;
+}
+
+:host ::ng-deep .btn-light {
+color: unset !important;
+background-color: unset !important;
+border-color: unset !important;
+}
+
+:host ::ng-deep .bg-primary {
+background-color: #007bff !important;
+}
+
+:host ::ng-deep .text-white {
+color: #fff !important;
+
+}
+
+:host ::ng-deep .custom-day {
+text-align: center;
+padding: .185rem .25rem;
+display: inline-block;
+height: 2rem;
+width: 2rem;
+}
+
+:host ::ng-deep .custom-day:active {
+color: #6d7183 !important;
+background-color: #fff !important;
+border-block-color: rgb(2, 117, 216) !important;
+
+}
+
+.bg-light {
+background-color: #f8f9fa !important;
+}
+
+:host ::ng-deep .hidden {
+display: block !important;
+}
+
+.ngb-dp-weekday {
+color: #17a2b8;
+}
+
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+line-height: 2rem;
+text-align: center;
+font-style: italic;
+}
+
+.ngb-datepicker-month-view {
+pointer-events: auto;
+}
+
+.small {
+font-size: 80%;
+font-weight: 400;
+}
+
+.ngb-dp-day {
+cursor: pointer !important;
+}
+
+.ngb-dp-month {
+pointer-events: none;
+}
+
+.btn-light:hover {
+color: #212529 !important;
+background-color: #e2e6ea !important;
+border-color: #dae0e5 !important;
+}
+
+.ngb-datepicker-month-view {
+pointer-events: auto;
+}
+
+.ngb-dp-header {
+border-bottom: 0;
+border-radius: .25rem .25rem 0 0;
+padding-top: .25rem;
+}
+
+.ngb-dp-day,
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+width: 2rem;
+height: 2rem;
+}
+
+.custom-day {
+text-align: center;
+padding: 0.185rem 0.25rem;
+display: inline-block;
+height: 2rem;
+width: 2rem;
+}
+
+.custom-day.focused {
+background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+background-color: rgb(2, 117, 216);
+color: white;
+}
+
+.custom-day.faded {
+background-color: rgba(2, 117, 216, 0.5);
+}
+
+:host ::ng-deep .block-ui-wrapper {
+background: rgba(255, 249, 249, 0.5) !important;
+}
+
+.custom-day {
+text-align: center;
+padding: 0.185rem 0.25rem;
+border-radius: 0.25rem;
+display: inline-block;
+width: 2rem;
+}
+.custom-day:hover, .custom-day.focused {
+background-color: #e6e6e6;
+}
+.weekend {
+background-color: #f0ad4e;
+border-radius: 1rem;
+color: white;
+}
+.hidden {
+display: none;
+}
+:host ::ng-deep .ft-calendar{
+font-family: feather!important;
+speak: none;
+font-style: normal;
+font-weight: 400;
+font-size: large;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+:host ::ng-deep .input-group-text {
+display: flex;
+align-items: center;
+padding: unset !important;
+margin-bottom: unset !important;
+font-size: unset !important;
+font-weight: unset !important;
+line-height: unset !important;
+color:unset !important;
+text-align: unset !important;
+white-space: unset !important;
+background-color: unset !important;
+border:  unset !important;
+border-radius: unset !important;
+}
+.ml-75, .mx-75 {
+margin-left: .75rem!important;
+}
+.mx-50 {
+margin-left: .5rem!important;
+}
+.sidebar {
+  width : 270px !important;
+}
+.align-middle {
+  margin-left: 3px;
+}
+.mr-50, .mx-50 {
+margin-right: .5rem!important;
+}
+:host ::ng-deep .ft-plus{
+margin-right: 3px !important;
+}
+control:disabled, .form-control[readonly] {
+background-color: #ffffff;
+margin-left: -12px;
+}
+/* Kanban Board Application css */
+/*------------------------------*/
+.kanban-container {
+  width : 100% !important;
+}
+.kanban-container .kanban-board {
+  border-radius : 0.25rem;
+  padding : 1rem 0rem;
+  margin : 0 1.8rem 1rem 0 !important;
+  width : 18.67rem !important;
+  background-color : #E7EDF3;
+}
+.kanban-container .kanban-board .kanban-board-header {
+  /* kanban-header */
+  font-size : 1.2rem;
+  font-family : 'Quicksand', Georgia, 'Times New Roman', Times, serif;
+  color : #6B6F82;
+  padding : 0 0.93rem;
+  display : -webkit-box;
+  display : -webkit-flex;
+  display : -ms-flexbox;
+  display :         flex;
+  -webkit-box-pack : justify;
+  -webkit-justify-content : space-between;
+  -ms-flex-pack : justify;
+          justify-content : space-between;
+}
+.kanban-container .kanban-board .kanban-board-header .dropdown {
+  float : right;
+}
+.kanban-container .kanban-board .kanban-board-header .dropdown .dropdown-toggle:after {
+  display : none;
+}
+.kanban-container .kanban-board .kanban-board-header .kanban-title-board {
+  /* kanban title */
+  font-weight : normal;
+  cursor : text;
+  padding : 0 0.5rem;
+  width : 200px;
+}
+.kanban-container .kanban-board .kanban-board-header .kanban-title-board:hover, .kanban-container .kanban-board .kanban-board-header .kanban-title-board:focus {
+  background-color : #6B6F82;
+  color : #FFFFFF;
+  border-radius : 0.25rem;
+  outline : none;
+  text-overflow : clip;
+}
+.kanban-container .kanban-board .kanban-board-header .kanban-title-button {
+  /* kanban title button */
+  position : absolute;
+  bottom : 0;
+  padding : 0.467rem 0rem;
+  display : block;
+  color : #6B6F82;
+  font-weight : 700;
+  font-size : 0.8rem;
+}
+.kanban-container .kanban-board .kanban-drag {
+  padding : 13px;
+  min-height : auto;
+}
+.kanban-container .kanban-board .kanban-item {
+  /* kanban item */
+  padding : 0.53rem 0.8rem;
+  border-radius : 0.25rem;
+  margin-bottom : 1rem;
+  box-shadow : -4px 4px 6px 0 rgba(55, 70, 95, 0.12);
+  position : relative;
+  overflow-wrap: break-word;
+}
+.kanban-container .kanban-board .kanban-item:before {
+  content : '';
+  width : 3px;
+  height : 100%;
+  position : absolute;
+  left : 0;
+  top : 0;
+  border-radius : 0.5rem;
+}
+.kanban-container .kanban-board .kanban-item:hover {
+  cursor : default;
+}
+.kanban-container .kanban-board .kanban-item:last-child {
+  margin-bottom : 0.5rem;
+}
+.kanban-container .kanban-board .kanban-item .kanban-image img {
+  border-radius : 0.25rem;
+}
+
+.kanban-overlay {
+  /* kanban overlay */
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  position : absolute;
+  z-index : 999;
+  visibility : hidden;
+  opacity : 0;
+}
+.kanban-overlay.show {
+  visibility : visible;
+  -webkit-transition : all 0.3s ease;
+          transition : all 0.3s ease;
+  opacity : 1;
+  background-color : rgba(0, 0, 0, 0.2);
+}
+
+.badge-circle {
+  display : -webkit-box;
+  display : -webkit-flex;
+  display : -ms-flexbox;
+  display :         flex;
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -ms-flex-align : center;
+          align-items : center;
+  -webkit-box-pack : center;
+  -webkit-justify-content : center;
+  -ms-flex-pack : center;
+          justify-content : center;
+  background-color : #E6EAEE;
+  color : #475F7B;
+  border-radius : 50%;
+  height : 30px;
+  width : 30px;
+}
+
+.avatar img {
+  border : 2px solid #FFFFFF;
+}
+
+.kanban-sidebar {
+  /* kanban sidebar */
+  box-shadow : -8px 0 18px 0 rgba(25, 42, 70, 0.13);
+  height : 100vh;
+  width : 23.8rem;
+  background-color : #FFFFFF;
+  position : fixed;
+  -webkit-transform : translateX(110%);
+      -ms-transform : translateX(110%);
+          transform : translateX(110%);
+  -webkit-transition : all 0.3s ease;
+          transition : all 0.3s ease;
+  z-index : 1050;
+  right : 2rem;
+  left : auto;
+  bottom : 0;
+  top : -1px;
+  opacity : 0;
+  overflow : hidden;
+}
+.kanban-sidebar .card-header .close-icon {
+  color : #6B6F82;
+  opacity : 1 !important;
+}
+.kanban-sidebar .card-header .close-icon:focus {
+  outline : none;
+}
+.kanban-sidebar.show {
+  opacity : 1;
+  -webkit-transform : translateX(9%) translateY(1px);
+      -ms-transform : translateX(9%) translateY(1px);
+          transform : translateX(9%) translateY(1px);
+}
+.kanban-sidebar .edit-kanban-item {
+  height : 100vh;
+}
+.kanban-sidebar .edit-kanban-item .card-content {
+  height : calc(100% - 9rem);
+}
+.kanban-sidebar .edit-kanban-item .card-content .form-group > label {
+  color : #BAC0C7;
+  margin-bottom : 0.67rem;
+}
+.kanban-sidebar .edit-kanban-item .card-content .form-group select {
+  border-radius : 0.25rem;
+  display : block;
+}
+.kanban-sidebar .edit-kanban-item .card-content .custom-file .custom-file-label:after {
+  background-color : transparent;
+}
+.kanban-sidebar .edit-kanban-item .card-footer .btn i {
+  top : 0;
+}
+.kanban-sidebar .edit-kanban-item .picker {
+  position : relative;
+}
+.kanban-sidebar .quill-wrapper .snow-container .ql-snow, .kanban-sidebar .quill-wrapper .snow-container .ql-toolbar {
+  border : none;
+}
+.kanban-sidebar .quill-wrapper .snow-container .ql-toolbar .btn {
+  width : auto;
+  line-height : 0.9;
+  padding : 0.467rem 1.2rem;
+}
+.kanban-sidebar .quill-wrapper .snow-container .ql-toolbar .btn:hover {
+  color : #FFFFFF;
+}
+.kanban-sidebar .quill-wrapper .snow-container .ql-tooltip {
+  left : 0 !important;
+}
+.kanban-sidebar .quill-wrapper .snow-container .ql-tooltip input[type=text] {
+  width : 100px;
+}
+.kanban-sidebar .quill-wrapper .ql-editor.ql-blank::before {
+  left : 0.3rem;
+}
+.kanban-sidebar .quill-wrapper .ql-editor {
+  min-height : 7.93rem;
+  padding : 0;
+}
+
+.kanban-title-button {
+  background-color : transparent;
+  box-shadow : none;
+}
+
+@media (max-width: 420px) {
+  .kanban-sidebar {
+    width : 19rem;
+    right : 1.6rem;
+  }
+  .kanban-sidebar .quill-wrapper .snow-container .ql-tooltip input[type=text] {
+    width : 70px;
+  }
+}

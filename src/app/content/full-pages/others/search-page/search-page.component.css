@@ -1,0 +1,14 @@
+.dropdown-menu {
+    position: absolute;
+    top: 14px !important;
+    left: 0px !important;
+    transform: translate3d(11px, -276px, 0px);
+}
+
+.right_space {
+  margin-right: 0.5rem !important;
+}
+
+:host ::ng-deep .content-wrapper {
+  padding: 2.2rem !important;
+}

@@ -1,0 +1,725 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Basic Pills start -->
+      <section id="basic-pills">
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Basic Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Takes the basic nav pills from above and adds the <code>.nav-pills</code> class to generate a
+                    pilled interface. </p>
+                    <ul ngbNav #nav="ngbNav" class="nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     </ul>
+                    <div [ngbNavOutlet]="nav"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Bordered Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-pill-bordered</code> class to <code>.nav-pills</code> for bordered type pills. </p>
+
+                  <ul ngbNav #navBordered="ngbNav" class="nav nav-pills nav-pill-bordered">
+                    <li ngbNavItem>
+                      <a ngbNavLink>Pill 1</a>
+                      <ng-template ngbNavContent>
+                        Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                        carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                        croissant.
+                      </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                      <a ngbNavLink>Pill 2</a>
+                      <ng-template ngbNavContent>
+                        Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                        fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                        Jelly-o pie cupcake.
+                      </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                      <a ngbNavLink>Pill 3</a>
+                      <ng-template ngbNavContent>
+                        Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                        cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                        jujubes powder sweet sesame snaps.
+                      </ng-template>
+                    </li>
+                    <li ngbNavItem [disabled]="true">
+                      <a ngbNavLink>Disabled</a>
+                      <ng-template ngbNavContent>
+                        Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                          diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                          luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                          pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                          volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                          ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                          penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                          lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                     
+                      </ng-template>
+                    </li>
+                   </ul>
+                  <div [ngbNavOutlet]="navBordered"></div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Bordered Pills with Active Border</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-pill-with-active-bordered</code> class to <code>.nav-pills</code> for bordered type
+                    pills. </p>
+                    <ul ngbNav #navActiveBordered="ngbNav" class="nav nav-pills nav-pill-with-active-bordered">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     </ul>
+                     <div [ngbNavOutlet]="navActiveBordered"></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Active Border Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-active-bordered-pill</code> class to <code>.nav-pills</code> for bordered type
+                    pills. </p>
+                   <ul ngbNav #navActiveBorderedPill="ngbNav" class="nav nav-pills nav-active-bordered-pill">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navActiveBorderedPill"></div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Toolbar Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-pill-toolbar</code> class to <code>.nav-pills</code> for bordered type pills. </p>
+                     <ul ngbNav #navPillToolbar="ngbNav" class="nav nav-pills nav-pill-toolbar">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillToolbar"></div>
+                  </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Basic Justified Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-justified</code> class to set Pills justified.</p>
+                   <ul ngbNav #navPills="ngbNav" class="nav nav-pills nav-justified">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPills"></div>
+                  </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Basic Pills end -->
+      <!-- Stacked Pills start -->
+      <section id="stacked-pills">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Stacked Pills</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Basic Stacked Pills</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.flex-column</code> class with <code>.nav.nav-pills</code> to stack them vertically. Each
+                    <code>.nav-link</code> becomes block-level, allowing for larger hit areas via mouse or tap. </p>
+                  <ul ngbNav #navPillFlex="ngbNav" class="nav nav-pills flex-column">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                      </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                         <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillFlex"></div>
+                  </ul>
+                     </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Stacked Pills Toolbar</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use <code>.nav-pill-toolbar</code> class to <code>.flex-column</code> for bordered type pills.</p>
+                 
+                    <ul ngbNav #navPillFlexToolbar="ngbNav" class="nav nav-pills flex-column nav-pill-toolbar">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1</a>
+                        <ng-template ngbNavContent>
+                      </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                         <a ngbNavLink>Pill 2</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                         </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillFlexToolbar"></div>
+                  </ul>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- Stacked Pills end -->
+
+      <!-- Pills Elements start -->
+      <section id="pills-elements">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Pills Elements</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pills with Left Icon</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use font icons before pill name to get pills with icon.</p>
+                  <ul ngbNav #navPillFontIcon="ngbNav" class="nav nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-asterisk ng-star-inserted"></i></span>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-bars ng-star-inserted"></i></span>Pill 2</a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-refresh ng-star-inserted"></i></span>Pill 3</a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink><span><i class="la la-ban ng-star-inserted"></i></span>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillFontIcon"></div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pills with Right Icon</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ul ngbNav #navPillRightIcon="ngbNav" class="nav nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 1<span><i class="la la-asterisk ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2 <span><i class="la la-bars ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3 <span><i class="la la-refresh ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled <span><i class="la la-ban ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillRightIcon"></div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pills with Only Icon</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Use font icons as pill name to get Icon pills.</p>
+                
+                    <ul ngbNav #navPillFontIconName="ngbNav" class="nav nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-asterisk ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-bars ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink><span><i class="la la-refresh ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink><span><i class="la la-ban ng-star-inserted"></i></span></a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillFontIconName"></div>
+                  </ul>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pills with Label</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>You can also use <code>.badge.badge-COLOR</code> classes to add label to pill.</p>
+                  <ul class="nav nav-pills">
+                    <ul ngbNav #navPillwithLabel="ngbNav" class="nav nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink><span class="badge badge-default badge-success">New</span>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2<span
+                          class="badge badge-default badge-primary ml-1">Latest</span></a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3<span class="badge badge-default badge-danger ml-1">Bug</span></a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled</a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillwithLabel"></div>
+                  </ul>
+                    </ul>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-6 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pills with Label</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>You can also use <code>.badge.badge-pill.badge-glow.badge-COLOR</code> classes to add label
+                    pill(badge) to pill.</p>
+                  <ul class="nav nav-pills">
+                    <ul ngbNav #navPillsLabel="ngbNav" class="nav nav-pills">
+                      <li ngbNavItem>
+                        <a ngbNavLink><span
+                          class="badge badge-pill badge-glow badge-default badge-success">2</span>Pill 1</a>
+                        <ng-template ngbNavContent>
+                          Oat cake marzipan cake lollipop caramels wafer pie jelly beans. Icing halvah chocolate cake
+                          carrot cake. Jelly beans carrot cake marshmallow gingerbread chocolate cake. Gummies cupcake
+                          croissant.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 2<span
+                          class="badge badge-pill badge-glow badge-default badge-primary ml-1">3</span></a>
+                        <ng-template ngbNavContent>
+                          Sugar plum tootsie roll biscuit caramels. Liquorice brownie pastry cotton candy oat cake
+                          fruitcake jelly chupa chups. Pudding caramels pastry powder cake soufflé wafer caramels.
+                          Jelly-o pie cupcake.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem>
+                        <a ngbNavLink>Pill 3<span
+                          class="badge badge-pill badge-glow badge-default badge-danger ml-1">7</span></a>
+                        <ng-template ngbNavContent>
+                          Biscuit ice cream halvah candy canes bear claw ice cream cake chocolate bar donut. Toffee
+                          cotton candy liquorice. Oat cake lemon drops gingerbread dessert caramels. Sweet dessert
+                          jujubes powder sweet sesame snaps.
+                        </ng-template>
+                      </li>
+                      <li ngbNavItem [disabled]="true">
+                        <a ngbNavLink>Disabled </a>
+                        <ng-template ngbNavContent>
+                          Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id
+                            diam. Nulla facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis,
+                            luctus eget tincidunt eu, congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus
+                            pulvinar arcu, et molestie lectus ultrices et. Sed diam urna, egestas ut ipsum vel, volutpat
+                            volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec tristique
+                            ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque
+                            penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac
+                            lorem aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.
+                       
+                        </ng-template>
+                      </li>
+                     <div [ngbNavOutlet]="navPillsLabel"></div>
+                  </ul>
+                   </ul> 
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- Pills Elements end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

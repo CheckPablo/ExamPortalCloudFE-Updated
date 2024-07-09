@@ -1,0 +1,125 @@
+.otpMainDiv {
+    background: #0000004d;
+    margin-bottom: 10px;
+    height: 170px;
+    width: 400px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 5px;
+    left: 50%;
+    color: white;
+    z-index: 5;
+}
+
+    .otpMainDiv div {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+    }
+
+.imageWrapper {
+    /*width: 100%;*/
+    height: 100%;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-height: 800px
+}
+
+.scanButton {
+    background: #2b2b52;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 28px;
+    color: white;
+    position: fixed;
+    bottom: 25px;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.uploadButton {
+    background: #2b2b52;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 28px;
+    color: white;
+}
+
+.otpDiv {
+    font-size: 100px;
+}
+
+#container {
+    display: block;
+    height: 800px;
+}
+
+#container2 {
+    display: block;
+    height: 800px;
+}
+
+#container3 {
+    display: block;
+    height: 800px;
+}
+
+#documenteditor_titlebar {
+    height: 36px;
+    line-height: 26px;
+    font-size: 12px;
+    padding-left: 15px;
+    padding-right: 10px;
+    font-family: inherit;
+}
+
+#documenteditor_titlebar2 {
+    height: 36px;
+    line-height: 26px;
+    font-size: 12px;
+    padding-left: 15px;
+    padding-right: 10px;
+    font-family: inherit;
+}
+
+#documenteditor_title_contentEditor {
+    height: 26px;
+    max-width: 85%;
+    width: auto;
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 4px;
+    padding-right: 4px;
+    margin: 5px;
+}
+
+.single-line {
+    cursor: text !important;
+    outline: none;
+}
+
+    .single-line:hover {
+        border-color: #e4e4e4 !important;
+    }
+
+[contenteditable="true"].single-line {
+    white-space: nowrap;
+    border-color: #e4e4e4 !important;
+}
+
+[class^="e-de-icon-"],
+        [class*=" e-de-icon-"] {
+            font-family: 'Sample brower icons' !important;
+        }
+
+        .e-de-icon-Print:before {
+            content: "\e723";
+        }
+
+        .e-de-icon-Download:before {
+            content: "\e728";
+        }

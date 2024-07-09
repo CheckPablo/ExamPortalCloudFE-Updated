@@ -1,0 +1,1124 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Accordion start -->
+      <section id="accordion">
+        <div class="row">
+          <div class="col-12 mt-1">
+            <h3 class="text-uppercase">Accordion</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Basic Accordion</h5>
+              <p>Basic accordion toggle.</p>
+            </div>
+            <div class="card">
+              <ngb-accordion activeIds="static-1" [closeOthers]="true" class="basic-accordation">
+                <ngb-panel (click)="basicAccordation1 = !basicAccordation1" id="static-1"
+                  title="Accordion Group Item #1">
+                  <ng-template ngbPanelContent>
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans.
+                    Wafer liquorice chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread
+                    chocolate bar tart chupa chups sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake
+                    soufflé toffee marzipan candy canes pie jelly-o. Cotton candy bonbon powder topping carrot cake
+                    cookie caramels lemon drops liquorice. Dessert cookie ice cream toffee apple pie.
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel (click)="basicAccordation2 = !basicAccordation2" id="static-2"
+                  title="Accordion Group Item #2">
+                  <ng-template ngbPanelContent>
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel (click)="basicAccordation3 = !basicAccordation3" id="static-3"
+                  title="Accordion Group Item #3">
+                  <ng-template ngbPanelContent>
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel class="card-header mb-0" (click)="basicAccordation4 = !basicAccordation4" id="static-4"
+                  title="Accordion Group Item #4">
+                  <ng-template ngbPanelContent>
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Right Aligned Accordion</h5>
+              <p>Use <code>.text-right</code> to header for right aligned text to basic accordion toggle.</p>
+            </div>
+            <div>
+              <div class="card">
+                <ngb-accordion activeIds="static-1" [closeOthers]="true" class="basic-accordation align_right">
+                  <ngb-panel class="card-header mb-0" (click)="rightAlignAccordation1 = !rightAlignAccordation1"
+                    id="static-1" title="Accordion Group Item #1">
+                    <ng-template ngbPanelContent>
+                      Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels
+                      chocolate cake liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding
+                      jelly beans. Wafer liquorice chocolate bar chocolate bar liquorice. Tootsie roll gingerbread
+                      gingerbread chocolate bar tart chupa chups sugar plum toffee. Carrot cake macaroon sweet danish.
+                      Cupcake soufflé toffee marzipan candy canes pie jelly-o. Cotton candy bonbon powder topping
+                      carrot cake cookie caramels lemon drops liquorice. Dessert cookie ice cream toffee apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel class="card-header mb-0" (click)="rightAlignAccordation2 = !rightAlignAccordation2"
+                    id="static-2" title="Accordion Group Item #2">
+                    <ng-template ngbPanelContent>
+                      Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin
+                      jelly marshmallow
+                      cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                      toffee tootsie
+                      roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate
+                      biscuit lemon drops
+                      cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping
+                      carrot
+                      cake jelly
+                      beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                      cake.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel class="card-header mb-0" (click)="rightAlignAccordation3 = !rightAlignAccordation3"
+                    id="static-3" title="Accordion Group Item #3">
+                    <ng-template ngbPanelContent>
+                      Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                      donut chocolate
+                      bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                      snaps brownie.
+                      Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                      Tart jelly candy
+                      pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                      Powder danish
+                      candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel class="card-header mb-0" (click)="rightAlignAccordation4 = !rightAlignAccordation4"
+                    id="static-4" title="Accordion Group Item #4">
+                    <ng-template ngbPanelContent>
+                      Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                      canes carrot
+                      cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps
+                      cotton
+                      candy
+                      cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                      ice cream
+                      cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                      cake. Pastry
+                      bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                      chups toffee
+                      muffin chupa chups apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Accordion with Basic Color</h5>
+              <p>Use class <code>.bg-COLOR</code>to accordion toggle for theme heading background color.</p>
+            </div>
+            <div>
+              <div class="card collapse-icon accordion-icon-rotate">
+                <ngb-accordion activeIds="static-1" [closeOthers]="true" class="color-accordation">
+                  <ngb-panel type="success" class="class-header mb-0"
+                    (click)="basicColorAccordation1 = !basicColorAccordation1" id="static-1"
+                    title="Accordion Group Item #1">
+                    <ng-template ngbPanelContent>
+                      Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels
+                      chocolate cake liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding
+                      jelly beans. Wafer liquorice chocolate bar chocolate bar liquorice. Tootsie roll gingerbread
+                      gingerbread chocolate bar tart chupa chups sugar plum toffee. Carrot cake macaroon sweet danish.
+                      Cupcake soufflé toffee marzipan candy canes pie jelly-o. Cotton candy bonbon powder topping
+                      carrot cake cookie caramels lemon drops liquorice. Dessert cookie ice cream toffee apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="danger" class="card-header mb-0"
+                    (click)="basicColorAccordation2 = !basicColorAccordation2" id="static-2"
+                    title="Accordion Group Item #2">
+                    <ng-template ngbPanelContent>
+                      Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin
+                      jelly marshmallow
+                      cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                      toffee tootsie
+                      roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate
+                      biscuit lemon drops
+                      cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping
+                      carrot
+                      cake jelly
+                      beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                      cake.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="info" class="card-header mb-0"
+                    (click)="basicColorAccordation3 = !basicColorAccordation3" id="static-3"
+                    title="Accordion Group Item #3">
+                    <ng-template ngbPanelContent>
+                      Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                      donut chocolate
+                      bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                      snaps brownie.
+                      Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                      Tart jelly candy
+                      pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                      Powder danish
+                      candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="warning" class="card-header mb-0"
+                    (click)="basicColorAccordation4 = !basicColorAccordation4" id="static-4"
+                    title="Accordion Group Item #4">
+                    <ng-template ngbPanelContent>
+                      Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                      canes carrot
+                      cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps
+                      cotton
+                      candy
+                      cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                      ice cream
+                      cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                      cake. Pastry
+                      bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                      chups toffee
+                      muffin chupa chups apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Accordion with Color &amp; Border</h5>
+              <p>Use class <code>.bg-COLOR</code>to accordion toggle for heading background color &amp;
+                <code>.border-COLOR</code>
+                for content border color.</p>
+            </div>
+            <div id="accordionWrap4" role="tablist" aria-multiselectable="true">
+              <div class="card collapse-icon accordion-icon-rotate">
+                <ngb-accordion activeIds="static-1" [closeOthers]="true" class="color-accordation">
+                  <ngb-panel type="success" class="class-header mb-0"
+                    (click)="basicColorBorderAccordation1 = !basicColorBorderAccordation1" id="static-1"
+                    title="Accordion Group Item #1">
+                    <ng-template class="border-success" ngbPanelContent>
+                      Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels
+                      chocolate cake liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding
+                      jelly beans. Wafer liquorice chocolate bar chocolate bar liquorice. Tootsie roll gingerbread
+                      gingerbread chocolate bar tart chupa chups sugar plum toffee. Carrot cake macaroon sweet danish.
+                      Cupcake soufflé toffee marzipan candy canes pie jelly-o. Cotton candy bonbon powder topping
+                      carrot cake cookie caramels lemon drops liquorice. Dessert cookie ice cream toffee apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="danger" class="card-header mb-0"
+                    (click)="basicColorBorderAccordation2 = !basicColorBorderAccordation2" id="static-2"
+                    title="Accordion Group Item #2">
+                    <ng-template class="border-danger" ngbPanelContent>
+                      Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin
+                      jelly marshmallow
+                      cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                      toffee tootsie
+                      roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate
+                      biscuit lemon drops
+                      cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping
+                      carrot
+                      cake jelly
+                      beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                      cake.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="info" class="card-header mb-0"
+                    (click)="basicColorBorderAccordation3 = !basicColorBorderAccordation3" id="static-3"
+                    title="Accordion Group Item #3">
+                    <ng-template class="border-info" ngbPanelContent>
+                      Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                      donut chocolate
+                      bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                      snaps brownie.
+                      Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                      Tart jelly candy
+                      pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                      Powder danish
+                      candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                    </ng-template>
+                  </ngb-panel>
+                  <ngb-panel type="warning" class="card-header mb-0"
+                    (click)="basicColorBorderAccordation4 = !basicColorBorderAccordation4" id="static-4"
+                    title="Accordion Group Item #4">
+                    <ng-template class="border-warning" ngbPanelContent>
+                      Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                      canes carrot
+                      cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps
+                      cotton
+                      candy
+                      cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                      ice cream
+                      cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                      cake. Pastry
+                      bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                      chups toffee
+                      muffin chupa chups apple pie.
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Accordion end -->
+
+
+
+      <!-- Collapse start -->
+      <section id="collapsible">
+        <div class="row">
+          <div class="col-12">
+            <h3 class="text-uppercase">Collapse</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Basic Collapse</h5>
+              <p>It will work as collapsible toggle by default.</p>
+            </div>
+            <div class="card">
+              <div class="card-header">
+                <a class="card-title info lead" (click)="basicCollapse1 = !basicCollapse1"
+                  [attr.aria-expanded]="!basicCollapse1" aria-controls="basicCollapse1">Collapsible Group Item #1</a>
+              </div>
+              <div id="basicCollapse1" [ngbCollapse]="basicCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a class="card-title info lead" (click)="basicCollapse2 = !basicCollapse2"
+                  [attr.aria-expanded]="basicCollapse2" aria-controls="basicCollapse2">Collapsible Group Item #2</a>
+              </div>
+              <div id="basicCollapse2" [ngbCollapse]="!basicCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a class="card-title info lead" (click)="basicCollapse3 = !basicCollapse3"
+                  [attr.aria-expanded]="basicCollapse3" aria-controls="basicCollapse3">Collapsible Group Item #3</a>
+              </div>
+              <div id="basicCollapse3" [ngbCollapse]="!basicCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a class="card-title info lead" (click)="basicCollapse4 = !basicCollapse4"
+                  [attr.aria-expanded]="basicCollapse4" aria-controls="basicCollapse4">Collapsible Group Item #4</a>
+              </div>
+              <div id="basicCollapse4" [ngbCollapse]="!basicCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Basic Collapse</h5>
+              <p>Use <code>.text-right</code> to header for right aligned text.</p>
+            </div>
+            <div class="card">
+              <div class="card-header text-right">
+                <a class="card-title info lead" (click)="rightAlignCollapse1 = !rightAlignCollapse1"
+                  [attr.aria-expanded]="!rightAlignCollapse1" aria-controls="rightAlignCollapse1">Collapsible Group
+                  Item #1</a>
+              </div>
+              <div id="rightAlignCollapse1" [ngbCollapse]="rightAlignCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header text-right">
+                <a class="card-title info lead" (click)="rightAlignCollapse2 = !rightAlignCollapse2"
+                  [attr.aria-expanded]="rightAlignCollapse2" aria-controls="rightAlignCollapse2">Collapsible Group
+                  Item
+                  #2</a>
+              </div>
+              <div id="rightAlignCollapse2" [ngbCollapse]="!rightAlignCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header text-right">
+                <a class="card-title info lead" (click)="rightAlignCollapse3 = !rightAlignCollapse3"
+                  [attr.aria-expanded]="rightAlignCollapse3" aria-controls="rightAlignCollapse3">Collapsible Group
+                  Item
+                  #3</a>
+              </div>
+              <div id="rightAlignCollapse3" [ngbCollapse]="!rightAlignCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header text-right">
+                <a class="card-title info lead" (click)="rightAlignCollapse4 = !rightAlignCollapse4"
+                  [attr.aria-expanded]="rightAlignCollapse4" aria-controls="rightAlignCollapse4">Collapsible Group
+                  Item
+                  #4</a>
+              </div>
+              <div id="rightAlignCollapse4" [ngbCollapse]="!rightAlignCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Collapse with Icon</h5>
+              <p>Use class <code>.collapse-icon</code> to set icon collapse.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate">
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="rightIconCollapse1 = !rightIconCollapse1" [attr.aria-expanded]="!rightIconCollapse1"
+                  aria-controls="rightIconCollapse1">Collapsible Group Item
+                  #1</a>
+              </div>
+              <div id="rightIconCollapse1" [ngbCollapse]="rightIconCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="rightIconCollapse2 = !rightIconCollapse2" [attr.aria-expanded]="rightIconCollapse2"
+                  aria-controls="rightIconCollapse2">Collapsible Group Item
+                  #2</a>
+              </div>
+              <div id="rightIconCollapse2" [ngbCollapse]="!rightIconCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="rightIconCollapse3 = !rightIconCollapse3" [attr.aria-expanded]="rightIconCollapse3"
+                  aria-controls="rightIconCollapse3">Collapsible Group Item
+                  #3</a>
+              </div>
+              <div id="rightIconCollapse3" [ngbCollapse]="!rightIconCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="rightIconCollapse4 = !rightIconCollapse4" [attr.aria-expanded]="rightIconCollapse4"
+                  aria-controls="rightIconCollapse4">Collapsible Group Item
+                  #4</a>
+              </div>
+              <div id="rightIconCollapse4" [ngbCollapse]="!rightIconCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-2 mt-2">
+              <h5 class="mb-0 text-uppercase">Collapse with left Icon</h5>
+              <p>Use class <code>.collapse-icon.left</code> to set left icon collapse.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate left">
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="basicColorCollapse1 = !basicColorCollapse1" [attr.aria-expanded]="!basicColorCollapse1"
+                  aria-controls="basicColorCollapse1">Collapsible Group
+                  Item #1</a>
+              </div>
+              <div id="basicColorCollapse1" [ngbCollapse]="basicColorCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="basicColorCollapse2 = !basicColorCollapse2" [attr.aria-expanded]="basicColorCollapse2"
+                  aria-controls="basicColorCollapse2">Collapsible Group Item
+                  #2</a>
+              </div>
+              <div id="basicColorCollapse2" [ngbCollapse]="!basicColorCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="basicColorCollapse3 = !basicColorCollapse3" [attr.aria-expanded]="basicColorCollapse3"
+                  aria-controls="basicColorCollapse3">Collapsible Group Item
+                  #3</a>
+              </div>
+              <div id="basicColorCollapse3" [ngbCollapse]="!basicColorCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header">
+                <a data-toggle="collapse" class="card-title info lead"
+                  (click)="basicColorCollapse4 = !basicColorCollapse4" [attr.aria-expanded]="basicColorCollapse4"
+                  aria-controls="basicColorCollapse4">Collapsible Group Item
+                  #4</a>
+              </div>
+              <div id="basicColorCollapse4" [ngbCollapse]="!basicColorCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Collapsible with Basic Color</h5>
+              <p>Use class <code>.bg-COLOR</code>to accordion toggle for theme heading background color.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate">
+              <div class="card-header bg-success">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorCollapse1 = !basicColorCollapse1" [attr.aria-expanded]="!basicColorCollapse1"
+                  aria-controls="basicColorCollapse1">Collapsible Group
+                  Item #1</a>
+              </div>
+              <div id="basicColorCollapse1" [ngbCollapse]="basicColorCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-danger">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorCollapse2 = !basicColorCollapse2" [attr.aria-expanded]="basicColorCollapse2"
+                  aria-controls="basicColorCollapse2">Collapsible Group Item
+                  #2</a>
+              </div>
+              <div id="basicColorCollapse2" [ngbCollapse]="!basicColorCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-info">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorCollapse3 = !basicColorCollapse3" [attr.aria-expanded]="basicColorCollapse3"
+                  aria-controls="basicColorCollapse3">Collapsible Group Item
+                  #3</a>
+              </div>
+              <div id="basicColorCollapse3" [ngbCollapse]="!basicColorCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-warning">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorCollapse4 = !basicColorCollapse4" [attr.aria-expanded]="basicColorCollapse4"
+                  aria-controls="basicColorCollapse4">Collapsible Group Item
+                  #4</a>
+              </div>
+              <div id="basicColorCollapse4" [ngbCollapse]="!basicColorCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Collapsible with Color &amp; Border</h5>
+              <p>Use class <code>.bg-COLOR</code>to collapse toggle for Collapse heading background color &amp;
+                <code>.border-COLOR</code>
+                for content border color.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate">
+              <div class="card-header bg-success">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorBorderCollapse1 = !basicColorBorderCollapse1"
+                  [attr.aria-expanded]="!basicColorBorderCollapse1"
+                  aria-controls="basicColorBorderCollapse1">Collapsible
+                  Group Item #1</a>
+              </div>
+              <div id="basicColorBorderCollapse1" [ngbCollapse]="basicColorBorderCollapse1">
+                <div class="card-content">
+                  <div class="card-body border-success">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-danger">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorBorderCollapse2 = !basicColorBorderCollapse2"
+                  [attr.aria-expanded]="basicColorBorderCollapse2" aria-controls="basicColorBorderCollapse2">Collapsible
+                  Group Item #2</a>
+              </div>
+              <div id="basicColorBorderCollapse2" [ngbCollapse]="!basicColorBorderCollapse2">
+                <div class="card-content">
+                  <div class="card-body border-danger">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-info">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorBorderCollapse3 = !basicColorBorderCollapse3"
+                  [attr.aria-expanded]="basicColorBorderCollapse3" aria-controls="basicColorBorderCollapse3">Collapsible
+                  Group Item #3</a>
+              </div>
+              <div id="basicColorBorderCollapse3" [ngbCollapse]="!basicColorBorderCollapse3">
+                <div class="card-content">
+                  <div class="card-body border-info">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header bg-warning">
+                <a data-toggle="collapse" class="card-title white lead"
+                  (click)="basicColorBorderCollapse4 = !basicColorBorderCollapse4"
+                  [attr.aria-expanded]="basicColorBorderCollapse4" aria-controls="basicColorBorderCollapse4">Collapsible
+                  Group Item #4</a>
+              </div>
+              <div id="basicColorBorderCollapse4" [ngbCollapse]="!basicColorBorderCollapse4">
+                <div class="card-content">
+                  <div class="card-body border-warning">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Collapsible with Border Color</h5>
+              <p>Use class <code>.border-COLOR</code>to collapse toggle for Collapse heading border color.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate">
+              <div class="card-header border-success">
+                <a data-toggle="collapse" class="card-title white lead success"
+                  (click)="basicBorderColorCollapse1 = !basicBorderColorCollapse1"
+                  [attr.aria-expanded]="!basicBorderColorCollapse1"
+                  aria-controls="basicBorderColorCollapse1">Collapsible
+                  Group Item #1</a>
+              </div>
+              <div id="basicBorderColorCollapse1" [ngbCollapse]="basicBorderColorCollapse1">
+                <div class="card-content">
+                  <div class="card-body">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header mt-1 border-danger">
+                <a data-toggle="collapse" class="card-title white lead danger"
+                  (click)="basicBorderColorCollapse2 = !basicBorderColorCollapse2"
+                  [attr.aria-expanded]="basicBorderColorCollapse2" aria-controls="basicBorderColorCollapse2">Collapsible
+                  Group Item #2</a>
+              </div>
+              <div id="basicBorderColorCollapse2" [ngbCollapse]="!basicBorderColorCollapse2">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header mt-1 border-info">
+                <a data-toggle="collapse" class="card-title white lead info"
+                  (click)="basicBorderColorCollapse3 = !basicBorderColorCollapse3"
+                  [attr.aria-expanded]="basicBorderColorCollapse3" aria-controls="basicBorderColorCollapse3">Collapsible
+                  Group Item #3</a>
+              </div>
+              <div id="basicBorderColorCollapse3" [ngbCollapse]="!basicBorderColorCollapse3">
+                <div class="card-content">
+                  <div class="card-body">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header mt-1 border-warning">
+                <a data-toggle="collapse" class="card-title white lead warning"
+                  (click)="basicBorderColorCollapse4 = !basicBorderColorCollapse4"
+                  [attr.aria-expanded]="basicBorderColorCollapse4" aria-controls="basicBorderColorCollapse4">Collapsible
+                  Group Item #4</a>
+              </div>
+              <div id="basicBorderColorCollapse4" [ngbCollapse]="!basicBorderColorCollapse4">
+                <div class="card-content">
+                  <div class="card-body">
+                    Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                    canes carrot
+                    cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps cotton
+                    candy
+                    cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                    ice
+                    cream
+                    cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                    cake. Pastry
+                    bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                    chups toffee
+                    muffin chupa chups apple pie.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 col-xl-6">
+            <div class="mb-1">
+              <h5 class="mb-0">Collapsible with section border Color</h5>
+              <p>Use class <code>.border-COLOR</code>to collapse wrapper for heading and content.</p>
+            </div>
+            <div class="card collapse-icon accordion-icon-rotate">
+              <div class="card-header border-success">
+                <a data-toggle="collapse" class="card-title white lead success"
+                  (click)="basicSectionBorderColorCollapse1 = !basicSectionBorderColorCollapse1"
+                  [attr.aria-expanded]="!basicSectionBorderColorCollapse1"
+                  aria-controls="basicSectionBorderColorCollapse1">Collapsible
+                  Group Item #1</a>
+              </div>
+              <div id="basicSectionBorderColorCollapse1" [ngbCollapse]="basicSectionBorderColorCollapse1">
+                <div class="card-content">
+                  <div class="card-body border-success">
+                    Caramels dessert chocolate cake pastry jujubes bonbon. Jelly wafer jelly beans. Caramels chocolate
+                    cake
+                    liquorice cake wafer jelly beans croissant apple pie. Oat cake brownie pudding jelly beans. Wafer
+                    liquorice
+                    chocolate bar chocolate bar liquorice. Tootsie roll gingerbread gingerbread chocolate bar tart
+                    chupa chups
+                    sugar plum toffee. Carrot cake macaroon sweet danish. Cupcake soufflé toffee marzipan candy canes
+                    pie jelly-o.
+                    Cotton candy bonbon powder topping carrot cake cookie caramels lemon drops liquorice. Dessert
+                    cookie ice cream
+                    toffee apple pie.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header mt-1 border-danger">
+                <a data-toggle="collapse" class="card-title white lead danger"
+                  (click)="basicSectionBorderColorCollapse2 = !basicSectionBorderColorCollapse2"
+                  [attr.aria-expanded]="basicSectionBorderColorCollapse2"
+                  aria-controls="basicSectionBorderColorCollapse2">Collapsible
+                  Group Item #2</a>
+              </div>
+              <div id="basicSectionBorderColorCollapse2" [ngbCollapse]="!basicSectionBorderColorCollapse2">
+                <div class="card-content">
+                  <div class="card-body border-danger">
+                    Sugar plum bear claw oat cake chocolate jelly tiramisu dessert pie. Tiramisu macaroon muffin jelly
+                    marshmallow
+                    cake. Pastry oat cake chupa chups. Caramels marshmallow carrot cake topping donut sesame snaps
+                    toffee tootsie
+                    roll. Lollipop sweet jelly beans oat cake biscuit pastry chocolate cake. Cupcake chocolate biscuit
+                    lemon drops
+                    cotton candy marshmallow oat cake donut. Croissant chocolate cake oat cake brownie topping carrot
+                    cake jelly
+                    beans. Dessert gingerbread marshmallow pudding donut lemon drops cake. Cake topping gummi bears
+                    cake.
+                  </div>
+                </div>
+              </div>
+              <div class="card-header mt-1 border-info">
+                <a data-toggle="collapse" class="card-title white lead info"
+                  (click)="basicSectionBorderColorCollapse3 = !basicSectionBorderColorCollapse3"
+                  [attr.aria-expanded]="basicSectionBorderColorCollapse3"
+                  aria-controls="basicSectionBorderColorCollapse3">Collapsible
+                  Group Item #3</a>
+              </div>
+              <div id="basicSectionBorderColorCollapse3" [ngbCollapse]="!basicSectionBorderColorCollapse3">
+                <div class="card-content">
+                  <div class="card-body border-info">
+                    Candy cupcake sugar plum oat cake wafer marzipan jujubes lollipop macaroon. Cake dragée jujubes
+                    donut chocolate
+                    bar chocolate cake cupcake chocolate topping. Dessert jelly beans toffee muffin tiramisu sesame
+                    snaps brownie.
+                    Cake halvah pastry soufflé oat cake candy candy canes. Lemon drops gummies gingerbread toffee.
+                    Tart
+                    jelly candy
+                    pastry. Pastry cake jelly beans carrot cake marzipan lollipop muffin. Soufflé jujubes cupcake.
+                    Powder danish
+                    candy carrot cake pastry. Tart marshmallow caramels cake macaroon gummies lollipop.
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card-header mt-1 border-warning">
+                  <a data-toggle="collapse" class="card-title white lead warning"
+                    (click)="basicSectionBorderColorCollapse4 = !basicSectionBorderColorCollapse4"
+                    [attr.aria-expanded]="basicSectionBorderColorCollapse4"
+                    aria-controls="basicSectionBorderColorCollapse4">Collapsible
+                    Group Item #4</a>
+                </div>
+                <div id="basicSectionBorderColorCollapse4" [ngbCollapse]="!basicSectionBorderColorCollapse4">
+                  <div class="card-content">
+                    <div class="card-body border-warning">
+                      Sesame snaps chocolate lollipop sesame snaps apple pie chocolate cake sweet roll. Dragée candy
+                      canes carrot
+                      cake chupa chups danish cake sugar plum candy. Cake powder biscuit bear claw. Sesame snaps
+                      cotton
+                      candy
+                      cheesecake topping ice cream cookie tiramisu. Liquorice bonbon cookie pie halvah. Cookie toffee
+                      ice cream
+                      cotton candy lollipop fruitcake. Tart cheesecake tiramisu danish marzipan pie pastry chocolate
+                      cake. Pastry
+                      bonbon lollipop oat cake pastry halvah dessert jelly. Toffee caramels croissant apple pie chupa
+                      chups toffee
+                      muffin chupa chups apple pie.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Collapse end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

@@ -1,0 +1,9 @@
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+:host ::ng-deep .btn-warning {
+  border-color: #ff7216 !important;
+  background-color: #ff9149 !important;
+  color: #FFFFFF;
+  margin-left: 4px;
+}

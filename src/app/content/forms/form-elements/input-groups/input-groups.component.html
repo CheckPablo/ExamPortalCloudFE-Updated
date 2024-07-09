@@ -1,0 +1,1075 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- input groups start -->
+      <section class="input-groups" id="input-groups">
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Default Input group</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>before</b> <code>&lt;input&gt;</code></p>
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">&#64;</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon to Left"
+                        aria-describedby="basic-addon1">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Right Addon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>after</b> <code>&lt;input&gt;</code></p>
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Addon To Right"
+                        aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2">&#64;example.com</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Addon on both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class to <b>before &amp; after</b>
+                    <code>&lt;input&gt;</code></p>
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon On Both Side"
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with Icon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3"><i class="la la-envelope"></i></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon to Left"
+                        aria-describedby="basic-addon3">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with Right Icon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Addon To Right"
+                        aria-describedby="basic-addon4">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon4"><i class="la la-user"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with icon both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="la la-phone-square"></i></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon On Both Side"
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="la la-mobile"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with Spinner</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon5"><i class="la la-spinner icon-spin"></i></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon to Left"
+                        aria-describedby="basic-addon5">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with Right Spinner</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Addon To Right"
+                        aria-describedby="basic-addon6">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon6"><i
+                            class="la la-rotate-right icon-spin"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group addon with Spinner both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="la la-circle-o-notch icon-spin"></i></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon On Both Side"
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text"><i class="icon-spin la la-share-alt-square"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- input groups end -->
+
+
+
+      <!-- Input Groups With Checkbox start -->
+      <section class="checkbox-input-group" id="input-group-checkbox">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Input group with Checkbox</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with checkbox</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>before</b> <code>&lt;input&gt;</code> text
+                    and Add checkbox inside.</p>
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Text input with Left checkbox "
+                        aria-describedby="checkbox-addon1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Right Addon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>after</b> <code>&lt;input&gt;</code> text
+                    and Add checkbox inside.</p>
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Text input with right checkbox"
+                        aria-describedby="checkbox-addon2">
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label" for="customCheck2"></label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Addon on both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck3">
+                            <label class="custom-control-label" for="customCheck3"></label>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon &amp; checkbox Both Side"
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text">&#64;example.com</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Input Groups With Checkbox end -->
+      <!-- Input Groups With Radio start -->
+      <section class="radio-input-group" id="input-group-radio">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Input group with Radio</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with radio</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>before</b> <code>&lt;input&gt;</code> text
+                    and Add radio inside.</p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="radio-addon1">
+                          <span class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="customRadio" id="customRadio1">
+                            <label class="custom-control-label" for="customRadio1"></label>
+                          </span>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Text input with Left radio"
+                        aria-describedby="radio-addon1" />
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Right Addon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>after</b> <code>&lt;input&gt;</code> text
+                    and Add radio inside.</p>
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Text input with right radio"
+                        aria-describedby="radio-addon2">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="radio-addon2">
+                          <span class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="customRadio" id="customRadio2">
+                            <label class="custom-control-label" for="customRadio2"></label>
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Addon on both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="radio-addon1">
+                          <span class="custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" name="customRadio" id="customRadio3"
+                              checked>
+                            <label class="custom-control-label" for="customRadio3"></label>
+                          </span>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon &amp; radio Both Side"
+                        aria-label="Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text">&#64;example.com</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Input Groups With Radio end -->
+      <!-- Switchery Input Group start -->
+      <section class="switchery-input-group" id="input-group-switchery">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Input group with Switchery</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Switchery</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>before</b> <code>&lt;input&gt;</code> text
+                    and Add switchery inside.</p>
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-height">
+                        <span class="input-group-text" id="radio-addon3">
+                          <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" size="small"
+                            checked></ui-switch>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" style="height : 50px"
+                        placeholder="Input with Left switchery" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Right Switchery</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add span with <code>.input-group-text</code> class <b>after</b> <code>&lt;input&gt;</code> text
+                    and Add switchery inside.</p>
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" style="height : 50px"
+                        placeholder="Input with right switchery">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="radio-addon4">
+                          <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" size="small"
+                            checked></ui-switch>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with switchery on both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend input-group-height">
+                        <span class="input-group-text">
+                          <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" size="small"
+                            checked></ui-switch>
+                        </span>
+                      </div>
+                      <input type="text" class="form-control" style="height : 50px"
+                        placeholder="Switchery On Both Side">
+                      <div class="input-group-append">
+                        <span class="input-group-text">
+                          <ui-switch class="switchery" switchColor="white" color="rgb(55, 188, 155)" size="small"
+                            checked></ui-switch>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Switchery Input Group end -->
+      <!--	   Input Group Sizing	 -->
+      <section class="sizing-input-group" id="input-group-sizing">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Input Groups Sizing</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Large Input group</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add <code>.input-group-lg</code> class to <code>.input-group</code> for Large addon.</p>
+                  <fieldset>
+                    <div class="input-group input-group-lg">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="sizing-addon1">&#64;</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Large Addon"
+                        aria-describedby="sizing-addon1">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Default Input group</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Default Input Group addon.</p>
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Default Addon"
+                        aria-describedby="sizing-addon2">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="sizing-addon2">.00</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Small Input group</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add <code>.input-group-sm</code> class to <code>.input-group</code> for small addon.</p>
+                  <fieldset>
+                    <div class="input-group input-group-sm">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="sizing-addon3">&#64;example.com</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Small Addon"
+                        aria-describedby="sizing-addon3">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Input Group Sizing end-->
+      <!-- Input Group Buttons start -->
+      <section class="buttons-input-group" id="input-group-buttons">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Input Groups Buttons</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Left</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>before</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary" type="button">Click Me!</button>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Button on left"
+                        aria-describedby="button-addon1">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Right</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>after</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Button on right"
+                        aria-describedby="button-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Go</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Both Side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>before &amp; after</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary" type="button">Love it!</button>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Button on both side" aria-label="Amount">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Hate it!</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Icon Button On Left</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>before</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary" type="button"><i class="la la-microphone"></i></button>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Button on left"
+                        aria-describedby="button-addon3">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Right</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>after</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Button on right"
+                        aria-describedby="button-addon4">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="la la-pencil"></i></button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Both Side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add button inside <b>before &amp; after</b> <code>&lt;input&gt;</code></p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary" type="button"><i class="la la-search"></i></button>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Button on both side" aria-label="Amount">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">Go!</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Input Group Buttons end -->
+      <!-- Buttons with Dropdown start -->
+      <section class="buttons-with-dropdown" id="input-group-dropdown">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Buttons with Dropdown</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Dropdown On Left</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-primary dropdown-toggle" id="dropdownBasic1"
+                            ngbDropdownToggle>Action</button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Dropdown on left">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Dropdown On Right</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Dropdown on right">
+                      <div class="input-group-append">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-primary dropdown-toggle" id="dropdownBasic1"
+                            ngbDropdownToggle>Action</button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Dropdown On Both Side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-primary dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle><i
+                              class="la la-pencil"></i></button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Dropdown on both side" aria-label="Amount">
+                      <div class="input-group-append">
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-primary  dropdown-toggle" id="dropdownBasic1"
+                            ngbDropdownToggle>Action</button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Buttons with Dropdown end -->
+      <!-- Segmented Buttons with Dropdown start -->
+      <section class="segmented-buttons-with-dropdown">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Segmented Buttons with Dropdown</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Segmented Button On Left</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary buttons-border-dropdown">Action</button>
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                          <button class="btn btn-primary dropdown-toggle-split " ngbDropdownToggle></button>
+                          <div class="dropdown-menu show" ngbDropdownMenu>
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Segmented Button on left">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Segmented Button On Right</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Segmented Button on right">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-primary buttons-border-dropdown">Action</button>
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                          <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+                          <div class="dropdown-menu show" ngbDropdownMenu>
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Segmented Buttons On Both Side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button type="button" class="btn btn-primary buttons-border-dropdown"><i
+                            class="la la-paper-plane"></i></button>
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                          <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
+                          <div class="dropdown-menu show " ngbDropdownMenu>
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Segmented Button on both side"
+                        aria-label="Amount">
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-primary buttons-border-dropdown">Action</button>
+                        <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+                          <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle ></button>
+                          <div class="dropdown-menu show " ngbDropdownMenu style="margin: -0.1rem -7rem 0 !important;">
+                            <button class="dropdown-item">Action - 1</button>
+                            <button class="dropdown-item">Another Action</button>
+                            <button class="dropdown-item">Something else is here</button>
+                            <li class="dropdown-divider"></li>
+                            <button class="dropdown-item">Separated link</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Segmented Buttons with Dropdown end -->
+      <!-- Color Options start -->
+      <section class="color-options" id="color-validation">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Color options</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Default Input group</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add color using <code>.bg-COLORNAME</code> class to the addon.</p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text bg-primary border-primary white" id="basic-addon7">&#64;</span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Addon to Left"
+                        aria-describedby="basic-addon7">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group with Right Addon</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add color using <code>.bg-COLORNAME</code> class to the addon.</p>
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Addon To Right"
+                        aria-describedby="basic-addon8">
+                      <div class="input-group-append">
+                        <span class="input-group-text bg-warning border-warning white" id="basic-addon8"><i
+                            class="la la-pencil"></i></span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Addon on both side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <p>Add color using <code>.bg-COLORNAME</code> class to the addon and input with lighten/darken color.
+                  </p>
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text bg-success bg-darken-2 border-success white"><i
+                            class="la la-calendar"></i></span>
+                      </div>
+                      <input type="text" class="form-control bg-success border-success" placeholder="Addon On Both Side"
+                        aria-label="
+            Amount (to the nearest dollar)">
+                      <div class="input-group-append">
+                        <span class="input-group-text bg-success bg-darken-2 border-success white">.00</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Left</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary bg-danger border-danger" type="button">Click Me!</button>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Button on left"
+                        aria-describedby="button-addon5">
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Right</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <fieldset>
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Button on right"
+                        aria-describedby="button-addon6">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary bg-info border-info" type="button"><i
+                            class="la la-check"></i></button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Input group Button On Both Side</h4>
+              </div>
+              <div class="card-body">
+                <div class="card-block">
+                  <fieldset>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <button class="btn btn-primary bg-pink border-pink bg-darken-2" type="button"><i
+                            class="la la-shopping-cart"></i></button>
+                      </div>
+                      <input type="text" class="form-control bg-pink border-pink" placeholder="Button on both side"
+                        aria-label="Amount">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary bg-pink border-pink bg-darken-2" type="button">Shopping!</button>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Color Options end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

@@ -1,0 +1,205 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Form repeater section start -->
+      <section id="form-repeater">
+        <div class="row">
+          <div class="col-12" *blockUI="'repeatingForms'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadRepeatingForms($event)">
+              <ng-container mCardHeaderTitle>
+                Repeating Forms
+              </ng-container>
+              <ng-container mCardBody>
+                <form [formGroup]="repeatForm">
+                  <div class="card-body" formArrayName="repeatArray">
+                    <div class="row">
+                      <div class="col-12" *ngFor="let repeatForm of repeatFormGroup.controls; let i = index;">
+                        <div class="repeater-default">
+                          <div [formGroupName]="i" class="row">
+                            <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <label for="email-addr">Email address</label>
+                              <br>
+                              <input type="email" formControlName="email" class="form-control" id="email-addr"
+                                placeholder="Enter email">
+                            </div>
+                            <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <label for="pass">Password</label>
+                              <br>
+                              <input type="password" formControlName="password" class="form-control" id="pass"
+                                placeholder="Password">
+                            </div>
+                            <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <label for="bio" class="cursor-pointer">Bio</label>
+                              <br>
+                              <textarea class="form-control" formControlName="bio" id="bio" rows="2"></textarea>
+                            </div>
+                            <div class="skin skin-flat form-group mb-1 col-sm-12 col-md-2">
+                              <label for="tel-input">phone</label>
+                              <br>
+                              <input class="form-control" formControlName="phone" type="tel" value="1-(555)-555-5555"
+                                id="tel-input">
+                            </div>
+                            <div class="form-group mb-1 col-sm-12 col-md-2">
+                              <label for="profession">Profession</label>
+                              <br>
+                              <select class="form-control" id="profession" formControlName="profession">
+                                <option *ngFor="let prof of professions" [value]="prof">{{prof}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-2 text-center mt-2">
+                              <button type="button" class="btn btn-danger" (click)="removeRepeat(i)"><i
+                                  class="feather ft-x"></i>
+                                Delete</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                </form>
+
+                <div class="form-group overflow-hidden">
+                  <div class="col-12">
+                    <button data-repeater-create class="btn btn-primary" (click)="addRepeat()">
+                      <i class="feather ft-plus"></i> Add
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- // Form repeater section end -->
+
+      <!-- Form control repeater section start -->
+      <section id="form-control-repeater">
+        <div class="row">
+          <div class="col-md-6" *blockUI="'projectInfo'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadProjectInfo($event)">
+              <ng-container mCardHeaderTitle>
+                Project Info
+              </ng-container>
+              <ng-container mCardBody>
+                <form [formGroup]="projectInfoForm" class="form row">
+                  <div class="form-group col-md-6 mb-2">
+                    <input type="text" class="form-control" formControlName="name" placeholder="Name" name="name">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <input type="text" class="form-control" formControlName="company" placeholder="Company"
+                      name="company">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <input type="text" class="form-control" formControlName="email" placeholder="E-mail" name="email">
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <input type="text" class="form-control" formControlName="phone" placeholder="Phone" name="phone">
+                  </div>
+
+                  <div class="form-group col-md-6 mb-2">
+                    <select name="interested" class="form-control" formControlName="hobby">
+                      <option *ngFor="let interest of hobby" [value]="interest">{{interest}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6 mb-2">
+                    <select name="budget" class="form-control" formControlName="budget">
+                      <option *ngFor="let range of budget" [value]="range">{{range}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-12 mb-2 file-repeater">
+                    <div class="" formArrayName="projectArray">
+                      <div class="row">
+                        <div class="col-12" *ngFor="let projectForm of projectFormGroup.controls; let i = index;">
+                          <div class="repeater-default">
+                            <div [formGroupName]="i" class="">
+                              <div class="row mb-1">
+                                <div class="col-9 col-xl-10">
+                                  <label class="file center-block">
+                                    <input type="file" id="file" formControlName="file" (change)="onFileChange($event)">
+                                    <span class="file-custom"></span>
+                                  </label>
+                                </div>
+                                <div class="col-2 col-xl-2">
+                                  <button type="button" class="btn btn-icon btn-danger mr-1" (click)="removeFile(i)"><i
+                                      class="feather ft-x"></i></button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" (click)="addFile()">
+                      <i class="feather ft-plus"></i> Add new file
+                    </button>
+                  </div>
+                  <div class="form-group col-12 mb-2">
+                    <textarea rows="5" class="form-control" formControlName="comment" name="comment"
+                      placeholder="About Project"></textarea>
+                  </div>
+                </form>
+              </ng-container>
+            </m-card>
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title" id="tel-repeater">User Profile</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <form [formGroup]="userProfileForm" class="row">
+                    <div class="form-group col-md-6 mb-2">
+                      <input type="text" class="form-control" formControlName="name" placeholder="Name" name="name">
+                    </div>
+                    <div class="form-group col-md-6 mb-2">
+                      <input type="text" class="form-control" formControlName="company" placeholder="Company"
+                        name="company">
+                    </div>
+                    <div class="form-group col-12 mb-2">
+                      <input type="text" class="form-control" formControlName="email" placeholder="E-mail" name="email">
+                    </div>
+                    <div class="form-group col-12 mb-2 contact-repeater">
+                      <div class="" formArrayName="userArray">
+                        <div class="" *ngFor="let userForm of userFormGroup.controls; let i = index;">
+                          <div [formGroupName]="i" class="">
+                            <div class="input-group mb-1">
+                              <input type="tel" placeholder="Telephone" formControlName="phone" class="form-control"
+                                id="example-tel-input">
+                              <button class="btn btn-danger" type="button" (click)="removePhone(i)"><i
+                                  class="feather ft-x"></i></button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary" (click)="addPhone()">
+                        <i class="feather ft-plus"></i> Add new telephone number
+                      </button>
+                    </div>
+                    <div class="form-group col-12 mb-2">
+                      <input type="text" class="form-control" formControlName="occuption" placeholder="Occuption"
+                        name="occuption">
+                    </div>
+                    <div class="form-group col-12 mb-2">
+                      <textarea rows="5" class="form-control" formControlName="bio" name="bio"
+                        placeholder="Bio"></textarea>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Form control repeater section end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

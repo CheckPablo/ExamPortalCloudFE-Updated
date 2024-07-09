@@ -1,0 +1,252 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Zero configuration table -->
+      <section id="configuration">
+        <div class="row">
+          <div class="col-12" *blockUI="'zeroConfiguration'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadZeroConfiguration($event)">
+              <ng-container mCardHeaderTitle>
+                Zero configuration
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-dashboard">
+                  <p class="card-text">DataTables has sorting and most features enabled by default.</p>
+                  <ngx-datatable class="bootstrap table-bordered" [limit]="7" [rows]="rows" [columnMode]="'force'"
+                    [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="config">
+
+                    <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="40">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-value="value">
+                        {{value}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!--/ Zero configuration table -->
+      <!-- Default ordering table -->
+      <section id="ordering">
+        <div class="row">
+          <div class="col-12" *blockUI="'defaultOrdering'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadDefaultOrdering($event)">
+              <ng-container mCardHeaderTitle>
+                Default ordering
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-dashboard">
+                  <p class="card-text">Lets say you want to sort column descending and
+                        ascending order. You want to search by the name column. </p>
+                  <div class="row">
+                    <div class=" col-sm-12 col-md-12">
+                      <div class="dataTables_filter">
+                        <h5>Search:<input type='text'
+                            style='padding:4px;margin:0px auto; margin-left: 8px; width:200px;border-radius: .22rem; border: 1px solid #BABFC7;'
+                            placeholder='Type to filter the name column...' (keyup)='updatedefaultFilter($event)' />
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-bordered default-ordering">
+                    <ngx-datatable class="bootstrap" [limit]="7" [rows]="defaultrows" [columnMode]="'force'"
+                      [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="config">
+
+                      <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="40">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                    </ngx-datatable>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+
+      <!-- DOM positioning table -->
+      <section id="positioning">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">DOM positioning</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body card-dashboard">
+                  <p class="card-text">When customizing DataTables for your own usage, you might find
+                    that the default position of the feature elements (filter input etc) is not
+                    quite to your liking. To address this issue DataTables takes inspiration from
+                    the CSS 3 Advanced Layout Module and provides the dom initialization parameter
+                    which can be set to indicate where you wish particular features to appear in the
+                    DOM. You can also specify div wrapping containers (with an id and / or class) to
+                    provide complete layout flexibility.</p>
+
+                  <div class="dom-positioning">
+                    <ngx-datatable class="bootstrap table-bordered" [limit]="7" [rows]="DOMrows" [columnMode]="'force'"
+                      [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="config">
+                      <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                    </ngx-datatable>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                    </div>
+                    <div class=" col-sm-12 col-md-6 dataTables_filter">
+                      <h5>Search:<input type='text'
+                          style='padding:4px;margin:0px auto; margin-left: 8px; width:200px;border-radius: .22rem; border: 1px solid #BABFC7;'
+                          placeholder='Type to filter the name column...' (keyup)='updateDOMFilter($event)' /></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="horizontal">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Scroll - horizontal and vertical</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body card-dashboard ">
+                  <p class="card-text">Scroll - horizontal and vertical DataTables has the ability to
+                    show tables with horizontal scrolling, which is very useful for when you have a
+                    wide table, but want to constrain it to a limited horizontal display area. </p>
+
+                  <div class="table-striped table-bordered">
+                    <ngx-datatable class="bootstrap" style="height: 300px;" [rows]="Scrollrows" columnMode="force"
+                      [headerHeight]="50" [rowHeight]="50" fxFlex="auto" [perfectScrollbar]="configScroll">
+                      <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                      <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                        <ng-template ngx-datatable-cell-template let-value="value">
+                          {{value}}
+                        </ng-template>
+                      </ngx-datatable-column>
+                    </ngx-datatable>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scroll - horizontal and vertical table -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

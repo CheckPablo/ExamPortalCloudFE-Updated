@@ -1,0 +1,510 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+    </div>
+    <div class="content-body">
+      <!-- eCommerce statistic -->
+      <div class="row">
+        <div class="col-xl-3 col-lg-6 col-12">
+          <div class="card pull-up">
+            <div class="card-content">
+              <div class="card-body card_padding">
+                <div class="media d-flex">
+                  <div class="media-body text-left">
+                    <h3 class="info">850</h3>
+                    <h6>Products Sold</h6>
+                  </div>
+                  <div>
+                    <i class="icon-basket-loaded info font-large-2 float-right"></i>
+                  </div>
+                </div>
+                <div class="mb-0 mt-1">
+                  <ngb-progressbar height="7px" width="100%" type="gradient-x-info" [value]="80"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+          <div class="card pull-up">
+            <div class="card-content">
+              <div class="card-body card_padding">
+                <div class="media d-flex">
+                  <div class="media-body text-left">
+                    <h3 class="warning">$748</h3>
+                    <h6>Net Profit</h6>
+                  </div>
+                  <div>
+                    <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                  </div>
+                </div>
+                <div class="mb-0 mt-1">
+                  <ngb-progressbar height="7px" width="100%" type="gradient-x-warning" [value]="65">
+                  </ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-6 col-12">
+          <div class="card pull-up">
+            <div class="card-content">
+              <div class="card-body card_padding">
+                <div class="media d-flex">
+                  <div class="media-body text-left">
+                    <h3 class="success">146</h3>
+                    <h6>New Customers</h6>
+                  </div>
+                  <div>
+                    <i class="icon-user-follow success font-large-2 float-right"></i>
+                  </div>
+                </div>
+                <div class="mb-0 mt-1">
+                  <ngb-progressbar height="7px" width="100%" type="gradient-x-success" [value]="75"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-12">
+          <div class="card pull-up">
+            <div class="card-content">
+              <div class="card-body card_padding">
+                <div class="media d-flex">
+                  <div class="media-body text-left">
+                    <h3 class="danger">99.89 %</h3>
+                    <h6>Customer Satisfaction</h6>
+                  </div>
+                  <div>
+                    <i class="icon-heart danger font-large-2 float-right"></i>
+                  </div>
+                </div>
+                <div class="mb-0 mt-1">
+                  <ngb-progressbar height="7px" width="100%" type="gradient-x-danger" [value]="85"></ngb-progressbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ eCommerce statistic -->
+
+      <!-- Products sell and New Orders -->
+      <div class="row">
+        <div class="col-xl-8 col-12">
+          <div class="card card-shadow">
+            <div class="card-header card-header-transparent py-20">
+              <div class="btn-group dropdown">
+                <a [routerLink]="" ngbDropdown class="d-inline-block">
+                  <button class="btn btn_dropdown btn_set_padding btn-dropdown-toggle" id="dropdownBasic1"
+                    ngbDropdownToggle>PRODUCTS SALES</button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button class="dropdown-item">Sales</button>
+                    <button class="dropdown-item">Total Sales</button>
+                    <button class="dropdown-item">Profit</button>
+                  </div>
+                </a>
+              </div>
+              <ul ngbNav #nav="ngbNav" class="justify-content-end nav nav-pills">
+                <li [ngbNavItem]="1">
+                  <a ngbNavLink>Day</a>
+                  <ng-template ngbNavContent>
+                    <div class="areaChartLegend scoreLineShadow">
+                      <x-chartist *ngIf="lineAreaDay" [data]="lineAreaDay.data" [type]="lineAreaDay.type"
+                        [options]="lineAreaDay.options" [responsiveOptions]="lineAreaDay.responsiveOptions"
+                        [events]="lineAreaDay.events">
+                      </x-chartist>
+                    </div>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                  <a ngbNavLink>Week</a>
+                  <ng-template ngbNavContent>
+                    <div class="areaChartLegend scoreLineShadow">
+                      <x-chartist *ngIf="lineAreaWeek" [data]="lineAreaWeek.data" [type]="lineAreaWeek.type"
+                        [options]="lineAreaWeek.options" [responsiveOptions]="lineAreaWeek.responsiveOptions"
+                        [events]="lineAreaWeek.events">
+                      </x-chartist>
+                    </div>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                  <a ngbNavLink>Month</a>
+                  <ng-template ngbNavContent>
+                    <div class="areaChartLegend scoreLineShadow">
+                      <x-chartist *ngIf="lineAreaMonth" [data]="lineAreaMonth.data" [type]="lineAreaMonth.type"
+                        [options]="lineAreaMonth.options" [responsiveOptions]="lineAreaMonth.responsiveOptions"
+                        [events]="lineAreaMonth.events">
+                      </x-chartist>
+                    </div>
+                  </ng-template>
+                </li>
+              </ul>
+              <div [ngbNavOutlet]="nav"></div>
+
+            </div>
+            <br>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-12" *blockUI="'newOrders'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadNewOrders($event)">
+            <ng-container mCardHeaderTitle>
+              New Orders
+            </ng-container>
+            <ng-container mCardContent>
+              <div id="new-orders" class="media-list position-relative">
+                <div class="table-responsive">
+                  <table id="new-orders-table" class="table table-hover table-xl mb-0 order-tbl_change">
+                    <thead>
+                      <tr>
+                        <th class="border-top-0">Product</th>
+                        <th class="border-top-0">Customers</th>
+                        <th class="border-top-0">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="text-truncate">iPhone X</td>
+                        <td class="text-truncate p-1">
+                          <ul class="list-unstyled users-list m-0">
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="John Doe"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-19.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom"
+                              data-original-title="Katherine Nichols" class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-18.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joseph Weaver"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-17.png" alt="Avatar">
+                            </li>
+                            <li class="avatar avatar-sm">
+                              <span class="badge badge-info">+4 more</span>
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="text-truncate">$8999</td>
+                      </tr>
+                      <tr>
+                        <td class="text-truncate">Pixel 2</td>
+                        <td class="text-truncate p-1">
+                          <ul class="list-unstyled users-list m-0">
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Alice Scott"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-16.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Charles Miller"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-15.png" alt="Avatar">
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="text-truncate">$5550</td>
+                      </tr>
+                      <tr>
+                        <td class="text-truncate">OnePlus</td>
+                        <td class="text-truncate p-1">
+                          <ul class="list-unstyled users-list m-0">
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Christine Ramos"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-11.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Thomas Brewer"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-10.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Alice Chapman"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-9.png" alt="Avatar">
+                            </li>
+                            <li class="avatar avatar-sm">
+                              <span class="badge badge-info">+3 more</span>
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="text-truncate">$9000</td>
+                      </tr>
+                      <tr>
+                        <td class="text-truncate">Galaxy</td>
+                        <td class="text-truncate p-1">
+                          <ul class="list-unstyled users-list m-0">
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Ryan Schneider"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-14.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Tiffany Oliver"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-13.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Joan Reid"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-12.png" alt="Avatar">
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="text-truncate">$7500</td>
+                      </tr>
+                      <tr>
+                        <td class="text-truncate">Moto Z2</td>
+                        <td class="text-truncate p-1">
+                          <ul class="list-unstyled users-list m-0">
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Kimberly Simmons"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-8.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Willie Torres"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-7.png" alt="Avatar">
+                            </li>
+                            <li data-toggle="tooltip" data-popup="tooltip-custom" data-original-title="Rebecca Jones"
+                              class="avatar avatar-sm pull-up">
+                              <img class="media-object rounded-circle"
+                                src="../../../../assets/images/portrait/small/avatar-s-6.png" alt="Avatar">
+                            </li>
+                            <li class="avatar avatar-sm">
+                              <span class="badge badge-info">+1 more</span>
+                            </li>
+                          </ul>
+                        </td>
+                        <td class="text-truncate">$8500</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </ng-container>
+          </m-card>
+        </div>
+      </div>
+      <!--/ Products sell and New Orders -->
+
+      <!-- Recent Transactions -->
+      <div class="row match_height">
+        <div id="recent-transactions" class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Recent Transactions</h4>
+
+              <div class="heading-elements invoice">
+                <ul class="list-inline mb-0">
+                  <li><a [routerLink]="" class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"
+                      (click)="rotueInvoice()">Invoice Summary</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="table-responsive" fxFlex="auto" [perfectScrollbar]="config">
+                <table class="table table-hover table-xl border_bottom">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-top-0">Status</th>
+                      <th scope="col" class="border-top-0">Invoice#</th>
+                      <th scope="col" class="border-top-0">Customer Name</th>
+                      <th scope="col" class="border-top-0">Products</th>
+                      <th scope="col" class="border-top-0">Categories</th>
+                      <th scope="col" class="border-top-0">Shipping</th>
+                      <th scope="col" class="border-top-0">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of rows">
+                      <td class="text-truncate row_padding">
+                        <i class="la la-dot-circle-o {{row.statusSymbol}} font-medium-1 mr-1"></i>
+                        {{row.status}}
+                      </td>
+                      <td class="text-truncate row_padding">
+                        <a [routerLink]="">{{ row.invoice }}</a>
+                      </td>
+                      <td class="text-truncate row_padding">
+                        <span class="avatar avatar-xs"><img class="box-shadow-2 image-name-space"
+                            [src]="row.image"></span><span>{{row.name}}</span>
+                      </td>
+                      <td class="text-truncate row_padding">
+                        <span><img class="media-object avatar avatar-md avatar-online media-left pull-up square"
+                            [src]="row.categories"></span>
+                      </td>
+                      <td class="text-truncate row_padding">
+                        <span>
+                          <button type="button"
+                            class="btn btn-sm btn-outline-{{row.type}} round">{{row.buttonname}}</button>
+                        </span>
+                      </td>
+                      <td class="text-truncate row_padding">
+                        <ngb-progressbar height="7px" type="{{row.progressColor}}" [value]=row.value>
+                        </ngb-progressbar>
+                      </td>
+                      <td class="text-truncate row_padding">{{ row.amount }} </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Recent Transactions -->
+
+      <!--Recent Orders & Monthly Sales -->
+      <div class="row match_height">
+        <div class="col-xl-12 col-lg-12">
+          <div class="card">
+            <div class="card-content top_space">
+              <div id="cost-revenue" class="ecommercesaleslineArea position-relative">
+                <x-chartist *ngIf="ecommercesaleslineArea" [data]="ecommercesaleslineArea.data"
+                  [type]="ecommercesaleslineArea.type" [options]="ecommercesaleslineArea.options"
+                  [responsiveOptions]="ecommercesaleslineArea.responsiveOptions"
+                  [events]="ecommercesaleslineArea.events">
+                </x-chartist>
+              </div>
+            </div>
+            <div class="card-footer border_top">
+              <div class="row mt-1">
+                <div class="col-3 text-center">
+                  <h6 class="text-muted">Total Products</h6>
+                  <h2 class="block font-weight-normal">18.6 k</h2>
+                  <div class="TotalProducts">
+                    <ngb-progressbar height="7px" type="gradient-x-info" [value]="70"></ngb-progressbar>
+                  </div>
+                </div>
+                <div class="col-3 text-center">
+                  <h6 class="text-muted">Total Sales</h6>
+                  <h2 class="block font-weight-normal">64.5 M</h2>
+                  <div class="TotalSales">
+                    <ngb-progressbar height="7px" type="gradient-x-warning" [value]="60"></ngb-progressbar>
+                  </div>
+                </div>
+                <div class="col-3 text-center">
+                  <h6 class="text-muted">Total Cost</h6>
+                  <h2 class="block font-weight-normal">24.3 B</h2>
+                  <div class="TotalCost">
+                    <ngb-progressbar height="7px" type="gradient-x-danger" [value]="40"></ngb-progressbar>
+                  </div>
+                </div>
+                <div class="col-3 text-center">
+                  <h6 class="text-muted">Total Revenue</h6>
+                  <h2 class="block font-weight-normal">36.7 M</h2>
+                  <div class="TotalRevenue">
+                    <ngb-progressbar height="7px" type="gradient-x-success" [value]="90"></ngb-progressbar>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/Recent Orders & Monthly Sales -->
+      <div class="row" matchHeight="card">
+        <div class="col-xl-4 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Basic Card</h4>
+            </div>
+            <div class="card-content">
+              <img class="img-fluid" src="../../../../assets/images/carousel/05.jpg" alt="Card image cap">
+              <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                  card's content.</p>
+                <a [routerLink]="" class="card-link">Card link</a>
+                <a [routerLink]="" class="card-link">Another link</a>
+              </div>
+            </div>
+            <div class="card-footer border-top-blue-grey border-top-lighten-5 text-muted">
+              <span class="float-left">3 hours ago</span>
+              <span class="float-right">
+                <a [routerLink]="" class="card-link">Read More <i class="fa fa-angle-right"></i></a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Project Stats</h4>
+            </div>
+            <div class="card-content">
+              <p class="font-medium-2 text-muted text-center dountchartheader">Project Tasks</p>
+              <div id="donut-dashboard-chart" class="donut">
+                <x-chartist *ngIf="donutChart" class="pr_stats" [data]="donutChart.data" [type]="donutChart.type"
+                  [options]="donutChart.options" [responsiveOptions]="donutChart.responsiveOptions"
+                  [events]="donutChart.events">
+                </x-chartist>
+              </div>
+              <div class="card-body">
+                <div class="row mb-3">
+                  <div class="col Started">
+                    <span class="mb-1 text-muted cardtext d-block">23% - Done</span>
+                    <div>
+                      <ngb-progressbar height="7px" type="success" [value]="23"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div class="col Progress">
+                    <span class="mb-1 text-muted cardtext d-block">14% - In Progress</span>
+                    <div>
+                      <ngb-progressbar height="7px" type="danger" [value]="14"></ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col Remaining">
+                    <span class="mb-1 text-muted cardtext d-block">35% - Remaining</span>
+                    <div>
+                      <ngb-progressbar height="7px" type="warning" [value]="35"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div class="col Done">
+                    <span class="mb-1 text-muted cardtext d-block">28% - Started</span>
+                    <div>
+                      <ngb-progressbar height="7px" type="primary" [value]="28"></ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-12">
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body sales-growth-chart">
+                <div id="monthly-sales" class=""></div>
+                <div class="barchart">
+                  <x-chartist *ngIf="barChart" [data]="barChart.data" [type]="barChart.type"
+                    [options]="barChart.options" [responsiveOptions]="barChart.responsiveOptions"
+                    [events]="barChart.events">
+                  </x-chartist>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="chart-title mb-1 text-center">
+                  <h6>Total monthly Sales.</h6>
+                </div>
+                <div class="chart-stats text-center">
+                  <a [routerLink]="" class="btn btn-sm btn-danger box-shadow-2 mr-1">Statistics <i
+                      class="feather ft-bar-chart" (click)=" reLoad()"></i></a> <span class="text-muted">for the last
+                    year.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Basic Horizontal Timeline -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

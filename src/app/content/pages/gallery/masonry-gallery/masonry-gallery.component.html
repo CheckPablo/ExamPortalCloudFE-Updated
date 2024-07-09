@@ -1,0 +1,34 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Image grid -->
+      <section id="image-grid" class="card" *blockUI="'masonryImageGallery'; message: 'Loading'">
+        <m-card [options]="imageoptions" (reloadFunction)="reloadMasonryImageGallery($event)">
+          <ng-container mCardHeaderTitle>
+            Masonry image gallery
+          </ng-container>
+          <ng-container mCardContent>
+            <div class="card-body">
+              <div class="card-text">
+                <p>Masonry Image gallery grid with photo-swipe integration. Auto arrange images based on device screen
+                  size.</p>
+              </div>
+            </div>
+            <div class="masonry-grid my-gallery mx-1" itemscope itemtype="http://schema.org/ImageGallery">
+              <ngx-masonry [options]="masonryOptions" [width]="330" [useImagesLoaded]="true">
+                <div ngxMasonryItem class="masonry-item"  *ngFor="let picture of image" class="masonry-item">
+                  <img src="{{picture}}" width="330">
+                </div>
+              </ngx-masonry>
+            </div>
+          </ng-container>
+        </m-card>
+      </section>
+
+      <!--/ Image grid -->
+    </div>
+  </div>
+</div>

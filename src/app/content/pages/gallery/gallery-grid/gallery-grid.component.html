@@ -1,0 +1,256 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+
+      <!-- Image grid -->
+      <section id="image-gallery" class="card" *blockUI="'imageGallery'; message: 'Loading'">
+        <m-card [options]="imageoptions" (reloadFunction)="reloadImageGallery($event)">
+          <ng-container mCardHeaderTitle>
+            Image gallery
+          </ng-container>
+          <ng-container mCardBody>
+            <div class="card-text">
+              <p>Image gallery grid with photo-swipe integration. Display images gallery in 4-2-1 columns and
+                photo-swipe provides gallery features.</p>
+            </div>
+            <div class="card-content">
+              <div class="card-body my-gallery">
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image1"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image2"></ngxps-gallery>
+                      <ngxps-lightbox></ngxps-lightbox>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image3"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image4"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image5"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image6"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image7"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image8"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image9"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image10"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image11"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                  <div class="col-md-3 col-sm-6 col-12">
+                    <a2p-gallery>
+                      <ngxps-gallery [images]="image12"></ngxps-gallery>
+                    </a2p-gallery>
+                  </div>
+                </div>
+
+                <ngxps-lightbox></ngxps-lightbox>
+              </div>
+            </div>
+
+          </ng-container>
+        </m-card>
+      </section>
+      <!--/ Image grid -->
+
+      <!-- Video grid -->
+      <section id="video-gallery" class="card">
+        <div class="card-header">
+          <h4 class="card-title">Video gallery</h4>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body">
+            <div class="card-text">
+              <p>This section contain responsive embedded video gallery with grid 4-2-1 columns This demo contain vimeo
+                and youtube embedded videos.</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-header">Vimeo</h5>
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail" src="https://player.vimeo.com/video/300765332?title=0&byline=0"
+                    width="640" height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/173140629?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/174099316?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/173139879?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail" src="https://player.vimeo.com/video/118589137?title=0&byline=0"
+                    width="640" height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/173541384?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/161753790?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://player.vimeo.com/video/174960004?color=ff9933&title=0&byline=0" width="640"
+                    height="360"></iframe>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="card-body">
+            <h5 class="card-header">You Tube</h5>
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/SsE5U7ta9Lw?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/zqDxfHvZ3DU?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/hunYLg8I1Os?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/yXootGU_8Ns?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/_-zawfC3s9M?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/RcrLLooXgSY?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/_V4if9Weopk?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 col-12">
+                <div class="embed-responsive embed-responsive-item embed-responsive-16by9">
+                  <iframe class="img-thumbnail"
+                    src="https://www.youtube.com/embed/icMTTP7-q9A?rel=0&amp;controls=0&amp;showinfo=0"
+                    SameSite="Secure"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Video grid -->
+    </div>
+  </div>
+</div>

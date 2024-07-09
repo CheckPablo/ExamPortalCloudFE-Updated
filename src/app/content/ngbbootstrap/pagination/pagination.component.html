@@ -1,0 +1,365 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Basic Pagination start -->
+      <section id="basic-pagination">
+        <div class="row">
+          <div class="col-md-12" *blockUI="'defaultPagination'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadDefaultPagination($event)">
+              <ng-container mCardHeaderTitle>
+                Default Pagination
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Provide pagination links for your site or app with the multi-page pagination component.</p>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Basic Pagination</h5>
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center">
+                        <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                      </ul>
+                    </nav>
+                    <p class="text-center mb-3">Default pagination without next previous.</p>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Pagination with Next/Prev Arrows</h5>
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center">
+                        <div class="first">
+                          <ngb-pagination [collectionSize]="50" aria-label="Default pagination">
+                          </ngb-pagination>
+                        </div>
+                      </ul>
+                    </nav>
+                    <p class="text-center mb-3">Default pagination with next previous icons.</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Separated Pagination with Next/Prev Arrows</h5>
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center pagination-separate ">
+                        <ngb-pagination [collectionSize]="50" aria-label="Default pagination"></ngb-pagination>
+                      </ul>
+                    </nav>
+                    <p class="text-center mb-3">For Separated pagination, use class
+                      <code>.pagination-separate</code>
+                      with Next Previous Icons.</p>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Flat Pagination</h5>
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center pagination-separate pagination-flat">
+                        <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                      </ul>
+                    </nav>
+                    <p class="text-center mb-3">Flat pagination need class <code>.pagination-flat</code> to
+                      <code>.pagination</code> class.</p>
+                  </div>
+                </div>
+                  <div class ="row">
+                    <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Flat Pagination with Next/Prev Arrows</h5>
+                    <nav aria-label="Page navigation">
+                      <ul class="pagination justify-content-center pagination-separate pagination-flat">
+                        <ngb-pagination [collectionSize]="50" aria-label="Default pagination"></ngb-pagination>
+                      </ul>
+                    </nav>
+                    <p class="text-center mb-3">Flat pagination need class <code>.pagination-flat</code> to
+                      <code>.pagination</code> class.</p>
+                   </div>
+                   <div class="col-lg-6 col-md-12">
+                      <h5 class="text-center">With boundary link</h5>
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center pagination-separate pagination-flat">
+                            <ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p class="text-center mb-3">Flat pagination need class <code>.pagination-flat</code> to
+                        <code>.pagination</code> class.</p>
+                    </div>
+                  </div>
+          
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Basic Pagination end -->
+
+      <!-- Pagination Round Style start -->
+      <section id="round-pagination">
+        <div class="row">
+          <div class="col-md-12" *blockUI="'paginationRoundStyle'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadPaginationRoundStyle($event)">
+              <ng-container mCardHeaderTitle>
+                Pagination Round Style
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Round Pagination</h5>
+                    <div class="text-center mb-3">
+                      <ul class="pagination justify-content-center round-pagination">
+                        <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                      </ul>
+                      <p>Round Style pagination use <code>.round-pagination</code> to <code>.pagination</code>
+                        class.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Round Style Pagination with Next/Prev Arrows</h5>
+                    <div class="text-center mb-3">
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center round-pagination">
+                          <ngb-pagination [collectionSize]="50" aria-label="Default pagination">
+                          </ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p>Round Style pagination use <code>.round-pagination</code> to <code>.pagination</code>
+                        class
+                        with Previous Next Icons.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Separated Round Styled Pagination</h5>
+                    <div class="text-center mb-3">
+                      <nav aria-label="Page navigation">
+                        <ul
+                          class="pagination justify-content-center pagination-separate round-pagination">
+                          <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p>Separated Round Style pagination use <code>.round-pagination</code> &amp;
+                        <code>.pagination-separate</code> to <code>.pagination</code> class.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Separated Round Styled Pagination with Next/Prev Arrows</h5>
+                    <div class="text-center mb-3">
+                      <nav aria-label="Page navigation">
+                        <ul
+                          class="pagination justify-content-center pagination-separate round-pagination">
+                          <ngb-pagination [collectionSize]="50" aria-label="Default pagination">
+                          </ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p>Separated Round Style pagination use <code>.round-pagination</code> &amp;
+                        <code>.pagination-separate</code> to <code>.pagination</code> class with Previous Next
+                        Icons.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Separated Flat Round Styled Pagination</h5>
+                    <div class="text-center mb-3">
+                      <nav aria-label="Page navigation">
+                        <ul
+                          class="pagination justify-content-center pagination-separate pagination-round pagination-flat">
+                          <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p>Separated Flat Round Styled pagination need class <code>.pagination-flat</code> with
+                        round and
+                        separated styled classes.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-12">
+                    <h5 class="text-center">Separated Flat Round Styled Pagination with Next/Prev Arrows</h5>
+                    <div class="text-center mb-3">
+                      <nav aria-label="Page navigation">
+                        <ul
+                          class="pagination justify-content-center pagination-separate pagination-round pagination-flat">
+                          <ngb-pagination [collectionSize]="50" aria-label="Default pagination">
+                          </ngb-pagination>
+                        </ul>
+                      </nav>
+                      <p>Separated Flat Round Styled pagination need class <code>.pagination-flat</code> with
+                        round and
+                        separated styled classes &amp; previous next icons.</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+
+      <!--   Curved Pagination Border Style start -->
+      <section id="curved-border-pagination">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Curved Pagination Border Style</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                      <h5 class="text-center">Separated Curve Styled Pagination</h5>
+                      <div class="text-center mb-3">
+                        <nav aria-label="Page navigation">
+                          <ul class="pagination justify-content-center pagination-separate pagination-curved">
+                            <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                          </ul>
+                        </nav>
+                        <p>Separated Curved pagination need class <code>.pagination-curved</code> with separated class.
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                      <h5 class="text-center">Separated Curved Styled Pagination with Next/Prev Arrows</h5>
+                      <div class="text-center mb-3">
+                        <nav aria-label="Page navigation">
+                          <ul class="pagination justify-content-center pagination-separate pagination-curved">
+                            <ngb-pagination [collectionSize]="50" aria-label="Default pagination"></ngb-pagination>
+                          </ul>
+                        </nav>
+                        <p>Separated Curved pagination need class <code>.pagination-curved</code> with separated class
+                          &amp; Previous Next Icons.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                      <h5 class="text-center">Saperated Curved Flat Styled Pagination</h5>
+                      <div class="text-center mb-3">
+                        <nav aria-label="Page navigation">
+                          <ul
+                            class="pagination justify-content-center pagination-separate pagination-curved pagination-flat">
+                            <ngb-pagination [collectionSize]="50" [directionLinks]="false"></ngb-pagination>
+                          </ul>
+                        </nav>
+                        <p>Saperated Curved Flat pagination need class <code>.pagination-flat</code> with
+                          <code>.pagination-separate.pagination-curved</code> classes.</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                      <h5 class="text-center">Saperated Curved Flat Styled Pagination with Next/Prev Arrows</h5>
+                      <div class="text-center mb-3">
+                        <nav aria-label="Page navigation">
+                          <ul
+                            class="pagination justify-content-center pagination-separate pagination-curved pagination-flat">
+                            <ngb-pagination [collectionSize]="50" aria-label="Default pagination"></ngb-pagination>
+                          </ul>
+                        </nav>
+                        <p>Saperated Curved Flat pagination need class <code>.pagination-flat</code> with
+                          <code>.pagination-separate.pagination-curved</code> classes with Previous Next Icons.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Border Style end -->
+
+      <!-- Pagination Positions start -->
+      <section id="pagination-positions">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pagination Positions</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <p>Use wrapper classes for pagination. To align left, use class <code>.justify-content-start</code>.
+                    To align center, use class <code>.justify-content-center</code>. To align right, use class
+                    <code>.justify-content-end</code>.</p>
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-12">
+                      <h5 class="text-left">Left Align</h5>
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-start">
+                          <ngb-pagination class="d-flex justify-content-start" [collectionSize]="50"></ngb-pagination>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                      <h5 class="text-center">Center Align</h5>
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                          <ngb-pagination class="d-flex justify-content-center" [collectionSize]="50"></ngb-pagination>
+                        </ul>
+                      </nav>
+                    </div>
+                    <div class="col-xl-4 col-lg-12">
+                      <h5 class="text-right">Right Align</h5>
+                      <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-end">
+                          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="50"></ngb-pagination>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Pagination Positions end -->
+
+      <!-- Pagination Sizes start -->
+      <section id="pagination-sizes">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Pagination Sizes</h4>
+            <p>Use class <code>.pagination-lg</code> for large size pagination &amp; use <code>.pagination-sm</code> for
+              small size pagination. For Default size no classes required.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pagination Sizes With Border</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row pagecenter">
+                    <div class="col-xl-12 col-lg-12">
+                      <div class="page1-center">
+                        <nav aria-label="Page navigation">
+                          <ngb-pagination class="d-flex justify-content-center" [collectionSize]="50"
+                            [directionLinks]="false" size="lg"></ngb-pagination>
+                        </nav>
+                      </div>
+                      <div class="page2-center">
+                        <nav aria-label="Page navigation ">
+                          <ngb-pagination class="d-flex justify-content-center" [collectionSize]="50"
+                            [directionLinks]="false"></ngb-pagination>
+                        </nav>
+                      </div>
+                      <div class="page3-center">
+                        <nav aria-label="Page navigation">
+                          <ngb-pagination class="d-flex justify-content-center" [collectionSize]="50"
+                            [directionLinks]="false" size="sm"></ngb-pagination>
+                        </nav>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Pagination Sizes end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

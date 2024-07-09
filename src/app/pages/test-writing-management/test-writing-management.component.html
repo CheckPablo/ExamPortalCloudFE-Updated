@@ -1,0 +1,560 @@
+<div *ngIf="disclaimerAccepted"id="disclaimer"></div>
+<div *ngIf="disclaimerAccepted"id="disclaimer">
+<section style="margin-top:65px;">
+    <h4 class="form-section">
+         <h4 style="text-align:right; margin-left:-1500px;" id="lblTime" class="brand-text"><i class="fa fa-envelope" style="font-size:40px;"(click)="openStudentsTestChats(studentTestChatModal)"> </i></h4>
+        <!--<h4 id="lblTime" class="brand-text"><span id="testName">{{ test.testName}}</span></h4>-->
+        <h4 style="font-size:35px;color: black;text-align:center;"id="lblTime" class="brand-text"><span id="testName">{{testName}}</span></h4>
+        <div style="font-size:35px;color: black;text-align:center;"> <h4 id="lblTime" class="brand-text"><i class="fa fa-clock-o"></i>&nbsp;{{ countDown$ | async  | formatTime }}<span id="testTime"></span></h4></div>   
+        <!--{{ countDown$ | async  | formatTime }}--> 
+        
+</h4>
+
+</section>
+<section >
+
+<div class="row match-height" style="margin-top:-70px;">
+        <div class="col-md-12">
+        </div>
+    <div class="col-md-12">
+     <div class="media align-items-stretch" style="height:70px!important;margin-top:100px">
+                <div class="media-left media-middle bg-primary d-flex align-items-center p-2">
+                    <i class="la la-gear white font-medium-5"></i>
+                </div>
+         <div class="media-body p-1" style="max-width: max-content;">
+
+             <div class="form-group">
+                        <!-- Buttons with Icon -->
+                    <!-- <button *ngIf="electronicReader && tts" type="button" id="btnPlay" class="btn btn-secondary" (click)="changeQstnPaperPlayBtnText()">
+                     -->
+                        <button *ngIf="electronicReader && tts" type="button" id="btnPlay" class="btn btn-secondary" (click)="handleButtonPlayClick($event, 1)">
+                            <i class="ft ft-volume-2"></i>
+                            <!--<span id="btnPlayStatus">Play</span>-->
+                            <span id="btnPlayStatus">{{QstnPaperTTSBtnText}}</span>
+                        </button>
+                        <button *ngIf="electronicReader && tts" type="button" id="btnPause" class="btn btn-secondary" style="margin-left: 5px;" (click)="changePauseTTSButtonText()">
+                            <i class="la la-pause"></i>
+                            <span id="btnPauseStatus">{{QstnPaperPauseTTSBtnText}}</span>
+                            <!--<span id="btnPauseStatus">Pause</span>-->
+                        </button>
+                        <button *ngIf="electronicReader && tts" type="button" id="ttsControls" class="btn btn-secondary" data-toggle="modal" data-target="#ttsModel" style="margin-left: 5px;" (click)="openVoiceAPIModal(voiceAPIModal)">
+                            <i class="ft ft-speaker"></i>
+                            Text to Speech Controls
+                        </button>
+                    <!--<button type="button" id="btnSourceDoc" class="btn btn-secondary" data-toggle="modal" data-target="#sourceDocModel">
+                            <i class="la la-file"></i>
+                            Source Documents
+                        </button>-->
+                
+                        <!---->
+                        <!--<button type="button" id="btnDownloadOffline" class="btn btn-secondary" style="display:none">
+                            <i class="ft ft-chevron-down"></i>
+                            Download Answers Offline
+                        </button> -->
+                        <button *ngIf="sourceDocs.length > 0" type="button" id="btnDownloadOffline" class="btn btn-secondary" style="margin-left: 5px;" (click)="sourceDocumentsClicked()"> 
+                            <i class="ft ft-chevron-down"></i>
+                            Source Documents
+                        </button> 
+                        <button type="button" id="btnDownloadOffline" class="btn btn-secondary" style="margin-left: 5px;" (click)="downloadOfflineClicked()">
+                            <i class="ft ft-chevron-down"></i>
+                            Download Answers Offline
+                        </button>  
+                        <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#" id="btnCollapseAnswer">Collapse Answer</a>
+                            <a class="dropdown-item" href="#" id="btnCollapseQuestion">Collapse Question</a>
+                        </div>
+                       <button *ngIf="electronicReader && tts" type="button" id="btnReadAnswer" class="btn btn-secondary" style="margin-left: 5px;" (click)="readAnswerTTSButtonText()">
+                            <i class="ft ft-volume-2"></i>
+                            <!--<span id="btnAnswerPlayStatus">Read Answer</span> -->
+                            <span id="btnAnswerPlayStatus">{{AnsTemplateTTSBtnText}}</span>
+                        </button>
+                        <!--<button *ngIf ="answerScanningAvailable" type="button" id="btnClickNotes" class="btn btn-secondary" style="margin-left: 5px;" (click)="showScanQRCode()">
+                            <span>Scan notes</span>
+                        </button>-->
+                        <button *ngIf ="answerScanningAvailable" type="button" id="btnClickNotes" class="btn btn-secondary" style="margin-left: 5px;" (click)="showScanQRCode()">
+                            <span>Scan notes</span>
+                        </button>
+                        <!--<button type="button" id="btnShowScannedImg" class="btn btn-secondary" style="margin-left: 5px;">
+                            <span>Show scanned document</span>
+                        </button>-->
+                        <button type="button" id="btnFinishTest" class="btn btn-secondary" style="margin-left: 5px;" (click)="finishTestWrite()"><span>Finish Test</span></button>
+                        <!--<div class="timer" style="font-size:25px;color: black;">
+                            {{ countDown$ | async  | formatTime }}
+                            
+                        </div>-->
+                </div>
+         </div>
+      </div>
+    </div>
+</div>
+</section>
+
+<section [hidden]="!showEditor" >
+    <div id="basic-form-layouts" class="row match-height">
+        <div class="col-md-6">
+            <button type="button" id="refreshPaper" style="margin-left: 80%" class="btn btn-secondary" (click)="refreshQuestionPaper()"> <i class="ft ft-maximize"></i> Refresh Question Paper</button>
+            <div id="ControlRegion">
+                <div  class="control-section">
+                    
+                   <div id="TestPreview">
+                        <ejs-pdfviewer  #pdfTestViewer id="pdfTestViewer" class="answerEditor"
+                            [serviceUrl]="hostedUrl" [EnablePersistence]=true  [documentPath]='localBase64Url'  [isExtractText]=true
+                            [enableNavigationToolbar]="false" [initialRenderPages]='initialRender' 
+                            [enableToolbar]="false">
+                        </ejs-pdfviewer>
+                    </div> 
+                  <!--   (created)="created($event)" -->
+                  <!--   <div id="TestPreview">
+                        <ejs-pdfviewer  #pdfTestViewer id="pdfTestViewer" class="answerEditor"
+                            [serviceUrl]="hostedUrl" [EnablePersistence]=true  [documentPath]='localBase64Url'
+                            [isExtractText]=true [enableNavigationToolbar]="false" [initialRenderPages]='initialRender' (created)="created($event)"
+                            [enableToolbar]="false">
+                        </ejs-pdfviewer>
+                    </div>  -->
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label class="label-control" for="userinput1">Word Count: </label>
+            <input   type="text"  style="height: calc(1.25em + 1.5rem + 2px); padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.25; color: #4e5154; background-color: #fff; background-clip: padding-box; border: 1px solid #babfc7; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" id="txtWordCount" placeholder="Select text..." [(ngModel)]="selectedWordCount" disabled />
+            <hr />
+            <div id='divStudentAnswerDoc'>
+                <app-test-writing-answertemplate [testId]="testId" [studentId]="studentId" [studentsTestData]="studentsTestData" [imageURLList]="imageURLList" [isFullScreenExited]="isFullScreenExited" [operatingSystem]="operatingSystem" [securityTestLevelId]="securityTestLevelId"></app-test-writing-answertemplate>
+            </div>
+        </div>
+   
+</div>
+
+</section>
+</div>
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header bg-warning white">
+        <h4 class="modal-title white" id="myModalLabel12"><i class="la la-tree"></i> Disclaimer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="TestOtpForm" >
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="GradeID" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <fieldset class="position-relative has-icon-left">
+
+                        <div class="col-md-12 mx-auto">
+                            <p>
+                                You are about to start a live examination and will / can be live monitored by your invigilators. While taking your examination on Exam Portal Cloud website, the following activities will be seen as irregularities and will be reported to your invigilator: <br />
+                                * Leaving or losing focus on the exam area <br />
+                                * Invalid key presses such as Ctrl + C <br />
+                                * Closing the exam, unless finished <br />
+                            </p>
+                            <hr />
+                            <p id="centerDisclaimer">
+        
+                            </p>
+                            <hr>
+                            <input  type="checkbox" id="cbxAccept" class="btn-success"  (click)="toggleDisclaimer($event)">
+                            <label for="cbxAccept"> I accept and agree to the above information</label><br>
+                        </div>
+                    </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" (click)="dismissModal()">
+                Begin Test
+            </button>
+        </div>
+    </form>
+</ng-template>
+<ng-template #studentTestChatModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <!-- <h4 class="modal-title" id="myModalLabel1">Conversation with invigilator</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button> -->
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onStudentChatMessgeSend()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="TestID" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Hello &nbsp;{{studentName}} &nbsp;(Private Messages)</p>
+                    <div class="form-group row">
+                    <!--<div>
+                        <br>
+                        <div class="col-md-9 mx-auto" style="text-align:left ;">
+                            <textarea class="form-control"  id="testChatMessageArea" style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:left"rows="15" cols="90" wrap="soft">{{messages}}</textarea>
+                        </div>
+                    </div>-->
+    
+                    <div>
+                        <br>
+                        <div class="col-md-9 mx-auto" style="text-align:center ;">
+                        <textarea readonly class="message-text"  id="testChatMessageArea" style="text-align:center" rows="15" cols="90" wrap="hard">
+                            {{messages}}
+                        </textarea>
+                        </div> 
+                    </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <div class="col-md-9 mx-auto" style="text-align:left ;">
+                            <input  class="form-control" type="text"  formControlName="testChatMessage" id="testChatMessage" 
+                                placeholder="Enter Message">
+                        </div>
+                     </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+                            Close
+                        </button>
+                        <button type="submit" class="btn btn-outline-primary">
+                            Send
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="col-lg-12">
+                    <p>Broadcast Messages</p>
+                    <div class="form-group row">
+                        <br>
+                            <div class="col-md-9 mx-auto" style="text-align:center ;">
+                                <textarea readonly class="message-text"  id="testChatBroadcastMessageArea" style="text-align:center" rows="15" cols="90" wrap="hard">{{bulkMessages}}</textarea>
+                            </div>
+    
+                    </div>
+                    <div class="form-group row">
+                        <div>
+              
+                          <!--   <div class="col-md-9 mx-auto">
+                                <input  class="form-control" type="text"   id="testChatBroadcastMessage" 
+                                    placeholder="Enter Message">
+                            </div>
+                    -->
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+                            Close
+                        </button>
+                        <!-- <button type="submit" class="btn btn-outline-primary">
+                            Send
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </form>
+</ng-template>
+<ng-template #monitoringChatModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1"></h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="bulkMessagingForm" (ngSubmit)="onInvigilatorBulkMessageSend()">
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Bulk Message
+                <div class="form-group row">
+                    <div>
+                        <br>
+                        <div class="col-md-9 mx-auto" style="text-align:left ;">
+                        <textarea readonly class="form-control message"  id="testChatMessageArea" style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:left" rows="15" cols="90" wrap="hard">
+                            {{messages}}
+                        </textarea>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="bulkMessage" id="bulkMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #voiceAPIModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1"></h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<ng-container>
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+
+        <fieldset class="form-group">
+        
+            <select
+			id="voice-control"
+			name="voice"
+			[(ngModel)]="selectedVoice"
+            (change)="demoSelectedVoice($event); updateSayCommand()"
+			class="form-field__control">
+			<option value="">- Select a voice -</option>
+			<option
+				*ngFor="let voice of voices"
+				[ngValue]="voice">
+				{{ voice.name }}
+
+			</option>
+		</select>
+
+
+        </fieldset>
+        <label for="rate">Rate:</label>
+        <!--<input class="voiceListInput" type="range" min="0" max="100" step="1" value="10"(input)="onRateValueChanged($event.target.value)">-->
+        <input class="voiceListInput" type="range" min="0" max="100" step="1" value="{{rateValue}}"(input)="onRateValueChanged($event.target.value)">
+        <label for="ratevalue">{{rateValue}}</label><br><br><br>
+    
+        <label for="pitch">Pitch:</label>
+        <input class="voiceListInput" type="range" min="0" max="2" step="0.1" value="{{selectedPitch}}" (input)="onPitchValueChanged($event.target.value)">
+        <!--<input class="voiceListInput" type="range" min="0" max="2" step="0.1" value="1"(input)="onPitchValueChanged($event.target.value)">-->
+        <label for="pitchvalue">{{selectedPitch}}</label>
+    </div>
+    <div class="modal-footer">
+     
+    </div>
+</ng-container>
+</ng-template>
+
+ <!-- <div  [hidden]="show" id="divQRCodeInstructions" readonly="true" style="width:100%; display:block"> -->
+    <div  id="divQRCodeInstructions" readonly="true" [hidden]="showEditor">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-lg-6">
+                    Instructions
+                    <br />
+                    <ol>
+                        <li>
+                            Scan available QR Code
+                            <ul>
+                                <li>
+                                    Please open the camera on your cell phone and scan the QR code that appears.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Take a picture of the handwritten note.
+                            <ul>
+                                <li>
+                                    If you are happy with the picture taken of your notes, you must now select the upload button.
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            Image upload.
+                            <ul>
+                                <li>
+                                    The program will generate a unique code.
+                                </li>
+                                <li>
+                                    Please enter the code that appears on your cell phone screen in the assign area on the computer screen.
+                                </li>
+                                <li>
+                                    You should now see your notes appear in your answer area.
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+    
+                <div class="col-lg-6">
+                   <div class="qrcodeImage">
+                        <!--[qrdata]= qrDataUrl
+                        [qrdata]="'https://github.com/Cordobo/angularx-qrcode'"
+                        [imageSrc]="'./assets/angular-logo.png'"-->
+                        <!--<ngx-scanner-qrcode #action="scanner" [src]="qrDataUrl"></ngx-scanner-qrcode>-->
+                        <qrcode
+                          [qrdata]= "qrDataUrl"
+                          [allowEmptyString]="true"
+                          [ariaLabel]="'QR Code image with the following content...'"
+                          [cssClass]="'center'"
+                          [colorDark]="'#000000ff'"
+                          [colorLight]="'#ffffffff'"
+                          [elementType]="'canvas'"
+                          [errorCorrectionLevel]="'M'"
+                         
+                          [imageHeight]="75"
+                          [imageWidth]="75"
+                          [margin]="4"
+                          [scale]="1"
+                          [title]="'A custom title attribute'"
+                          [width]="300"
+                        ></qrcode>
+                     
+                      </div> 
+                    <div class="text-center">
+            <label>Enter OTP: </label>
+            <input type="text" id="otpToValidate" />
+            <button class="btn btn-success" id="confirmOTP" (click)="verifyScanOTP()"> Save</button>
+        </div>
+        <section class="results" *ngIf="qrResultString">
+            <small>Result</small>
+            <strong>{{ qrResultString}}</strong>
+        </section>
+                </div>
+                <small></small>
+                <!--<strong>{{scanResult}}</strong>-->
+            </div>
+        </div>
+        <br />
+        <!--<div class="text-center">
+            <label>Enter OTP: </label>
+            <input type="text" id="enteredOTP" />
+            <button class="btn btn-success" id="confirmOTP"> Save</button>
+        </div>-->
+    </div>
+
+   <!--  <div id='divSourceDoc' style="height:800px;">                  
+        <ejs-pdfviewer #pdfViewerSourcePdf id="pdfViewerSourcePdf"
+            [serviceUrl]="hostedUrl" [enableNavigationToolbar]="false" 
+            [enableToolbar]="false"></ejs-pdfviewer>
+    </div> -->
+ <!--   <ejs-dialog id='dialog' #ejDialog isModal='true' [showCloseIcon]='true' [visible]='false'>
+        <ejs-pdfviewer id="pdfViewer" [serviceUrl]='hostedUrl' [documentPath]='base64UrlSource' style="height:800px;display:block">
+        </ejs-pdfviewer>
+      </ejs-dialog>  -->
+
+<!--<ng-template #viewSourceDocModal let-c="close" let-d="dismiss">
+    <div class="modal fade text-left" id="sourceDocModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="lblSource">Click / tap once on source document file</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="sourceControls" class="form-group" style="display:none">
+                        //Buttons with Icon
+                        <button type="button" id="btnSourcePlay" class="btn btn-secondary btn-min-width mr-1 mb-1">
+                            <i class="ft ft-volume-2"></i>
+                            <span id="btnSourcePlayStatus">Read Source Document</span>
+                        </button>
+                        <button type="button" id="btnPauseSource" class="btn btn-secondary btn-min-width mr-1 mb-1">
+                            <i class="la la-pause"></i>
+                            <span id="pauseSource">Pause</span>
+                        </button>
+                        <button id="scrolldown2" style="display:none">Scroll Up</button>
+                        <button id="scrollup2" style="display:none">Scroll Down</button>
+                        <button id="scrolll2" style="display:none">Scroll Left</button>
+                        <button id="scrollr2" style="display:none">Scroll Right</button>
+                    </div>
+                    <table id="datatable" style="width:100%!important">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th style='display:none'>Document ID</th>
+                                <th style='display:none'>Test ID</th>
+                                <th>File Name</th>
+                            </tr>
+                        </thead>
+                    </table>-->
+                   <!--<div class="col-lg-12">
+                        <div id="docSection" style="display:none">
+                            <div id="pdfsourceviewer" style="height:800px;"></div>
+                        </div>
+                    </div> -->
+                <!--</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>-->
+
+
+<ng-template #viewSourceDocModal let-c="close" let-d="dismiss" style="width: 100%;">
+    <div  id="AnswerTracking" style="width: 100%;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="width: 100%;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">Click / tap once on source document file</h4>
+            </div>
+            <form style="width: 100%;">
+                <div class=" modal-body" style="width: 100%;">
+                    <div *ngIf="isSourceDocClicked" >
+                        <div  class="media align-items-stretch">
+                            <button *ngIf="electronicReader" type="button" id="btnPlay" class="btn btn-secondary" (click)="handleSourceButtonPlayClick($event, 1)">
+                                <i class="ft ft-volume-2"></i>
+                                <!--<span id="btnPlayStatus">Play</span>-->
+                                <span id="btnPlaySourceStatus">{{SourcePaperTTSBtnText}}</span>
+                            </button>
+                            <button *ngIf="electronicReader"  type="button" id="btnPause" class="btn btn-secondary" style="margin-left: 5px;" (click)="changePauseTTSButtonSourceText()">
+                                <i class="la la-pause"></i>
+                                <span id="btnPauseSourceStatus">{{SourcePaperPauseTTSBtnText}}</span>
+                                <!--<span id="btnPauseStatus">Pause</span>-->
+                            </button>
+                        </div>
+                    </div><br>
+                    <table id="datatable" style="width:100%!important">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th style='display:none'>Document ID</th>
+                                <th style='display:none'>Test ID</th>
+                                <th>File Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of sourceDocs"  (click)="viewClickedSourceDoc(item.id,item.fileName,item)">
+                                <td>{{item.fileName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-lg-12">
+                        <div *ngIf="isSourceDocClicked" id="docSection" >
+                       <div id='divSourceDoc' style="height:800px;">                  
+                            <ejs-pdfviewer #pdfViewerSourcePdf id="pdfViewerSourcePdf" 
+                            [serviceUrl]="hostedUrl" [documentPath]='base64UrlSource' [initialRenderPages]='initialRender'></ejs-pdfviewer>
+                       </div> 
+                            <!--<ejs-dialog id='dialog' #ejDialog isModal='false' [showCloseIcon]='true' [visible]='true'>
+                                <ejs-pdfviewer id="pdfViewer" [serviceUrl]='hostedUrl' [documentPath]='base64UrlSource' style="height:800px;display:block">
+                                </ejs-pdfviewer>
+                            </ejs-dialog>-->
+                            <!-- <div id="pdfsourceviewer" style="height:800px;"></div> -->
+                        </div>
+                    </div> -
+                </div>  
+               
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary btn-lg"  (click)="d('Close modal')" >Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--     <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Answer View</h4>
+        <button type="button" class="btn-close" aria-hidden="true"
+            (click)="d('Cross click')"></button>
+    </div> -->
+</ng-template>
+    

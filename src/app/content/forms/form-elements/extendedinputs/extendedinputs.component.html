@@ -1,0 +1,194 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+      <div class="content-header row mb-1">
+        <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+      </div>
+      <div class="content-body">
+        <!-- Input Mask start -->
+        <section class="inputmask" id="inputmask">
+          <div class="row">
+            <div class="col-12" *blockUI="'inputMask'; message: 'Loading'">
+              <m-card [options]="options" (reloadFunction)="reloadInputMask($event)">
+                <ng-container mCardHeaderTitle>
+                    Input Mask
+                </ng-container>
+                <ng-container mCardBody>
+                    <form  (ngSubmit)="onCustomFormSubmit()" #vform="ngForm">
+                        <div class="row">
+                          <div class="col-xl-6 col-lg-12">
+                            <div class="form-group">
+                              <h5 for="date">Date</h5>
+                              <div class="input-group">
+                              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="popupModel"
+                              ngbDatepicker #d1="ngbDatepicker">
+                            <div class="input-group-append">
+                              <div class="input-group-text" (click)="d1.toggle()">
+                                <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                              </div>
+                            </div>
+                              </div>
+                              <!-- <small class="form-text text-muted danger" *ngIf="date.errors?.date">date error</small> -->
+                            </div>
+                            <div class="form-group">
+                              <h5 for="dateISO">DateISO</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="dateISO"
+                                #dateISO="ngModel" placeholder="dateISO" dateISO />
+                              <small class="form-text text-muted danger" *ngIf="dateISO.errors?.dateISO">dateISO
+                                error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="maxDate">MaxDate(2019-06-11)</h5>
+                              <div class="input-group">
+                                <input class="form-control" placeholder="maxDate 2019-06-11" name="dp" ngModel name="maxDate"
+                                #maxDate="ngModel" placeholder="maxDate 2019-06-11" maxDate="2019-06-11" 
+                                ngbDatepicker #d2="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d2.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                                </div>
+                                <small class="form-text text-muted danger" *ngIf="maxDate.errors?.maxDate">maxDate
+                                error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="minDate">MinDate(2019-06-11)</h5>
+                              <div class="input-group">
+                                <input class="form-control" placeholder="minDate 2019-06-11" name="dp" ngModel name="minDate"
+                                #minDate="ngModel" placeholder="minDate 2019-06-11" minDate="2019-06-11" 
+                                ngbDatepicker #d3="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d3.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                                </div>
+                              <small class="form-text text-muted danger" *ngIf="minDate.errors?.minDate">minDate
+                                error</small>
+                            </div>
+                           <div class="form-group">
+                              <h5 for="required">Required</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="required"
+                                #required="ngModel" required placeholder="required" />
+                              <small class="form-text text-muted danger" *ngIf="required.errors?.required">required
+                                error</small>
+  
+                            </div>
+                            <div class="form-group">
+                              <h5 for="minlength">Minlength</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="minlength"
+                                #minlength="ngModel" placeholder="minlength 5" minlength="5" />
+                              <small class="form-text text-muted danger" *ngIf="minlength.errors?.minlength">minlength
+                                error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="maxlength">Maxlength</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="maxlength"
+                                #maxlength="ngModel" placeholder="maxlength 5" maxlength="5" />
+                              <small class="form-text text-muted danger" *ngIf="maxlength.errors?.maxlength">required
+                                error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="rangelength">Rangelength</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="rangelength"
+                                #rangelength="ngModel" placeholder="rangeLength [5, 9]" [rangeLength]="[5, 9]" />
+                              <small class="form-text text-muted danger" *ngIf="rangelength.errors?.rangeLength">rangelength
+                                error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="number">Number</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="number" #number="ngModel"
+                                placeholder="number" number />
+                              <small class="form-text text-muted danger" *ngIf="number.errors?.number">number error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="max">Max</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="max" #max="ngModel"
+                                placeholder="max 10" max="10" />
+                              <small class="form-text text-muted danger" *ngIf="max.errors?.max">max error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="min">Min</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="min" #min="ngModel"
+                                placeholder="min 10" min="10" />
+                              <small class="form-text text-muted danger" *ngIf="min.errors?.min">min error</small>
+                            </div>
+                          </div>
+                          <div class="col-xl-6 col-lg-12">
+                              <div class="form-group">
+                                  <h5 for="pattern">Pattern</h5>
+                                  <input type="text" class="form-control date-inputmask" ngModel name="pattern"
+                                    #pattern="ngModel" placeholder="[a-z]{6}" pattern="[a-z]{6}" />
+                                  <small class="form-text text-muted danger" *ngIf="pattern.errors?.pattern">pattern
+                                    error</small>
+                                </div>
+                            <div class="form-group">
+                              <h5 for="email">Email</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="email" #email="ngModel"
+                                placeholder="email" email />
+                              <small class="form-text text-muted danger" *ngIf="email.errors?.email">email error</small>
+                            </div>
+                            <div class="form-group">
+                              <label for="equal">equal</label>
+                              <input type="text" class="form-control" ngModel name="equal" #equal="ngModel" placeholder="equal to name" equal="name" />
+                              <small class="form-text text-muted danger" *ngIf="equal.errors?.equal">equal error</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="notEqual">notEqual</label>
+                              <input type="text" class="form-control" ngModel name="notEqual" #notEqual="ngModel" placeholder="not equal to name" notEqual="name"
+                              />
+                              <small class="form-text text-muted danger" *ngIf="notEqual.errors?.notEqual">notEqual error</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="password">equalTo</label>
+                              <input type="text" class="form-control" ngModel name="password" #password="ngModel" placeholder="password" required />
+                              <small class="form-text text-muted danger" *ngIf="password.errors?.required">required error</small>
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" ngModel name="equalTo" #equalTo="ngModel" placeholder="confirm password" [equalTo]="password"
+                              />
+                              <small class="form-text text-muted danger" *ngIf="equalTo.errors?.equalTo">equalTo error</small>
+                          </div>
+                          <div class="form-group">
+                              <label for="oldPassword">notEqualTo</label>
+                              <input type="text" class="form-control" ngModel name="oldPassword" #oldPassword="ngModel" placeholder="password" required
+                              />
+                              <small class="form-text text-muted danger" *ngIf="oldPassword.errors?.required">required error</small>
+                          </div>
+                          <div class="form-group">
+                              <input type="text" class="form-control" ngModel name="notEqualTo" #notEqualTo="ngModel" placeholder="confirm password" [notEqualTo]="oldPassword"
+                              />
+                              <small class="form-text text-muted danger" *ngIf="notEqualTo.errors?.notEqualTo">notEqualTo error</small>
+                          </div>
+  
+                            <div class="form-group">
+                              <h5 for="gt">Gt</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="gt" #gt="ngModel"
+                                placeholder="gt 20" gt="20" />
+                              <small class="form-text text-muted danger" *ngIf="gt.errors?.gt">gt error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="lt">Lt</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="lt" #lt="ngModel"
+                                placeholder="lt 10" lt="10" />
+                              <small class="form-text text-muted danger" *ngIf="lt.errors?.lt">lt error</small>
+                            </div>
+                            <div class="form-group">
+                              <h5 for="url">Url</h5>
+                              <input type="text" class="form-control date-inputmask" ngModel name="url" #url="ngModel"
+                                placeholder="url" url />
+                              <small class="form-text text-muted danger" *ngIf="url.errors?.url">url error</small>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                </ng-container>
+              </m-card>
+            </div>
+          </div>
+        </section>
+  
+      </div>
+    </div>
+  </div>
+  

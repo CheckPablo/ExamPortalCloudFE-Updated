@@ -1,0 +1,23 @@
+:host ::ng-deep .basic-accordation .btn-link {
+  color: #1e9ff2;
+}
+
+:host ::ng-deep .color-accordation .btn-link {
+  color: #ffffff;
+}
+
+:host ::ng-deep .basic-accordation .card,
+:host ::ng-deep .color-accordation .card {
+  margin-bottom: 0;
+}
+
+:host ::ng-deep .align_right .card-header {
+  text-align: right !important;
+}
+
+:host ::ng-deep .card-header .btn {
+  font-weight: 500;
+  letter-spacing: .05rem;
+  font-size: 1.12rem;
+  padding: 0 !important;
+}

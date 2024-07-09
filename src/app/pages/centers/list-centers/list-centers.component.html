@@ -1,0 +1,599 @@
+<div class="content-body">
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form form-horizontal">
+                                <div class="form-body">
+                                    <h4 class="form-section"><i class="la la-eye"></i>View Centers</h4>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-info btn-min-width"
+                                                    (click)="openModal(addCenterModal)">
+                                                    Add New
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="table-responsive" style="width:100%">
+                                                <div id="CentreListDatatable_wrapper"
+                                                    class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6">
+                                                            <div class="dataTables_length"
+                                                                id="CentreListDatatable_length">
+                                                                <label>
+                                                                    Show
+                                                                    <select name="CentreListDatatable_length"
+                                                                        aria-controls="tickets-table" name="pageSize"
+                                                                        [(ngModel)]="paginationService.pageSize"
+                                                                        class="form-control form-control-sm mx-2"
+                                                                        (ngModelChange)="paginationService.setPageSize($event)">
+                                                                        <option [ngValue]="10">10</option>
+                                                                        <option [ngValue]="25">25</option>
+                                                                        <option [ngValue]="50">50</option>
+                                                                        <option [ngValue]="100">100</option>
+                                                                    </select>
+                                                                    entries
+                                                                </label>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-sm-12 col-md-6">
+                                                            <div id="CentreListDatatable_filter"
+                                                                class="dataTables_filter text-md-end">
+                                                                <label class="d-inline-flex align-items-center">
+                                                                    Search:
+                                                                    <input type="text" name="searchTerm"
+                                                                        class="form-control form-control-sm ms-2"
+                                                                        aria-controls="tickets-table"
+                                                                        [(ngModel)]="paginationService.searchTerm"
+                                                                        (input)="paginationService.onSearchInputChange($event.target.value)">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table-responsive">
+                                                        <table
+                                                            class="table table-striped table-bordered no-footer dataTable">
+                                                            <thead class="bg-info white">
+                                                                <tr>
+                                                                    <th style='display:none'>SectorID</th>
+                                                                    <th sortable="name" (sort)="onSort($event)">
+                                                                        Name
+                                                                        <i class="la la-sort float-md-end"></i>
+                                                                    </th>
+                                                                    <th sortable="name" (sort)="onSort($event)">
+                                                                        Modified Date
+                                                                        <i class="la la-sort float-md-end"></i>
+                                                                    </th>
+                                                                    <th sortable="name" (sort)="onSort($event)">
+                                                                        Expiry Date
+                                                                        <i class="la la-sort float-md-end"></i>
+                                                                    </th>
+                                                                    <th sortable="name" (sort)="onSort($event)">
+                                                                        License Info</th>
+                                                                    <th>Delete User</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let centers of paginationService.paginatedData | centerSort:filter"
+                                                                    (dblclick)="openUpdateModal(editCenterModal, centers)">
+                                                                    <td>{{centers.name}}</td>
+                                                                    <td>{{centers.modifiedDate | date:'dd MMM yyyy'}}</td>
+                                                                    <td>{{centers.expiryDate | date:'dd MMM yyyy'}}</td>
+                                                                    <td>{{centers.licenceInfo}}</td>
+                                                                    <td>
+                                                                        <button id="btnDeleteCentere" type="button"
+                                                                            class="btn btn-block btn-primary glow"
+                                                                            style="width:100px"
+                                                                            (click)="onDeleteCenter(centers)">
+                                                                            Delete
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-md-between align-items-md-center mt-2"
+                                        *ngIf="paginationService.totalItems">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                aria-live="polite">Showing
+                                                {{paginationService.startIndex}} to
+                                                {{paginationService.endIndex}} of
+                                                <span
+                                                    *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}}
+                                                    search results from
+                                                </span>
+                                                {{paginationService.totalItems}} entries
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="text-md-right float-md-end pagination-rounded">
+                                                <ul class="pagination">
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                        (click)="paginationService.setPage(1)">
+                                                        <a aria-label="Previous" href="javascript:void(0);"
+                                                            class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">««</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                        (click)="paginationService.goToPreviousPage()">
+                                                        <a aria-label="Previous" href="javascript:void(0);"
+                                                            class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">«</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted" aria-current="page"
+                                                        [ngClass]="{ 'active': paginationService.currentPage == page }"
+                                                        *ngFor="let page of paginationService.paginationLinks"
+                                                        (click)="paginationService.setPage(page)">
+                                                        <a href="javascript:void(0);"
+                                                            class="page-link ng-star-inserted">
+                                                            {{ page }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                        (click)="paginationService.goToNextPage()">
+                                                        <a aria-label="Next" href="javascript:void(0);"
+                                                            class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">»</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                        (click)="paginationService.setPage(paginationService.totalPages)">
+                                                        <a aria-label="Next" href="javascript:void(0);"
+                                                            class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<ng-template #addCenterModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Center Maintenance</h4>
+        <button type="button" class="btn-close" aria-hidden="true"
+            (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="code" data-toggle="tooltip"
+                            title="Code">
+                            Center Name:
+                            <!-- <i class="fa fa-asterisk text-danger" *ngIf="f['code'].errors && f['name'].errors.required"></i> -->
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="text" id="centerName" name="code"
+                                placeholder="Enter the center name" formControlName="name"
+                                [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                            <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                                <div *ngIf="f['name'].errors.required">Center name is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="provinceId"
+                            data-toggle="tooltip" title="">
+                            Province:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['provinceId'].errors && f['provinceId'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <fieldset class="position-relative">
+                                <select id="ddlProvinces" name="interested"
+                                    formControlName="provinceId"
+                                    class="form-control form-select">
+                                    <option value="">--Select a Provinces--</option>
+                                    <option value="1">Gauteng</option>
+                                    <option value="2">KwaZulu-Natal</option>
+                                    <option value="3">Eastern Cape</option>
+                                    <option value="4">Free State</option>
+                                    <option value="5">Limpopo</option>
+                                    <option value="6">Mpumalanga</option>
+                                    <option value="7">North West</option>
+                                    <option value="8">Northern Cape</option>
+                                    <option value="9">Western Cape</option>
+                                </select>
+                            </fieldset>
+                            <div *ngIf="submitted && f['provinceId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['provinceId'].errors.required">Province is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="centerTypeId"
+                            data-toggle="tooltip" title="Code">
+                            Center Type:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['centerTypeId'].errors && f['centerTypeId'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <fieldset class="position-relative">
+                                <select id="ddlCenterType" name="interested"
+                                    formControlName="centerTypeId"
+                                    class="form-control form-select">
+                                    <option value="">--Select Center Type--</option>
+                                    <option value="1">School</option>
+                                    <option value="2">Examination Body</option>
+                                    <option value="3">Home Learning</option>
+                                    <option value="4">University / College</option>
+                                </select>
+                                <div class="help-block font-small-3"></div>
+                            </fieldset>
+                            <div *ngIf="submitted && f['centerTypeId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['centerTypeId'].errors.required">Center Type is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="prefix" data-toggle="tooltip"
+                            title="Code">
+                            Center Abbreviation:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['prefix'].errors && f['prefix'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="text" id="prefix"
+                                placeholder="Enter the Abbreviation" formControlName="prefix"
+                                maxlength="50"
+                                [ngClass]="{ 'is-invalid': submitted && f['prefix'].errors }">
+                            <div *ngIf="submitted && f['prefix'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['prefix'].errors.required">Abbreviation is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="IEBCPCode"
+                            data-toggle="tooltip" title="IEBCPCode">
+                            IEB-CP Code (optional):
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['centerNo'].errors && f['centerNo'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" id="centerNo" name="centerNo"
+                                placeholder="Enter the IEB-CP code" formControlName="centerNo">
+                      
+                            <div *ngIf="submitted && f['centerNo'].errors"
+                                class="invalid-feedback">
+                                <!--<div *ngIf="f['centerNo'].errors.required">IEB-CP code is
+                                    required</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="expiryDate"
+                            data-toggle="tooltip" title="Code">
+                            Expiry Date:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['expiryDate'].errors && f['expiryDate'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="date" id="expiryDate"
+                                name="expiryDate" formControlName="expiryDate"
+                                [ngClass]="{ 'is-invalid': submitted && f['expiryDate'].errors }">
+                            <div *ngIf="submitted && f['expiryDate'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['expiryDate'].errors.required">Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="maximumLicense"
+                            data-toggle="tooltip" title="Code">
+                            Maximum Number of Licenses:
+                            <!-- <i class="fa fa-asterisk text-danger" *ngIf="f['maximumLicense'].errors && f['maximumLicense'].errors.required"></i> -->
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="number" id="maximumLicense"
+                                placeholder="Enter the maximum license number"
+                                formControlName="maximumLicense" maxlength="50"
+                                [ngClass]="{ 'is-invalid': submitted && f['maximumLicense'].errors }">
+                            <div *ngIf="submitted && f['maximumLicense'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['maximumLicense'].errors.required">Maximum number
+                                    of licenses is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn grey btn-outline-secondary"
+                (click)="d('Close modal')" ngbAutofocus>
+                Close
+            </button>
+            <button type="submit" class="btn btn-outline-primary">
+                Save changes
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #editCenterModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Center Maintenance</h4>
+        <button type="button" class="btn-close" aria-hidden="true"
+            (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onEditSubmit()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="code" data-toggle="tooltip"
+                            title="Code">
+                            Center Name:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['centerNo'].errors && f['centerNo'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="text" id="centerName" name="code"
+                                placeholder="Enter the center name" formControlName="name"
+                                [ngClass]="{ 'is-invalid': submitted && f['centerNo'].errors }">
+                            <div *ngIf="submitted && f['centerNo'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['centerNo'].errors.required">Center name is
+                                    required </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="provinceId"
+                            data-toggle="tooltip" title="">
+                            Province:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['provinceId'].errors && f['provinceId'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <fieldset class="position-relative">
+                                <select id="ddlProvinces" name="interested"
+                                    formControlName="provinceId"
+                                    class="form-control form-select">
+                                    <option value="">--Select a Provinces--</option>
+                                    <option value="1">Gauteng</option>
+                                    <option value="2">KwaZulu-Natal</option>
+                                    <option value="3">Eastern Cape</option>
+                                    <option value="4">Free State</option>
+                                    <option value="5">Limpopo</option>
+                                    <option value="6">Mpumalanga</option>
+                                    <option value="7">North West</option>
+                                    <option value="8">Northern Cape</option>
+                                    <option value="9">Western Cape</option>
+                                </select>
+                            </fieldset>
+                            <div *ngIf="submitted && f['provinceId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['provinceId'].errors.required">Province is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="centerTypeId"
+                            data-toggle="tooltip" title="Code">
+                            Center Type:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['centerTypeId'].errors && f['centerTypeId'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <fieldset class="position-relative">
+                                <select id="ddlCenterType" name="interested"
+                                    formControlName="centerTypeId"
+                                    class="form-control form-select">
+                                    <option value="">--Select Center Type--</option>
+                                    <option value="1">School</option>
+                                    <option value="2">Examination Body</option>
+                                    <option value="3">Home Learning</option>
+                                    <option value="4">University / College</option>
+                                </select>
+                                <div class="help-block font-small-3"></div>
+                            </fieldset>
+                            <div *ngIf="submitted && f['centerTypeId'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['centerTypeId'].errors.required">Center Type is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="prefix" data-toggle="tooltip"
+                            title="Code">
+                            Center Abbreviation:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['prefix'].errors && f['prefix'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="text" id="prefix"
+                                placeholder="Enter the Abbreviation" formControlName="prefix"
+                                maxlength="50"
+                                [ngClass]="{ 'is-invalid': submitted && f['prefix'].errors }">
+                            <div *ngIf="submitted && f['prefix'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['prefix'].errors.required">Abbreviation is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="centerNo"
+                            data-toggle="tooltip" title="centerNo">
+                            IEB-CP Code (optional):
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['centerNo'].errors && f['centerNo'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" id="centerNo"
+                                placeholder="Enter the IEB-CP code" formControlName="centerNo"
+                                type="number"
+                                [ngClass]="{ 'is-invalid': submitted && f['centerNo'].errors }">
+                            <div *ngIf="submitted && f['centerNo'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['centerNo'].errors.required">IEB-CP code is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="expiryDate"
+                            data-toggle="tooltip" title="Code">
+                            Expiry Date:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['expiryDate'].errors && f['expiryDate'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="date" id="expiryDate"
+                                name="expiryDate" formControlName="expiryDate"
+                                [ngClass]="{ 'is-invalid': submitted && f['expiryDate'].errors }">
+                            <div *ngIf="submitted && f['expiryDate'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['expiryDate'].errors.required">Date is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="maximumLicense"
+                            data-toggle="tooltip" title="Code">
+                            Maximum Number of Licenses:
+                            <!-- <i class="fa fa-asterisk text-danger" *ngIf="f['maximumLicense'].errors && f['maximumLicense'].errors.required"></i> -->
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="number" id="maximumLicense"
+                                placeholder="Enter the maximum license number"
+                                formControlName="maximumLicense" maxlength="50"
+                                [ngClass]="{ 'is-invalid': submitted && f['maximumLicense'].errors }">
+                            <div *ngIf="submitted && f['maximumLicense'].errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f['maximumLicense'].errors.required">Maximum number
+                                    of licenses is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn grey btn-outline-secondary"
+            (click)="onCenterLogin(editCenterModal, centers)">
+            Login
+            </button>
+
+            <button type="button" class="btn grey btn-outline-secondary"
+                (click)="d('Close modal')" ngbAutofocus>
+                Close
+            </button>
+
+            <button type="submit" class="btn btn-outline-primary">
+                Save changes
+            </button>
+        </div>
+    </form>
+</ng-template>

@@ -1,0 +1,89 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <!-- Typeahead js start -->
+    <section class="typeahead" id="typeahead">
+      <div class="row">
+        <div class="col-12" *blockUI="'typeAhead'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadTypeAhead($event)">
+            <ng-container mCardHeaderTitle>
+              Typeahead
+            </ng-container>
+            <ng-container mCardBody>
+              <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                  <fieldset>
+                    <h5>Basic Typeahead</h5>
+                    <p class="text-muted">When initializing a <code>typeahead</code>, you pass the plugin method one
+                      or more datasets. The source of a dataset is responsible for computing a set of suggestions for
+                      a given query.</p>
+                    <div class="form-group">
+                      <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="basicModel"
+                        [ngbTypeahead]="search" />
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <h5>Typeahead with open on focus</h5>
+                    <p class="text-muted">It is possible to get the focus events with the current input value to emit
+                      results on focus with a great flexibility.</p>
+                    <div class="form-group">
+                      <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="openOnFocusModel"
+                        [ngbTypeahead]="searchOnFocus" (focus)="focus$.next($event.target.value)" #instance="ngbTypeahead" />
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <h5>Typeahea with formatted results</h5>
+                    <p class="text-muted">A typeahead example that uses a formatter function for string results. For
+                      example display search results in upper case.</p>
+                    <div class="form-group">
+                      <input id="typeahead-format" type="text" class="form-control" [(ngModel)]="formattedResultsModel"
+                        [ngbTypeahead]="searchForFormattedResults" [resultFormatter]="formatter" />
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                  <fieldset>
+                    <h5>Typeahead with configuration</h5>
+                    <p class="text-muted">For more advanced use cases, Typeahead with configuration gives flexibility.
+                      This typeahead shows a hint when the input matches because the default values have been
+                      customized.</p>
+                    <div class="form-group">
+                      <input id="typeahead-config" type="text" class="form-control" [(ngModel)]="typeaheadConfigModel"
+                        [ngbTypeahead]="searchWithConfig" />
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <h5>Typeahead with Service </h5>
+                    <p class="text-muted">A typeahead example which gets the results from the service.</p>
+                    <div class="form-group">
+                      <input id="typeahead-http" type="text" class="form-control" [(ngModel)]="searviceModel"
+                        [ngbTypeahead]="searchFromService" placeholder="Search from service" />
+                    </div>
+                  </fieldset>
+                  <fieldset>
+                    <h5>Typeahead with custom template</h5>
+                    <p class="text-muted">A typeahead example that uses a custom template for results display, an
+                      object as the model,
+                      and the highlight directive to highlight the term inside the custom template.</p>
+                    <ng-template #rt let-r="result" let-t="term">
+                      <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r['flag']" class="mr-1"
+                        style="width: 16px">
+                      <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+                    </ng-template>
+                    <div class="form-group">
+                      <input id="typeahead-template" type="text" class="form-control"
+                        [(ngModel)]="typeaheadTemplateModel" [ngbTypeahead]="searchWithTemplate" [resultTemplate]="rt"
+                        [inputFormatter]="formatter1" />
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </ng-container>
+          </m-card>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

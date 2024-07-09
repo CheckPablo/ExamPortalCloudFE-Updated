@@ -1,0 +1,34 @@
+.btn {
+      border-radius: 0rem !important;
+}
+.buttons-border-dropdown {
+      border-right: none !important;
+}
+.input-group > .form-control {
+      height: 40px;
+ }
+:host ::ng-deep .dropdown .dropdown-menu {
+      margin: -0.1rem -3.7rem 0 !important;
+}
+:host ::ng-deep .custom-checkbox {
+      margin-bottom: 3px;
+      margin-left: 5px;
+  }
+:host ::ng-deep .custom-control {
+      margin-bottom: 3px;
+      min-height: auto;
+      margin-left: 5px;
+  }
+:host ::ng-deep .switch.switch-small small {
+      width: 18px;
+      height: 18px;
+      margin-right: 1px;
+      margin-top: 1px;
+}
+:host ::ng-deep .input-group-prepend {
+      height: 40px;
+  }
+:host ::ng-deep .input-group-height{
+
+  height: 50px !important;
+}

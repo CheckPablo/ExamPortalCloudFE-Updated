@@ -1,0 +1,7 @@
+:host ::ng-deep .basicRightPopover {
+    width: 744px;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}

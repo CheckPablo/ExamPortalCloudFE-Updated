@@ -1,0 +1,86 @@
+<div class="content-right">
+    <!-- <div class="content-wrapper"> -->
+      <div class="content-header row"></div>
+      <div class="content-overlay"></div>
+      <div class="chat-header">
+        <header class="d-flex justify-content-between align-items-center px-1 py-75">
+         <div class="d-flex align-items-center">
+           <div class="chat-sidebar-toggle d-block d-lg-none mr-1"><i
+               class="ft-align-justify font-large-1 cursor-pointer"></i>
+           </div>
+           <div class="avatar chat-profile-toggle m-0 mr-1">
+             <img src="../../../assets/images/portrait/small/avatar-s-26.png" class="cursor-pointer" alt="avatar"
+               height="36" width="36" />
+             <span class="avatar-status-busy"></span>
+           </div>
+           <h6 class="mb-0">Elizabeth Elliott</h6>
+         </div>
+         <div class="chat-header-icons">
+           <span class="chat-icon-favorite">
+             <i class="ficon feather ft-star font-medium-5 cursor-pointer"></i>
+           </span>
+           <span class="dropdown">
+             <i class="ficon feather ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer"
+               id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu">
+             </i>
+             <span class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+               <a class="dropdown-item" href="JavaScript:void(0);"><i class="ficon feather ft-tag mr-25"></i> Pin to top</a>
+               <a class="dropdown-item" href="JavaScript:void(0);"><i class="ficon feather ft-trash-2 mr-25"></i> Delete chat</a>
+               <a class="dropdown-item" href="JavaScript:void(0);"><i class="ficon feather ft-x-circle mr-25"></i> Block</a>
+             </span>
+           </span>
+         </div>
+       </header>
+     </div>
+     <div class="card chat-wrapper shadow-none mb-0">
+      <div class="card-content">
+      <div class="content-body chat-container">
+        <div class="chat-content">
+          <div class="chat">
+            <div class="chat-avatar">
+          <div class="content-overlay" id='content-overlay' (click)="contentOverlay($event)"></div>
+        <section class="chat-app-window" #content>
+          <div class="sidebar-toggle d-block d-lg-none" (click)="sidebar($event)"><i class="feather ft-menu font-large-1"></i></div>
+          <div class="badge badge-secondary mb-1">Chat History</div>
+          <div class="chats" #messages>
+            <div class="chat" [ngClass]="{'chat-right': messages.sender == 0 , 'chat-left': messages.sender == 1 }"
+              *ngFor="let messages of contactChat">
+              <div class="chat-avatar">
+                <a [routerLink]="" class="avatar">
+                  <span class="avatar-online"><img [src]="messages.senderImage" /></span>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                  <p>{{messages.message}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="chat-app-form">
+          <form class="chat-app-input d-flex">
+            <fieldset class="form-group position-relative has-icon-left col-10 m-0">
+              <div class="form-control-position">
+                <i class="icon-emoticon-smile"></i>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="newMessage" name="newmessage" id="iconLeft4"
+                placeholder="Type your message" #box (keyup.enter)="onEnter(box.value)">
+              <div class="form-control-position control-position-right">
+                <i class="feather ft-image"></i>
+              </div>
+            </fieldset>
+            <fieldset class="form-group position-relative has-icon-left col-2 m-0">
+              <button type="button" class="btn btn-primary" (click)="sendMessage()" keyboardShouldPersistTaps={true}><i
+                  class="la la-paper-plane-o d-lg-none"></i><span class="d-none d-lg-block">Send</span></button>
+            </fieldset>
+          </form>
+        </section>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    <!-- </div> -->
+  </div>

@@ -1,0 +1,59 @@
+:host ::ng-deep .bg-primary {
+    background-color: #666EE8 !important;
+}
+
+:host ::ng-deep .pills .nav .nav-item .nav-link {
+    border-radius: 10rem;
+    display: inline-block;
+    padding: 0.35em 0.4em;
+    font-size: 95%;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+     margin-top: 10px;
+}
+
+:host ::ng-deep .justify-content-start {
+    justify-content: center !important;
+}
+
+:host ::ng-deep .pillsbackground .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #FFFFFF;
+    background-color: #ff9149;
+}
+
+:host ::ng-deep .pillsborder .nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    color: #28d094;
+    border: 2px solid #28D094 !important;
+    background-color: #FFFFFF;
+    font: #28d094;
+}
+
+:host ::ng-deep .notifications .nav-pills .nav-link.active {
+    color: #7c7f90;
+    background-color: #FFFFFF;
+}
+:host ::ng-deep .table-responsive {
+   overflow-y: hidden;
+}
+:host ::ng-deep .text .dropdown-list .item2 {
+    max-height: 87px !important;
+}
+:host ::ng-deep .nav-badge {
+    border-radius: 10rem;
+    display: inline-block;
+    padding: 0.35em 0.4em;
+    font-size: 95%;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+    margin-top: 10px;
+}
+
+:host ::ng-deep .nav-badge-pillsborder {
+    color: #28d094;
+    border: 2px solid #28D094 !important;
+    background-color: #FFFFFF;
+}

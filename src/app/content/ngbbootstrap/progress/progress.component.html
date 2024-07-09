@@ -1,0 +1,274 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Basic Progress start -->
+      <section id="basic-progress">
+        <div class="row">
+          <div class="col-12" *blockUI="'basicProgress'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadBasicProgress($event)">
+              <ng-container mCardHeaderTitle>
+                Basic Progress
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="text-center" id="example-caption-1">Reticulating splines&hellip; 0%</div>
+                <div>
+                  <ngb-progressbar type="primary" [value]="0"></ngb-progressbar>
+                </div>
+
+                <div class="text-center" id="example-caption-2">Reticulating splines&hellip; 25%</div>
+                <div>
+                  <ngb-progressbar type="primary" [value]="25"></ngb-progressbar>
+                </div>
+
+                <div class="text-center" id="example-caption-3">Reticulating splines&hellip; 50%</div>
+                <div>
+                  <ngb-progressbar type="primary" [value]="50"></ngb-progressbar>
+                </div>
+
+                <div class="text-center" id="example-caption-4">Reticulating splines&hellip; 75%</div>
+                <div>
+                  <ngb-progressbar type="primary" [value]="75"></ngb-progressbar>
+                </div>
+
+                <div class="text-center" id="example-caption-5">Reticulating splines&hellip; 100%</div>
+                <div>
+                  <ngb-progressbar type="primary" [value]="100"></ngb-progressbar>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Basic Progress end -->
+
+      <!-- Colored Progress start -->
+      <section id="colored-progress">
+        <div class="row">
+          <div class="col-12" *blockUI="'coloredProgress'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadColoredProgress($event)">
+              <ng-container mCardHeaderTitle>
+                Colored Progress
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Progress bars use some of the same button and alert classes for consistent styles.</p>
+                <div>
+                  <div>
+                    <ngb-progressbar type="primary" [value]="20"></ngb-progressbar>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ngb-progressbar type="success" [value]="40"></ngb-progressbar>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ngb-progressbar type="danger" [value]="60"></ngb-progressbar>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ngb-progressbar type="info" [value]="80"></ngb-progressbar>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <ngb-progressbar type="warning" [value]="100"></ngb-progressbar>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+
+          </div>
+        </div>
+      </section>
+      <!-- Colored Progress end -->
+
+      <!-- Labeled Progress start -->
+      <section id="labeled-progress">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Labeled Progress</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body text-center">
+                  <div>
+                    <div>
+                      <ngb-progressbar showValue="true" type="primary" [value]="20"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar showValue="true" type="success" [value]="40"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar showValue="true" type="danger" [value]="60"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar showValue="true" type="info" [value]="80"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar showValue="true" type="warning" [value]="100"></ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Labeled Progress end -->
+
+      <!-- Striped Progress start -->
+      <section id="striped-progress">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Striped Progress</h4>
+
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body text-center">
+                  <p>Uses a gradient to create a striped effect.</p>
+                  <div>
+                    <div>
+                      <ngb-progressbar [striped]="true" type="primary" [value]="20"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [striped]="true" type="success" [value]="40"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [striped]="true" type="danger" [value]="60"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [striped]="true" type="info" [value]="80"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [striped]="true" type="warning" [value]="100"></ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Striped Progress end -->
+
+      <!-- Animated Progress start -->
+      <section id="animated-progress">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Animated Progress</h4>
+
+              </div>
+              <div class="card-content">
+                <div class="card-body text-center">
+                  <p>Progressbar with animated effect.</p>
+                  <div>
+                    <div>
+                      <ngb-progressbar [animated]="true" [striped]="true" type="primary" [value]="20">
+                      </ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [animated]="true" [striped]="true" type="success" [value]="40">
+                      </ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [animated]="true" [striped]="true" type="danger" [value]="60">
+                      </ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [animated]="true" [striped]="true" type="info" [value]="80"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar [animated]="true" [striped]="true" type="warning" [value]="100">
+                      </ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Animated Progress end -->
+
+      <!-- Progress Sizes start -->
+      <section id="progress-sizes">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Progress Sizes</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body text-center">
+                  <p>Different height sizes using inline styles. For Default progress, No size class needed.</p>
+                  <div>
+                    <div>
+                      <ngb-progressbar height="18px" [striped]="true" type="primary" [value]="20"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar height="14px" [striped]="true" type="success" [value]="40"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar height="10px" [striped]="true" type="danger" [value]="60"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar height="7px" [striped]="true" type="info" [value]="80"></ngb-progressbar>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <ngb-progressbar height="3px" [striped]="true" type="warning" [value]="100"></ngb-progressbar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Progress Sizes end -->
+
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

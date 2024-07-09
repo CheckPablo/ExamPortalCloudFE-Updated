@@ -1,0 +1,127 @@
+<div class="app-content content">
+    <div class="content-wrapper">
+        <div class="content-header row mb-1">
+            <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+        </div>
+        <div class="content-body">
+            <!-- Dropzone section start -->
+            <section id="dropzone-examples"  *blockUI="'dropzoneGallery'; message: 'Loading'">
+                  <div class="row">
+                    <div class="col-12">
+                        <m-card [options]="options" (reloadFunction)="reloadDorpzone($event)">
+                            <ng-container mCardHeaderTitle>
+                                Single File Upload
+                              </ng-container>
+                              <ng-container mCardBody>
+                                    <p class="card-text">This example uploads a single file using ngx-dropzone.
+                                        User can either click on the dropzone area and select single files or just drop all selected files
+                                        in the dropzone area. This example is the most basic setup for dropzone.</p>
+                                        <div class = "card-content collapse show">
+                                            <div class ="card-header">
+                                                <h4 class="card-title">The default dropzone.</h4>
+                                            </div>
+                                    <ngx-dropzone class="_dropzone" (change)="SelectSingleFile($event)">
+                                        <ngx-dropzone-label>
+                                            <div class="dz-default dz-message">
+                                                <span class = "dz-default">Drop files here to upload</span>
+                                            </div>
+                                        </ngx-dropzone-label>
+                                        <ngx-dropzone-preview class="dropzone" *ngFor="let f of file" [removable]="true" (removed)="SinglefileonRemove(f)">
+                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-preview>
+                                    </ngx-dropzone>
+                                    <div class ="card-header">
+                                        <h4 class="card-title">The disabled but expanding dropzone.</h4>
+                                    </div>
+                                           
+                                    <ngx-dropzone  class="_dropzone" (change)="SelectSingleFile($event)" [disabled]="true" [expandable]="true">
+                                        <ngx-dropzone-label>
+                                            <div class="dz-default dz-message">
+                                                <span class = "dz-default">Drop files here to upload</span>
+                                            </div>
+                                        </ngx-dropzone-label>
+                                        <ngx-dropzone-preview  class="dropzone" *ngFor="let f of file">
+                                            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-preview>
+                                    </ngx-dropzone>
+                                    <div class ="card-header">
+                                        <h4 class="card-title">A custom dropzone.</h4>
+                                    </div>
+                                         
+                                    <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="SelectSingleFile($event)">
+                                        <ngx-dropzone-label>
+                                            <div class="dz-default dz-message">
+                                                <span class = "dz-default">My custome dropzone</span>
+                                            </div>
+                                        </ngx-dropzone-label>
+                                        <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of file" [file]="f" [removable]="true" (removed)="SinglefileonRemove(f)">
+                                            <ngx-dropzone-label class="dropzone1">{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                        </ngx-dropzone-image-preview>
+                                    </div>
+                                    </div>
+                            
+                                </ng-container>
+                        </m-card>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <m-card [options]="options" (reloadFunction)="reloadDorpzone($event)">
+                            <ng-container mCardHeaderTitle>
+                                Multiple File Upload
+                              </ng-container>
+                              <ng-container mCardBody>
+                                    <p class="card-text">This example uploads a multiple files using ngx-dropzone. 
+                                        By default, dropzone is a multiple file uploader. User can either click
+                                        on the dropzone area and select multiple files or just drop all selected files
+                                        in the dropzone area. This example is the most basic setup for dropzone.</p>
+                                        <ngx-dropzone  class="_dropzone" (change)="SelectMultipleFile($event)">
+                                            <ngx-dropzone-label>
+                                                <div class="dz-default dz-message">
+                                                    <span class = "dz-default">Drop files here to upload</span>
+                                                </div>
+                                            </ngx-dropzone-label>
+                                            <ngx-dropzone-preview class="dropzone" *ngFor="let f of files" [removable]="true" (removed)="MultiplefilesonRemove(f)">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-preview>
+                                        </ngx-dropzone>
+                                        
+                                        <div class ="card-header">
+                                            <h4 class="card-title">The disabled but expanding dropzone.</h4>
+                                        </div>
+                                        
+                                        <ngx-dropzone class="_dropzone" (change)="SelectMultipleFile($event)" [disabled]="true" [expandable]="true">
+                                            <ngx-dropzone-label>
+                                                <div class="dz-default dz-message">
+                                                <span class = "dz-default">Drop files here to upload</span>
+                                            </div>
+                                            </ngx-dropzone-label>
+                                            <ngx-dropzone-preview  class="dropzone" *ngFor="let f of files">
+                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-preview>
+                                        </ngx-dropzone>
+                                        
+                                        <div class ="card-header">
+                                            <h4 class="card-title">A custom dropzone.</h4>
+                                        </div>
+                                        
+                                        <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="SelectMultipleFile($event)">
+                                            <ngx-dropzone-label>
+                                                <div class="dz-default dz-message">
+                                                    <span class = "dz-default">My custome dropzone</span>
+                                                </div>
+                                            </ngx-dropzone-label>
+                                            <ngx-dropzone-image-preview  ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="MultiplefilesonRemove(f)">
+                                                <ngx-dropzone-label class="dropzone1">{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                            </ngx-dropzone-image-preview>
+                                        </div>
+                                    </ng-container>
+                          </m-card>
+                    </div>
+                </div>
+            </section>
+            <!-- // Dropzone section end -->
+        </div>
+    </div>
+</div>
+<!-- END: Content-->

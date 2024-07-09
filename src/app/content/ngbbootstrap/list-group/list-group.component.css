@@ -1,0 +1,9 @@
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+:host ::ng-deep .list-group-item {
+  margin-bottom: 0px !important;
+}
+:host ::ng-deep hr {
+  height: 0px !important;
+}

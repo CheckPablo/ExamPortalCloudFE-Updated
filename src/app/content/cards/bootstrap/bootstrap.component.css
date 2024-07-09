@@ -1,0 +1,11 @@
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .list-group-item {
+  border: 1px solid #E4E7ED !important;
+}
+
+:host ::ng-deep .carousel-item-next:not(.carousel-item-left){
+  transform: unset !important;
+}

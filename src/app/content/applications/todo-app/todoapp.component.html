@@ -1,0 +1,318 @@
+<div class="app-content content">
+  <div class="sidebar-left" id="sidebar-left">
+    <div class="sidebar">
+      <div class="todo-sidebar d-flex">
+        <span class="sidebar-close-icon" (click)="sidebar($event)">
+          <i class="ficon feather ft-x"></i>
+        </span>
+        <!-- todo app menu -->
+        <div class="todo-app-menu">
+          <div class="form-group text-center add-task">
+            <!-- new task button -->
+            <button type="button" class="btn btn-danger btn-glow add-task-btn btn-block my-1"
+              (click)="sidebartask($event)" (click)="open()">
+              <i class="ficon feather ft-plus"></i>
+              <span>New Task</span>
+            </button>
+          </div>
+          <!-- sidebar list start -->
+          <div class="sidebar-menu-list" fxFlex="auto" [perfectScrollbar]="config">
+            <div class="list-group">
+              <a href="#" class="list-group-item border-0 ">
+                <span class="fonticon-wrap mr-50">
+                  <i class="ficon feather ft-align-justify"></i>
+                </span>
+                <span> All</span>
+              </a>
+            </div>
+            <label class="filter-label mt-2 mb-1 pt-25">Filters</label>
+            <div class="list-group" *ngFor="let todo of todoFilterList">
+              <a [routerLink]="" class="list-group-item border-0" (click)="showTodoMenu(todo.Id, todoFilterList)"
+                [ngClass]="{'active':todo.isSelected ===  true, '':todo.isSelected ===  false}">
+                <span class="fonticon-wrap mr-50">
+                  <i class="{{todo.lableIcon}}"></i>
+                </span>
+                <span>{{todo.lableName}}</span>
+              </a>
+
+            </div>
+            <label class="filter-label mt-2 mb-1 pt-25">Labels</label>
+            <div class="list-group" *ngFor="let todo of todoLableList">
+              <a [routerLink]="" class="list-group-item border-0 d-flex align-items-center justify-content-between"
+                (click)="showTodoMenu(todo.Id, todoLableList)"
+                [ngClass]="{'active':todo.isSelected ===  true, '':todo.isSelected ===  false}">
+                <span>{{todo.lableName}}</span>
+                <span class="{{todo.bulletClass}} d-inline-block rounded-circle "></span>
+              </a>
+
+            </div>
+          </div>
+          <!-- sidebar list end -->
+        </div>
+      </div>
+
+      <!-- todo new task sidebar -->
+      <div class="todo-new-task-sidebar" id="todo-new-task" fxFlex="auto" [perfectScrollbar]="config">
+        <div class="card shadow-none p-0 m-0">
+          <div class="card-header border-bottom py-75">
+            <div class="task-header d-flex justify-content-between align-items-center">
+              <h5 class="new-task-title mb-0" *ngIf="todoId === null">New Task</h5>
+              <button class="mark-complete-btn btn btn-primary btn-sm" *ngIf="todoId !== null">
+                <i class="ficon feather ft-check align-middle"></i>
+                <span class="mark-complete align-middle">Mark Complete</span>
+              </button>
+              <span class="dropdown mr-1">
+                <i class='ficon feather ft-paperclip cursor-pointer mr-50'></i>
+
+                <span ngbDropdown [open]="false" [autoClose]="true" class="d-inline-block">
+                  <a class="dropdown-toggle new-taskDropdown" id="folder" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false" id="dropdownMenuButton" dropdown-menu dropdown-menu-right show
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu" ngbDropdownToggle>
+                    <i class='ficon feather ft-more-vertical'></i>
+
+                  </a>
+                  <div ngbDropdownMenu="dropdownMenuButton" class="dropdown-menu dropdown-menu-right dropdownnew-task">
+                    <a class="dropdown-item" [routerLink]="">Add to another project</a>
+                    <a class="dropdown-item" [routerLink]="">Create follow up task</a>
+                    <a class="dropdown-item" [routerLink]="">Print</a>
+                  </div>
+                </span>
+
+
+
+              </span>
+            </div>
+            <button type="button" class="close close-icon" (click)="sidebartask($event)">
+              <i class="ficon feather ft-x"></i>
+            </button>
+          </div>
+          <!-- form start -->
+          <form [formGroup]="todo" id="compose-form" class="mt-1" (ngSubmit)="onSubmit($event)">
+            <div class="card-content">
+              <div class="card-body py-0 border-bottom">
+                <div class="form-group">
+                  <!-- text area for task title -->
+                  <textarea formControlName="title" name="title" class="form-control task-title" cols="1" rows="2"
+                    placeholder="Write a Task Name" required>
+            </textarea>
+                </div>
+                <!-- Modal -->
+
+                <div class="assigned d-flex justify-content-between">
+                  <div class="form-group d-flex align-items-center mr-1">
+
+                    <div class="avatar avatar-image">
+
+                      <img *ngIf="todoId === null"
+                        [src]="selectedUserImage?selectedUserImage:'../../../../assets/images/portrait/small/default.png'"
+                        class="avatar-user-image " id="avatar-user" alt="#" width="38" height="38">
+                      <img *ngIf="todoId !== null"
+                        [src]="selectedAssignee?selectedAssignee.image:'../../../../assets/images/portrait/small/default.png'"
+                        class="avatar-user-image " id="avatar-user" alt="#" width="38" height="38">
+                      <div class="avatar-content d-none" id="avatar-content">
+                        <i class='ficon feather ft-user font-medium-4'></i>
+                      </div>
+                    </div>
+                    <!-- select2  for user name  -->
+                    <div class="select-box mr-1">
+                      <ng-select [items]="contact" bindLabel="name" formControlName="assignedTo"
+                        [(ngModel)]="selectedAssignee" (change)="getSelectedTODOTypeImage($event)">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="form-group d-flex align-items-center position-relative">
+                    <!-- date picker -->
+                    <div class="input-group">
+
+                      <div class="input-group-text mr-50" (click)="d2.toggle()">
+                        <i class="ficon feather  ft-calendar" style="cursor: pointer;"></i>
+                      </div>
+
+                      <input class="form-control" placeholder="yyyy-mm-dd" formControlName="assignDate"
+                        name="assignDate" ngbDatepicker #d2="ngbDatepicker">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body border-bottom task-description">
+                <!--  Quill editor for task description -->
+                <div class="snow-container border rounded p-50">
+                  <div class="compose-editor mx-75 ql-container ql-snow"></div>
+                  <quill-editor [styles]="{height: '90px'}" [modules]="newTodoquillConfig" (onFocus)="focus()"
+                    (onBlur)="blur()" formControlName="description"></quill-editor>
+                  
+                </div>
+                <div class="tag d-flex justify-content-between align-items-center pt-1">
+                  <div class="flex-grow-1 d-flex align-items-center">
+                    <i class="ficon feather ft-tag align-middle mr-25"></i>
+                    <select class="custom-select form-control" id="todo-select" placeholder="Select Tag"
+                      formControlName="type" name="type" (change)="getSelectedTODOTypeText($event)">
+                      <option value="" selected>Select Tag</option>
+                      <option value="warning">Project</option>
+                      <option value="secondary">Product</option>
+                      <option value="primary">Bug</option>
+                      <option value="success">API</option>
+                      <option value="danger">UI</option>
+                    </select>
+                    <!-- <ng-select [items]="multipleSelectArray" [multiple]="true" bindLabel="item_text"
+                          formControlName="type" name="type" (change)="getSelectedTODOTypeText($event)">
+                      </ng-select> -->
+                  </div>
+                  <div class="ml-25">
+                    <i class="ficon feather ft-plus-circle cursor-pointer add-tags"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body pb-1">
+                <div class="d-flex align-items-center mb-1">
+                  <div class="avatar mr-75">
+                    <img *ngIf="!selectedItem && loggedInUser.photoURL" src="{{currentUserImage}}" width="38"
+                      height="38">
+                    <img *ngIf="selectedItem && selectedItem.creator && selectedItem.creator.image"
+                      src="{{selectedItem.creator.image}}" width="38" height="38">
+                    <img *ngIf="(!selectedItem && !loggedInUser.photoURL) || (selectedItem && !selectedItem.creator)"
+                      src="../../../../assets/images/portrait/small/avatar-s-19.png" width="38" height="38">
+                  </div>
+                  <div *ngIf="!selectedItem && currentUserName" class="avatar-content">
+                    {{currentUserName}} creating this task
+                  </div>
+                  <div *ngIf="selectedItem && selectedItem.creator" class="avatar-content">
+                    {{selectedItem.creator.name}} created this task
+                  </div>
+                  <div *ngIf="!currentUserName && (!selectedItem || !selectedItem.creator)" class="avatar-content">
+                    John Doe creating this task
+                  </div>
+                </div>
+                <h4 style="font-family:bold;">Comments:</h4>
+                <div class="d-flex align-items-center mb-1" *ngFor="let todo of todoComments">
+                  <div class="avatar avatar-image">
+                    <img [src]="todo.userid?todo.userid:'../../../../assets/images/portrait/small/default.png'"
+                      class="avatar-user-image " id="avatar-user" alt="#" width="38" height="38">
+                  </div>
+                  <div class="avatar-content">
+                    {{todo.comment}}
+                  </div>
+                  <small class="ml-75 text-muted">{{todo.created_at_date | date: 'dd/MMM HH:mm'}}</small>
+                </div>
+                <!-- quill editor for comment -->
+                <div class="snow-container border rounded p-50 ">
+                  <div class="comment-editor mx-75 ql-container ql-snow"></div>
+
+                  <div class="editor">
+                    <quill-editor [styles]="{height: '90px'}" #quill="ngModel" [modules]="TodoquillConfig"
+                      (onFocus)="focus()" (onBlur)="blur()" [(ngModel)]="todoCommentsField"
+                      [ngModelOptions]="{standalone: true}"></quill-editor>
+
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <button type="button" *ngIf="todoId !== null" class="btn btn-sm btn-primary comment-btn"
+                      (click)="submitComment(selectedItem.id, todoCommentsField)">
+                      <span>Comment</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="mt-1 d-flex justify-content-end">
+                  <button type="submit" class="btn btn-danger add-todo" *ngIf="todoId === null">Add Task</button>
+                  <button type="button" class="btn btn-danger update-todo"
+                    (click)="onUpdate(selectedItem.id, todo.value, $event)" *ngIf="todoId !== null">Save
+                    Changes</button>
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+          <!-- form start end-->
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="content-right">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+      </div>
+      <div class="content-body">
+        <div class="app-content-overlay" id="content-overlay" (click)="sidebartask($event)"></div>
+        <div class="todo-app-area">
+          <div class="todo-app-list-wrapper">
+            <div class="todo-app-list">
+              <div class="todo-fixed-search d-flex justify-content-between align-items-center">
+                <div class="sidebar-toggle d-block d-lg-none" (click)="sidebar($event)">
+                  <i class="ficon feather ft-align-justify"></i>
+                </div>
+                <fieldset class="form-group position-relative has-icon-left m-0 flex-grow-1 pl-2">
+                  <input type="text" class="form-control todo-search" id="todo-search" (keyup)="search($event)"
+                    placeholder="Search Task">
+                  <div class="form-control-position">
+                    <i class="ficon feather ft-search"></i>
+                  </div>
+                </fieldset>
+                <div class="todo-sort dropdown mr-1">
+                  <div ngbDropdown [open]="false" [autoClose]="true" class="d-inline-block">
+                    <button type="button" class="btn dropdown-toggle sorting" id="folder" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton" dropdown-menu
+                      dropdown-menu-right show data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                      role="menu" ngbDropdownToggle>
+                      <i class="ficon feather ft-filter"></i>
+                      <span>Sort</span>
+                    </button>
+                    <div ngbDropdownMenu="dropdownMenuButton" class="dropdown-menu dropdown-menu-right dropdown-sort">
+                      <a class="dropdown-item" [routerLink]="">Ascending</a>
+                      <a class="dropdown-item" [routerLink]="">Descending</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="todo-task-list list-group" [perfectScrollbar]="config">
+                <!-- task list start -->
+                <ul class="todo-task-list-wrapper list-unstyled" id="todo-task-list-drag"
+                  *ngFor="let item of todos let i = index">
+                  <li class="todo-item " [checked]="item.completed" [ngClass]="{'completed': item.completed}"
+                    (click)="sidebartask($event)" (click)="editModal(item,$event)">
+                    <div
+                      class="todo-title-wrapper d-flex justify-content-sm-between justify-content-end align-items-center">
+                      <div class="todo-title-area d-flex">
+                        <i class='ficon feather ft-more-vertical handle'></i>
+                        <div class="custom-control custom-checkbox" (click)="$event.stopPropagation();">
+                          <input type="checkbox" [checked]="item.completed" (change)="completeTODO(item, $event)"
+                            class="custom-control-input" id="checkbox{{i}}">
+                          <label class="custom-control-label" for="checkbox{{i}}"></label>
+                        </div>
+                        <p class="todo-title mx-50 m-0 truncate">{{item.title}}</p>
+                      </div>
+                      <div class="todo-item-action d-flex align-items-center">
+                        <div class="todo-badge-wrapper d-flex">
+                          <span class="badge badge-{{item.type}} badge-pill">{{item.badge}}</span>
+                        </div>
+                        <div class="avatar ml-1" *ngIf="item.assignedTo">
+                          <img src="{{item.assignedTo.image}}"
+                            default="../../../../assets/images/portrait/small/default.png" alt="avatar" height="30"
+                            width="30">
+                        </div>
+                        <a class='todo-item-favorite ml-75' [attr.id]="'todo-icon' + item.id"
+                          (click)="todoFavorite($event,item.id)" (click)="$event.stopPropagation();"><i
+                            class="ficon feather ft-star"></i></a>
+                        <a class='todo-item-delete ml-75' (click)="onDelete(item.id)"
+                          (click)="$event.stopPropagation();"><i class="ficon feather ft-trash-2"></i></a>
+                      </div>
+                    </div>
+                  </li>
+
+                </ul>
+                <!-- task list end -->
+                <div class="no-results">
+                  <h5>No Items Found</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END: Content-->

@@ -1,0 +1,68 @@
+
+table {
+  width: 100%;
+/*   border: 1px solid black;*/
+ }
+
+table td > div {
+  overflow: hidden;
+  height: 15px;
+  width: 310px;
+}
+
+/* table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0px;
+        margin-left: auto;
+        margin-right: auto; 
+  }
+  table td {
+    /*border: solid 1px #666;*/
+    /*width: 310px;
+    height:50px;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    line-height: 20px;
+    max-height: 100px;
+    white-space: normal;
+   --max-lines: 3;
+   /* white-space: nowrap; 
+    */
+  /*}
+ */
+/* 
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+  width: 100%;
+  }
+  table td {
+    height: 50px;
+    width: 110px;
+    overflow: hidden;
+    word-wrap: break-word; 
+    white-space: normal; 
+  } */
+
+  /* table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+  /*   border-spacing: 0px;
+        margin-left: auto;
+        margin-right: auto;  
+  }
+  table td {*/
+    /*border: solid 1px #666;
+    width: 310px;
+    height:50px;
+    overflow: hidden; 
+   /*  text-overflow: ellipsis; */
+/*     line-height: 20px; */
+/*     max-height: 100px; 
+   white-space: nowrap; 
+    
+  }
+  */

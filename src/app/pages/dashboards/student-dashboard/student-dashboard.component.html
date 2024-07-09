@@ -1,0 +1,338 @@
+
+<div  style="background-color:#fff;text-align:right;padding-right:-1900px;margin:0;padding:0;width:auto; margin-top:100px;">
+
+</div>
+<div class="col-sm-12 col-md-12" style="background-color:#fff;width:50">
+    <div  style="text-align:right">
+      <button type="button"
+            class="btn btn-block btn-primary glow" style="width:100px;margin-right:20px;display:inline-block"
+            (click)="openModal(checkOTPModal)">Check OTP
+      </button>
+     
+
+      <button type="button" class="btn btn-block btn-primary glow"  style="width:100px;margin-right:20px;display:inline-block"(click)="refreshPage()">
+            <i class="la la-refresh"></i> Refresh
+        <div class="timer" style="font-size:25px;">
+            {{testName}}
+            {{duration}}
+        </div>
+     </button>
+</div>
+    <div style=" text-align:right">
+        <button type="button" class="btn btn-block btn-primary glow"  style="width:100px;margin-right:20px;display:inline-block"(click)="logoutStudent()">
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+          </button>
+
+          <button style="display:none" class="btn btn-block btn-primary glow" >
+            <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+          </button>
+    </div>
+
+    
+
+    
+          <div class="form-group">
+            <p style="text-align:center;font-family:Quicksand, Georgia,Times New Roman;font-size:20px;font-weight:400;color: #464855;line-height: 1.2;margin-bottom:0.5rem; "*ngIf="user?.fullName" class="mr-1 user-name text-bold-700">
+
+                <img src="assets/custom/images/logo.png" style="text-align:center;">
+                <br>
+                <br>
+                {{user?.fullName}}<br>
+                {{user?.username}}<br>
+                {{user?.centerName}}
+                <!--V-SOFT TECHNOLOGIES-->
+              </p>
+            <br>
+            <!--<table id="laps"></table>-->
+           
+    </div>
+    <div class="row mb-md-2">
+        <div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="tickets-table_length">
+                <label class="d-inline-flex align-items-center">
+                    Show
+                    <select name="tickets-table_length" aria-controls="tickets-table"
+                        name="pageSize"  [(ngModel)]="paginationService.pageSize"
+                        class="form-control form-control-sm mx-2" (ngModelChange)="paginationService.setPageSize($event)">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="25">25</option>
+                        <option [ngValue]="50">50</option>
+                        <option [ngValue]="100">100</option>
+                    </select> 
+                    entries
+                </label>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                <label class="d-inline-flex align-items-center">
+                    Search:
+                    <input type="text" name="searchTerm"
+                        class="form-control form-control-sm ms-2" aria-controls="tickets-table"
+                        [(ngModel)]="paginationService.searchTerm"
+                        (input)="paginationService.onSearchInputChange($event.target.value)">
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+
+    <table class="table table-striped table-bordered no-footer dataTable">
+        <thead class="bg-info white">
+            <tr>
+                <th style="width: 80px;">
+                  Test
+                </th>
+                <th sortable="code" (sort)="onSort($event)">
+                    Total Questions
+                </th>
+                <th sortable="code" (sort)="onSort($event)" >
+                    Exam Date 
+                </th>
+                <th sortable="centerName" (sort)="onSort($event)">
+                    Exam End Date
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <th sortable="code" (sort)="onSort($event)">
+                    Completed
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <th sortable="name" (sort)="onSort($event)">
+                    Unsaved Progress
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <th sortable="code" (sort)="onSort($event)">
+                    Exam Start Time
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <th sortable="code" (sort)="onSort($event)">
+                    Start Test
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <!--<th sortable="code" (sort)="onSort($event)">
+                    Email
+                    <i class="la la-sort float-md-end"></i>
+                </th>
+                <th>Delete User</th>-->
+            </tr>
+        </thead>
+        <tbody style="background-color:#fff; padding-top: -25px;width:50">
+            <tr *ngFor="let studentTest of paginationService.paginatedData |studentTestListSort:filter">
+                <td>
+                    <ngb-highlight  [result]="studentTest.testName" 
+                    [term]="paginationService.searchTerm">
+                    </ngb-highlight>
+                </td>
+             
+                <td>
+                    <ngb-highlight  [result]="1" 
+                    [term]="paginationService.searchTerm">
+                    </ngb-highlight>
+                </td>
+                <td>
+                        <ngb-highlight  [result]="studentTest.examDate | date:'dd MMM yyyy HH:mm'" 
+                        [term]="paginationService.searchTerm">
+                        </ngb-highlight>
+                </td>
+                <td>
+                    
+                     <ngb-highlight  [result]="studentTest.paperExpiryDate | date:'dd MMM yyyy HH:mm'"
+                        [term]="paginationService.searchTerm"></ngb-highlight> 
+                    <!-- <ngb-highlight  [result]="studentTest.examDate | date:'dd MMMmhvmh yyyy HH:mm'"
+                        [term]="paginationService.searchTerm"></ngb-highlight> -->
+                </td>
+               <td>
+                    <ngb-highlight [result]="studentTest.completed"
+                        [term]="paginationService.searchTerm"></ngb-highlight>
+                </td>
+               <!-- [routerLink]="['/portal/student-offline-answers']-->
+               <!--[routerLink]="['/portal/student-testanswer/student-testanswer']"-->
+                <td *ngIf="studentTest.upload == 1">
+                    <button id="btnReviewProgress" type="button"  
+                        class="btn btn-block btn-primary glow"
+                        style="width:100px"  (click)="openOfflineAnswerPane(studentTest)">
+                        Review Progress
+                    </button>   
+                </td>
+                <td *ngIf="studentTest.upload != 1">
+                 
+                </td>
+                <!--<ngb-highlight [result]="studentTest.examTime | date:'dd MMM yyyy HH:mm' "-->
+                <td>
+                    <ngb-highlight [result]="studentTest.examTime | date:'HH:mm' "
+                    [term]="paginationService.searchTerm"></ngb-highlight>
+                </td>
+                <td *ngIf="studentTest.completed == 'False'">
+                    <button id="btnReviewProgress" type="button" 
+                        class="btn btn-block btn-primary glow"
+                        style="width:100px"  (click)="openOTPValidationModal(enterOTPModal,studentTest)" >
+                        Start Test
+                    </button> 
+                </td>
+                <td *ngIf="studentTest.completed == 'True'">
+                 
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row justify-content-md-between align-items-md-center mt-2"
+*ngIf="paginationService.totalItems">
+<div class="col-sm-12 col-md-5">
+    <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+        aria-live="polite">Showing
+        {{paginationService.startIndex}} to
+        {{paginationService.endIndex}} of
+        <span
+            *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}}
+            search results from
+        </span>
+        {{paginationService.totalItems}} entries
+    </div>
+</div>
+<div class="col-sm-12 col-md-5">
+    <div class="text-md-right float-md-end pagination-rounded">
+        <ul class="pagination">
+            <li class="page-item ng-star-inserted"
+                [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                (click)="paginationService.setPage(1)">
+                <a aria-label="Previous" href="javascript:void(0);"
+                    class="page-link">
+                    <span aria-hidden="true" class="ng-star-inserted">««</span>
+                </a>
+            </li>
+            <li class="page-item ng-star-inserted"
+                [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                (click)="paginationService.goToPreviousPage()">
+                <a aria-label="Previous" href="javascript:void(0);"
+                    class="page-link">
+                    <span aria-hidden="true" class="ng-star-inserted">«</span>
+                </a>
+            </li>
+            <li class="page-item ng-star-inserted" aria-current="page"
+                [ngClass]="{ 'active': paginationService.currentPage == page }"
+                *ngFor="let page of paginationService.paginationLinks"
+                (click)="paginationService.setPage(page)">
+                <a href="javascript:void(0);"
+                    class="page-link ng-star-inserted">
+                    {{ page }}
+                </a>
+            </li>
+            <li class="page-item ng-star-inserted"
+                [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                (click)="paginationService.goToNextPage()">
+                <a aria-label="Next" href="javascript:void(0);"
+                    class="page-link">
+                    <span aria-hidden="true" class="ng-star-inserted">»</span>
+                </a>
+            </li>
+            <li class="page-item ng-star-inserted"
+                [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                (click)="paginationService.setPage(paginationService.totalPages)">
+                <a aria-label="Next" href="javascript:void(0);"
+                    class="page-link">
+                    <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<ng-template #checkOTPModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Conversation with invigilator</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<form [formGroup]="form" (ngSubmit)="onStudentMesssageSend()">
+    <div class="modal-body">
+        <div class="row">
+            <input type="hidden" id="TestID" class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Private Message
+                <div class="form-group row">
+                
+                    <div class="col-md-9 mx-auto" style="text-align:left;">
+                        <select id="sectorId" name="sectorId" class="form-control form-select" (change)="onChangeTest($any($event.target).value)" formControlName="id">
+                            <option value ="">--Select Test--</option>
+                            <option *ngFor="let testList of studentTestLists" [value]="testList.id">{{testList.testName}}</option>
+                        </select>                        
+                    </div>
+                </div>
+            </div>
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <textarea readonly class="form-control"  id="testOTPMessageArea"  style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:center"rows="15" cols="90" wrap="hard">{{studentTestOTPMessage}}</textarea>
+                    </div>
+                <div class="form-group row">
+                    <div class="col-md-9 mx-auto">
+                        <input  class="form-control" type="text"  formControlName="testChatMessage" id="testChatMessage" 
+                            placeholder="Enter Message">
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+            Close
+        </button>
+        <button type="submit" class="btn btn-outline-primary">
+            Send
+        </button>
+    </div>
+</form>
+</ng-template>
+
+<ng-template #enterOTPModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">One Time Pin</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="TestOtpForm" >
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="GradeID" class="form-control">
+            </div>
+         
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <fieldset class="position-relative has-icon-left">
+                        <label class="col-md-3 label-control" for="description" data-toggle="tooltip" title="Code">
+                            One Time Pin:
+                            <!-- <i class="fa fa-asterisk text-danger"
+                                *ngIf="g['otp'].errors && g['otp'].errors.required"></i> -->
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input  class="form-control" type="text"  [formControl]="otpToValidate"id="otpToValidate" name="otpToValidate"
+                                placeholder="Enter OTP"  maxlength="5">
+
+                                <div class="form-control-position">
+                                    <i class="la la-key"></i>
+                                </div>
+                                <div *ngIf="!otpToValidate" class="invalid-feedback">
+                                    <div>OTP is  required</div>
+                                </div>
+
+                                <div *ngIf="otpToValidate.length < 5 " class="invalid-feedback">
+                                    <div>OTP is too short</div>
+                                </div>
+                        </div>
+                    </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" (click)="onOTPSubmit()">
+                Validate
+            </button>
+        </div>
+    </form>
+</ng-template>
+ <app-pop-up content = "{{content}}" title="{{title}}"  show="{{show}}" /> -

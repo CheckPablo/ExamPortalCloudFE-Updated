@@ -1,0 +1,375 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Static Popovers start -->
+      <section id="static-popovers">
+        <div class="row ">
+          <div class="col-12" *blockUI="'staticDemo'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadStaticDemo($event)">
+              <ng-container mCardHeaderTitle>
+                Static demo
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Four options are available: top, right, bottom, and left aligned.</p>
+                <div class="row">
+                  <div class="col-xl-3 col-lg-6 col-6 text-center">
+                    <h5 class="text-center">Basic Top Popover</h5>
+                    <div class="popover bs-popover-top show"
+                      style="display: block; position: relative; margin: 1rem auto; padding: 0; z-index: 100;">
+                      <div class="arrow" style="left: 50%;"></div>
+                      <div class="popover-header" style="max-width: none;">Popover on Top</div>
+                      <div class="popover-body">
+                        <p>Ice cream tootsie roll tiramisu tootsie roll toffee dragée sugar plum cake. Liquorice jelly
+                          jujubes. Powder danish tart apple pie dessert cheesecake tiramisu soufflé bonbon. Carrot cake
+                          wafer toffee.</p>
+                      </div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="top"</code> to add top popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 text-center">
+                    <h5 class="text-center">Basic Right Popover</h5>
+                    <div class="popover bs-popover-right show"
+                      style="display: block; position: relative; margin: 1rem auto; padding: 0; z-index: 100;">
+                      <div class="arrow" style="top: 50%;"></div>
+                      <div class="popover-header" style="max-width: none;">Popover on Right</div>
+                      <div class="popover-body">
+                        <p>Ice cream tootsie roll tiramisu tootsie roll toffee dragée sugar plum cake. Liquorice jelly
+                          jujubes. Powder danish tart apple pie dessert cheesecake tiramisu soufflé bonbon. Carrot cake
+                          wafer toffee.</p>
+                      </div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="right"</code> to add right popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 text-center">
+                    <h5 class="text-center">Basic Bottom Popover</h5>
+                    <div class="popover bs-popover-bottom show"
+                      style="display: block; position: relative; margin: 1rem auto; padding: 0; z-index: 100;">
+                      <div class="arrow" style="left: 50%;"></div>
+                      <div class="popover-header" style="max-width: none;">Popover on Bottom</div>
+                      <div class="popover-body">
+                        <p>Ice cream tootsie roll tiramisu tootsie roll toffee dragée sugar plum cake. Liquorice jelly
+                          jujubes. Powder danish tart apple pie dessert cheesecake tiramisu soufflé bonbon. Carrot cake
+                          wafer toffee.</p>
+                      </div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="bottom"</code> to add bottom popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 text-center">
+                    <h5 class="text-center">Basic Left Popover</h5>
+                    <div class="popover bs-popover-left show"
+                      style="display: block; position: relative; margin: 1rem auto; padding: 0; z-index: 100;">
+                      <div class="arrow" style="top: 50%;"></div>
+                      <div class="popover-header" style="max-width: none;">Popover on Left</div>
+                      <div class="popover-body">
+                        <p>Ice cream tootsie roll tiramisu tootsie roll toffee dragée sugar plum cake. Liquorice jelly
+                          jujubes. Powder danish tart apple pie dessert cheesecake tiramisu soufflé bonbon. Carrot cake
+                          wafer toffee.</p>
+                      </div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="left"</code> to add left popover.</p>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Static Popovers end -->
+
+      <!-- Popover Positions start -->
+      <section id="popover-positions">
+        <div class="row ">
+          <div class="col-12" *blockUI="'popoverPositions'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadPopoverPositions($event)">
+              <ng-container mCardHeaderTitle>
+                Popover Positions
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Four options are available: top, right, bottom, and left aligned.</p>
+                <div class="row">
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Basic Top Popover</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary bs-popover-top" [autoClose]="'inside'"
+                        placement="top"
+                        ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                        popoverTitle="Popover on top">
+                        Popover on top
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="top"</code> to add top popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Basic Right Popover</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary bs-popover-right" [autoClose]="'inside'"
+                        placement="right" popoverClass="basicRightPopover"
+                        ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                        popoverTitle="Popover on right">
+                        Popover on right
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="right"</code> to add right popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Basic Bottom Popover</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary bs-popover-bottom" [autoClose]="'inside'"
+                        placement="bottom"
+                        ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                        popoverTitle="Popover on bottom">
+                        Popover on bottom
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="bottom"</code> to add bottom popover.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Basic Left Popover</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary bs-popover-left" [autoClose]="'inside'"
+                        placement="left"
+                        ngbPopover="Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie."
+                        popoverTitle="Popover on left">
+                        Popover on left
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="left"</code> to add left popover.</p>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Popover Positions end -->
+
+      <!-- Popover Events start -->
+      <section id="popover-events">
+        <div class="row ">
+          <div class="col-12" *blockUI="'popoverEvents'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadPopoverEvents($event)">
+              <ng-container mCardHeaderTitle>
+                Popover Events
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Shown Event</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-success" triggers="manual" placement="top"
+                        ngbPopover="Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake."
+                        popoverTitle="Popover Shown Event" #s="ngbPopover" (click)="s.open()" (shown)="popoverShownEvent()">
+                        Shown Event Popover
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">This event is fired when the popover has been made visible to the user.</p>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text-center">
+                    <h5 class="text-center">Hidden Event</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-success" triggers="hidden" placement="top"
+                        ngbPopover="Bonbon chocolate cake. Pudding halvah pie apple pie topping marzipan pastry marzipan cupcake."
+                        popoverTitle="Popover Hidden Event" #h="ngbPopover" (click)="h.open()" (hidden)="popoverHiddenEvent()">
+                        Hidden Event Popover
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">This event is fired when the popover has finished being hidden from the
+                      user.</p>
+                  </div>
+                </div>
+
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Popover Events end -->
+
+      <!-- Popover Methods start -->
+      <section id="popover-methods">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Popover Methods</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>This is considered a “manual” triggering of the popover.Popovers whose both title and content are
+                    zero-length are never displayed.</p>
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Show</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" [autoClose]="false" triggers="click:show"
+                          placement="top"
+                          ngbPopover="Fruitcake candy cheesecake jelly beans cake gummies. Cotton candy I love sweet roll jujubes pastry cake halvah cake."
+                          popoverTitle="Show Method Popover">
+                          Show Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Reveals an element’s popover. Returns to the caller before the
+                        popover has actually been shown.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Hide</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" [autoClose]="'false'" triggers="mouseenter"
+                          placement="left"
+                          ngbPopover="Fruitcake candy cheesecake jelly beans cake gummies. Cotton candy I love sweet roll jujubes pastry cake halvah cake."
+                          popoverTitle="Hide Method Popover" #hide= ngbPopover triggers="manual" (mouseenter)="hide.open()" (click)="hide.close()">
+                          Hide Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Hides an element’s popover. Returns to the caller before the popover
+                        has actually been hidden.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Toggle</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" triggers="click" [autoClose]="'inside'"
+                          placement="top"
+                          ngbPopover="Fruitcake candy cheesecake jelly beans cake gummies. Cotton candy I love sweet roll jujubes pastry cake halvah cake."
+                          popoverTitle="Toggle Method Popover">
+                          Toggle Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Toggles an element’s popover. Returns to the caller before the
+                        popover has actually been shown or hidden.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Popover Methods end -->
+
+
+
+      <!-- Popover Triggers start -->
+      <section>
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Popover Triggers</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Popover is triggered using - click | hover | focus | manual options. You may pass multiple
+                    triggers; separate them with a space. "manual" cannot be combined with any other trigger.</p>
+                  <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Hover</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="hover:click:hover" placement="top"
+                          ngbPopover="Tart macaroon marzipan I love soufflé apple pie wafer. Chocolate bar jelly caramels jujubes chocolate cake gummies."
+                          popoverTitle="Hover Triggered">
+                          On Hover Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="hover"</code> for hover trigger.</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Click</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="click" [autoClose]="'inside'"
+                          placement="top"
+                          ngbPopover="Tart macaroon marzipan I love soufflé apple pie wafer. Chocolate bar jelly caramels jujubes chocolate cake gummies."
+                          popoverTitle="Click Triggered">
+                          On Click Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="click"</code> for click trigger. This is a
+                        default trigger.</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Focus</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="click:focus" [autoClose]="'outside'"
+                          placement="top"
+                          ngbPopover="Tart macaroon marzipan I love soufflé apple pie wafer. Chocolate bar jelly caramels jujubes chocolate cake gummies."
+                          popoverTitle="Focus Triggered">
+                          On Focus Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="focus"</code> for focus trigger.</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Manual</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="manual" [autoClose]="'false'"
+                          placement="top" #manualPopover="ngbPopover" (click)="manualPopover.open()"
+                          (mouseleave)="manualPopover.close()"
+                          ngbPopover="Tart macaroon marzipan I love soufflé apple pie wafer. Chocolate bar jelly caramels jujubes chocolate cake gummies."
+                          popoverTitle="Manual Triggered">
+                          On Manual Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="manual"</code> for manual trigger. You can
+                        do show/hide using js</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Popover Triggers end -->
+
+      <!-- Popover Options start -->
+      <section id="popover-options">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Popover Options</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Supports HTML</h5>
+                      <div class="text-center">
+                        <ng-template #popTitle><b>This </b>is <i>HTML </i><u>Popover</u> </ng-template>
+                        <ng-template #popContent>Tart macaroon marzipan I love soufflé <h6>apple pie </h6>wafer.
+                          <b>Chocolate </b>bar jelly caramels jujubes chocolate cake gummies.</ng-template>
+                        <button type="button" class="btn btn-warning" placement="top" [ngbPopover]="popContent"
+                          [popoverTitle]="popTitle">
+                          HTML Popover
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use<code>ng-template</code> for HTML supported trigger.</p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 text-center">
+                      <h5 class="text-center">Popover Template</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-warning" [autoClose]="'inside'" triggers="click"
+                          placement="top"
+                          ngbPopover="<div class='popover' role='popover'><div class='arrow'></div><div class='popover-header'></div><div class='popover-body'></div></div>"
+                          popoverTitle="Default Template Structure">
+                          Popover Template
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Base HTML to use when creating the popover. The popover's title will
+                        be injected into the <code>.popoverTitle</code>. <code>.arrow</code> will become the
+                        popover's arrow.The outermost wrapper element should have the <code>.popover</code> class.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Popover Options end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

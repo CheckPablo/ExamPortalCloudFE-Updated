@@ -1,0 +1,204 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+    </div>
+    <div class="content-body">
+      <!-- Basic Kanban App -->
+      <div class="kanban-overlay" id="content-overlay" (click)="showSidebar($event)"></div>
+      <section id="kanban-wrapper">
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary mb-1" id="add-kanban" (click)="addKanbanBoard()">
+              <i class='ficon feather ft-plus-square mr-50'></i> Add New Board
+            </button>
+            <div id="kanban-app"></div>
+          </div>
+        </div>
+        <div class="kanban-sidebar" id="kanban_sidebar">
+          <div class="card shadow-none quill-wrapper">
+            <div class="card-header d-flex justify-scontent-between align-items-center border-bottom px-2 py-1">
+              <h3 class="card-title">UI Design</h3>
+              <button type="button" class="close close-icon">
+                <i class="ficon feather ft-x" (click)="showSidebar($event)"></i>
+              </button>
+            </div>
+            <!-- form start -->
+            <form [formGroup]="kanban" class="edit-kanban-item">
+              <div class="card-content position-relative" [perfectScrollbar]="config">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label>Card Title</label>
+                    <input type="text" formControlName="title" class="form-control edit-kanban-item-title"
+                      placeholder="kanban Title">
+                  </div>
+                  <div class="form-group">
+                    <label>Due Date</label>
+                    <!-- <input type="text" formControlName="date" class="form-control edit-kanban-item-date"
+                      placeholder="21 August, 2019"> -->
+                    <div class="input-group">
+                      <div class="input-group-text mr-50">
+                      </div>
+                      <input class="form-control" placeholder="yyyy-mm-dd" formControlName="date" name="date"
+                        ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-6">
+                      <label>Label </label>
+                      <select class="form-control text-white " bindLabel="name" formControlName="selectedLabel"
+                        (change)="getSelectedKanbanText($event)" id="selectLable">
+                        <option class="bg-primary">Primary</option>
+                        <option class="bg-danger">Danger</option>
+                        <option class="bg-success">Success</option>
+                        <option class="bg-info">Info</option>
+                        <option class="bg-warning">Warning</option>
+                        <option class="bg-secondary">Secondary</option>
+                      </select>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Member</label>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar m-0 mr-1">
+                            <img src="../../../assets/images/portrait/small/avatar-s-20.png" height="36" width="36"
+                              alt="avtar img holder">
+                          </div>
+                          <div class="badge-circle">
+                            <i class="ficon feather ft-plus"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Attachment</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="emailAttach">
+                      <label class="custom-file-label" for="emailAttach">Attach file</label>
+                    </div>
+                  </div>
+                  <!-- Compose mail Quill editor -->
+                  <div class="form-group">
+                    <label>Comment</label>
+                    <div class="snow-container border rounded p-1">
+                      <div class="editor">
+                        <quill-editor calss="kanbanQuill" formControlName="description"
+                          [styles]="{height: '110px', border: '0px solid #ccc' }" [modules]="kanbanquillConfig"
+                          (onFocus)="focus()" (onBlur)="blur()" placeholder="Write a Comment... "></quill-editor>
+
+                      </div>
+                      <div class="d-flex justify-content-end">
+                        <div class="compose-quill-toolbar ql-toolbar ql-snow kanbantoolbar">
+                          <span class="ql-formats mr-0">
+                            <button class="ql-bold">Bold</button>
+                            <button class="ql-italic">Italic</button>
+                            <button class="ql-underline">Underline</button>
+                            <button class="ql-link"></button>
+                            <button class="ql-image"></button>
+                            <button class="btn btn-sm btn-primary btn-comment ml-25">Comment</button>
+                          </span>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer d-flex justify-content-end">
+                <button type="reset" class="btn btn-danger delete-kanban-item mr-1" (click)="deleteKanban($event)">
+                  <i class='ficon feather ft-trash-2 mr-50'></i>
+                  <span>Delete</span>
+                </button>
+                <button type="submit" class="btn btn-primary glow update-kanban-item"
+                  (click)="updateKanbanItem($event)">
+                  <i class='ficon feather ft-play mr-50'></i>
+                  <span>Save</span>
+                </button>
+              </div>
+            </form>
+            <!-- form start end-->
+          </div>
+        </div>
+        <!--/ User Chat profile right area -->
+        <div class="kanban-container">
+          <div data-id="kanban-board-1" data-order="1" class="kanban-board"
+            style="width: 250px; margin-left: 15px; margin-right: 15px;" *ngFor="let kanbanList of kanbanList">
+            <header class="kanban-board-header">
+              <div type="text" class="kanban-title-board truncate" contenteditable="true" [innerHTML]="kanbanList.name"
+                (input)="contentNew=$event.target.textContent" (click)="showSidebar($event)"
+                (focusout)="validateProfile(contentNew,kanbanList)"></div>
+              <button class="kanban-title-button btn btn-default btn-xs" (click)="addKanbanItem(kanbanList)">+ Add
+                New Item</button>
+              <div ngbDropdown>
+                <i class="ficon feather ft-more-vertical" id="dropdownBasic1" ngbDropdownToggle></i>
+                <div ngbDropdownMenu>
+                  <a class="dropdown-item" [routerLink]=""><i class="ficon feather ft-link mr-50"></i>Copy Link</a>
+                  <a class="dropdown-item kanban-delete" [routerLink]="" (click)="deleteKanbanList(kanbanList)"><i
+                      class="ficon feather ft-trash-2 mr-50"></i>Delete</a>
+                </div>
+              </div>
+
+            </header>
+            <main class="kanban-drag">
+              <div>
+                <!-- <div *ngFor="let kanban of kanbanList.tickets" class="kanban">           -->
+                <div>
+                  <div [dndList] [dndModel]="kanbanList.tickets">
+                    <div class="kanban-item" (click)="showSidebar($event)" (click)="editItem(kanban,kanbanList.tickets)"
+                      *ngFor="let kanban of kanbanList.tickets" 
+                      [dndType]="'kanban'"
+                      (dndMoved)="removeItem(kanban, kanbanList)" 
+                      [dndDraggable] [dndObject]="kanban">
+                      {{kanban.name}}
+                      <div class="kanban-image mb-1" [hidden]="!kanban.showImage"><img class="img-fluid"
+                          [src]="kanban.bg_image" alt="kanban-image"></div>
+                      <div class="kanban-footer d-flex justify-content-between mt-1">
+                        <div class="kanban-footer-left d-flex">
+                          <div class="kanban-due-date mr-50"><i
+                              [ngClass]="{'ficon feather ft-clock font-size-small mr-25': kanban.date}"></i><span
+                              class="font-size-small">{{kanban.date| date: 'MMM d' }}</span></div>
+                          <div class="kanban-comment mr-50"><i
+                              [ngClass]="{'ficon feather ft-message-square font-size-small mr-25': kanban.comment}"></i><span
+                              class="font-size-small">{{kanban.comment}}</span></div>
+                          <div class="kanban-attachment"><i
+                              [ngClass]="{'ficon feather ft-link font-size-small mr-25':kanban.attachment}"></i><span
+                              class="font-size-small">{{kanban.attachment}}</span></div>
+                        </div>
+                        <div class="kanban-footer-right">
+                          <div class="kanban-users">
+                            <ul class="list-unstyled users-list cursor-pointer m-0 d-flex align-items-center">
+                              <li class="avatar pull-up my-0" *ngFor="let imageUrl of kanban.image"><img
+                                  class="media-object" [src]="imageUrl" alt="Avatar" height="18" width="18"></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <footer></footer>
+                <!-- </div> -->
+              </div>
+              <form class="itemform not-draggable" [hidden]="!kanbanList.showNewItem">
+                <div class="form-group">
+                  <textarea class="form-control add-new-item" [(ngModel)]="addTitle" rows="2" autofocus="" required=""
+                    [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <div class="form-group"><button type="submit" class="btn btn-primary btn-sm mr-50"
+                    (click)="submitItem(kanbanList)">Submit</button><button type="button" id="CancelBtn"
+                    class="btn btn-sm btn-danger" (click)="cancleKanban(kanbanList)">Cancel</button></div>
+              </form>
+            </main>
+            <div>
+            </div>
+          </div>
+        </div>
+        <!--/ User Chat profile right area -->
+      </section>
+      <!--/ Sample Project kanban -->
+
+    </div>
+  </div>
+</div>
+<!-- END: Content-->

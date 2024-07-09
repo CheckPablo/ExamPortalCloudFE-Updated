@@ -1,0 +1,212 @@
+:host ::ng-deep input[type='checkbox'] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-header .datatable-header-cell .datatable-header-cell-label {
+    font-family: inherit;
+    font-size: medium;
+    font-weight: bold;
+    color: #6B6F82;
+}
+
+:host ::ng-deep .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+
+    margin-right: -3px;
+}
+
+:host ::ng-deep .table-space {
+    padding: 1.5rem;
+}
+
+:host ::ng-deep .datatable-icon-right:before {
+    font-family: 'icofont';
+    font-style: normal;
+}
+
+:host ::ng-deep .datatable-icon-skip:before {
+    font-family: 'icofont';
+    font-style: normal;
+}
+
+:host ::ng-deep .datatable-icon-left:before {
+    font-family: 'icofont';
+    font-style: normal;
+}
+
+:host ::ng-deep .datatable-icon-left:before {
+    content: "\2039";
+    font-size: x-large;
+}
+
+:host ::ng-deep .datatable-icon-prev:before {
+    content: "\00AB";
+    font-size: x-large;
+}
+
+:host ::ng-deep .datatable-icon-right:before {
+    content: "\203A";
+    font-size: x-large;
+}
+
+:host ::ng-deep .datatable-icon-skip:before {
+    content: "\00BB";
+    font-size: x-large;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #d4d2e7;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #d4d2e7;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #d4d2e7;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #d4d2e7;
+}
+
+:host ::ng-deep .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] ul[_ngcontent-c11] li[_ngcontent-c11]:not(.disabled):hover a[_ngcontent-c11] {
+    background-color: #d4d2e7;
+    font-weight: bold;
+    font-size: larger;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager a {
+    height: 32px;
+    min-width: 34px;
+    line-height: 22px;
+    padding: 0;
+    border-radius: 3px;
+    margin: 0 3px;
+    text-align: center;
+    vertical-align: top;
+    padding-top: 3px;
+    text-decoration: none;
+    vertical-align: bottom;
+    color: #7c8091;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-right[_ngcontent-c11],
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-prev[_ngcontent-c11] {
+    font-size: 14px;
+    line-height: 9px;
+    padding: 0px 08px;
+    background-color: #ffffff;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-left,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-right[_ngcontent-c11],
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-prev[_ngcontent-c11] {
+    font-size: 0px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #ffffff;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-right,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-right[_ngcontent-c11],
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-prev[_ngcontent-c11] {
+    font-size: 0px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #ffffff;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-skip,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-right[_ngcontent-c11],
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-prev[_ngcontent-c11] {
+    font-size: 0px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #ffffff;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager .datatable-icon-prev,
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-right[_ngcontent-c11],
+.ngx-datatable.bootstrap[_ngcontent-c11] .datatable-footer[_ngcontent-c11] .datatable-pager[_ngcontent-c11] .datatable-icon-prev[_ngcontent-c11] {
+    font-size: 0px;
+    line-height: 22px;
+    padding: 0px 09px;
+    background-color: #ffffff;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+    background-color: #545454;
+    font-weight: bold;
+    color: white;
+
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled).active a,
+.ngx-datatable.bootstrap .datatable-footer .datatable-pager ul li:not(.disabled):hover a {
+    background-color: #545454;
+    font-weight: bold;
+    color: white;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-footer {
+    background: #727e8e;
+    color: #ededed;
+    margin-top: -1px;
+}
+
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-header {
+    font-weight: bold;
+    height: unset !important;
+    overflow: inherit
+}
+
+:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager {
+    flex: 0 0 0%;
+}
+
+:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager {
+    display: flex;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+:host ::ng-deep .orange {
+    color: orange !important;
+}
+:host ::ng-deep .Green {
+    color: green !important;
+}
+:host ::ng-deep .red {
+    color: red !important;
+}
+:host ::ng-deep .ngx-datatable {
+  display: -webkit-box;
+}
+:host ::ng-deep .empty-row {
+  padding-left: 1rem !important;
+}

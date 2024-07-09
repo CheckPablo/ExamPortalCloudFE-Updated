@@ -1,0 +1,247 @@
+<div class="content-body">
+    <section id="horizontal-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form form-horizontal">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="button" id="btnApprove" class="btn btn-info btn-min-width mr-1 mb-1"
+                                                    [disabled]="!userIds.length" (click)="onUpdateUsersClick()">
+                                                    Save users
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput1">
+                                                    Approve
+                                                </label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <select id="ddlApproved" class="form-control" (change)="onApprovedChange($event.target.value)">
+                                                        <option value="all">All</option>
+                                                        <option value="approved">Approved</option>
+                                                        <option value="notapproved">Un-Approved</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput1">
+                                                    Active
+                                                </label>
+                                                <div class="col-md-9 mx-auto">
+                                                    <select id="ddlActive" class="form-control" (change)="onActiveChange($event.target.value)">
+                                                        <option value="all">All</option>
+                                                        <option value="active">Active</option>
+                                                        <option value="notactive">In-Active</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" id="btnSearch" class="btn btn-info btn-min-width mr-1 mb-1"
+                                                (click)="onFilterClick()">
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-md-2">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="tickets-table_length">
+                                                <label class="d-inline-flex align-items-center">
+                                                    Show
+                                                    <select name="pageSize" [(ngModel)]="paginationService.pageSize"
+                                                        class="form-control form-control-sm mx-2"
+                                                        (ngModelChange)="paginationService.setPageSize($event)">
+                                                        <option [ngValue]="10">10</option>
+                                                        <option [ngValue]="25">25</option>
+                                                        <option [ngValue]="50">50</option>
+                                                        <option [ngValue]="100">100</option>
+                                                    </select>
+                                                    entries
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                                                <label class="d-inline-flex align-items-center">
+                                                    Search:
+                                                    <input type="text" name="searchTerm"
+                                                        class="form-control form-control-sm ms-2" aria-controls="tickets-table"
+                                                        [(ngModel)]="paginationService.searchTerm"
+                                                        (input)="paginationService.onSearchInputChange($event.target.value)">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="table-responsive" style="width: 100%">
+                                        <table class="table table-striped table-bordered" style="width: 100%">
+                                            <thead class="bg-info white" style="width: 100%">
+                                                <tr>
+                                                    <!--<th class ="sorting"style="width: 80px;background-color:#1e9ff2">-->
+                                                        <th class ="sorting"style="width: 80px">
+                                                        Approved
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)">
+                                                        Active
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)" *ngIf="loggedInUser.role == 1">
+                                                        Admin
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="centerName" (sort)="onSort($event)">
+                                                        Center Name
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)">
+                                                        Username
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="name" (sort)="onSort($event)">
+                                                        Name
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)">
+                                                        Surname
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)">
+                                                        # of Students
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th class ="sorting" sortable="code" (sort)="onSort($event)">
+                                                        Email
+                                                        <i class="la la-sort"></i>
+                                                    </th>
+                                                    <th>Delete User</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let user of paginationService.paginatedData |approvalsSort:filter" (dblclick)="onViewUser(user)">
+                                                    <td>
+                                                        <input type="checkbox" (click)="onUserClick(user.id)"
+                                                            [checked]="isUserSelected(user.id)" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" (click)="onActiveUserClick(user.id)"
+                                                            [checked]="isUserActive(user.id)" />
+                                                    </td>
+                                                    <td *ngIf="loggedInUser.role == 1">
+                                                        <input type="checkbox" (click)="onAdminUserClick(user.id)"
+                                                            [checked]="isUserAdmin(user.id)" />
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight  [result]="user.centerName"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight [result]="user.username"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight [result]="user.name"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight [result]="user.surname"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <!--<ngb-highlight [result]="user.id"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>-->
+                                                            <ngb-highlight [result]="user.description"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight [result]="user.userEmailAddress"
+                                                            [term]="paginationService.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <button id="btnDeleteUser" type="button" 
+                                                            class="btn btn-block btn-primary glow"
+                                                            style="width:100px" (click)="onDeleteUser(user)">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+        
+                                    <div class="row justify-content-md-between align-items-md-center mt-2"
+                                        *ngIf="paginationService.totalItems">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                aria-live="polite">Showing
+                                                {{paginationService.startIndex}} to
+                                                {{paginationService.endIndex}} of
+                                                <span *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}} search results from
+                                                </span>
+                                                {{paginationService.totalItems}} entries
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="text-md-right float-md-end pagination-rounded">
+                                                <ul class="pagination">
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                        (click)="paginationService.setPage(1)">
+                                                        <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">««</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                                                        (click)="paginationService.goToPreviousPage()">
+                                                        <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">«</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted" aria-current="page"
+                                                        [ngClass]="{ 'active': paginationService.currentPage == page }"
+                                                        *ngFor="let page of paginationService.paginationLinks"
+                                                        (click)="paginationService.setPage(page)">
+                                                        <a href="javascript:void(0);" class="page-link ng-star-inserted">
+                                                            {{ page }}
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                        (click)="paginationService.goToNextPage()">
+                                                        <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">»</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ng-star-inserted"
+                                                        [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                                                        (click)="paginationService.setPage(paginationService.totalPages)">
+                                                        <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                                            <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

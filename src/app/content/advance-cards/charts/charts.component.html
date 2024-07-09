@@ -1,0 +1,194 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Charts section start -->
+      <section id="charts-section">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Charts</h4>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-12">
+            <div class="card text-white">
+              <div class="card-content">
+                <div class="position-relative">
+                  <div class="chart-title position-absolute mt-2 ml-2 white">
+                  </div>
+                  <div class="earningchart">
+                    <x-chartist *ngIf="earningchart" [data]="earningchart.data" [type]="earningchart.type" [options]="earningchart.options"
+                      [responsiveOptions]="earningchart.responsiveOptions" [events]="earningchart.events">
+                    </x-chartist>
+                  </div>
+                  <div class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3">
+                    <a href="#" class="btn bg-danger mr-1 white">Statistics <i class="feather ft-bar-chart"></i></a> <span
+                      class="text-muted">for the <a href="#" class="danger darken-2">last year.</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="row">
+                  <div class="card-body">
+                    <ul class="list-inline text-center">
+                      <li class="mr-1">
+                        <h6><i class="la la-circle danger"></i> <span>iOS</span></h6>
+                      </li>
+                      <li class="mr-1">
+                        <h6><i class="la la-circle warning"></i> <span>Windows</span></h6>
+                      </li>
+                      <li class="mr-1">
+                        <h6><i class="la la-circle success"></i> <span>Android</span></h6>
+                      </li>
+                    </ul>
+                    <div class="areaChartLegend">
+                      <x-chartist *ngIf="lineArea" [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options"
+                        [responsiveOptions]="lineArea.responsiveOptions" [events]="lineArea.events">
+                      </x-chartist>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="earning-chart position-relative">
+                  <div class="chart-title position-absolute mt-2 ml-2">
+                  </div>
+                  <p class="font-medium-2 text-muted text-center dountchartheader">Project Tasks</p>
+                  <div class="donut">
+                    <x-chartist class="pr_stats" *ngIf="DonutChart" [data]="DonutChart.data" [type]="DonutChart.type"
+                      [options]="DonutChart.options" [responsiveOptions]="DonutChart.responsiveOptions"
+                      [events]="DonutChart.events">
+                    </x-chartist>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-12">
+            <m-card [options]="hitRateOptions" id="card">
+              <ng-container mCardHeaderTitle>
+                Hit Rate <span class="danger">-12%</span>
+              </ng-container>
+              <ng-container mCardBody>
+                <div id="donut-chart2" class="height-230 donut-chart2">
+                  <x-chartist *ngIf="donutChart2" [data]="donutChart2.data" [type]="donutChart2.type" [options]="donutChart2.options"
+                    [responsiveOptions]="donutChart2.responsiveOptions" [events]="donutChart2.events">
+                  </x-chartist>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+          <div class="col-xl-4 col-lg-12">
+            <m-card [options]="dealsOptions">
+              <ng-container mCardBody>
+                <h4 class="card-title white">Deals <span class="white">-55%</span>
+                  <span class="float-right">
+                    <span class="white">152</span><span class="red lighten-4">/200</span>
+                  </span>
+                </h4>
+                <div id="donut-chart1" class="height-230 donut-chart1">
+                  <x-chartist *ngIf="donutChart1" [data]="donutChart1.data" [type]="donutChart1.type" [options]="donutChart1.options"
+                    [responsiveOptions]="donutChart1.responsiveOptions" [events]="donutChart1.events">
+                  </x-chartist>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-4 col-lg-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body sales-growth-chart">
+                  <div class="barchart">
+                    <x-chartist *ngIf="barChart" [data]="barChart.data" [type]="barChart.type" [options]="barChart.options"
+                      [responsiveOptions]="barChart.responsiveOptions" [events]="barChart.events">
+                    </x-chartist>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-8 col-lg-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="Revenuechartist">
+                    <x-chartist *ngIf="lineArea1" [data]="lineArea1.data" [type]="lineArea1.type" [options]="lineArea1.options"
+                      [responsiveOptions]="lineArea1.responsiveOptions" [events]="lineArea1.events">
+                    </x-chartist>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-xl-12 col-lg-12">
+            <div class="card">
+              <div class="card-content ">
+                <div id="cost-revenue" class="ecommercesaleslineArea position-relative">
+                  <x-chartist *ngIf="ecommercesaleslineArea" [data]="ecommercesaleslineArea.data" [type]="ecommercesaleslineArea.type"
+                    [options]="ecommercesaleslineArea.options"
+                    [responsiveOptions]="ecommercesaleslineArea.responsiveOptions"
+                    [events]="ecommercesaleslineArea.events">
+                  </x-chartist>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="row mt-1">
+                  <div class="col-3 text-center">
+                    <h6 class="text-muted">Total Products</h6>
+                    <h2 class="block font-weight-normal">18.6 k</h2>
+                    <div class="progress progress-sm mt-1 mb-0 box-shadow">
+                      <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 70%"
+                        aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-3 text-center">
+                    <h6 class="text-muted">Total Sales</h6>
+                    <h2 class="block font-weight-normal">64.54 M</h2>
+                    <div class="progress progress-sm mt-1 mb-0 box-shadow">
+                      <div class="progress-bar bg-gradient-x-warning" role="progressbar" style="width: 60%"
+                        aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-3 text-center">
+                    <h6 class="text-muted">Total Cost</h6>
+                    <h2 class="block font-weight-normal">24.38 B</h2>
+                    <div class="progress progress-sm mt-1 mb-0 box-shadow">
+                      <div class="progress-bar bg-gradient-x-danger" role="progressbar" style="width: 40%"
+                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                  <div class="col-3 text-center">
+                    <h6 class="text-muted">Total Revenue</h6>
+                    <h2 class="block font-weight-normal">36.72 M</h2>
+                    <div class="progress progress-sm mt-1 mb-0 box-shadow">
+                      <div class="progress-bar bg-gradient-x-success" role="progressbar" style="width: 90%"
+                        aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Charts section end -->
+    </div>
+  </div>
+</div>
+<!-- END: Content-->

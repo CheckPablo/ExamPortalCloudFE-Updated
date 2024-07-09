@@ -1,0 +1,437 @@
+<div id="loader" style="z-index: 100; height: 100%; width: 100%; background: rgba(0, 0, 0, 0.61); position: fixed; display: none;">
+    <img src="/Images/loader.gif" id="bg" alt="" style=" top: 0; left: 0; position: absolute; margin: auto; right: 0; bottom: 0; display: block;">
+</div>
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-dark navbar-shadow">
+    <div class="navbar-wrapper">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
+                <li class="nav-item">
+                    <a class="navbar-brand" href="/">
+                        <img class="brand-logo" alt="EXAM PORTAL CLOUD" src="../../../assets/images/logo.png">
+                        <h3 class="brand-text">EXAM PORTAL CLOUD</h3>
+                    </a>
+                </li>
+                <li class="nav-item d-md-none"><a class="nav-link open-navbar-container collapsed" data-toggle="collapse" data-target="#navbar-mobile" aria-expanded="false"><i class="la la-ellipsis-v"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-container">
+            <div class="navbar-collapse justify-content-end collapse" id="navbar-mobile">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mr-2 nav-link-label" href="/">
+                            <i class="la la-arrow-left"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- BEGIN: Content-->
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section class="row flexbox-container">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-lg-4 col-md-8 col-10 box-shadow-2 p-0">
+                        <div class="card border-grey border-lighten-3 px-2 py-2 m-0">
+                            <div class="card-header border-0">
+                                <div class="card-title text-center">
+                                    <img src="assets/images/logo-dark.png" alt="branding logo">
+                                </div>
+                                <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
+                                    <span>Create Account</span>
+                                </h6>
+                                <input type="hidden" id="NewUserID" value="">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <form class="form-horizontal" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="text" name="firstName" id="firstName"
+                                                            formControlName="firstName" class="form-control"
+                                                            placeholder="First Name" tabindex="1" aria-invalid="false">
+                                                        <div class="form-control-position">
+                                                            <i class="la la-user"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                                                        <div *ngIf="f['firstName'].errors.required">First name is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="text" name="surname" id="surname"
+                                                            formControlName="surname" class="form-control"
+                                                            placeholder="Last Name" tabindex="2" aria-invalid="false">
+                                                        <div class="form-control-position">
+                                                            <i class="la la-user"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                                                        <div *ngIf="f['surname'].errors.required">Surname is required</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <input type="text" name="username" id="username"
+                                                    formControlName="username" class="form-control"
+                                                    placeholder="UserName" tabindex="3" required=""
+                                                    data-validation-required-message="Please enter display name.">
+                                                <div class="form-control-position">
+                                                    <i class="la la-user"></i>
+                                                </div>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['username'].errors.required">Username is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <input type="email" name="email" id="email" formControlName="email"
+                                                    class="form-control" placeholder="Email Address" tabindex="4"
+                                                    required=""
+                                                    data-validation-required-message="Please enter email address.">
+                                                <div class="form-control-position">
+                                                    <i class="la la-envelope"></i>
+                                                </div>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['email'].errors.required">Email is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="password" name="password" id="password"
+                                                            formControlName="password" class="form-control"
+                                                            placeholder="Password" tabindex="5" required="">
+                                                        <div class="form-control-position">
+                                                            <i class="la la-key"></i>
+                                                        </div>
+                                                        <div class="help-block font-small-3"></div>
+                                                    </fieldset>
+                                                 
+                                                    <!--<div *ngIf="f['password'].errors?.minlength">password must be 8 characers or more</div>
+                                                    <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                                                        <div *ngIf="f['password'].errors.required">Password is required</div>
+                                                       
+                                                    </div>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <fieldset class="position-relative has-icon-left">
+                                                        <input type="password" name="confirmPassword"
+                                                            id="confirmPassword"
+                                                            formControlName="confirmPassword" class="form-control"
+                                                            placeholder="Confirm Password" tabindex="6"
+                                                            data-validation-matches-match="password"
+                                                            data-validation-matches-message="Password &amp; Confirm Password must be the same.">
+                                                        <div class="form-control-position">
+                                                            <i class="la la-key"></i>
+                                                        </div>
+                                                        <div class="help-block font-small-3"></div>
+                                                    </fieldset>
+                                                  
+                                                   <!--  <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                                                        <div *ngIf="f['confirmPassword'].errors.required">Confirm Password is required</div>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <div *ngIf="submitted && f['confirmPassword'] !== f['password']" class="invalid-feedback">
+                                                <div>"Password &amp; Confirm Password must be the same."</div>
+                                            </div>
+                                           
+                                            <div *ngIf="f['password'].errors?.minLength" class="invalid-feedback">
+                                                <div>"Password must contain more than 8 characters"</div>
+                                            </div>
+
+                                            <div>
+                                            Password must contain more than 8 characters, 1 upper case letter, and 1
+                                            special character
+                                           </div>
+                                           <div style="display:none">
+                                            Password must contain more than 8 characters, 1 upper case letter, and 1
+                                            special character
+                                           </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <input type="text" name="contact_details" id="txtContact"
+                                                    formControlName="contactDetails" class="form-control"
+                                                    placeholder="Contact Details" tabindex="3" required=""
+                                                    data-validation-required-message="Please enter your contact details.">
+                                                <div class="form-control-position">
+                                                    <i class="la la-phone"></i>
+                                                </div>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['contactDetails'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['contactDetails'].errors.required">Contact Details are required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <select id="ddlCandidates" name="interested"
+                                                    formControlName="noOfCandidates" class="form-control">
+                                                    <option value="">--Select Number Of Candidates--</option>
+                                                    <option value="1">1 - 10</option>
+                                                    <option value="2">11 - 20</option>
+                                                    <option value="3">21 - 30</option>
+                                                    <option value="4">31 - 40</option>
+                                                    <option value="5">41 - 50</option>
+                                                    <option value="6">51 - 60</option>
+                                                    <option value="7">71 - 80</option>
+                                                    <option value="8">81 - 90</option>
+                                                    <option value="9">91 - 100</option>
+                                                    <option value="10">100 +</option>
+                                                </select>
+                                                <div class="form-control-position">
+                                                    <i class="la la-users"></i>
+                                                </div>
+                                                <label>How many students/candidates will use the system?</label>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['noOfCandidates'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['noOfCandidates'].errors.required">Candidate is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                    <select class="form-control form-select" id="centerId" name="centerId"
+                                                        formControlName="centerId"
+                                                        [ngClass]="{ 'is-invalid': submitted && f['centerId'].errors }">
+                                                        <option value="" disabled>--Select Center--</option>
+                                                        <option *ngFor="let center of centers" [value]="center.id">
+                                                            {{center.name}}</option>
+                                                    </select>
+                                                    <!-- <div *ngIf="submitted && f['centerId'].errors"
+                                                        class="invalid-feedback">
+                                                        <div *ngIf="f['centerId'].errors.required">Subject is required
+                                                        </div>
+                                                    </div> -->
+                                               <!-- <select id="ddlCenter" name="interested" formControlName="centerId"
+                                                    class="form-control">
+                                                    <option value="">--Select Center--</option>
+                                                    <option value="33">86 AGENCIES</option>
+                                                    <option value="42">Alpha Education</option>
+                                                    <option value="44">Bellavista School</option>
+                                                    <option value="78">BELVEDERE SCHOOL</option>
+                                                    <option value="20">BESA LEADERSHIP ACADEMY</option>
+                                                    <option value="65">Brescia House School</option>
+                                                    <option value="32">BRIDGE HOUSE</option>
+                                                    <option value="51">Bridge House Prep School</option>
+                                                    <option value="72">CA High School</option>
+                                                    <option value="84">CBC MOUNT EDMUND; PRETORIA</option>
+                                                    <option value="38">Clarendon High School for Girls</option>
+                                                    <option value="93">Clift College</option>
+                                                    <option value="22">COLLEGIATE HIGH SCHOOL FOR GIRLS</option>
+                                                    <option value="85">Covenant Primary School</option>
+                                                    <option value="36">CRAWFORD COLLEGE SANDTON</option>
+                                                    <option value="14">CRESTON COLLEGE</option>
+                                                    <option value="37">Curro Century City</option>
+                                                    <option value="82">Curro Durbanville</option>
+                                                    <option value="91">CURRO DURBANVILLE HIGH SCHOOL</option>
+                                                    <option value="88">Curro Serengeti Combined School</option>
+                                                    <option value="13">DE LA SALLE HOLY CROSS COLLEGE; VICTORY PARK
+                                                    </option>
+                                                    <option value="76">Dewald School</option>
+                                                    <option value="81">Die Mos Inisiatief</option>
+                                                    <option value="29">Diocesan School for Girls</option>
+                                                    <option value="80">Dunvegan Primary</option>
+                                                    <option value="48">Durban Girls College: Prep</option>
+                                                    <option value="83">Durbanville Primary School</option>
+                                                    <option value="63">Edgemead High School</option>
+                                                    <option value="30">Edgemead Primary School</option>
+                                                    <option value="64">Edu Plex High School</option>
+                                                    <option value="79">EDUCATION INCORPORATED</option>
+                                                    <option value="73">Elsen Academy</option>
+                                                    <option value="49">Enjabulweni School - Primary Phase</option>
+                                                    <option value="60">Epworth High School</option>
+                                                    <option value="69">Evolve Online School</option>
+                                                    <option value="66">Fairmont High School</option>
+                                                    <option value="1">General Council of the Bar of South Africa
+                                                    </option>
+                                                    <option value="40">Golden Globe</option>
+                                                    <option value="11">HATFIELD CHRISTIAN SCHOOL</option>
+                                                    <option value="21">HERONBRIDGE COLLEGE</option>
+                                                    <option value="28">HERONBRIDGE PREP</option>
+                                                    <option value="62">Hilton College</option>
+                                                    <option value="50">Houghton Muslim Academy</option>
+                                                    <option value="75">Hurlyvale Primary</option>
+                                                    <option value="34">IVA GLOBAL ONLINE SCHOOL</option>
+                                                    <option value="52">Jacaranda College</option>
+                                                    <option value="53">Kingfisher Private School</option>
+                                                    <option value="55">Kingswood College</option>
+                                                    <option value="7">KINGSWOOD JUNIOR SCHOOL</option>
+                                                    <option value="89">MARANATHA CHRISTIAN SCHOOL</option>
+                                                    <option value="4">MICHAELIS PRIMARY SCHOOL</option>
+                                                    <option value="77">MK School</option>
+                                                    <option value="74">MOS Skole</option>
+                                                    <option value="61">Pecanwood College</option>
+                                                    <option value="43">Pinnacle College Rynfield</option>
+                                                    <option value="8">PRO-ED ACADEMY</option>
+                                                    <option value="46">Protea Heights Academy</option>
+                                                    <option value="90">QURTUBA ONLINE ACADEMY</option>
+                                                    <option value="67">Reddam House Ballito</option>
+                                                    <option value="10">REDDAM HOUSE COLLEGE; WATERFALL ESTATE</option>
+                                                    <option value="25">REDDAM HOUSE HELDERFONTEIN</option>
+                                                    <option value="5">REDDAM HOUSE UMHLANGA</option>
+                                                    <option value="17">RICHARDS BAY CHRISTIAN SCHOOL</option>
+                                                    <option value="16">ROEDEAN JUNIOR SCHOOL (SA)</option>
+                                                    <option value="35">SACRED HEART</option>
+                                                    <option value="58">School of Merit</option>
+                                                    <option value="41">Sihle High School II</option>
+                                                    <option value="70">St Andrews School for Girls: Senderwood</option>
+                                                    <option value="31">ST ANNE`S DIOCESAN COLLEGE</option>
+                                                    <option value="12">ST CATHERINES SCHOOL GERMISTON PREP</option>
+                                                    <option value="68">St Charles College</option>
+                                                    <option value="15">ST DAVIDS MARIST INANDA</option>
+                                                    <option value="59">St John's DSG</option>
+                                                    <option value="19">St Martins</option>
+                                                    <option value="56">St Mary's PTA</option>
+                                                    <option value="24">ST MARYS DSG; KLOOF</option>
+                                                    <option value="26">St Michael`s PTA</option>
+                                                    <option value="86">St Patrick's College</option>
+                                                    <option value="45">St Peters College</option>
+                                                    <option value="54">St Stithians Girls College</option>
+                                                    <option value="92">St. Peters College</option>
+                                                    <option value="18">STEYN CITY SCHOOL</option>
+                                                    <option value="57">Test CPU College</option>
+                                                    <option value="39">TestCenter</option>
+                                                    <option value="87">The Dolphin Schools</option>
+                                                    <option value="71">The Wykeham Collegiate</option>
+                                                    <option value="6">THORNTREE PREP SCHOOL</option>
+                                                    <option value="23">UPLANDS COLLEGE</option>
+                                                    <option value="3">Verney College</option>
+                                                    <option value="2">V-SOFT TECHNOLOGIES</option>
+                                                    <option value="27">WATERFALL COLLEGE</option>
+                                                    <option value="47">Windhoek Afrikaanse Privaatskool</option>
+                                                </select>-->
+                                                <div class="form-control-position">
+                                                    <i class="la la-home"></i>
+                                                </div>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['centerId'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['centerId'].errors.required">Center is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <fieldset class="position-relative has-icon-left">
+                                                <select id="ddlCenterType" name="interested"
+                                                    formControlName="centerTypeId" class="form-control">
+                                                    <option value="">--Select Center Type--</option>
+                                                    <option value="1">School</option>
+                                                    <option value="2">Examination Body</option>
+                                                    <option value="3">Home Learning</option>
+                                                    <option value="4">University / College</option>
+                                                </select>
+                                                <div class="form-control-position">
+                                                    <i class="la la-home"></i>
+                                                </div>
+                                                <div class="help-block font-small-3"></div>
+                                            </fieldset>
+                                            <div *ngIf="submitted && f['centerTypeId'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['centerTypeId'].errors.required">Center Type is required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-1">
+                                            <div class="col-4 col-sm-3 col-md-3">
+                                                <fieldset>
+                                                    <input type="checkbox" id="cbxAgree" formControlName="cbxAgree"
+                                                        class="chk-remember" formControlName="cbxAgree">
+                                                    <label for="remember-me"> I Agree</label>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-8 col-sm-9 col-md-9">
+                                                <p class="font-small-3">
+                                                    By clicking Register, you agree to the
+                                                    <a  data-toggle="modal" data-target="#t_and_c_m">
+                                                        Terms and Conditions
+                                                    </a>
+                                                    set out by this site, including our Cookie Use.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div   class="col-12 col-sm-6 col-md-6">
+                                                <button id="btnRegister" class="btn btn-info btn-lg btn-block"
+                                                    type="submit" [disabled]="!f['cbxAgree'].value">
+                                                    <i class="la la-user"></i>
+                                                    Register
+                                                </button>
+                                            </div>
+
+                                            <div  class="col-12 col-sm-6 col-md-6">
+                                                <button id="btnLogin" class="btn btn-danger btn-lg btn-block"
+                                                    type="submit" (click)="redirectLogin()">
+                                                   <!--  <i class="fa-light fa-unlock"></i> -->
+                                                  <i class="la la-unlock"></i>
+                                                    <!--<i class="fa-light fa-unlock"></i> -->
+                                                    <!-- <i class="ft-unlock"></i> -->
+                                                    Login
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<ng-template #addGradeModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Subject Maintenance</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+<div class="modal fade text-left" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel8" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title white" id="myModalLabel8">User Saved</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align:center!important">
+                <i class="la la-info-circle font-large-4 line-height-1 text-muted icon-align"></i>
+                <h4>You have successfully captured the user. Would you like to capture another user?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnYes" class="btn btn-outline-primary">Yes</button>
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-template>
+<app-pop-up content="{{message}}" title="{{title}}" show="{{showModal}}" />

@@ -1,0 +1,1079 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Form wizard with number tabs section start -->
+      <section id="number-tabs">
+        <div class="row">
+          <div class="col-12" *blockUI="'numberTabs'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadNumberTabs($event)">
+              <ng-container mCardHeaderTitle>
+                Reactive form wizard with number tabs
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-block">
+                  <aw-wizard #wizard navBarLayout="large-filled-symbols">
+                    <aw-wizard-step [stepTitle]="'Step 1'" [navigationSymbol]="{ symbol: '1'}">
+                      <form [formGroup]="numberTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="firstname">First Name :</label>
+                              <input class="form-control" type="text" formControlName="firstName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="email">Email Address :</label>
+                              <input class="form-control" type="text" formControlName="email" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="phone">Phone Number :</label>
+                              <input class="form-control" type="text" formControlName="phone" />
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="lastname">Last Name :</label>
+                              <input class="form-control" type="text" formControlName="lastName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="city">Select City :</label>
+                              <select class="form-control input-md" formControlName="country">
+                                <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Date of Birth :</label>
+                              <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                ngbDatepicker #d2="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d2.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center">
+                          <button type="button" uiSref="work" class="btn btn-info btn-raised"
+                            [disabled]="numberTab.valid" awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step [stepTitle]="'Step 2'" [navigationSymbol]="{ symbol: '2'}">
+                      <form [formGroup]="numberTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="proposal">Proposal Title :</label>
+                              <input class="form-control" type="text" formControlName="proposalTitle" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="email">Email Address :</label>
+                              <input class="form-control" type="text" formControlName="email2" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="videoURL">Video URL :</label>
+                              <input class="form-control" type="text" formControlName="videoURL" />
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Job Title :</label>
+                              <input class="form-control" type="text" formControlName="jobTitle" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="description">Short Description :</label>
+                              <textarea class="form-control" type="text" formControlName="description"
+                                rows="3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep>
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="numberTab.valid" awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step [stepTitle]="'Step 3'" [navigationSymbol]="{ symbol: '3'}">
+                      <form [formGroup]="numberTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventName">Event Name :</label>
+                              <input class="form-control" type="text" formControlName="eventName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventType">Event Type :</label>
+                              <select class="form-control input-md" formControlName="eventType">
+                                <option *ngFor="let type of eventType" [value]="type">{{type}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventLocation">Event Location :</label>
+                              <select class="form-control input-md" formControlName="eventLocation">
+                                <option *ngFor="let location of eventLocation" [value]="location">{{location}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Event Date :</label>
+                              <input class="form-control" placeholder="yyyy-mm-dd" formControlName="eventDate"
+                                [displayMonths]="displayMonthsForStep3" [navigation]="navigation"
+                                [outsideDays]="outsideDays" [showWeekNumbers]="showWeekNumbers" ngbDatepicker
+                                #d="ngbDatepicker" (click)="d.toggle()">
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventLocation">Event Status :</label>
+                              <select class="form-control input-md" formControlName="eventStatus">
+                                <option *ngFor="let status of eventStatus" [value]="status">{{status}}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Requirements :</label>
+                              <div class="c-inputs-stacked">
+                                <div class="d-inline-block custom-control custom-checkbox mr-1"
+                                  *ngFor="let data of requirements1">
+                                  <input type="checkbox" class="custom-control-input" id="{{data.name}}{{data.id}}">
+                                  <label class="custom-control-label"
+                                    for="{{data.name}}{{data.id}}">{{data.name}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep>
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="numberTab.valid" awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step  [stepTitle]="'Step 4'" [navigationSymbol]="{ symbol: '4'}">
+                      <form [formGroup]="numberTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="meetingName">Name of Meeting :</label>
+                              <input class="form-control" type="text" formControlName="meetingName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="location">Location :</label>
+                              <input class="form-control" type="text" formControlName="location" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="participantName">Names of Participants :</label>
+                              <textarea class="form-control" type="text" formControlName="participantName"
+                                rows="3"></textarea>
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="decisionsReached">Decisions Reached :</label>
+                              <textarea class="form-control" type="text" formControlName="decisionsReached"
+                                rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label>Agenda Items :</label>
+                              <div class="c-inputs-stacked">
+                                <div class="custom-control custom-checkbox" *ngFor="let data of agendaItems1">
+                                  <input type="checkbox" class="custom-control-input" id="{{data.idName}}{{data.id}}">
+                                  <label class="custom-control-label"
+                                    for="{{data.idName}}{{data.id}}">{{data.name}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep (click)="previousFourthStep()">
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="numberTab.valid" (click)="submit()">
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                  </aw-wizard>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Form wizard with number tabs section end -->
+
+      <!-- Form wizard with icon tabs section start -->
+      <section id="icon-tabs">
+        <div class="row">
+          <div class="col-12" *blockUI="'iconTabs'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadIconTabs($event)">
+              <ng-container mCardHeaderTitle>
+                Reactive form wizard with icon tabs
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-block">
+                  <aw-wizard #wizard navBarLayout="large-filled-symbols">
+                    <aw-wizard-step [stepTitle]="'Step 1'"
+                      [navigationSymbol]="{ symbol: '&#xf015;' ,fontFamily: 'FontAwesome' }">
+                      <form [formGroup]="iconTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="firstname">First Name :</label>
+                              <input class="form-control" type="text" formControlName="firstName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="email">Email Address :</label>
+                              <input class="form-control" type="text" formControlName="email" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="phone">Phone Number :</label>
+                              <input class="form-control" type="text" formControlName="phone" />
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="lastname">Last Name :</label>
+                              <input class="form-control" type="text" formControlName="lastName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="city">Select City :</label>
+                              <select class="form-control input-md" formControlName="country">
+                                <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Date of Birth :</label>
+                              <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                ngbDatepicker #d3="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d3.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center">
+                          <button type="button" uiSref="work" class="btn btn-info btn-raised" [disabled]="iconTab.valid"
+                            awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step [stepTitle]="'Step 2'"
+                      [navigationSymbol]="{ symbol: '&#xf040;' ,fontFamily: 'FontAwesome' }">
+                      <form [formGroup]="iconTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="proposal">Proposal Title :</label>
+                              <input class="form-control" type="text" formControlName="proposalTitle" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="email">Email Address :</label>
+                              <input class="form-control" type="text" formControlName="email2" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="videoURL">Video URL :</label>
+                              <input class="form-control" type="text" formControlName="videoURL" />
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Job Title :</label>
+                              <input class="form-control" type="text" formControlName="jobTitle" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="description">Short Description :</label>
+                              <textarea class="form-control" type="text" formControlName="description"
+                                rows="3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep>
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="iconTab.valid" awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step [stepTitle]="'Step 3'"
+                      [navigationSymbol]="{ symbol: '&#xf26c;', fontFamily: 'FontAwesome' }">
+                      <form [formGroup]="iconTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventName">Event Name :</label>
+                              <input class="form-control" type="text" formControlName="eventName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventType">Event Type :</label>
+                              <select class="form-control input-md" formControlName="eventType">
+                                <option *ngFor="let type of eventType" [value]="type">{{type}}</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventLocation">Event Location :</label>
+                              <select class="form-control input-md" formControlName="eventLocation">
+                                <option *ngFor="let location of eventLocation" [value]="location">{{location}}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="jobTitle">Event Date :</label>
+                              <div class="input-group">
+                                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                  ngbDatepicker #d1="ngbDatepicker">
+                                <div class="input-group-append">
+                                  <div class="input-group-text" (click)="d1.toggle()">
+                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                  </div>
+                                </div>
+                                  </div>
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="eventLocation">Event Status :</label>
+                              <select class="form-control input-md" formControlName="eventStatus">
+                                <option *ngFor="let status of eventStatus" [value]="status">{{status}}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label>Requirements :</label>
+                              <div class="c-inputs-stacked">
+                                <div class="d-inline-block custom-control custom-checkbox mr-1"
+                                  *ngFor="let data of requirements2">
+                                  <input type="checkbox" class="custom-control-input" id="{{data.name}}{{data.id}}">
+                                  <label class="custom-control-label"
+                                    for="{{data.name}}{{data.id}}">{{data.name}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep>
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="iconTab.valid" awNextStep>
+                            Next
+                            <span style="margin-left:10px;">
+                              <i class="feather ft-chevron-right"></i>
+                            </span>
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                    <aw-wizard-step [stepTitle]="'Step 4'"
+                      [navigationSymbol]="{ symbol: '&#xf03e;', fontFamily: 'FontAwesome' }">
+                      <form [formGroup]="iconTab">
+                        <div class="row">
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="meetingName">Name of Meeting :</label>
+                              <input class="form-control" type="text" formControlName="meetingName" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="location">Location :</label>
+                              <input class="form-control" type="text" formControlName="location" />
+                            </div>
+                            <div class="form-group">
+                              <label class="form-control-label" for="participantName">Names of Participants :</label>
+                              <textarea class="form-control" type="text" formControlName="participantName"
+                                rows="3"></textarea>
+                            </div>
+                          </div>
+                          <div class='col-md-6'>
+                            <div class="form-group">
+                              <label class="form-control-label" for="decisionsReached">Decisions Reached :</label>
+                              <textarea class="form-control" type="text" formControlName="decisionsReached"
+                                rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label>Agenda Items :</label>
+                              <div class="c-inputs-stacked">
+                                <div class="custom-control custom-checkbox" *ngFor="let data of agendaItems2">
+                                  <input type="checkbox" class="custom-control-input" id="{{data.idName}}{{data.id}}">
+                                  <label class="custom-control-label"
+                                    for="{{data.idName}}{{data.id}}">{{data.name}}</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-center space-20">
+                          <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                            awPreviousStep>
+                            <span style="margin-right:10px;">
+                              <i class="feather ft-chevron-left"></i>
+                            </span> Previous</button>
+                          <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                            [disabled]="iconTab.valid" (click)="submit()">
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    </aw-wizard-step>
+                  </aw-wizard>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Form wizard with icon tabs section end -->
+
+      <!-- Form wizard with step validation section start -->
+      <section id="validation">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Validation Example(With Validation)</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="card-block">
+                    <aw-wizard #wizard navBarLayout="large-filled-symbols">
+                      <aw-wizard-step [stepTitle]="'Step 1'" [navigationSymbol]="{ symbol: '1'}">
+                        <form [formGroup]="stepOneForm">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="firstname">First Name :</label>
+                                <input class="form-control" type="text" formControlName="firstName"
+                                  [ngClass]="{ 'is-invalid': f.firstName.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="f.firstName.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="f.firstName.errors.required && (f.firstName.dirty || f.firstName.touched)">
+                                    First Name is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="email">Email Address :</label>
+                                <input class="form-control" type="text" formControlName="email"
+                                  [ngClass]="{ 'is-invalid': f.email.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="f.email.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="f.email.errors.required && (f.email.dirty || f.email.touched)">Email
+                                    is required</div>
+                                  <div *ngIf="f.email.errors.email && (f.email.dirty || f.email.touched)">Email must
+                                    be a valid email address</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="phone">Phone Number :</label>
+                                <input class="form-control" type="text" formControlName="phone"
+                                  [ngClass]="{ 'is-invalid': f.phone.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="f.phone.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="f.phone.errors.required && (f.phone.dirty || f.phone.touched)">phone
+                                    is required</div>
+                                </small>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="lastname">Last Name :</label>
+                                <input class="form-control" type="text" formControlName="lastName"
+                                  [ngClass]="{ 'is-invalid': f.lastName.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="f.lastName.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="f.lastName.errors.required && (f.lastName.dirty || f.lastName.touched)">
+                                    Last Name is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="city">Select City :</label>
+                                <select class="form-control input-md" formControlName="country"
+                                  [ngClass]="{ 'is-invalid': f.country.errors }">
+                                  <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                                </select>
+                                <small class="form-text text-muted danger" *ngIf="f.country.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="f.country.errors.required && (f.country.dirty || f.country.touched)">
+                                    Email is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="jobTitle">Date of Birth :</label>
+                                <div class="input-group">
+                                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                  ngbDatepicker #d4="ngbDatepicker">
+                                <div class="input-group-append">
+                                  <div class="input-group-text" (click)="d4.toggle()">
+                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                  </div>
+                                </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center">
+                            <button type="button" uiSref="work" class="btn btn-info btn-raised"
+                              [disabled]="!stepOneForm.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [stepTitle]="'Step 2'" [navigationSymbol]="{ symbol: '2'}">
+                        <form [formGroup]="stepTwoForm">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="proposal">Proposal Title :</label>
+                                <input class="form-control" type="text" formControlName="proposalTitle"
+                                  [ngClass]="{ 'is-invalid': i.proposalTitle.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="i.proposalTitle.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="i.proposalTitle.errors.required && (i.proposalTitle.dirty || i.proposalTitle.touched)">
+                                    Proposal Title is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="email2">Email Address :</label>
+                                <input class="form-control" type="text" formControlName="email2"
+                                  [ngClass]="{ 'is-invalid': i.email2.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="i.email2.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="i.email2.errors.required && (i.email2.dirty || i.email2.touched)">Email
+                                    is required</div>
+                                  <div *ngIf="i.email2.errors.email && (i.email2.dirty || i.email2.touched)">Email must
+                                    be a valid email address</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="videoURL">Video URL :</label>
+                                <input class="form-control" type="text" formControlName="videoURL"
+                                  [ngClass]="{ 'is-invalid': i.videoURL.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="i.videoURL.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="i.videoURL.errors.required && (i.videoURL.dirty || i.videoURL.touched)">
+                                    Video URL
+                                    is required</div>
+                                </small>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="jobTitle">Job Title :</label>
+                                <input class="form-control" type="text" formControlName="jobTitle"
+                                  [ngClass]="{ 'is-invalid': i.jobTitle.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="i.jobTitle.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="i.jobTitle.errors.required && (i.jobTitle.dirty || i.jobTitle.touched)">
+                                    Job Title is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="description">Short Description :</label>
+                                <textarea class="form-control" type="text" formControlName="description"
+                                  [ngClass]="{ 'is-invalid': i.description.errors }" rows="3"></textarea>
+                                <small class="form-text text-muted danger" *ngIf="i.description.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="i.description.errors.required && (i.description.dirty || i.description.touched)">
+                                    Description is required</div>
+                                </small>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="!stepTwoForm.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [stepTitle]="'Step 3'" [navigationSymbol]="{ symbol: '3'}">
+                        <form [formGroup]="stepThreeForm">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventName">Event Name :</label>
+                                <input class="form-control" type="text" formControlName="eventName"
+                                  [ngClass]="{ 'is-invalid': j.eventName.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="j.eventName.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="j.eventName.errors.required && (j.eventName.dirty || j.eventName.touched)">
+                                    Event Name is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventType">Event Type :</label>
+                                <select class="form-control input-md" formControlName="eventType"
+                                  [ngClass]="{ 'is-invalid': j.eventType.errors }">
+                                  <option *ngFor="let type of eventType" [value]="type">{{type}}</option>
+                                </select>
+                                <small class="form-text text-muted danger" *ngIf="j.eventType.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="j.eventType.errors.required && (j.eventType.dirty || j.eventType.touched)">
+                                    Event type is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventLocation">Event Location :</label>
+                                <select class="form-control input-md" formControlName="eventLocation"
+                                  [ngClass]="{ 'is-invalid': j.eventLocation.errors }">
+                                  <option *ngFor="let location of eventLocation" [value]="location">{{location}}
+                                  </option>
+                                </select>
+                                <small class="form-text text-muted danger" *ngIf="j.eventLocation.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="j.eventLocation.errors.required && (j.eventLocation.dirty || j.eventLocation.touched)">
+                                    Event location is required</div>
+                                </small>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="date1">Event Date :</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                    ngbDatepicker #d1="ngbDatepicker">
+                                  <div class="input-group-append">
+                                    <div class="input-group-text" (click)="d1.toggle()">
+                                      <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                    </div>
+                                  </div>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventLocation">Event Status :</label>
+                                <select class="form-control input-md" formControlName="eventStatus"
+                                  [ngClass]="{ 'is-invalid': j.eventStatus.errors }">
+                                  <option *ngFor="let status of eventStatus" [value]="status">{{status}}
+                                  </option>
+                                </select>
+                                <small class="form-text text-muted danger" *ngIf="j.eventStatus.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="j.eventStatus.errors.required && (j.eventStatus.dirty || j.eventStatus.touched)">
+                                    Event Status is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label>Requirements :</label>
+                                <div class="c-inputs-stacked">
+                                  <div class="d-inline-block custom-control custom-checkbox mr-1"
+                                    *ngFor="let data of requirements3">
+                                    <input type="checkbox" class="custom-control-input" id="{{data.name}}{{data.id}}">
+                                    <label class="custom-control-label"
+                                      for="{{data.name}}{{data.id}}">{{data.name}}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="!stepThreeForm.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [stepTitle]="'Step 4'" [navigationSymbol]="{ symbol: '4'}">
+                        <form [formGroup]="stepFourForm">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="meetingName">Name of Meeting :</label>
+                                <input class="form-control" type="text" formControlName="meetingName"
+                                  [ngClass]="{ 'is-invalid': k.meetingName.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="k.meetingName.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="k.meetingName.errors.required && (k.meetingName.dirty || k.meetingName.touched)">
+                                    Meeting Name is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="location">Location :</label>
+                                <input class="form-control" type="text" formControlName="location"
+                                  [ngClass]="{ 'is-invalid': k.location.errors }" />
+                                <small class="form-text text-muted danger" *ngIf="k.location.errors"
+                                  class="invalid-feedback">
+                                  <div *ngIf="k.location.errors.required && (k.location.dirty || k.location.touched)">
+                                    Location is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="participantName">Names of Participants :</label>
+                                <textarea class="form-control" type="text" formControlName="participantName"
+                                  [ngClass]="{ 'is-invalid': k.participantName.errors }" rows="3"></textarea>
+                                <small class="form-text text-muted danger" *ngIf="k.participantName.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="k.participantName.errors.required && (k.participantName.dirty || k.participantName.touched)">
+                                    Participant name is required</div>
+                                </small>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="decisionsReached">Decisions Reached :</label>
+                                <textarea class="form-control" type="text" formControlName="decisionsReached"
+                                  [ngClass]="{ 'is-invalid': k.decisionsReached.errors }" rows="3"></textarea>
+                                <small class="form-text text-muted danger" *ngIf="k.decisionsReached.errors"
+                                  class="invalid-feedback">
+                                  <div
+                                    *ngIf="k.decisionsReached.errors.required && (k.decisionsReached.dirty || k.decisionsReached.touched)">
+                                    Decisions reached is required</div>
+                                </small>
+                              </div>
+                              <div class="form-group">
+                                <label>Agenda Items :</label>
+                                <div class="c-inputs-stacked">
+                                  <div class="custom-control custom-checkbox" *ngFor="let data of agendaItems3">
+                                    <input type="checkbox" class="custom-control-input" id="{{data.idName}}{{data.id}}">
+                                    <label class="custom-control-label"
+                                      for="{{data.idName}}{{data.id}}">{{data.name}}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="!stepFourForm.valid" (click)="submit()">
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                    </aw-wizard>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Form wizard with step validation section end -->
+
+      <!-- Form wizard with vertical tabs section start -->
+      <section id="vertical-tabs">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Reactive form wizard with vertical tabs</h4>
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="card-block">
+                    <aw-wizard #wizard navBarLayout="large-filled-symbols" navBarLocation="left">
+                      <aw-wizard-step [navigationSymbol]="{ symbol: '1'}">
+                        <form [formGroup]="verticalTab">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="firstname">First Name :</label>
+                                <input class="form-control" type="text" formControlName="firstName" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="email">Email Address :</label>
+                                <input class="form-control" type="text" formControlName="email" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="phone">Phone Number :</label>
+                                <input class="form-control" type="text" formControlName="phone" />
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="lastname">Last Name :</label>
+                                <input class="form-control" type="text" formControlName="lastName" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="city">Select City :</label>
+                                <select class="form-control input-md" formControlName="country">
+                                  <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="jobTitle">Date of Birth :</label>
+                                <div class="input-group">
+                                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                  ngbDatepicker #d5="ngbDatepicker">
+                                <div class="input-group-append">
+                                  <div class="input-group-text" (click)="d5.toggle()">
+                                    <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                  </div>
+                                </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center">
+                            <button type="button" uiSref="work" class="btn btn-info btn-raised"
+                              [disabled]="verticalTab.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [navigationSymbol]="{ symbol: '2'}">
+                        <form [formGroup]="verticalTab">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="proposal">Proposal Title :</label>
+                                <input class="form-control" type="text" formControlName="proposalTitle" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="email">Email Address :</label>
+                                <input class="form-control" type="text" formControlName="email" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="videoURL">Video URL :</label>
+                                <input class="form-control" type="text" formControlName="videoURL" />
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="jobTitle">Job Title :</label>
+                                <input class="form-control" type="text" formControlName="jobTitle" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="description">Short Description :</label>
+                                <textarea class="form-control" type="text" formControlName="description"
+                                  rows="3"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="verticalTab.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [navigationSymbol]="{ symbol: '3'}">
+                        <form [formGroup]="verticalTab">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventName">Event Name :</label>
+                                <input class="form-control" type="text" formControlName="eventName" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventType">Event Type :</label>
+                                <select class="form-control input-md" formControlName="eventType">
+                                  <option *ngFor="let type of eventType" [value]="type">{{type}}</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventLocation">Event Location :</label>
+                                <select class="form-control input-md" formControlName="eventLocation">
+                                  <option *ngFor="let location of eventLocation" [value]="location">{{location}}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="jobTitle">Event Date :</label>
+                                <input class="form-control" placeholder="yyyy-mm-dd" formControlName="eventDate"
+                                  [displayMonths]="displayMonthsForStep3" [navigation]="navigation"
+                                  [outsideDays]="outsideDays" [showWeekNumbers]="showWeekNumbers" ngbDatepicker
+                                  #d="ngbDatepicker" (click)="d.toggle()">
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="eventLocation">Event Status :</label>
+                                <select class="form-control input-md" formControlName="eventStatus">
+                                  <option *ngFor="let status of eventStatus" [value]="status">{{status}}
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label>Requirements :</label>
+                                <div class="c-inputs-stacked">
+                                  <div class="d-inline-block custom-control custom-checkbox mr-1"
+                                    *ngFor="let data of requirements4">
+                                    <input type="checkbox" class="custom-control-input" id="{{data.name}}{{data.id}}">
+                                    <label class="custom-control-label"
+                                      for="{{data.name}}{{data.id}}">{{data.name}}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="verticalTab.valid" awNextStep>
+                              Next
+                              <span style="margin-left:10px;">
+                                <i class="feather ft-chevron-right"></i>
+                              </span>
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                      <aw-wizard-step [navigationSymbol]="{ symbol: '4'}">
+                        <form [formGroup]="verticalTab">
+                          <div class="row">
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="meetingName">Name of Meeting :</label>
+                                <input class="form-control" type="text" formControlName="meetingName" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="location">Location :</label>
+                                <input class="form-control" type="text" formControlName="location" />
+                              </div>
+                              <div class="form-group">
+                                <label class="form-control-label" for="participantName">Names of Participants :</label>
+                                <textarea class="form-control" type="text" formControlName="participantName"
+                                  rows="3"></textarea>
+                              </div>
+                            </div>
+                            <div class='col-md-6'>
+                              <div class="form-group">
+                                <label class="form-control-label" for="decisionsReached">Decisions Reached :</label>
+                                <textarea class="form-control" type="text" formControlName="decisionsReached"
+                                  rows="3"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <label>Agenda Items :</label>
+                                <div class="c-inputs-stacked">
+                                  <div class="custom-control custom-checkbox" *ngFor="let data of agendaItems4">
+                                    <input type="checkbox" class="custom-control-input" id="{{data.idName}}{{data.id}}">
+                                    <label class="custom-control-label"
+                                      for="{{data.idName}}{{data.id}}">{{data.name}}</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group text-center space-20">
+                            <button uiSref="personal" type="button" class="btn btn-raised btn-secondary mr-1"
+                              awPreviousStep>
+                              <span style="margin-right:10px;">
+                                <i class="feather ft-chevron-left"></i>
+                              </span> Previous</button>
+                            <button uiSref="address" type="button" class="btn btn-raised btn-info"
+                              [disabled]="verticalTab.valid" (click)="submit()">
+                              Submit
+                            </button>
+                          </div>
+                        </form>
+                      </aw-wizard-step>
+                    </aw-wizard>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Form wizard with vertical tabs section end -->
+    </div>
+  </div>
+</div>
+<!--////////////////////////////////////////////////////////////////-->

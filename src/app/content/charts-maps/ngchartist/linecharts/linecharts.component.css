@@ -1,0 +1,173 @@
+:host ::ng-deep .lineArea2 .ct-point-circle {
+    stroke-width: 2px;
+    fill: #fff;
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .dragdrop-container {
+    min-height: 200px !important;
+}
+
+:host ::ng-deep .ct-series-b .ct-line {
+    stroke: #ff8d60;
+    stroke-width: 2px;
+}
+
+:host ::ng-deep .ct-series-a .ct-line {
+    stroke: #84cfd1;
+    stroke-width: 2px;
+}
+
+:host ::ng-deep .ct-series-c .ct-line {
+    stroke: #ff586b;
+    stroke-width: 2px;
+}
+
+:host ::ng-deep .ct-series-a .ct-area {
+    fill: #0eb8de;
+}
+:host ::ng-deep .ct-series-a .ct-point {
+    stroke: #84cfd1;
+}
+:host ::ng-deep .lineArea2 .ct-series-a .ct-point-circle {
+    stroke: #84cfd1;
+    stroke-width: 2px;
+}
+
+:host ::ng-deep .lineChart1 .ct-series-a .ct-point {
+    stroke-width: 0px;
+
+    stroke: #84cfd1;
+}
+
+:host ::ng-deep .lineChart1 .ct-series-b .ct-point {
+    stroke-width: 0px;
+
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .lineChart1 .ct-series-c .ct-point {
+    stroke-width: 0px;
+
+    stroke: #ff586b;
+}
+
+:host ::ng-deep .lineChart3 .ct-series-a .ct-point {
+    stroke-width: 10px;
+
+    stroke: #84cfd1;
+}
+
+:host ::ng-deep .lineChart3 .ct-series-b .ct-point {
+    stroke-width: 10px;
+
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .lineChart3 .ct-series-c .ct-point {
+    stroke-width: 10px;
+
+    stroke: #ff586b;
+}
+
+:host ::ng-deep .lineArea3   .ct-series-b .ct-point-circle {
+    stroke-width: 2px;
+    fill: #fff;
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .lineArea3   .ct-series-a .ct-point-circle {
+    stroke-width: 2px;
+    fill: #fff;
+    stroke: #84cfd1;
+}
+:host ::ng-deep .lineChart2 .ct-series-a .ct-point-circle {
+    stroke: #84cfd1;
+    stroke-width: 2px;
+    fill: #fff;
+}
+
+:host ::ng-deep .lineChart2 .ct-series-b .ct-point-circle {
+    stroke: #ff8d60;
+    stroke-width: 2px;
+    fill: #fff;
+}
+
+:host ::ng-deep .bar-chart .ct-series-b .ct-bar {
+
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .bar-chart .ct-series-a .ct-bar {
+
+    stroke: #009da0;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-a .ct-bar {
+    stroke: #009da0;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-b .ct-bar {
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-c .ct-bar {
+    stroke: #ff586b;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-d .ct-bar {
+    stroke: #1cbcd8
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-e .ct-bar {
+    stroke: #0cc27e;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-f .ct-bar {
+    stroke: #9c27b0;
+}
+
+:host ::ng-deep .distributed-bar-chart .ct-series-f .ct-bar {
+    stroke: #ffc107;
+    ;
+}
+
+:host ::ng-deep .ct-series-a .ct-slice-donut {
+    stroke: #009da0;
+}
+
+:host ::ng-deep .ct-series-b .ct-slice-donut {
+    stroke: #ff8d60;
+}
+
+:host ::ng-deep .ct-series-c .ct-slice-donut {
+    stroke: #ff586b;
+}
+
+:host ::ng-deep .ct-series-d .ct-slice-donut {
+    stroke: #1cbcd8;
+}
+
+:host ::ng-deep .Bi-polar .ct-series-a .ct-area {
+    fill: #84cfd1;
+    fill-opacity: 0.6;
+}
+
+:host ::ng-deep .Bi-polar .ct-series-b .ct-area {
+    fill: #ff586b;
+    fill-opacity: 0.6;
+}
+
+:host ::ng-deep .Bi-polar .ct-series-c .ct-area {
+    fill: #f0c5de;
+    fill-opacity: 0.6;
+}
+
+:host ::ng-deep .svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}

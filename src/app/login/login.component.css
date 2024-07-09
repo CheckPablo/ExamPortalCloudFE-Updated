@@ -1,0 +1,35 @@
+.margin-left-5{
+    margin-left: 5px;
+}
+.terms {
+    float: right;
+}
+:host ::ng-deep .content .content-wrapper {
+    padding: 0!important;
+}
+:host ::ng-deep .btn-outline-twitter {
+    border: 1px solid #55acee!important;
+    color: #55acee !important;
+}
+:host ::ng-deep .icheckbox_square-blue, .iradio_square-blue {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 22px;
+     background: url("../../assets/images/icons/blue.png") no-repeat;  
+    border: none;
+    cursor: pointer;
+}
+:host ::ng-deep .icheckbox_square-blue {
+    background-position: 0 0;
+}
+:host ::ng-deep .lb-remember {
+    color: #2b335e;
+    padding-left: 3px;
+    width: max-content;
+}
+:host ::ng-deep .icheckbox_square-blue.checked {
+    background-position: -48px 0;
+}

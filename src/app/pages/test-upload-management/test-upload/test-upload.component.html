@@ -1,0 +1,772 @@
+
+<section id="basic-tabs-components">
+    <div class="row match-height">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">       
+                    
+                    <button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/testupload/view-tests']">Back</button>
+                    <div class="card-body">
+
+                        <ul ngbNav #Badge="ngbNav" [(activeId)]="active"[destroyOnHide]="false" class="nav-tabs nav-justified mb-1">
+
+                            <li [ngbNavItem]="1">
+                                <a ngbNavLink>
+                                    <i class="la la-info-circle"></i> Test Information
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="AddTestTab"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2"   [disabled]="!docsTabDisabled">
+                                <a ngbNavLink>
+                                    <i class="la la-info-circle" ></i> Source Document
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="SourceDocumentTab"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="3" [disabled]="!docsTabDisabled">
+                                <a ngbNavLink>
+                                    <i class="la la-info-circle"></i> Answer Template
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="AnswerTab"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="4" [disabled]="!docsTabDisabled" >
+                                <a ngbNavLink>
+                                    <i class="la la-link"></i> Link to Student
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="ListStudentTab"></ng-template>
+                                </ng-template>
+                            </li>
+                        </ul>
+                        <div class="tab-content text-muted">
+                            <div [ngbNavOutlet]="Badge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--https://speechify.com/blog/gif-editor/?landing_url=https%3A%2F%2Fspeechify.com%2Fblog%2Falternatives-to-ttsreader%2F-->
+<ng-template #AddTestTab>
+    <!--<div *ngIf="isLoading" class="d-flex justify-content-center"  > 
+        <div class="spinner-border" role="status"> 
+            <span class="sr-only" id="loading"></span> 
+        </div> 
+    </div>-->
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-6">
+                <form  [formGroup]="testInformationForm" (ngSubmit)="onSubmit($event.submitter.id)">
+                    <div class="form-body">
+                        <h4 class="form-section"><i class="feather ft-user"></i>Test Information</h4>
+                        <div class="row">
+                            <div style="display:none" class="col-md-6">
+                                <label id="lblGradeID"></label>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="sectorId" data-toggle="tooltip"
+                                        title="Grade">
+                                        Grade
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['sectorId'].errors && f['sectorId'].errors.required"></i>
+                                    </label>
+                                    <select class="form-control" id="sectorId" name="sectorId"
+                                        formControlName="sectorId" (change)="onGradeChange($any($event.target).value)"
+                                        [ngClass]="{ 'is-invalid': submitted && f['sectorId'].errors }">
+                                        <option value="">-- Select Grade --</option>
+                                        <option *ngFor="let grade of grades" [value]="grade.id">
+                                            {{grade.description}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f['sectorId'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['sectorId'].errors.required">Grade is required</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="subjectId" data-toggle="tooltip"
+                                        title="Subject">
+                                        Subject
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['subjectId'].errors && f['subjectId'].errors.required"></i>
+                                    </label>
+                                    <!--<select class="form-control form-select" id="subjectId" name="subjectId"
+                                        formControlName="subjectId"
+                                        [ngClass]="{ 'is-invalid': submitted && f['subjectId'].errors }">
+                                        <option *ngIf="!testId" [value]="test?.subjectId ">-- Select Subject --</option>
+                                        <option *ngFor="let subject of subjects" [value]="subject.id" placehplder>
+                                            {{subject.description}}</option>
+                                    </select>-->
+                                    <select class="form-control" id="subjectId" name="subjectId"	
+                                        formControlName="subjectId"	
+                                        [ngClass]="{ 'is-invalid': submitted && f['subjectId'].errors }">	
+                                        <option value="">-- Select Subject --</option>	
+                                        <option *ngFor="let subject of subjects" [value]="subject.id">	
+                                            {{subject.description}}</option>	
+                                    </select>
+                                    <div *ngIf="submitted && f['subjectId'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f['subjectId'].errors.required">Subject is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="testTypeId" data-toggle="tooltip"
+                                        title="Test Type">
+                                        Test Type
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['testTypeId'].errors && f['testTypeId'].errors.required"></i>
+                                    </label>
+                                    <select class="form-control" id="testTypeId" name="testTypeId"
+                                        formControlName="testTypeId"
+                                        [ngClass]="{ 'is-invalid': submitted && f['testTypeId'].errors }">
+                                        <option value="">-- Select Test Type --</option>
+                                        <option *ngFor="let testType of testTypes" [value]="testType.id">
+                                            {{testType.description}}</option>
+                                    </select>
+
+                                    <div *ngIf="submitted && f['testTypeId'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f['testTypeId'].errors.required">Test Type is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="testCategoryId" data-toggle="tooltip"
+                                        title="TestCategory">
+                                        Test Category
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['testCategoryId'].errors && f['testCategoryId'].errors.required"></i>
+                                    </label>
+
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <select class="form-control" id="testCategoryId" class="form-control"
+                                                name="testCategoryId" formControlName="testCategoryId">
+                                                <option value="">Select</option>
+                                                <option *ngFor="let cat of testCategories" [value]="cat.id">{{cat.description}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f['testCategoryId'].errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f['testCategoryId'].errors.required">
+                                                    Test Category is required
+                                                </div>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" style="text-align:center; display:block; padding:5px">
+                                                    TTS: 
+                                                    <input type="checkbox" formControlName="tts" id="cbxTTS">
+                                                    <p style="margin:0px; padding:0px; font-size:9px">
+                                                        (Text to Speech)
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="languageId" data-toggle="tooltip"
+                                        title="Language">
+                                        Language
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['languageId'].errors && f['languageId'].errors.required"></i>
+                                    </label>
+                                    <select class="form-control" id="languageId" name="languageId"
+                                        formControlName="languageId"
+                                        [ngClass]="{ 'is-invalid': submitted && f['languageId'].errors }">
+                                        <option value="">-- Select Language --</option>
+                                        <option *ngFor="let language of languages" [value]="language.id">
+                                            {{language.description}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f['languageId'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f['languageId'].errors.required">Language is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="examDate" data-toggle="tooltip"
+                                        title="Examination Date">
+                                        Examination Date
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['examDate'].errors && f['examDate'].errors.required"></i>
+                                    </label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <!--<input id="txtExamDate" type="text" readonly
+                                                class="form-control pickadate-format"
+                                                placeholder="Exam Date" />-->
+                                            <input class="form-control" type="text" id="examDate"  placeholder="Exam Date"
+                                                name="examDate" formControlName="examDate" onfocus ="(this.type = 'datetime-local')"  id = "date"
+                                                [ngClass]="{ 'is-invalid': submitted && f['examDate'].errors }">
+                                            <div *ngIf="submitted && f['examDate'].errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f['examDate'].errors.required">Examination Date
+                                                    is required</div>
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="testName" data-toggle="tooltip"
+                                        title="Test Name">
+                                        Test Name
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['testName'].errors && f['testName'].errors.required"></i>
+                                    </label>
+                                    <input class="form-control" type="text" id="testName" name="testName"
+                                        formControlName="testName" pattern="^[a-zA-Z0-9\s]+$"
+                                        [ngClass]="{ 'is-invalid': submitted && f['testName'].errors }">
+                                    <div *ngIf="submitted && f['testName'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['testName'].errors.required">Test/Exam name is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="paperExpiryDate" data-toggle="tooltip"
+                                        title="Expiry Date">
+                                        Expiry Date
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['paperExpiryDate'].errors && f['paperExpiryDate'].errors.required"></i>
+                                    </label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                           <!--<input id="txtExpDate" type="text" readonly
+                                                class="form-control pickadate-format"
+                                                placeholder="Expiry Exam Date" />-->
+                                            <input class="form-control" type="text" id="paperExpiryDate" placeholder="Expiry Date"
+                                                name="paperExpiryDate" formControlName="paperExpiryDate"  onfocus ="(this.type = 'datetime-local')"
+                                                [ngClass]="{ 'is-invalid': submitted && f['paperExpiryDate'].errors }">
+                                            <div *ngIf="submitted && f['paperExpiryDate'].errors"
+                                                class="invalid-feedback">
+                                                <div *ngIf="f['paperExpiryDate'].errors.required">Expiry
+                                                    Date is required</div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="code" data-toggle="tooltip"
+                                        title="Expiry Date">
+                                        Test Code
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['code'].errors && f['code'].errors.required"></i>
+                                    </label>
+                                    <input class="form-control" type="text" id="code" name="code"
+                                        formControlName="code"
+                                        [ngClass]="{ 'is-invalid': submitted && f['code'].errors }">
+                                    <div *ngIf="submitted && f['code'].errors" class="invalid-feedback">
+                                        <div *ngIf="f['code'].errors.required">Test Code is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="testDuration" data-toggle="tooltip"
+                                        title="Expiry Date">
+                                        Test Duration
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['testDuration'].errors && f['testDuration'].errors.required"></i>
+                                    </label>
+                                    <select class="form-control" id="testDuration" name="testDuration"
+                                        formControlName="testDuration" [ngClass]="{ 'is-invalid': submitted && f['testDuration'].errors }">
+                                        <option value="">--Select Test Duration --</option>
+                                        <option *ngFor="let duration of durations"[value]="duration.key">
+                                            {{duration.value}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="submitted && f['testDuration'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f['testDuration'].errors.required">Test Duration is
+                                            required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ddlTestCategory">Offline</label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <label id="lblProctor" name="interested"
+                                                class="form-control">Enable working offline?</label>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="checkbox" id="cbxOffline" checked="true" readonly
+                                                        formControlName="workOffline" >
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="testSecurityLevelId"
+                                        data-toggle="tooltip" title="Language">
+                                        Test Security Level
+                                        <i class="fa fa-asterisk text-danger"
+                                            *ngIf="f['testSecurityLevelId'].errors && f['testSecurityLevelId'].errors.required"></i>
+                                    </label>
+                                    <select class="form-control" id="testSecLevelId" name="testSecurityLevelId"
+                                        formControlName="testSecurityLevelId"
+                                        [ngClass]="{ 'is-invalid': submitted && f['testSecurityLevelId'].errors }">
+                                        <option value="">--Select Test Security --</option>
+                                        <option *ngFor="let security of securityLevels"
+                                            [value]="security.id">
+                                            {{security.description}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f['testSecurityLevelId'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="f['testSecurityLevelId'].errors.required">Test security
+                                            Level is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="ddlTestCategory">Answer Scanning</label>
+                                    <fieldset>
+                                        <div class="input-group">
+                                            <label id="lblProctor" name="interested"
+                                                class="form-control">Enable answer scanning?</label>
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <input type="checkbox"
+                                                        formControlName="answerScanningAvailable"
+                                                        id="cbxOffline">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div *ngIf="testId  && testId !='test-upload'" class="col-md-12">
+                                <!--accept=".pdf,.doc,.docx,.mp3"-->
+                                <input name="file" type="file" id="flUpload" accept=".pdf,.doc,.docx," (change)="onFileSelected($event)"
+                                    style="width:100%; height:150px; background-image: url('https://cdn.onlinewebfonts.com/svg/img_476640.png');
+                                    background-repeat: no-repeat; background-position: center; background-size:150px 150px; border:solid">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3" *ngIf="!testId">
+                        <button type="submit" class="btn btn-primary mr-1">
+                            <i class="la la-check-square-o"></i>
+                            Save
+                        </button>                        
+                    </div>
+                    <div class="form-group mt-3" *ngIf="testId">
+                        <button type="submit" class="btn btn-primary mr-1">
+                            <i class="la la-check-square-o"></i>
+                           save
+                        </button>                        
+                        <button id="btnDelete" type="button" class="btn btn-danger mr-1" (click)="onDeleteTest(test)">
+                            <i class="feather ft-x"></i>Delete
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div id="ControlRegion">
+                    <div class="control-section">
+                        <h4 class="form-section">
+                            <i class="feather ft-file"></i>
+                            Test Preview
+                        </h4>
+                        <!--<div id="TestPreview">
+                            <ejs-pdfviewer #pdfViewer id="pdfViewer" style="height:800px;display:block"
+                                [serviceUrl]="hostedUrl" [enableNavigationToolbar]="false" 
+                                [enableToolbar]="false"></ejs-pdfviewer>
+                        </div>-->
+                       <div id="TestPreview">
+                        <ejs-pdfviewer id="pdfViewer" [serviceUrl]='hostedUrl' [documentPath]='localBase64Url' [initialRenderPages]='initialRender'  style="height:800px;display:block"></ejs-pdfviewer>
+                        </div>
+                        <!-- <div id="TestPreview">
+                            <ejs-pdfviewer #pdfViewer id="pdfViewer" style="height:800px;display:block"
+                                [serviceUrl]="hostedUrl"></ejs-pdfviewer>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-template>
+
+<!--<ng-template #SourceDocumentTab  [disabled]="docsTabDisabled" >-->
+  <!-- <ng-template #SourceDocumentTab  *ngIf="docsTabDisabled==true">-->
+    <!--<ng-template #SourceDocumentTab *ngIf="onDocsTabClick()" >-->
+    <ng-template #SourceDocumentTab >
+    <div class="tab-pane" id="tab2" aria-labelledby="base-tab2">
+        <div class="row match-height">
+            <div class="col-xl-6 col-lg-12">
+                <label id="lblSourceDocID" style="display:none"></label>
+                <p>List of uploaded source documents. Double click on a source document to preview it.</p>
+                <div id="docTable" class="table-responsive">
+                    <table id="datatable" style="width:100%!important">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th>File Name</th>
+                                <th>Date Modified</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doc of sourceDocs" (dblclick)="previewSourceDoc(doc)">
+                                <td><a href='javascript: void(0);'>{{ doc.fileName }}</a></td>
+                                <td><a href='javascript: void(0);'>{{ doc.dateModified | date:'dd MMM yyyy' }}</a></td>
+
+                                <td>
+                                    <button class="btn btn-primary btn-sm" (click)="onSourceDocumentDelete(doc)">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-12">
+                <p>Click the button below or drag a source document onto the button to upload it</p>
+                <input name="file2" type="file" id="flUpload2" accept=".pdf,.doc,.docx,.mp3" (change)="onSourceFileSelected($event)"
+                    style="width:100%; height:150px; background-image: url('https://cdn.onlinewebfonts.com/svg/img_476640.png');
+                        background-repeat: no-repeat; background-position: center; background-size:150px 150px; border:solid" />
+            </div>
+
+            <div class="col-lg-12">
+                <h4 class="form-section"><i class="feather ft-file"></i> Source Document Preview</h4>
+                <hr />
+            <!--<audio data-ng-src="{{audioSource}} | safe:'url'" id="audio"  controls #audioTag></audio>-->
+            <br>
+            <audio controls *ngIf="selectedMP3Id">
+                <source [src]="getAudioUrl()" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+
+
+                <div id='divSourceDoc'>
+                    <div id="pdfviewer2">
+                        <ejs-pdfviewer #pdfViewerSourcePdf id="pdfViewerSourcePdf" style="height:800px;display:block"
+                            [serviceUrl]="hostedUrl" [enableNavigationToolbar]="false" 
+                            [enableToolbar]="false"></ejs-pdfviewer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #AnswerTab>
+    <div class="tab-pane" id="tab4" aria-labelledby="base-tab4">
+        <div class="row match-height">
+            <div class="col-lg-12">
+                <label id="lblAnswerDocID" style="display:none"></label>
+                <p>Click the button below or drag a answer document template onto the button to upload it</p>
+                <input name="file3" type="file" id="flAnswerDocUpload" accept=".docx,application/msword" (change)="onAnswerFileSelected($event)"
+                    style="width:100%; height:150px; background-image: url('https://cdn.onlinewebfonts.com/svg/img_476640.png');
+                        background-repeat: no-repeat; background-position: center; background-size:150px 150px; border:solid" />
+            </div>
+
+            <div class="col-lg-12">
+                <h4 class="form-section"><i class="feather ft-file"></i> Answer Document Preview</h4>
+                <hr />
+                <br>
+                <!-- <div id="divAnswerDocUpload"> -->
+                    <ejs-documenteditorcontainer [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
+                    style="display:block;height:800px;width:720px" #documentEditorAnswerUpload [enableToolbar]=false [showPropertiesPane]="false" >
+                </ejs-documenteditorcontainer>
+                <!-- </div> -->
+                <br>
+               <!--  <div id='divAnswerDoc' *ngIf="isAnswerFileUpload" style="height:800px;display:block"> -->
+                    <word-preview *ngIf="isAnswerFileUpload" [testId]="testId"></word-preview>
+               <!--  </div> -->
+            </div>
+
+            <!--<div class="col-lg-12">
+                <h4 class="form-section"><i class="feather ft-file"></i> Answer Document Preview</h4>
+                <hr />-->
+               <!--  <div id="ControlRegion"> -->
+                    <!-- <div class="control-section"> -->
+                    <!--<div id="divAnswerDocUpload">
+                        <ejs-documenteditorcontainer [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
+                        style="display:block" height="1000px" width="800px" display:block#documentEditorAnswerUpload [enableToolbar]=false [showPropertiesPane]="false" >
+                    </ejs-documenteditorcontainer>
+                    </div>
+                    <div id='divAnswerDoc' *ngIf="isAnswerFileUpload">
+                        <word-preview [testId]="testId"></word-preview>
+                    </div>-->
+                 <!-- </div> -->
+               <!--  </div> -->
+            <!--</div>-->
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #ListStudentTab >
+    <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+        <!--<button id="btnLinkTest" class="btn btn-info" [disabled]="!studentIds.length" (click)="onTestLinkClick()">-->
+            <button id="btnLinkTest" class="btn btn-info" [disabled]="!studentIds.size" (click)="onTestLinkClick()">
+            <i class="la la-check-square-o"></i>
+            Link
+        </button>
+        
+        <br /><br />
+        <!--<input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll">-->
+        <input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()"> 
+        <label for="cbxCheckAll"> Select All</label>
+
+        <!--This is going to be replaced by correct padding or a table-->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!--<input type="checkbox" id="cbxCheckStudentReaderLink" name="cbxCheckStudentAccomdationLink" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()">
+        <label for="cbxCheckAll"> Select All</label>-->
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <!--<input type="checkbox" id="cbxCheckStudentAccomdationLink" name="cbxCheckStudentAccomdationLink" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()"> 
+        <label for="cbxCheckAll"> Select All</label>-->
+
+        <div class="table-responsive" style="width:100%" *ngIf="Badge.activeId === 4">
+            <table id="StudentListTable" style="width:100%">
+                <thead class="bg-info white">
+                    <tr>
+                        <th style="display:none">StudentID</th>
+                        <th>Link</th>
+                        <th>Surname</th>
+                        <th>Fore Names</th>
+                        <th>Exam Number</th>
+                        <th>ID Number</th>
+                        <th style="display:none">Electronic Reader Val</th>
+                        <th>Electronic Reader </th>
+                        <th style="display:none">Accomodation Val</th>
+                        <th>Answer Area</th>
+                        <th style="display:none">Extra Time Val</th>
+                        <th>Extra Time (Minutes)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr  *ngFor="let link of links">            
+                        <td>
+                            <input  type="checkbox" id="cbxCheckStudentLink"  [value]="link.studentID" (click)="onStudentClick(link.studentID)"
+                                [checked]="isStudentSelected(link.studentID)">
+                        </td>
+                        <!--<input type="checkbox"[value]="link.studentID" (click)="onStudentClick(link.studentID)"	
+                        [checked]="isStudentSelected(link.studentID)">-->
+                        <td>
+                            <ngb-highlight [result]="link.surname"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="link.name"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="link.examNo"></ngb-highlight> 
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="link.idNumber"></ngb-highlight>
+                        </td>
+                   
+                        <td>
+                            <input type="checkbox"  id="cbxCheckStudentReaderLink" [value]="link.studentID" (click)="onStudentReaderClick(link.studentID)"
+                                [checked]="hasReader(link.studentID)">
+                        </td>     
+                        <td>
+                            <input type="checkbox" id="cbxCheckStudentReaderLink" [value]="link.studentID" (click)="onStudentAccomodationClick(link.studentID)"
+                                [checked]="hasAccomodation(link.studentID)">
+                        </td>               
+                        <td>
+                            <!--<div class="form-group">
+                            <select formControlName="defaultExtraTime">
+                                <option [ngValue]="null">Select Category</option>
+                                <option *ngFor="let extraTimeDuration of extraTimeDuration" 
+                                        [ngValue]="extraTimeDuration.key">{{extraTimeDuration.value}}</option>
+                              </select>-->
+
+                            
+                                <select class="form-control" name="title" id="title" #title="ngModel" title="Please select title" [(ngModel)]="extraTimeIds[link.studentID]">
+                                    <option [selected]="true" [ngValue]="">00:00:00</option>
+                                    <option *ngFor="let extraTimeDuration of extraTimeDurations"[ngValue]="extraTimeDuration.key">
+                                        {{extraTimeDuration.value}}
+                                     </option>
+                                </select>
+                                                            
+                            <!--<select class="form-control" id="extraTimeDuration"  [(ngModel)]="extraTimeIds[link.studentID]">
+                                <option *ngIf="extraTimeIds[link.studentExtraTime] === '00:00:00'" [selected]="true" [ngValue]="'00:00:00'">Financial</option>
+                                <option *ngFor="let extraTimeDuration of extraTimeDurations"[ngValue]="extraTimeDuration.key">
+                                   {{extraTimeDuration.value}}
+                                </option>
+                            </select>-->
+
+                            <!--<select class="form-control" id="extraTimeDuration"  [(ngModel)]="extraTimeIds[link.studentID]">
+                                <option *ngIf="!extraTimeIds[link.studentID]" [value]="null" disabled selected>00:00:00</option>
+                                <option *ngFor="let extraTimeDuration of extraTimeDurations" [ngValue]="extraTimeDuration.key">
+                                    {{ extraTimeDuration.value }}
+                                </option>
+                            </select>-->
+
+                            <!--<select type="number"  [(ngModel)]="extraTimeIds[link.studentID]" >
+                                <option *ngFor="let extraTimeDuration of extraTimeDurations" [ngValue]="extraTimeDuration.key">{{extraTimeDuration.value}}</option>
+                              </select>-->
+                            <!--<input class="form-control" type="text" [(ngModel)]="extraTimeIds[link.studentID]">-->
+                    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row justify-content-md-between align-items-md-center mt-2"
+            *ngIf="paginationService.totalItems">
+            <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                    aria-live="polite">Showing
+                    {{paginationService.startIndex}} to
+                    {{paginationService.endIndex}} of
+                    <span *ngIf="paginationService.searchTerm">{{paginationService.searchTotal}} search results from
+                    </span>
+                    {{paginationService.totalItems}} entries
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-5">
+                <div class="text-md-right float-md-end pagination-rounded">
+                    <ul class="pagination">
+                        <li class="page-item ng-star-inserted"
+                            [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                            (click)="paginationService.setPage(1)">
+                            <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                <span aria-hidden="true" class="ng-star-inserted">««</span>
+                            </a>
+                        </li>
+                        <li class="page-item ng-star-inserted"
+                            [ngClass]="{ 'disabled': paginationService.currentPage == 1 }"
+                            (click)="paginationService.goToPreviousPage()">
+                            <a aria-label="Previous" href="javascript:void(0);" class="page-link">
+                                <span aria-hidden="true" class="ng-star-inserted">«</span>
+                            </a>
+                        </li>
+                        <li class="page-item ng-star-inserted" aria-current="page"
+                            [ngClass]="{ 'active': paginationService.currentPage == page }"
+                            *ngFor="let page of paginationService.paginationLinks"
+                            (click)="paginationService.setPage(page)">
+                            <a href="javascript:void(0);" class="page-link ng-star-inserted">
+                                {{ page }}
+                            </a>
+                        </li>
+                        <li class="page-item ng-star-inserted"
+                            [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                            (click)="paginationService.goToNextPage()">
+                            <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                <span aria-hidden="true" class="ng-star-inserted">»</span>
+                            </a>
+                        </li>
+                        <li class="page-item ng-star-inserted"
+                            [ngClass]="{ 'disabled': paginationService.currentPage == paginationService.totalPages }"
+                            (click)="paginationService.setPage(paginationService.totalPages)">
+                            <a aria-label="Next" href="javascript:void(0);" class="page-link">
+                                <span aria-hidden="true" class="ng-star-inserted">»»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!--<div
+  class="modal fade"
+  id="loaderModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+  
+      <div class="modal-body">
+        <img src="../../../../assets/images/loaderBlue.gif" id="bg" alt="" style="width:30%; margin-left: 0; margin-right: 0;">
+      </div>
+
+    </div>
+  </div>
+</div>-->
+
+<ng-template #spinnerLoaderModal  >
+    <div class="modal-dialog modal-dialog-centered" role="document" style="background-color: transparent;
+    height: 400px;
+    padding: 20px;
+    border-radius: 10px;">
+<img  src="../../../../assets/images/loaderBlueTrans.gif" > 
+      </div>
+<!-- <div style="position: absolute; left: 50%; top: 50%;">
+    <img  src="../../../../assets/images/loaderBlueTrans.gif" > 
+</div> -->
+    <!--<img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" style="width:10%; margin-left: 0; margin-right: 0;">-->
+   
+</ng-template>
+
+<!--<template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title">Modal title</h4>
+    </div>
+    <div class="modal-body">
+      <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    </div>
+  </template>-->

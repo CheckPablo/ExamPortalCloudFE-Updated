@@ -1,0 +1,52 @@
+<p>test-writing-answerscan works!</p>
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <div class="kt-portlet kt-portlet--tab">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <span class="kt-portlet__head-icon kt-hide">
+                        <i class="la la-gear"></i>
+                    </span>
+                    <h3 class="kt-portlet__head-title">
+                        Acerca el código QR j
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+                </zxing-scanner>
+                <button (click)="enableScanner()" *ngIf="!scannerEnabled" type="button" class="btn btn-success">LEER
+                    OTRO</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <div class="kt-portlet kt-callout kt-callout--info kt-callout--diagonal-bg scannedInfo">
+            <div class="kt-portlet__body">
+                <div class="kt-callout__body">
+                    <div class="kt-callout__content">
+                        <h3 class="kt-callout__title">Información sobre el folio</h3>
+                        <h3 class="kt-callout__desc">
+                            {{information}}
+                        </h3>
+
+                        <div class="alert alert-primary fade show" role="alert"
+                            *ngFor="let item of transports; let i = index">
+                            <div class="alert-icon"><i class="flaticon-truck"></i></div>
+                            <div class="alert-text">
+                                VEHÍCULO PLACAS: {{item.plates}}
+                                <br />
+                                CORTINA ASIGNADA: {{item.slot.name}}
+                                ({{item.slot.description}})
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

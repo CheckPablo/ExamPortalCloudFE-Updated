@@ -1,0 +1,27 @@
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+:host ::ng-deep .ml-2{
+  margin-top: 3px;
+}
+:host ::ng-deep .ls-1{
+  margin-top: 10px;
+}
+:host ::ng-deep .ds-1{
+  margin-top: 6px;
+}
+:host ::ng-deep .switch-medium .switch.switch-medium {
+  height: 30px;
+  border-radius: 30px;
+  top: 8px;
+}
+:host ::ng-deep .switch-large .switch.switch-large {
+  height: 40px;
+  border-radius: 40px;
+  top: 15px;
+}
+:host ::ng-deep .switch-small .switch.switch-small {
+  height: 20px;
+  border-radius: 20px;
+  top: 4px;
+}

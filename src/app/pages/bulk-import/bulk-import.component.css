@@ -1,0 +1,48 @@
+.run-proc {
+    display: none;
+}
+/* a:link {
+    background-color: yellow;
+  }
+  
+  a:visited {
+    background-color: cyan;
+  }
+  
+  a:hover {
+    background-color: lightgreen;
+  }
+  
+  a:active {
+    background-color: hotpink;
+  }  */
+
+  a:link, a:visited {
+    border-color:#0d93e9 !important; ;
+    background-color: #0d93e9 !important;
+    text-decoration: underline;
+     text-decoration-color: #0d93e9;
+    padding: 14px 25px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+     text-decoration-color: #0d8bdd;
+
+  }
+
+/* background-color: yellow;
+
+a:visited {
+background-color: rgb(62, 55, 120);
+}
+
+a:hover {
+background-color:  rgb(12, 132, 209) 
+}
+
+a:active {
+background-color: hotpink;
+} " (click)="getTemplateUrl()">Download Template</a> 
+ */

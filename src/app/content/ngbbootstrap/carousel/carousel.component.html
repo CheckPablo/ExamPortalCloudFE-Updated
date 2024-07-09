@@ -1,0 +1,192 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Basic Carousel start -->
+      <section id="basic-carousel">
+        <div class="row">
+          <div class="col-12 mt-1 mb-1">
+            <p><strong> Nested carousels are not supported.</strong></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Basic Example</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <!-- <div id="carousel-example-generic" class="carousel slide" data-ride="carousel"> -->
+                    <ngb-carousel *ngIf="basicArray" >
+                      <ng-template ngbSlide>
+                        <img [src]="basicArray[0]">
+                      </ng-template>
+                      <ng-template ngbSlide>
+                        <img [src]="basicArray[1]">
+                      </ng-template>
+                      <ng-template ngbSlide>
+                        <img [src]="basicArray[2]">
+                      </ng-template>
+                    </ngb-carousel>
+                  <!-- </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Optional captions</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <ngb-carousel *ngIf="optionalArray" [pauseOnHover]="true" interval="1500">
+                    <ng-template ngbSlide>
+                      <img [src]="optionalArray[0]" alt="First slide">
+                      <div class="carousel-caption">
+                        <h3>First slide label</h3>
+                        <p>Donut jujubes I love topping I love sweet. Jujubes I love brownie gummi bears I love donut
+                          sweet chocolate. Tart chocolate marshmallow.Tart carrot cake muffin.</p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="optionalArray[1]" alt="Second slide">
+                      <div class="carousel-caption">
+                        <h3>Second slide label</h3>
+                        <p>Tart macaroon marzipan I love soufflé apple pie wafer. Chocolate bar jelly caramels jujubes
+                          chocolate cake gummies. Cupcake cake I love cake danish carrot cake.</p>
+                      </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="optionalArray[2]" alt="Third slide">
+                      <div class="carousel-caption">
+                        <h3>Third slide label</h3>
+                        <p>Pudding sweet pie gummies. Chocolate bar sweet tiramisu cheesecake chocolate cotton candy
+                          pastry muffin. Marshmallow cake powder icing.</p>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Basic Carousel end -->
+
+
+
+      <!-- Carousel Options start -->
+      <section id="carousel-options">
+        <div class="row">
+          <div class="col-12 mt-3 mb-1">
+            <h4 class="text-uppercase">Carousel Options</h4>
+            <p>Options can be passed to <code>ngb-carousel</code>.</p>
+          </div>
+        </div>
+        <div class="row" matchHeight="card">
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Interval Option</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>The amount of time to delay between automatically cycling an item. If false, carousel will not
+                    automatically cycle.</p>
+                  <ngb-carousel *ngIf="intervalOptionalArray" [pauseOnHover]="true" interval="1500">
+                    <ng-template ngbSlide>
+                      <img [src]="intervalOptionalArray[0]">
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="intervalOptionalArray[1]">
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="intervalOptionalArray[2]">
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Pause Option</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>If set to <code>"hover"</code>, pauses the cycling of the carousel on <code>mouseenter</code> and
+                    resumes the cycling of the carousel on <code>mouseleave</code>. If set to <code>null</code>,
+                    hovering over the carousel won't pause it.</p>
+                  <ngb-carousel *ngIf="pauseOptionArray" interval="1500" [pauseOnHover]="false">
+                    <ng-template ngbSlide>
+                      <img [src]="pauseOptionArray[0]">
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="pauseOptionArray[1]">
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="pauseOptionArray[2]">
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Wrap Option</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Whether the carousel should cycle continuously or have hard stops. Default: true</p>
+                  <ngb-carousel *ngIf="wrapOptionArray" interval="1500" [wrap]="false" [pauseOnHover]="false">
+                    <ng-template ngbSlide>
+                      <img [src]="wrapOptionArray[0]" >
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="wrapOptionArray[1]">
+                    </ng-template>
+                    <ng-template ngbSlide>
+                      <img [src]="wrapOptionArray[2]">
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Keyboard Option</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Whether the carousel should react to keyboard events. Default: true</p>
+                  <ngb-carousel *ngIf="keyboardoptionArray" interval="3000" [keyboard]="true" [pauseOnHover]="true">
+                    <ng-template class="carousel-item-next active" ngbSlide>
+                      <img [src]="keyboardoptionArray[0]">
+                    </ng-template>
+                    <ng-template class="carousel-item-next" ngbSlide>
+                      <img [src]="keyboardoptionArray[1]">
+                    </ng-template>
+                    <ng-template class="carousel-item-next" ngbSlide>
+                      <img [src]="keyboardoptionArray[2]">
+                    </ng-template>
+                  </ngb-carousel>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Carousel Options end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

@@ -1,0 +1,61 @@
+<p>test-writing-qrcodescan works!</p>
+
+<div class="app-content content">
+    <div id="loader" style="z-index: 100; height: 100%; width: 100%; background: #0000009c; position: fixed;">
+        <img src="~/Images/loader.gif" id="bg" alt="" style=" top: 0; left: 0; position: absolute; margin: auto; right: 0; bottom: 0; display: block;">
+    </div>
+
+    <div class="navbar-header">
+        <input type="hidden" id="HiddenStudentID" value="@StudentID">
+        <input type="hidden" id="HiddenTestID" value="@TestID">
+    </div>
+
+    <div id="scanDiv">
+        <div class="text-center otpMainDiv" id="otpDiv">
+            <div>
+                <label style="font-weight: bold; font-size: 25px;">
+                    OTP
+                </label>
+                <br />
+                <label id="otpData" style="font-size: 22px; border: black;">
+                </label>
+            </div>
+        </div>
+        <div id="instructions" class="text-center" style="margin-top:25px">
+            <h2>Photograph your work</h2>
+            <br />
+            <p>
+                Note that only work may be photograph
+            </p>
+        </div>
+        <div id="scanButtonDiv">
+            <label class="scanButton">
+                <input id="fileUpload" type="file" accept="image/*" capture="camera" style="Display:None" />
+                <i class="ft ft-camera" style="margin: 10px;"></i>
+                <span style="margin: 10px;">Scan Work</span>
+            </label>
+        </div>
+    </div>
+    <div id="imageDiv" style=" margin-bottom: 65px; overflow: scroll;">
+        <div id="currentImageDiv" class="text-center">
+            <img id="currentImage" style="max-height:600px;max-width:600px;" />
+            <br />
+            <button class="btn" id="selectImage">Select</button>
+            <button class="btn" id="cancelImage">Delete</button>
+            <button class="btn" id="rotateimage">Rotate</button>
+        </div>
+        <div id="imagesWrapper" class="text-center">
+            <!--<img id="uploadedImage" class="imageWrapper" />-->
+        </div>
+        <div class="text-center">
+            <button type="button" id="btnUpload" class="btn uploadButton">
+                <i class="ft ft-cloud-upload"></i>
+                <span>Upload</span>
+            </button><br />
+            <!--<button type="button" id="btnCloseDiv" class="btn scanButton">
+                    <span>Close</span>
+            </button-->
+        </div>
+    </div>
+
+</div>

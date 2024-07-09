@@ -1,0 +1,269 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+    </div>
+    <div class="content-body">
+      <!-- Revenue, Hit Rate & Deals -->
+      <div class="row">
+        <div class="col-xl-6 col-12">
+          <div class="Revenue" *blockUI="'revenue'; message: 'Loading'">
+          <m-card [options]="options" (reloadFunction)="reloadRevenue($event)">
+            <ng-container mCardHeaderTitle>
+              Revenue
+            </ng-container>
+            <ng-container mCardBody>
+              <div class="row mb-1">
+                <div class="col-6 col-md-4">
+                  <h5>Current week</h5>
+                  <h2 class="danger">$82,124</h2>
+                </div>
+                <div class="col-6 col-md-4">
+                  <h5>Previous week</h5>
+                  <h2 class="text-muted">$52,502</h2>
+                </div>
+              </div>
+              <div class="chartist">
+                <x-chartist *ngIf="lineArea" [data]="lineArea.data" [type]="lineArea.type" [options]="lineArea.options"
+                  [responsiveOptions]="lineArea.responsiveOptions" [events]="lineArea.events">
+                </x-chartist>
+              </div>
+            </ng-container>
+          </m-card>
+          </div>
+        </div>
+        <div class="col-xl-6 col-12">
+          <div class="row">
+            <div class="col-md-6 col-12 ">
+              <div class="HitRate" *blockUI="'hitrate'; message: 'Loading'">
+              <m-card [options]="hitRateOptions" id="card" (reloadFunction)="reloadHitRate($event)">
+                <ng-container mCardHeaderTitle>
+                  Hit Rate <span class="danger">-12%</span>
+                </ng-container>
+                <ng-container mCardBody>
+                  <div id="donut-chart2" class="height-230 donut-chart2">
+                    <x-chartist *ngIf="donutChart2" [data]="donutChart2.data" [type]="donutChart2.type" [options]="donutChart2.options"
+                      [responsiveOptions]="donutChart2.responsiveOptions" [events]="donutChart2.events">
+                    </x-chartist>
+                  </div>
+                </ng-container>
+              </m-card>
+            </div>
+          </div>
+            <div class="col-md-6 col-12">
+              <m-card [options]="dealsOptions">
+                <ng-container mCardBody>
+                  <h4 class="card-title white">Deals <span class="white">-55%</span>
+                    <span class="float-right">
+                        <span class="white">152</span><span class="red lighten-4">/200</span>
+                    </span>
+                  </h4>
+                  <div id="donut-chart1" class="height-230 donut-chart1">
+                    <x-chartist *ngIf="donutChart1" [data]="donutChart1.data" [type]="donutChart1.type" [options]="donutChart1.options"
+                      [responsiveOptions]="donutChart1.responsiveOptions" [events]="donutChart1.events">
+                    </x-chartist>
+                  </div>
+                </ng-container>
+              </m-card>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-12">
+              <div class="card pull-up">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h6 class="text-muted">Order Value </h6>
+                        <h3>$ 88,568</h3>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="icon-trophy success font-large-2 float-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="card pull-up">
+                <div class="card-content">
+                  <div class="card-body">
+                    <div class="media d-flex">
+                      <div class="media-body text-left">
+                        <h6 class="text-muted">Calls</h6>
+                        <h3>3,568</h3>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="icon-call-in danger font-large-2 float-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Revenue, Hit Rate & Deals -->
+
+      <!-- Emails Products & Avg Deals -->
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <div class="EmailRate" *blockUI="'email'; message: 'Updating'">
+          <m-card [options]="emailsOptions" (reloadFunction)="reloadEmail($event)">
+            <ng-container mCardHeaderTitle>
+              Emails
+            </ng-container>
+            <ng-container mCardBody>
+              <p>Open rate <span class="float-right text-bold-600">89%</span></p>
+              <ngb-progressbar height="7px" type="danger" [value]="89"></ngb-progressbar>
+              <p class="pt-1">Sent <span class="float-right"><span class="text-bold-600">310</span>/500</span>
+              </p>
+              <ngb-progressbar height="7px" type="success" [value]="50"></ngb-progressbar>
+            </ng-container>
+          </m-card>
+        </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Top Products</h4>
+              <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                  <li><a class="info">Show all</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body p-0">
+                  <div class="table-responsive">
+                  <table class="table mb-0">
+                    <tbody>
+                      <tr>
+                        <th scope="row" class="border-top-0">iPone X</th>
+                        <td class="border-top-0">2245</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">One Plus</th>
+                        <td>1850</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Samsung S7</th>
+                        <td>1550</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title text-center">Average Deal Size</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body pt-0">
+                <div class="row">
+                  <div class="col-md-6 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                    <h6 class="danger text-bold-600">-30%</h6>
+                    <h4 class="font-large-2 text-bold-400">$12,536</h4>
+                    <p class="blue-grey lighten-2 mb-0">Per rep</p>
+                  </div>
+                  <div class="col-md-6 col-12 text-center">
+                    <h6 class="success text-bold-600">12%</h6>
+                    <h4 class="font-large-2 text-bold-400">$18,548</h4>
+                    <p class="blue-grey lighten-2 mb-0">Per team</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Emails Products & Avg Deals -->
+
+      <!-- Total earning & Recent Sales  -->
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <div class="card">
+            <div class="card-content">
+              <div class="earning-chart position-relative">
+                <div class="chart-title position-absolute mt-2 ml-2">
+                  <h1 class="display-4">$1,596</h1>
+                  <span class="text-muted">Total Earning</span>
+                </div>
+                <div id="cost-revenue" class="earningchart position-relative">
+                  <x-chartist *ngIf="earningchart" [data]="earningchart.data" [type]="earningchart.type" [options]="earningchart.options"
+                    [responsiveOptions]="earningchart.responsiveOptions" [events]="earningchart.events">
+                  </x-chartist>
+                </div>
+                <div class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3">
+                  <a [routerLink]="" class="btn round btn-danger mr-1 btn-glow">Statistics <i class="feather ft-bar-chart"></i></a>
+                  <span class="text-muted">for the <a [routerLink]="" class="danger darken-2">last year.</a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="recent-sales" class="col-12 col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Recent Sales</h4>
+              <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                  <li><a [routerLink]="" class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right" (click)="rotueInvoice()">View
+                      all</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-content mt-1">
+                <div class="table-responsive" fxFlex="auto" [perfectScrollbar]="config">
+                    <table class="table border_bottom table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="border-top-0">Product</th>
+                          <th scope="col" class="border-top-0">Customers</th>
+                          <th scope="col" class="border-top-0">Categories</th>
+                          <th scope="col" class="border-top-0">Popularity</th>
+                          <th scope="col" class="border-top-0">Amount</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let row of rows">
+                          <td class="text-truncate">
+                            {{row.product}}
+                          </td>
+                          <td class="text-truncate p-1">
+                              <ul class="list-unstyled users-list m-0">
+                                  <li class="avatar avatar-sm pull-up" *ngFor="let imageUrl of row.image">
+                                    <img class="media-object rounded-circle" [src]="imageUrl" alt="Avatar">
+                                  </li>
+                                </ul>
+                          </td>
+                          <td class="text-truncate">
+                            <span>
+                              <button type="button"
+                                class="btn btn-sm btn-outline-{{row.type}} round">{{row.buttonname}}</button>
+                            </span>
+                          </td>
+                          <td class="text-truncate">
+                              <ngb-progressbar height="7px" type="{{row.type}}" [value]=row.value>
+                                </ngb-progressbar>
+                          </td>
+                          <td class="text-truncate">{{ row.amount }} </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Total earning & Recent Sales  -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

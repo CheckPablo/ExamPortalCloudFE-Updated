@@ -1,0 +1,329 @@
+.tab-content .tab-pane {
+    padding-top: 20px;
+}
+
+.alert {
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.form-control.is-invalid {
+    border-color: #CACFE7;
+    background-image: none !important;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .wizard-steps.vertical {
+    width: 90%;
+
+}
+
+:host ::ng-deep .vertical .large-filled-symbols {
+    width: 10;
+
+}
+
+@media screen and (max-width: 480px) {
+    .wizard-steps.vertical {
+        width: 80% !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .vertical .large-filled-symbols {
+        width: 20% !important;
+    }
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li .step-indicator {
+    color: #999;
+    font-size: 19px;
+    text-align: center;
+    border: 5px solid #f4f5fa;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.editing:after {
+    color: #e6e6e6;
+    border: 3px solid #e6e6e6 !important;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.editing1:after {
+    color: #666EE8;
+    border: 5px solid #666EE8 !important;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+
+
+:host ::ng-deep.horizontal.large-filled-symbols ul.steps-indicator li.done .step-indicator {
+    color: #fff;
+    border: 5px solid #666EE8;
+    background-color: #666EE8;
+    line-height: 40px;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li:not(:last-child):before {
+    background-color: #e6e6e6;
+    content: '';
+    position: absolute;
+    height: 5px !important;
+    width: calc(100% - 50px);
+    top: -25px;
+    left: calc(50% + 25px);
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.done:before {
+    background-color: #666EE8;
+    content: '';
+    position: absolute;
+    height: 5px !important;
+    width: calc(100% - 50px);
+    top: -25px;
+    left: calc(50% + 25px);
+}
+
+:host ::ng-deep :host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.done:not(:last-child):before  {
+    background-color: #f4f5fa;
+    height: 10px;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.done:not(:last-child):before {
+    background-color: #666EE8;
+    height: 5px;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li .step-indicator {
+    color: #999;
+    font-size: 18px;
+    border: 5px solid #f4f5fa;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.editing:after {
+    color: #666EE8;
+    border: 5px solid #666EE8 !important;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.current .step-indicator {
+    color: #666EE8;
+    border: 5px solid #666EE8;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.done .step-indicator {
+    color: #fff;
+    border: 5px solid #666EE8;
+    background-color: #666EE8;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li:not(:last-child):before {
+    background-color: #f4f5fa;
+    height: 10px;
+    line-height: 10px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+    background-color: #666EE8;
+    color: #FFF;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li:not(:last-child):after {
+    background-color: #666EE8;
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 50px;
+    height: 10px;
+    width: 1px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.current:after {
+    color: #666EE8;
+    border: 1px solid #f4f5fa;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .vertical.large-filled-symbols ul.steps-indicator li.editing:after {
+    color: #e6e6e6;
+    border: 1px solid #e6e6e6 !important;
+    background-color: #fff;
+    line-height: 40px;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.done.step:after {
+    background-color: #666EE8;
+    border-color: #666EE8;
+    color: #FFF;
+    line-height: 40px;
+}
+
+:host ::ng-deep .horizontal ul.steps-indicator li .step-indicator {
+    position: relative;
+    margin: 0px;
+    text-align: center;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+    background-color: #666EE8;
+    color: #FFF;
+}
+
+:host ::ng-deep .btn-light:not(:disabled):not(.disabled):active {
+    color: unset !important;
+    background-color: unset !important;
+    border-color: #d3d9df !important;
+}
+
+:host ::ng-deep .btn-light:hover:not(.disabled):active {
+    background-color: #e2e6ea !important;
+    border-color: #dae0e5 !important;
+}
+
+:host ::ng-deep .btn-light {
+    color: unset !important;
+    background-color: unset !important;
+    border-color: unset !important;
+}
+
+:host ::ng-deep .bg-primary {
+    background-color: #007bff !important;
+}
+
+:host ::ng-deep .text-white {
+    color: #fff !important;
+}
+
+:host ::ng-deep .custom-day {
+    text-align: center;
+    padding: .185rem .25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+
+:host ::ng-deep .custom-day:active {
+    color: #6d7183 !important;
+    background-color: #fff !important;
+    border-block-color: rgb(2, 117, 216) !important;
+
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+:host ::ng-deep .hidden {
+    display: block !important;
+}
+
+.ngb-dp-weekday {
+    color: #17a2b8;
+}
+
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+    line-height: 2rem;
+    text-align: center;
+    font-style: italic;
+}
+
+.ngb-datepicker-month-view {
+    pointer-events: auto;
+}
+
+:host ::ng-deep .ngb-dp-header {
+    background-color: var(--light) !important;
+}
+
+:host ::ng-deep .ngb-dp-weekdays {
+    background-color: var(--light);
+}
+
+:host ::ng-deep .ngb-dp-month-name {
+    background-color: var(--light);
+}
+
+.small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.ngb-dp-day {
+    cursor: pointer !important;
+}
+
+.ngb-dp-month {
+    pointer-events: none;
+}
+
+.btn-light:hover {
+    color: #212529 !important;
+    background-color: #e2e6ea !important;
+    border-color: #dae0e5 !important;
+}
+
+.ngb-datepicker-month-view {
+    pointer-events: auto;
+}
+
+.ngb-dp-header {
+    border-bottom: 0;
+    border-radius: .25rem .25rem 0 0;
+    padding-top: .25rem;
+}
+
+.ngb-dp-day,
+.ngb-dp-week-number,
+.ngb-dp-weekday {
+    width: 2rem;
+    height: 2rem;
+}
+
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+}
+
+.custom-day.focused {
+    background-color: #e6e6e6;
+}
+
+.custom-day.range,
+.custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+}
+
+.custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .horizontal.large-filled-symbols ul.steps-indicator li.current .step-indicator {
+    color: #666EE8;
+    border: 5px solid #666EE8;
+    background-color: #fff;
+    line-height: 40px;
+}

@@ -1,0 +1,72 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- HTML5 export buttons table -->
+      <section id="html5">
+        <div class="row">
+          <div class="col-12" *blockUI="'hiddenByDefalut'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadHiddenByDefalut($event)">
+              <ng-container mCardHeaderTitle>
+                Hidden By Default
+              </ng-container>
+              <ng-container mCardBody>
+                <div>
+                  <button type="button" (click)="tab1=true;tab2=false;">Hidden</button>
+                  <button type="button" (click)="tab2=true;tab1=false;">Shown</button>
+                </div>
+                <div [hidden]="!tab1">
+                  <p>Click a button to toggle table visibilities</p>
+                </div>
+                <div [hidden]="!tab2">
+                  <h4>hidden Table</h4>
+                  <ngx-datatable class='bootstrap' style="height : 500px;" [rows]='rows' [columnMode]="'force'"
+                    [headerHeight]="50" [footerHeight]="40" [rowHeight]="50" [limit]='10' fxFlex="auto"
+                    [perfectScrollbar]="config">
+
+                    <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.name}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Position" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.position}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Office" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.office}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Age" [flexGrow]="1" [minWidth]="30">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.age}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Salary" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.salary}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Startdate" [flexGrow]="1" [minWidth]="90">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span>{{row.startdate}}</span>
+                      </ng-template>
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+
+        </div>
+      </section>
+
+      <!--/ HTML5 export buttons table -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

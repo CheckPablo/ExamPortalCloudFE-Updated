@@ -1,0 +1,309 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Striped row layout section start -->
+      <section id="striped-row-form-layouts">
+        <div class="row">
+          <div class="col-md-12" *blockUI="'projectInfo'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadProjectInfo($event)">
+              <ng-container mCardHeaderTitle>
+                Project Info
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-text">
+                  <p>Add <code>.striped-rows</code> to form tag to add striped rows. In this example
+                    <code>.form-horizontal</code>
+                    and <code>.form-bordered</code> is used to show the striped rows functionality.</p>
+                </div>
+                <form class="form form-horizontal striped-rows form-bordered" [formGroup]="projectInfo">
+                  <div class="form-body">
+                    <h4 class="form-section"><i class="feather ft-user"></i> Personal Info</h4>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput1">First Name</label>
+                      <div class="col-md-9">
+                        <input type="text" id="projectinput1" class="form-control" formControlName="firstName"
+                          placeholder="First Name">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput2">Last Name</label>
+                      <div class="col-md-9">
+                        <input type="text" id="projectinput2" class="form-control" formControlName="lastName"
+                          placeholder="Last Name">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput3">E-mail</label>
+                      <div class="col-md-9">
+                        <input type="text" id="projectinput3" class="form-control" formControlName="email"
+                          placeholder="E-mail">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto last">
+                      <label class="col-md-3 label-control" for="projectinput4">Contact Number</label>
+                      <div class="col-md-9">
+                        <input type="text" id="projectinput4" class="form-control" formControlName="phone"
+                          placeholder="Phone">
+                      </div>
+                    </div>
+                    <h4 class="form-section"><i class="feather ft-clipboard"></i> Requirements</h4>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput5">Company</label>
+                      <div class="col-md-9">
+                        <input type="text" id="companyName" class="form-control" formControlName="company"
+                          placeholder="Company Name">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput6">Interested in</label>
+                      <div class="col-md-9">
+                        <select id="projectinput5" class="form-control" formControlName="interestedIn">
+                          <option *ngFor="let interest of interestedIn" [value]="interest">{{interest}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput7">Budget</label>
+                      <div class="col-md-9">
+                        <select id="projectinput6" class="form-control" formControlName="budget">
+                          <option *ngFor="let range of budget" [value]="range">{{range}}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control">Select File</label>
+                      <div class="col-md-9">
+                        <label id="projectinput8" class="file center-block">
+                          <input type="file" id="file" formControlName="selectFile">
+                          <span class="file-custom"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group row last mx-auto">
+                      <label class="col-md-3 label-control" for="projectinput9">About Project</label>
+                      <div class="col-md-9">
+                        <textarea id="projectinput8" rows="5" class="form-control" formControlName="aboutProject"
+                          placeholder="About Project"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-actions">
+                      <button type="button" class="btn btn-warning mr-1">
+                        <i class="feather ft-x"></i> Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary">
+                        <i class="la la-check"></i> Save
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" *blockUI="'timesheet'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadTimesheet($event)">
+              <ng-container mCardHeaderTitle>
+                Timesheet
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-text">
+                  <p>Add <code>.striped-rows</code> to form tag to add striped rows. In this example icons are used
+                    with form controls to show the striped rows functionality.</p>
+                </div>
+                <form class="form form-horizontal striped-rows form-bordered" [formGroup]="timeSheet">
+                  <div class="form-body">
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="timesheetinput1">Employee Name</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                          <input type="text" id="timesheetinput1" class="form-control" placeholder="employee name"
+                            formControlName="employeeName">
+                          <div class="form-control-position">
+                            <i class="feather ft-user"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="timesheetinput2">Project Name</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                          <input type="text" id="timesheetinput2" class="form-control" placeholder="project name"
+                            formControlName="projectname">
+                          <div class="form-control-position">
+                            <i class="la la-briefcase"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="timesheetinput3">Date</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                ngbDatepicker #d1="ngbDatepicker">
+                              <div class="input-group-append">
+                                <div class="input-group-text" (click)="d1.toggle()">
+                                  <i class="fa fa-calendar" style="cursor: pointer;"></i>
+                                </div>
+                              </div>
+                                </div>
+                          <div class="form-control-position">
+                            <i class="feather ft-message-square"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control">Rate Per Hour</label>
+                      <div class="col-md-9">
+                        <div class="input-group mt-0">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                          </div>
+                          <input type="text" class="form-control" placeholder="Rate Per Hour"
+                            formControlName="ratePerHour">
+                          <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="timesheetinput5">Start Time</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                          <input type="time" id="timesheetinput5" class="form-control" formControlName="startTime">
+                          <div class="form-control-position">
+                            <i class="feather ft-clock"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="timesheetinput6">End Time</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                          <input type="time" id="timesheetinput6" class="form-control" formControlName="endTime">
+                          <div class="form-control-position">
+                            <i class="feather ft-clock"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto last">
+                      <label class="col-md-3 label-control" for="timesheetinput7">Notes</label>
+                      <div class="col-md-9">
+                        <div class="position-relative has-icon-left">
+                          <textarea id="timesheetinput7" rows="5" class="form-control" formControlName="notes"
+                            placeholder="notes"></textarea>
+                          <div class="form-control-position">
+                            <i class="feather ft-file"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-actions text-right">
+                    <button type="button" class="btn btn-warning mr-1">
+                      <i class="feather ft-x"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="la la-check"></i> Save
+                    </button>
+                  </div>
+                </form>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-6">
+            <m-card>
+              <ng-container mCardHeaderTitle>
+                Event Registration
+              </ng-container>
+              <ng-container mCardBody>
+                <div class="card-text">
+                  <p>Add <code>.striped-rows</code> to form tag to add striped rows. In this example centered card is
+                    used to show the striped rows functionality.</p>
+                </div>
+                <form class="form form-horizontal striped-rows form-bordered" [formGroup]="eventRegistration">
+                  <div class="form-body">
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="eventRegInput1">Full Name</label>
+                      <div class="col-md-9">
+                        <input type="text" id="eventInput1" class="form-control" placeholder="name"
+                          formControlName="fullname">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="eventRegInput2">Title</label>
+                      <div class="col-md-9">
+                        <input type="text" id="eventInput2" class="form-control" placeholder="title"
+                          formControlName="title">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="eventRegInput3">Company</label>
+                      <div class="col-md-9">
+                        <input type="text" id="eventInput3" class="form-control" placeholder="company"
+                          formControlName="company">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="eventRegInput4">Email</label>
+                      <div class="col-md-9">
+                        <input type="email" id="eventInput4" class="form-control" placeholder="email"
+                          formControlName="email">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto">
+                      <label class="col-md-3 label-control" for="eventRegInput5">Contact Number</label>
+                      <div class="col-md-9">
+                        <input type="tel" id="eventInput5" class="form-control" formControlName="phone"
+                          placeholder="contact number">
+                      </div>
+                    </div>
+                    <div class="form-group row mx-auto last">
+                      <label class="col-md-3 label-control">Existing Customer</label>
+                      <div class="col-md-9">
+                        <div class="input-group col-md-9">
+                          <div class="d-inline-block custom-control custom-radio mr-1">
+                            <input type="radio" class="custom-control-input" value="yes" id="yes"
+                              formControlName="customer1">
+                            <label class="custom-control-label" for="yes">Yes</label>
+                          </div>
+                          <div class="d-inline-block custom-control custom-radio">
+                            <input type="radio" class="custom-control-input" value="no" id="no"
+                              formControlName="customer1">
+                            <label class="custom-control-label" for="no">No</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-actions text-center">
+                    <button type="button" class="btn btn-warning mr-1">
+                      <i class="feather ft-x"></i> Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="la la-check"></i> Save
+                    </button>
+                  </div>
+                </form>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- // Striped row layout section end -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

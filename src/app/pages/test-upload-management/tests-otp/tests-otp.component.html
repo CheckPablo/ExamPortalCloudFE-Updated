@@ -1,0 +1,152 @@
+<div class="content-body">
+    <section class="users-list-wrapper">
+        <div class="users-list-filter px-1">
+            <div class="row border border-light rounded py-2 mb-2">
+                <form class="form form-horizontal" [formGroup]="OtpSearchForm" (ngSubmit)="onSubmit()">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="ddlCenters">School:</label>
+
+                                <fieldset class="form-group">
+                                    <select class="form-control form-select" id="centerId" name="centerId"
+                                        formControlName="centerId"
+                                        [ngClass]="{ 'is-invalid': submitted && f['centerId'].errors }">
+                                        <option value="" disabled>--Select Center--</option>
+                                        <option *ngFor="let center of centers" [value]="center.id">
+                                            {{center.name}}</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="ddlCenters">Grade:</label>
+                                <fieldset class="form-group">
+                                    <select id="gradeId" name="gradeId" class="form-control form-select"
+                                        formControlName="gradeId" (change)="onChangeGrade($any($event.target).value)"
+                                        [ngClass]="{ 'is-invalid': submitted && f['gradeId'].errors }">
+                                        <option value="" disabled>--Select Grade--</option>
+                                        <option *ngFor="let grade of grades" [value]="grade.id">
+                                            {{grade.code}}</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-2">
+                                <fieldset class="form-group">
+                                    <label for="ddlUsers">Subject:</label>
+                                    <select class="form-control form-select" id="subjectId" name="subjectId"
+                                        formControlName="subjectId"
+                                        (change)="onChangeSubject($any($event.target).value)"
+                                        [ngClass]="{ 'is-invalid': submitted && f['subjectId'].errors }">
+
+                                        <option value="0">--Select Subject--</option>
+                                        <option *ngFor="let subject of subjects" 
+                                        [value]="subject.id">
+                                            {{subject.description}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f['subjectId'].errors" 
+                                    class="invalid-feedback">
+                                        <div *ngIf="f['subjectId'].errors.required">Subject is
+                                             required
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-2">
+                                <fieldset class="form-group">
+                                    <label for="ddlUsers">Test:</label>
+                                    <select class="form-control form-select" id="testId" name="testId"
+                                        formControlName="testId" (change)="onChangeTest($any($event.target).value)"
+                                        [ngClass]="{ 'is-invalid': submitted && f['testId'].errors }">
+                                        <option value="0">--Select Test</option>
+                                        <option *ngFor="let test of tests" 
+                                        [value]="test.id">
+                                        {{test.testName}}</option>
+                                    </select>
+
+                                </fieldset>
+
+                            </div>
+                            <!--<div class="col-12 col-sm-6 col-lg-2 d-flex align-items-center">-->
+                                <fieldset class="form-group">
+                            <label style="display:none">filter:</label>
+                            <div class="col-md-2">
+                                <button id="btnLink" class="btn btn-block btn-primary glow">
+                                    Filter
+                                </button>
+                            </div>
+                        </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered no-footer dataTable">
+                    <thead class="bg-info white">
+                        <tr>
+                            <th sortable="name" (sort)="onSort($event)">
+                                Test Name
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                            <th sortable="surname" (sort)="onSort($event)">
+                                Test Duration
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                            <th sortable="examNo" (sort)="onSort($event)">
+                                One Time Pin
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                            <th sortable="idNumber" (sort)="onSort($event)">
+                               Expiry Date
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                            <th sortable="idNumber" (sort)="onSort($event)">
+                                Generate OTP
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                            <th sortable="idNumber" (sort)="onSort($event)">
+                                Send OTP
+                                <i class="la la-sort float-md-end"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let randomOTPs of paginationService.paginatedData">
+
+                            <td>
+                                <ngb-highlight [result]="randomOTPs.test?.testName"
+                                    [term]="paginationService.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="randomOTPs.test?.testDuration"
+                                    [term]="paginationService.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="randomOTPs.otp" [term]="paginationService.searchTerm"></ngb-highlight>
+                            </td>
+                             <td>
+                                <ngb-highlight [result]="randomOTPs.otpexpiryDate | date:'yyyy/MM/dd HH:mm:ss'"
+                                    [term]="paginationService.searchTerm"></ngb-highlight>
+                            </td> 
+                     
+                            <td>
+                                <button id="btnLink" class="btn btn-block btn-primary glow" (click)="onClickNewOTP()">
+                                    New OTP
+                                </button>
+                            </td>
+                            <td>
+                                <button id="btnLink" class="btn btn-block btn-primary glow"
+                                    (click)="OnClickSendStudentsOTP()">
+                                    Send OTP To Students
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

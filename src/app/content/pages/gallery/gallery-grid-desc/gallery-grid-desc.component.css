@@ -1,0 +1,17 @@
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .card .card {
+  margin-bottom: auto;
+}
+:host ::ng-deep .my-gallery img{
+  margin-right: 1px;
+  margin-left: 1px;
+  border-top-left-radius: calc(.35rem - 1px);
+  border-top-right-radius: calc(.35rem - 1px);
+  width: 100%;
+}
+:host ::ng-deep .ngx-gallery {
+  grid-template-columns: auto !important;
+}

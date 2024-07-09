@@ -1,0 +1,254 @@
+<div class="app-content content" >
+  <div class="sidebar-left"  id="sidebar-left">
+    <div class="sidebar"><!-- app chat user profile left sidebar start -->
+<div class="chat-user-profile" id="user-profile" >
+  <header class="chat-user-profile-header text-center border-bottom">
+ <span class="chat-profile-close" (click)="showProfile($event)" >
+  <i class="ficon feather ft-x" ></i>
+</span>
+<div class="my-2">
+  <img *ngIf="loggedInUser.photoURL" src="{{loggedInUser.photoURL}}" class="round mb-1" alt="user_avatar" height="100" width="100" >
+  <img *ngIf="!loggedInUser.photoURL" src="../../../../assets/images/portrait/small/avatar-s-19.png" class="round mb-1" alt="user_avatar"
+    alt="avatar"  height="100" width="100" >
+  <!-- <img src="../../../assets/images/portrait/small/avatar-s-16.png" class="round mb-1" alt="user_avatar"
+    height="100" width="100" > -->
+
+  <h5 class="mb-0">{{loggedInUser.displayName}}</h5>
+  <span>Designer</span>
+</div>
+</header>
+<div class="chat-user-profile-content">
+<div class="chat-user-profile-scroll" fxFlex="auto" [perfectScrollbar]="config">
+  <h6 class="text-uppercase mb-1">ABOUT</h6>
+  <p class="mb-2">It is a long established fact that a reader will be distracted by the readable content .</p>
+  <h6>PERSONAL INFORAMTION</h6>
+  <ul class="list-unstyled mb-2">
+    <li class="mb-25">email&#64;gmail.com</li>
+    <li>+1(789) 950 -7654</li>
+  </ul>
+  <h6 class="text-uppercase mb-1">CHANNELS</h6>
+  <ul class="list-unstyled mb-2">
+    <li><a href=""># Devlopers</a></li>
+    <li><a href=""># Designers</a></li>
+  </ul>
+  <h6 class="text-uppercase mb-1">SETTINGS</h6>
+  <ul class="list-unstyled">
+    <li class="mb-50 "><a href="" class="d-flex align-items-center"><i class="ficon feather ft-tag mr-50"></i>
+        Add
+        Tag</a></li>
+    <li class="mb-50 "><a href="" class="d-flex align-items-center"><i class="ficon feather ft-star mr-50"></i>
+        Important Contact</a>
+    </li>
+    <li class="mb-50 "><a href="" class="d-flex align-items-center"><i
+          class="ficon feather ft-image mr-50"></i>
+        Shared
+        Documents</a></li>
+    <li class="mb-50 "><a href="" class="d-flex align-items-center"><i
+          class="ficon feather ft-trash-2 mr-50"></i>
+        Deleted
+        Documents</a></li>
+    <li><a href="" class="d-flex align-items-center"><i class="ficon feather ft-x-circle mr-50"></i> Blocked
+        Contact</a></li>
+  </ul>
+  </div>
+</div>
+</div>
+<!-- app chat user profile left sidebar ends -->
+<!-- app chat sidebar start -->
+<div class="chat-sidebar card" id="sidebar-card">
+<span class="chat-sidebar-close" (click) = "Sidebar($event)">
+<i class="ficon feather ft-x" ></i>
+</span>
+<div class="chat-sidebar-search">
+<div class="d-flex align-items-center">
+  <div class="chat-sidebar-profile-toggle" (click)="showProfile($event)">
+    <div class="avatar">
+      <img *ngIf="loggedInUser.photoURL" src="{{loggedInUser.photoURL}}" class="cursor-pointer" alt="user_avatar" height="36" width="36">
+      <img *ngIf="!loggedInUser.photoURL" src="../../../../assets/images/portrait/small/avatar-s-19.png"
+        alt="avatar" height="36" width="36">
+      <!-- <img src="../../../assets/images/portrait/small/avatar-s-16.png" class="cursor-pointer" alt="user_avatar"
+        height="36" width="36"> -->
+    </div>
+  </div>
+  <fieldset class="form-group position-relative has-icon-left mx-75 mb-0">
+    <input type="text" class="form-control round" id="chat-search" (keyup)="searchContact($event)"  placeholder="Search">
+    <div class="form-control-position">
+      <i class="ficon feather ft-search text-dark"></i>
+    </div>
+  </fieldset>
+</div>
+</div>
+<div class="chat-sidebar-list-wrapper pt-2 " fxFlex="auto" [perfectScrollbar]="config" >
+<h6 class="px-2 pb-25 mb-0">CHANNELS<i class="ficon feather ft-plus float-right cursor-pointer"></i></h6>
+<ul class="chat-sidebar-list">
+  <li>
+    <h6 class="mb-0"># Devlopers</h6>
+  </li>
+  <li>
+    <h6 class="mb-0"># Designers</h6>
+  </li>
+</ul>
+<h6 class="px-2 pt-2 pb-25 mb-0">CHATS</h6>
+<ul class="chat-sidebar-list" >
+  <li class = "chatSidebar" *ngFor="let chat of chatList" id="users-list"  (click)="loadMyChatRoom(chat)" (click)="contentOverlay($event)"
+  id="_media" [ngClass]="(chat.uid === clickedUser) ? 'active': ''">
+    <div class="d-flex align-items-center" >
+      <div class="avatar m-0 mr-50" ><img [src]="chat.image" height="36"
+          width="36" >
+        <span class="avatar-status-busy"></span>
+      </div>
+      <div class="chat-sidebar-name">
+        <span class="mb-0">{{chat.name}}</span>
+        <span class="badge badge-pill float-right badge-danger mr-2">{{chat.unreadMessageCount ? chat.unreadMessageCount : ''}}</span>
+        <span class="text-muted"></span>
+      </div>
+    </div>
+  </li>
+</ul>
+<h6 class="px-2 pt-2 pb-25 mb-0">CONTACTS<i class="ficon feather ft-plus float-right cursor-pointer"></i></h6>
+<ul class="chat-sidebar-list" >
+  <li class = "chatSidebar" *ngFor="let contact of contactList" (click)="showChat(contact)" (click)="contentOverlay($event)"
+  id="_media" [ngClass]="(contact.uid === clickedUser) ? 'active': ''">
+    <div class="d-flex align-items-center">
+      <div class="avatar m-0 mr-50"><img [src]="contact.image" height="36"
+        width="36" >
+        <span class="avatar-status-away"></span>
+      </div>
+      <div class="chat-sidebar-name">
+        <h6 class="mb-0">{{contact.name}}</h6><span class="text-muted"> {{contact.showMessage}}</span>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+</div>
+<!-- app chat sidebar ends -->
+
+    </div>
+  </div>
+ <div class="content-right ">
+
+    <div class="content-overlay" ></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+      </div>
+      <div class="content-body"><!-- app chat overlay -->
+<div class="chat-overlay "  id="overlayChat" (click) = "Sidebar($event)"></div>
+<!-- app chat window start -->
+<section class="chat-window-wrapper">
+<div class="chat-start" id='chat-overlay1'>
+<span class="ficon feather ft-message-square chat-sidebar-toggle chat-start-icon font-large-3 p-3 mb-1"  (click)="showSidebar($event)" ></span>
+<h4 class="d-none d-lg-block py-50 text-bold-500">Select a contact to start a chat!</h4>
+<button class="btn btn-light-primary chat-start-text chat-sidebar-toggle d-block d-lg-none py-50 px-1" (click)="showSidebar($event)" >Start
+  Conversation!</button>
+</div>
+<div class="chat-area d-none" id = "chat-area d-none">
+  <div class="chat-header">
+    <header class="d-flex justify-content-between align-items-center px-1 py-75">
+      <div class="d-flex align-items-center" >
+        <div class="chat-sidebar-toggle d-block d-lg-none mr-1" id="chat-sidebar"><i
+            class="ficon feather ft-align-justify font-large-1 cursor-pointer" (click)="showSidebar($event)"></i>
+        </div>
+        <div class="avatar chat-profile-toggle m-0 mr-1" (click)="ShowChatProfile($event)">
+           <span >
+           <img [src]="headerImage" class="cursor-pointer" alt="avatar"/>
+        </span>
+          <span class="avatar-status-busy"></span>
+        </div>
+        <h6 class="mb-0">{{headerName}}</h6>
+      </div>
+      <div class="chat-header-icons">
+
+        <span class="chat-icon-favorite" id='chat-icon'(click)="chatFavorite($event)" >
+          <i class="ficon feather ft-star font-medium-5 cursor-pointer"></i>
+         </span>
+        <span class="dropdown">
+
+            <span ngbDropdown [open]="false" [autoClose]="true" class="d-inline-block">
+              <i class="ficon feather ft-more-vertical font-medium-4 ml-25 cursor-pointer dropdown-toggle nav-hide-arrow cursor-pointer"
+            id="dropdownMenuButton" dropdown-menu dropdown-menu-left show data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="menu" ngbDropdownToggle>
+          </i>
+              <div ngbDropdownMenu ="dropdownMenuButton">
+                <a class="dropdown-item">Pin to top</a>
+                <a class="dropdown-item">Delete chat</a>
+                <a class="dropdown-item ">Block</a>
+                </div>
+            </span>
+
+         </span>
+
+
+    </div>
+    </header>
+  </div>
+<!-- chat card start -->
+<div class="card chat-wrapper shadow-none mb-0">
+  <div class="card-content">
+    <div class="card-body chat-container" id="componentRef">
+      <perfect-scrollbar [config]="config" #chatPS>
+        <div class="chat-content" #content>
+            <div id="chatWindow" class="chat" [ngClass]="(currentUserUid === messages.uid)?'chat-right':'chat-left'"
+              *ngFor="let messages of displayChat">
+              <div class="chat-avatar">
+                <a [routerLink]="" class="avatar m-0">
+                  <img [src]="messages.userImage" *ngIf="messages.userImage"/>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-message">
+                  <p>{{messages.message}}</p>
+                  <span class="chat-time" title="{{messages.date | date}}">{{messages.date| date: 'HH:mm a'}}</span>
+                </div>
+              </div>
+            </div>
+        </div>
+      </perfect-scrollbar>
+    </div>
+  </div>
+  <div class="card-footer chat-footer px-2 py-1 pb-0">
+    <form class="d-flex align-items-center">
+         <i class="ficon feather ft-user cursor-pointer"></i>
+          <i class="ficon feather ft-paperclip ml-1 cursor-pointer"></i>
+         <input type="text" class="form-control chat-message-send mx-1" [(ngModel)]="newMessage" name="newmessage" id="iconLeft4"
+          placeholder="Type your message here...." #box (keyup.enter)="onEnter(box.value)">
+        <button type="submit" class="btn btn-primary glow send d-lg-flex" (click)="sendMessage()"><i class="ficon feather ft-play"></i>
+          <span class="d-none d-lg-block mx-50">Send</span></button>
+        </form>
+  </div>
+</div>
+<!-- chat card ends -->
+</div>
+</section>
+<section class="chat-profile " id="chat-profile">
+  <header class="chat-profile-header text-center border-bottom">
+    <span class="chat-profile-close" (click)="ChatProfile($event)">
+      <i class="ficon feather ft-x"></i>
+    </span>
+    <div class="my-2">
+
+      <img [src]="headerImage" class="round mb-1" alt="chat avatar"
+        height="100" width="100">
+
+      <h5 class="app-chat-user-name mb-0">{{headerName}}</h5>
+      <span>Devloper</span>
+    </div>
+  </header>
+  <div class="chat-profile-content p-2">
+    <h6 class="mt-1">ABOUT</h6>
+    <p>It is a long established fact that a reader will be distracted by the readable content.</p>
+    <h6 class="mt-2">PERSONAL INFORMATION</h6>
+    <ul class="list-unstyled">
+      <li class="mb-25">email&#64;gmail.com</li>
+      <li>+1(789) 950-7654</li>
+    </ul>
+  </div>
+</section>
+<!-- app chat window ends -->
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- END: Content-->
+
+<!-- app chat profile right sidebar ends -->

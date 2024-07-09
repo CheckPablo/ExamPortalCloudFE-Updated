@@ -1,0 +1,414 @@
+.avatar-xs {
+  width: 24px !important;
+  margin-right: 5px !important;
+}
+
+.btn_set_padding {
+  padding: 0% !important;
+}
+
+.chart_body_padding {
+  padding: 2rem !important;
+}
+
+:host ::ng-deep .scoreLineShadow {
+  -webkit-filter: drop-shadow(0px 20px 11px rgba(0, 0, 0, 0.5)) !important;
+  filter: drop-shadow(0px 20px 11px rgba(0, 0, 0, 0.5));
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-point-circle {
+  stroke-width: 5px;
+  stroke: #ffffff;
+  fill: #1e9ff2;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-point-circle {
+  stroke-width: 5px;
+  stroke: #ffffff;
+  fill: #58e0cd;
+  ;
+}
+
+:host ::ng-deep .media {
+  display: flex;
+  align-items: flex-start;
+}
+
+
+:host ::ng-deep .position-relative {
+  position: relative !important;
+}
+
+:host ::ng-deep .ct-series-b .ct-bar,
+.ct-series-b .ct-slice-donut {
+  stroke: #beb6b6;
+}
+
+:host ::ng-deep .progress:last-child {
+  width: 100% !important;
+}
+
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-line {
+  stroke: url(#gradient2);
+  stroke-width: 5px;
+  stroke-linecap: round;
+}
+
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-area {
+  fill: #ffffff;
+}
+
+:host ::ng-deep .areaChartLegend .ct-series-a .ct-line {
+  stroke: #3da2ea;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-area {
+  fill: #4105f9f5;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-area {
+  fill: #03f7b2fa;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-b .ct-line {
+  stroke: #58e0cd;
+}
+
+:host ::ng-deep .ecommercesaleslineArea .ct-series-a .ct-line {
+  stroke: #1e9ff2;
+}
+
+:host ::ng-deep .barchart .ct-series-a .ct-bar {
+  stroke: #ff394f !important;
+  stroke-width: 7px !important;
+}
+
+:host ::ng-deep .pull-up {
+  -webkit-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+:host ::ng-deep .chart-info {
+  margin-top: 73px !important;
+}
+
+.mb-3,
+.my-3 {
+  margin-bottom: -4rem !important;
+}
+
+.mb-2,
+.my-2 {
+  margin-bottom: -4.5rem !important;
+}
+
+:host ::ng-deep .donut .ct-done .ct-slice-donut {
+  stroke: #28d094;
+  stroke-width: 24px !important;
+}
+
+:host ::ng-deep .donut .ct-progress .ct-slice-donut {
+  stroke: #ff4558;
+  stroke-width: 16px !important;
+}
+
+:host ::ng-deep .donut .ct-outstanding .ct-slice-donut {
+  stroke: #ff7d4d;
+  stroke-width: 8px !important;
+}
+
+:host ::ng-deep .donut .ct-started .ct-slice-donut {
+  stroke: #666ECC;
+  stroke-width: 32px !important;
+}
+
+:host ::ng-deep .donut .ct-label {
+  text-anchor: middle;
+  font-size: 20px;
+  fill: #868e96;
+}
+
+:host ::ng-deep .Barchart {
+  display: block;
+  margin-left: -100px;
+  margin-bottom: -60px;
+  margin-top: -45px;
+}
+
+:host ::ng-deep .Barchart .ct-label {
+  font-size: 0.75rem;
+  line-height: 15;
+}
+
+.p {
+  margin-top: 1rem;
+  margin-bottom: -1.5rem;
+  font-size: large;
+  color: #6c757d !important;
+}
+
+:host ::ng-deep .text-center .p {
+  margin-top: 2rem;
+  margin-bottom: -1.2rem;
+}
+
+:host ::ng-deep .height-300 {
+  height: 250px !important;
+}
+
+:host ::ng-deep .gradient-blackberry {
+  background-image: linear-gradient(45deg, #b9e2fa, #b9e2fa) !important;
+  margin-left: 48px;
+}
+
+:host ::ng-deep .gradient-mint {
+  background-image: linear-gradient(45deg, #ff9ba6, #ff9ba6);
+  margin-left: 48px;
+}
+
+:host ::ng-deep .gradient-info {
+  background-image: linear-gradient(45deg, #6ef9d6, #6ef9d6);
+  margin-left: 48px;
+}
+
+:host ::ng-deep .extraPadding7 {
+  padding: 0.7rem;
+}
+
+:host ::ng-deep .avatar-md {
+  width: 40px;
+}
+
+:host ::ng-deep .square {
+  border-radius: 0% !important;
+  height: auto;
+  border: 2px solid #FFF !important;
+}
+
+:host ::ng-deep .ps--active-x>.ps__rail-x {
+  display: none !important;
+}
+
+:host ::ng-deep .border-top-0 {
+  padding: 1.25rem 2rem !important;
+}
+
+:host ::ng-deep .btn-danger {
+  color: white !important;
+}
+
+:host ::ng-deep .progress:last-child {
+  margin-bottom: 0rem;
+}
+
+
+:host ::ng-deep .btn.active {
+  outline: none;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  background-color: #2196F3 !important;
+  color: white !important;
+}
+
+.btn {
+  cursor: pointer !important;
+}
+
+.btn_dropdown {
+  background-color: white !important;
+}
+
+:host ::ng-deep .text_color {
+  color: #0c84d1;
+}
+
+:host ::ng-deep .progress {
+  box-shadow: 6px 6px 14px -1px rgba(62, 57, 107, .2);
+  margin-top: 1rem !important;
+}
+
+:host ::ng-deep .btn-group {
+  position: absolute !important;
+}
+
+@media only screen and (max-width:767px) {
+  .btn-group {
+    position: relative !important;
+  }
+}
+
+:host ::ng-deep .text-muted {
+  color: #6b6f82 !important;
+}
+
+:host ::ng-deep .mb-3,
+.my-3 {
+  margin-bottom: 1.5rem !important;
+}
+
+:host ::ng-deep .media {
+  display: flex;
+  align-items: flex-start;
+}
+
+:host ::ng-deep .height-350 {
+  height: 250px !important;
+  margin-left: 18%;
+  margin-bottom: 55px;
+}
+
+:host ::ng-deep .card-text:last-child {
+  margin-bottom: 0;
+  height: 430px;
+}
+
+:host ::ng-deep .mb-3 {
+  margin-bottom: 1.1rem !important;
+}
+
+:host ::ng-deep .chart-info .p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 4px;
+}
+
+:host ::ng-deep .order-tbl_change th,
+.order-tbl_change td {
+  padding-right: 0.8rem;
+}
+
+:host ::ng-deep svg.ct-chart-bar {
+  width: 100% !important;
+  padding-top: 5%;
+}
+
+:host ::ng-deep #donut-dashboard-chart {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:host ::ng-deep .pr_stats {
+  text-align: center
+}
+
+:host ::ng-deep .height-300 {
+  width: 100%;
+}
+
+:host ::ng-deep .alert_basics_charrt {
+  padding: 0;
+}
+
+:host ::ng-deep .card-header .heading-elements a.btn {
+  color: white !important;
+}
+
+
+:host ::ng-deep .row_padding {
+  padding: 1.25rem 2rem !important;
+}
+
+:host ::ng-deep .border_bottom {
+  margin-bottom: 0rem !important;
+}
+
+:host ::ng-deep .top_space {
+  padding-top: 5% !important;
+}
+
+:host ::ng-deep .border_top {
+  border-top: none !important;
+}
+
+:host ::ng-deep .card-footer {
+  padding: 2rem !important;
+}
+
+:host ::ng-deep .ct-chart-bar .ct-label.ct-horizontal.ct-end {
+  text-anchor: middle;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+:host ::ng-deep .ct-chart-bar .ct-label.ct-vertical.ct-start {
+  text-anchor: middle;
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .chartist-tooltip.bar_tooltip {
+  border-radius: 10px;
+  padding: 18px;
+  color: rgb(29, 28, 28);
+  height: 60px;
+  width: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  border: solid 2px rgba(230, 230, 230, 0.9);
+  font-family: sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+:host ::ng-deep .chartist-tooltip.donut_tooltip {
+  border-radius: 10px;
+  padding: 2px;
+  color: rgb(29, 28, 28);
+  height: 60px;
+  width: 90px;
+  background: rgba(255, 255, 255, 0.9);
+  border: solid 2px rgba(230, 230, 230, 0.9);
+  font-family: sans-serif;
+  font-size: 14px;
+  text-align: center;
+  top: 16.906px;
+}
+
+
+:host ::ng-deep .chartist-tooltip.tooltip-show {
+  opacity: 0.6 !important;
+}
+
+:host ::ng-deep .chartist-tooltip.bar_tooltip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.8);
+}
+
+:host ::ng-deep .chartist-tooltip.donut_tooltip:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top-color: rgba(255, 255, 255, 0.8);
+}
+:host ::ng-deep .tab-content > .tab-pane,
+.pill-content > .pill-pane {
+display: block;     
+height: 0;          
+overflow-y: hidden;
+}
+:host ::ng-deep .tab-content > .active,
+.pill-content > .active {
+height: auto;       
+}

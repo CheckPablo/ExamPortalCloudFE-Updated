@@ -1,0 +1,27 @@
+:host ::ng-deep .cal-month-view .cal-open-day-events {
+    padding: 0px !important;
+    color: white;
+    background-color: #555;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.5);
+}
+
+:host ::ng-deep .title {
+    width: 140px;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+    background: rgba(255, 249, 249, 0.5) !important;
+}
+
+@media screen and (max-width: 767px) {
+    .bottom_space {
+        padding-bottom: 1rem !important;
+        text-align: unset !important;
+        padding-left: 0px !important;
+    }
+}
+/* 
+::ng-deep ngb-modal-backdrop {
+    z-index: 1050 !important;
+} */

@@ -1,0 +1,76 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <h3>Quill Editor</h3>
+
+      <p>quill editor with angular and TypeScript. ngx-quill is the new angular 2 and beyond implementation of ngQuill.
+      </p>
+
+      <section class="default-editor">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Default editor</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="editor">
+                    <quill-editor [styles]="{height: '200px'}" (onFocus)="focus()" (onBlur)="blur()"
+                    ></quill-editor>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Default Editor end -->
+
+      <section class="editor">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Reactive Forms and patch value</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="editor">
+                    <button type="button" class="btn btn-primary mr-1 mb-1" (click)="hide=!(!!hide)">
+                      Hide / Show
+                    </button>
+
+                    <button type="button" class="btn btn-primary mr-1 mb-1"
+                      (click)="form.enabled ? form.disable() : form.enable()">
+                      Disable / Enable
+                    </button>
+
+                    <button type="button" class="btn btn-primary mr-1 mb-1"
+                      (click)="backgroundColor = backgroundColor ? '' : 'grey'">Toggle
+                      BackgroundColor
+                    </button>
+
+                    <form [formGroup]="form">
+                      {{ form.get('editor').value }}
+                      <button type="button" class="btn btn-primary mr-1 mb-1" (click)="patchValue()">PatchValue</button>
+                      <button type="button" class="btn btn-primary mr-1 mb-1" (click)="setControl()">SetControl</button>
+
+                      <quill-editor #editor [style.display]="hide ? 'none' : 'block'"
+                        [styles]="{ backgroundColor:backgroundColor,height: '200px' }"
+                        [formControl]="form.controls['editor']">
+                      </quill-editor>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

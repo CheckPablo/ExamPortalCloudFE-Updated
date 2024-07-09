@@ -1,0 +1,113 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+       <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Sales and Expenses</h4>
+            <div class="heading-elements">
+              <div ngbDropdown class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                  This Fiscal Year
+                </button>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" [routerLink]="">Previous Fiscal Year</a>
+                  <a class="dropdown-item" [routerLink]="">Last 12 Months</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-body overflow-hidden row">
+              <div class="col-md-9 col-sm-12 border-right-grey border-right-lighten-2">
+                <div echarts [options]="chartOption" class="height-300 echart-container"></div>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <div class="list-group">
+                  <a [routerLink]="" class="list-group-item list-group-item-action">
+                    <h5 class="list-group-item-heading">$ 12080.00</h5>
+                    <p class="list-group-item-text primary">Total Sales</p>
+                  </a>
+                  <a [routerLink]="" class="list-group-item list-group-item-action">
+                    <h5 class="list-group-item-heading">$ 8500.00</h5>
+                    <p class="list-group-item-text success">Total Receipts</p>
+                  </a>
+                  <a [routerLink]="" class="list-group-item list-group-item-action">
+                    <h5 class="list-group-item-heading">$ 560.00</h5>
+                    <p class="list-group-item-text warning">Total Expenses</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--/ Sales and Expenses -->
+        <div class="row" matchHeight="card">
+          <!-- Your Top Expenses -->
+          <div class="col-lg-6 col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Your Top Expenses</h4>
+                <div class="heading-elements">
+                  <div ngbDropdown class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+                      This Fiscal Year
+                    </button>
+                    <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                      <a class="dropdown-item" [routerLink]="">Previous Fiscal Year</a>
+                      <a class="dropdown-item" [routerLink]="">Last 12 Months</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body ">
+                  <div echarts [options]="ExpenseschartOption" class="height-250 echart-container"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Your Top Expenses -->
+          <!-- Sales, Receipts and Dues -->
+          <div class="col-lg-6 col-md-12" *blockUI="'salesRecieptsDues'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadSalesRecieptsDues($event)">
+              <ng-container mCardHeaderTitle>
+                Sales, Receipts and Dues
+              </ng-container>
+
+              <ng-container mCardBody>
+                <div class="px-0 py-0">
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Sales</th>
+                          <th>Receipts</th>
+                          <th>Due</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let element of Sales; index as i">
+                          <td><b>{{ element.name }}</b></td>
+                          <td>{{ element.sales }} </td>
+                          <td>{{ element.receipts }}</td>
+                          <td>{{ element.due }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+          <!-- Sales, Receipts and Dues -->
+        </div>
+
+    </div>
+  </div>
+</div>

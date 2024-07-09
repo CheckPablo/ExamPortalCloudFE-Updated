@@ -1,0 +1,140 @@
+:host ::ng-deep .Likes .ct-series-a .ct-point {
+    stroke: #28d094;
+}
+:host ::ng-deep .Likes .ct-line {
+    fill: none;
+    stroke-width: 2px;
+}
+:host ::ng-deep .Likes .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .Likes .ct-series-a .ct-line {
+    stroke: #28d094;
+}
+:host ::ng-deep .Likes .ct-series-a .ct-area {
+    fill: #28d094;
+}
+:host ::ng-deep .Comments .ct-series-a .ct-point {
+    stroke: #FF9149;
+}
+:host ::ng-deep .Comments .ct-line {
+    fill: none;
+    stroke-width: 2px;
+}
+:host ::ng-deep .Comments .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .Comments .ct-series-a .ct-line {
+    stroke: #FF9149;
+}
+:host ::ng-deep .Comments .ct-series-a .ct-area {
+    fill: #FF9149;
+}
+:host ::ng-deep .Views .ct-series-a .ct-point {
+    stroke: #FF4961;
+}
+:host ::ng-deep .Views .ct-line {
+    fill: none;
+    stroke-width: 2px;
+}
+:host ::ng-deep .Views .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .Views .ct-series-a .ct-line {
+    stroke: #FF4961;
+}
+:host ::ng-deep .Views .ct-series-a .ct-area {
+    fill: #FF4961;
+}
+:host ::ng-deep .sp-line-total-cost .ct-series-a .ct-point{
+    stroke: #ff9149;
+}
+:host ::ng-deep .sp-line-total-cost .ct-series-a .ct-line{
+    stroke: #ff9149;
+
+}
+:host ::ng-deep .sp-line-total-cost .ct-series-a .ct-area{
+    fill: #ff9149;
+    fill-opacity: 1;
+}
+:host ::ng-deep .sp-line-total-cost .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .sp-line-total-cost svg {
+    margin-left: 13px;
+}
+:host ::ng-deep .sp-line-total-sales .ct-series-a .ct-point{
+    stroke: #28d094;
+}
+:host ::ng-deep .sp-line-total-sales .ct-series-a .ct-line{
+    stroke: #28d094;
+
+}
+:host ::ng-deep .sp-line-total-sales .ct-series-a .ct-area{
+    fill: #28d094;
+    fill-opacity: 1;
+}
+:host ::ng-deep .sp-line-total-sales .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .sp-line-total-sales svg {
+    margin-left: 13px;
+}
+:host ::ng-deep .sp-line-total-revenue .ct-series-a .ct-point{
+    stroke: #ff4961;
+}
+:host ::ng-deep .sp-line-total-revenue .ct-series-a .ct-line{
+    stroke: #ff4961;
+
+}
+:host ::ng-deep .sp-line-total-revenue .ct-series-a .ct-area{
+    fill: #ff4961;
+    fill-opacity: 1;
+}
+:host ::ng-deep .sp-line-total-revenue .ct-point{
+    stroke-width: 0px;
+}
+:host ::ng-deep .sp-line-total-revenue svg {
+    margin-left: 13px;
+}
+:host ::ng-deep .ct-bar {
+    fill: none;
+    stroke-width: 2px;
+}
+:host ::ng-deep  .sp-bar-total-cost .ct-series-a .ct-bar{
+    stroke: #ff9148;
+}
+:host ::ng-deep  .sp-bar-total-sales .ct-series-a .ct-bar{
+    stroke: #28d094;
+}
+:host ::ng-deep  .sp-bar-total-revenue .ct-series-a .ct-bar{
+    stroke: #ff4961;
+}
+:host ::ng-deep  .sp-bar-total-cost {
+    margin-bottom: -90px;
+}
+:host ::ng-deep  .sp-bar-total-sales{
+    margin-bottom: -90px;
+}
+:host ::ng-deep  .sp-bar-total-revenue{
+    margin-bottom: -90px;
+}
+:host ::ng-deep .feedbacks .ct-series-a .ct-slice-donut {
+    stroke: #28d094;
+    stroke-width: 10px !important;
+}
+:host ::ng-deep .Subscribers .ct-series-a .ct-slice-donut {
+    stroke: #ff9149;
+    stroke-width: 10px !important;
+}
+:host ::ng-deep .Users .ct-series-a .ct-slice-donut {
+    stroke: #ff4961;
+    stroke-width: 10px !important;
+}
+:host ::ng-deep  .ct-series-b .ct-slice-donut {
+    stroke: #eeeeee;
+    stroke-width: 12px !important;
+}
+:host ::ng-deep  .text-muted {
+   position: absolute;
+}

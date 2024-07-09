@@ -1,0 +1,94 @@
+To add sorting and pagination to tables:
+
+1. Add AdvancedSortableDirective in your module under declarations[]
+2. In the component.ts, add providers: [TableService, DecimalPipe] in @Compnent({...})
+3. Add the following class properties:
+  // Table data
+  tables$: Observable<any[]>;
+  total$: Observable<number>;
+  @ViewChildren(AdvancedSortableDirective) headers: QueryList<AdvancedSortableDirective>;
+4. Add 'public service: TableService' in the constructor, and the following in the constructor body:
+    this.tables$ = service.tables$;
+    this.total$ = service.total$;
+5. Get the data you want to show on the table and add it to the service: this.service.setData(res);
+6. Customise the table below:
+                                    <div class="row mb-md-2">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="dataTables_length" id="tickets-table_length">
+                                                <label class="d-inline-flex align-items-center">
+                                                    Show
+                                                    <select name="tickets-table_length" aria-controls="tickets-table"
+                                                        name="pageSize" [(ngModel)]="service.pageSize"
+                                                        class="form-control form-control-sm mx-2">
+                                                        <option [ngValue]="10">10</option>
+                                                        <option [ngValue]="25">25</option>
+                                                        <option [ngValue]="50">50</option>
+                                                        <option [ngValue]="100">100</option>
+                                                    </select> 
+                                                    entries
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div id="tickets-table_filter" class="dataTables_filter text-md-end">
+                                                <label class="d-inline-flex align-items-center">
+                                                    Search:
+                                                    <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
+                                                        aria-controls="tickets-table" [(ngModel)]="service.searchTerm">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered no-footer dataTable">
+                                            <thead class="bg-info white">
+                                                <tr>
+                                                    <th sortable="code" (sort)="onSort($event)">
+                                                        Code
+                                                        <i class="la la-sort float-md-end"></i>
+                                                    </th>
+                                                    <th sortable="description" (sort)="onSort($event)">
+                                                        Description
+                                                        <i class="la la-sort float-md-end"></i>
+                                                    </th>
+                                                    <th>Delete Grade</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngFor="let grade of tables$ | async;let i=index">
+                                                <tr>
+                                                    <td>
+                                                        <ngb-highlight [result]="grade.code" [term]="service.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <ngb-highlight [result]="grade.description" [term]="service.searchTerm"></ngb-highlight>
+                                                    </td>
+                                                    <td>
+                                                        <button id="btnDeleteGrade" type="button" 
+                                                            class="btn btn-block btn-primary glow"
+                                                            style="width:100px" (click)="onDeleteGrade(grade)">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="row justify-content-md-between align-items-md-center mt-2">
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                aria-live="polite">Showing
+                                                {{service.startIndex}} to
+                                                {{service.endIndex}} of {{service.totalRecords}}
+                                                entries
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5">
+                                            <div class="text-md-right float-md-end pagination-rounded">
+                                                <ngb-pagination [collectionSize]="total$ | async"
+                                                    [(page)]="service.page" [pageSize]="service.pageSize">
+                                                </ngb-pagination>
+                                            </div>
+                                        </div>
+                                    </div>

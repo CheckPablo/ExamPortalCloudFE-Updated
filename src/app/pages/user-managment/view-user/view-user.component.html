@@ -1,0 +1,235 @@
+<div class="content-body">
+    <section class="users-edit">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-2" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex align-items-center active" id="account-tab" data-toggle="tab"
+                                href="#account" aria-controls="account" role="tab" aria-selected="true">
+                                <i class="feather ft-user mr-25"></i><span class="d-none d-sm-block">User Detail</span>
+                            </a>
+                        </li>
+                        <!--Tinashe find a way neater more browser compatible way to add spaces-->
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+                        <!--<button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/students']">Back</button>-->       
+                        <button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/users']">Back</button>
+                    </ul>
+
+                    
+
+                    <!-- <button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/students']">Back</button> -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
+                            <div class="media mb-2">
+                                <div class="media-body">
+
+                                    <h4 class="media-heading" id="lblName">{{ user?.name }} {{ user?.surname }}</h4>
+                                </div>
+                            </div>
+                            <form [formGroup]="form" (ngSubmit)="onEditSubmit()">
+                                <div class="row">
+                                <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Username</label>
+                                                <input type="text" class="form-control"
+                                                     formControlName= "username" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Name</label>
+                                                <input type="text"  class="form-control"value = "{{user?.name}}"  formControlName="name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Contact Details</label>
+                                                <input type="tel"  class="form-control"
+                                                   value ="{{user?.contactDetails}}"  formControlName="contactDetails" [ngClass]="{ 'is-invalid': submitted && f['contactDetails'].errors }">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Center Type</label>
+                                                <select id="Type" name="interested" disabled class="form-control"  formControlName="centerTypeId">
+                                                    <option [value]="user.center.centerType.id" [selected]="user.center.centerType.id">{{user?.center.centerType?.description}}</option>
+                                                </select>
+                                                <div class="help-block"></div>
+                                                <div *ngIf="submitted && f['centerTypeId'].errors" class="invalid-feedback">
+                                                    <div *ngIf="f['centerTypeId'].errors.required">Center Type is required</div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <div class="controls">
+                                                <label>Center</label>
+                                                <select id="ddlCenter" name="interested" class="form-control"  formControlName="username"
+                                                    >
+                                                    <option selected="" >{{user?.center?.name}}</option>
+                                                </select>
+                                                <div class="help-block"></div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Email</label>
+                                                <input type="email"  class="form-control"
+                                                   value=" {{user?.userEmailAddress}}"  formControlName="userEmailAddress" [ngClass]="{ 'is-invalid': submitted && f['userEmailAddress'].errors }">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="controls">
+                                                <label>Surname</label>
+                                                <input type="text"  class="form-control"
+                                                   value="{{user?.surname}}"  formControlName="surname" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                                                <div class="help-block"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Number of Candidates</label>
+                                            <select class="form-control"  formControlName="numberOfCandidates">
+                                                <option value="1" [selected]="user?.numberOfCandidates =='1'">1 - 10</option>
+                                                <option value="2" [selected]="user?.numberOfCandidates =='2'">11 - 20</option>
+                                                <option value="3" [selected]="user?.numberOfCandidates =='3'">21 - 30</option>
+                                                <option value="4" [selected]="user?.numberOfCandidates =='4'">31 - 40</option>
+                                                <option value="5" [selected]="user?.numberOfCandidates =='5'">41 - 50</option>
+                                                <option value="6" [selected]="user?.numberOfCandidates =='6'">51 - 60</option>
+                                                <option value="7" [selected]="user?.numberOfCandidates =='7'">71 - 80</option>
+                                                <option value="8" [selected]="user?.numberOfCandidates =='8'">81 - 90</option>
+                                                <option value="9" [selected]="user?.numberOfCandidates =='9'">91 - 100</option>
+                                                <option value="10" [selected]="user?.numberOfCandidates =='10'">100 +</option>
+                                            </select>
+                                            <div *ngIf="submitted && f['numberOfCandidates'].errors" class="invalid-feedback">
+                                                <div *ngIf="f['numberOfCandidates'].errors.required">Candidate is required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Center</label>
+                                            <select id="ddlCenter" name="interested" disabled class="form-control" formControlName="centerId">
+                                                <option [value]="user.center.id">{{user?.center?.name}}</option>
+                                            </select>
+                                            <div class="help-block"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <fieldset class="form-group floating-label-form-group">
+                                            <label for="title1">Disclaimer</label>
+                                            <textarea id="answerArea"  class="form-control" rows="4"
+                                                placeholder="Disclaimer">{{ user?.disclaimer }}</textarea>
+                                        </fieldset>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" id="btnUpdate" class="btn btn-outline-primary">Update</button>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col-12 mt-1">
+                                    <button class="btn btn-primary glow mb-1"(click)="openModal(resetPasswordModal)">
+                                        Reset Password
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<ng-template #resetPasswordModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Reset Password</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="resetPasswordForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="GradeID" class="form-control">
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group row">
+                        <label class="col-md-3 label-control" for="password" data-toggle="tooltip" title="Password">
+                            Password:
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="g['password'].errors && g['password'].errors.required"></i>
+                        </label>
+                        <div class="col-md-9 mx-auto">
+                            <input class="form-control" type="text" id="password" name="password" placeholder="Enter the Password"
+                                formControlName="password" [ngClass]="{ 'is-invalid': submitted && g['password'].errors }">
+                            <div *ngIf="submitted && g['password'].errors" class="invalid-feedback">
+                                <div *ngIf="g['password'].errors.required">Password is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')" ngbAutofocus>
+                Close
+            </button>
+            <button type="submit" class="btn btn-outline-primary">
+                Save
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+<div class="modal fade text-left" id="PasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">Reset Password</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group row">
+                            <label class="col-md-3 label-control" for="userinput1">Password:</label>
+                            <div class="col-md-9 mx-auto">
+                                <input type="text" id="txtPassword" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnSavePassword" class="btn btn-outline-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

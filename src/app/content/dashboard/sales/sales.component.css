@@ -1,0 +1,281 @@
+:host ::ng-deep .chartist .ct-series-a .ct-line {
+
+    stroke: url(#gradient2);
+    stroke-linecap: round;
+    /* -webkit-filter: drop-shadow(0px 20px 11px rgba(0, 0, 0, 0.5)) !important; */
+   }
+:host ::ng-deep .chartist {
+    filter: drop-shadow(0px 20px 11px rgba(252, 198, 198, 0.8)) !important;
+}
+
+:host ::ng-deep .chartist .ct-grid{
+    stroke-dasharray: 0px;
+    stroke: rgba(0, 0, 0, 0.4);
+    stroke-width: 0.6px;
+}
+:host ::ng-deep .chartist .ct-series-b .ct-line {
+    stroke: #c8c2c3;
+    stroke-dasharray: 8px 3px;
+}
+
+:host ::ng-deep .chartist .ct-label.ct-vertical.ct-start {
+    font-weight: 600;
+    color: #636161;
+    font-size: 12px;
+}
+:host ::ng-deep .earningchart .ct-series-a .ct-area {
+    fill: rgba(255,117,136,1);
+}
+:host ::ng-deep .earningchart .ct-series-a .ct-point-circle {
+    stroke-width: 3px;
+    stroke: #FF4961;
+    fill: #ffffff;
+  }
+
+:host ::ng-deep .earningchart .ct-series-a .ct-line {
+    stroke: #FF4961;
+    stroke-width: 3px;
+}
+
+:host ::ng-deep .avatar-xs {
+  width: 32px !important;
+  border: 2px solid #FFF;
+}
+:host ::ng-deep .donut-chart2{
+    margin-bottom: -25px;
+    margin-top: -17px;
+}
+
+:host ::ng-deep .donut-chart2 .ct-series-a .ct-slice-donut {
+    stroke: #28d094;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart2 .ct-series-b .ct-slice-donut {
+    stroke: #ff4961;
+    stroke-width: 5.5px !important;
+}
+:host ::ng-deep .donut-chart2 {
+-webkit-filter: drop-shadow(0px 10px 11px rgba(187,187,187)) !important;
+    filter: drop-shadow(0px 10px 11px rgba(187,187,187));
+}
+:host ::ng-deep .donut-chart1 {
+    margin-bottom: -25px;
+    margin-top: -17px;
+}
+:host ::ng-deep .donut-chart1 .ct-series-a .ct-slice-donut {
+    stroke: #ff7889;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart1 .ct-series-b .ct-slice-donut {
+    stroke: #ffffff;
+    stroke-width: 5.5px !important;
+}
+
+:host ::ng-deep .donut-chart1 .ct-label {
+    fill: #ffffff;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+:host ::ng-deep .donut-chart2 .ct-label {
+    fill: #ff4b62;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 1.75rem;
+    line-height: 1;
+}
+
+:host ::ng-deep .position-relative {
+    position: relative !important;
+    margin-left: 0px;
+
+}
+
+:host ::ng-deep .pt-1,
+.py-1 {
+    padding-top: 0rem !important;
+}
+
+:host ::ng-deep .chartist .ct-label.ct-horizontal.ct-end {
+    /* align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    text-anchor: start; */
+    font-weight: 600;
+    color: #636161;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+
+:host ::ng-deep .container > .ct-chart .ct-series.ct-series-c .ct-line {
+    stroke-width: 2px;
+    stroke-dasharray: 20px 180px;
+    stroke: #28d094;
+    animation: draw 0.3s linear infinite;
+}
+
+@keyframes draw {
+    from {
+        stroke-dashoffset: 200
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+:host ::ng-deep .ct-series-c .ct-point,
+.ct-series-c .ct-line,
+.ct-series-c .ct-bar,
+.ct-series-c .ct-slice-donut {
+    stroke: #28d094;
+}
+
+:host ::ng-deep .ct-chart .ct-series.ct-series-c .ct-line {
+    stroke: #28d094;
+
+}
+
+:host ::ng-deep .ct-series-b .ct-point,
+.ct-series-b .ct-line,
+.ct-series-b .ct-bar,
+.ct-series-b .ct-slice-donut {
+    stroke: #ff4961;
+}
+
+:host ::ng-deep .container > .ct-chart .ct-series.ct-series-a .ct-line {
+    stroke-dasharray: 5px;
+    animation: dash 4s linear infinite;
+
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 2000;
+    }
+}
+
+:host ::ng-deep .ct-chart .ct-point {
+    stroke-width: 10px;
+    stroke-linecap: round;
+}
+
+:host ::ng-deep .container >  .ct-chart .ct-series.ct-series-b .ct-line {
+    stroke-width: 10px;
+    stroke-dasharray: 15px 5px;
+    animation: draw 4s linear infinite;
+}
+
+@keyframes draw {
+    from {
+        stroke-dashoffset: 100
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+:host ::ng-deep .container {
+   max-width: 100% !important;
+}
+:host ::ng-deep .btn.gradient-blackberry.active,
+.gradient-blackberry {
+    background-color: #f05b4f;
+
+}
+
+:host ::ng-deep .Visit {
+
+    background-color: #28d094;
+
+}
+
+:host ::ng-deep .Sales {
+    /* background-image: linear-gradient(45deg,#843cf7,#38b8f2)!important; */
+    background-color: #d70206;
+
+}
+
+:host ::ng-deep .col-md-11 {
+    padding-right: 0 !important;
+}
+
+:host ::ng-deep .col-md-1 {
+    padding-left: 0 !important;
+}
+
+:host ::ng-deep .box-shadow-0 .ct-label.ct-vertical.ct-start {
+
+    font-weight: bold;
+    color: #6e6e6e;
+    font-size: 12px;
+}
+
+:host ::ng-deep .box-shadow-0 .ct-label.ct-horizontal.ct-end {
+
+    font-weight: bold;
+    color: #6e6e6e;
+    font-size: 12px;
+}
+
+
+:host ::ng-deep .text-truncate {
+  padding: 0.9rem 2rem;
+}
+
+.mr-2 {
+  margin-left: 1rem !important;
+  margin-right: 0rem !important;
+}
+
+.mt-2 {
+  margin-top : 1.5rem !important;
+}
+
+.ml-2 {
+  margin-left : 2rem !important;
+}
+
+:host ::ng-deep .my-custom-cell {
+  padding-right: 6% !important;
+  padding-top: 1.5% !important;
+}
+
+:host ::ng-deep .border_bottom {
+  margin-bottom: 0rem !important;
+}
+
+:host ::ng-deep .border-top-0 {
+  padding: 1.25rem 2rem !important;
+}
+
+:host ::ng-deep .progress {
+  box-shadow: 0 10px 18px 0 rgba(62, 57, 107, .2);
+  margin-top: 1rem!important;
+}
+
+:host ::ng-deep .btn-danger {
+  color: #FFF !important;
+}
+
+:host ::ng-deep .users-list li + li {
+  margin-left: -10px !important;
+}
+
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}
+
+:host ::ng-deep .ps--active-x > .ps__rail-x {
+  display: none !important;
+}
+
+:host ::ng-deep .progress {
+    margin-bottom: 1rem !important;
+}

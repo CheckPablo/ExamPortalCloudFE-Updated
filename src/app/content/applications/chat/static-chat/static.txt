@@ -1,0 +1,89 @@
+<div class="app-content content">
+  <div class="sidebar-left sidebar-fixed" fxFlex="auto" [perfectScrollbar]="config" id="sidebar-left">
+    <div class="sidebar">
+      <div class="sidebar-content card">
+        <div class="card-body chat-fixed-search">
+          <fieldset class="form-group position-relative has-icon-left m-0">
+            <input type="text" class="form-control" id="iconLeft" placeholder="Search user"
+              (keyup)='updateFilter($event)'>
+            <div class="form-control-position">
+              <i class="feather ft-search"></i>
+            </div>
+          </fieldset>
+        </div>
+        <div id="users-list" class="list-group position-relative">
+          <div class="users-list-padding media-list">
+            <a [routerLink]="" class="media _media" *ngFor="let chats of contactList"
+              (click)="showChat(chats.friendId)" id="_media" [ngClass]="{'active':chats.isSelected ===  true, '':chats.isSelected ===  false}">
+              <div class="media-left pr-1">
+                <span class="avatar avatar-md avatar-{{chats.isactive}}"><img class="media-object rounded-circle"
+                    [src]="chats.image" alt="avatar"><i></i></span></div>
+              <i></i>
+              <div class="imagename media-body w-100">
+                <h6 class="list-group-item-heading">{{chats.name}}<span
+                    class="font-small-3 float-right info">{{chats.time}}</span>
+                </h6>
+                <p class="list-group-item-text text-muted mb-0">
+                  <i class="feather ft-check primary font-small-2"></i>{{chats.showMessage}}
+                  <span class="float-right primary">
+                    <i class="font-medium-1 icon-pin blue-grey lighten-3" *ngIf="chats.showicon"></i>
+                  </span>
+                  <span class="float-right primary">
+                    <i class="font-medium-1 icon-volume-off blue-grey lighten-3 mr-1" *ngIf="chats.isicon "></i>
+                    <span class="badge badge-pill badge-danger">{{chats.badge}}</span>
+                  </span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-right">
+    <div class="content-wrapper">
+      <div class="content-header"></div>
+      <div class="content-body">
+          <div class="content-overlay" id='content-overlay' (click)="contentOverlay($event)"></div>
+        <section class="chat-app-window" #content>
+          <div class="sidebar-toggle d-block d-lg-none" (click)="sidebar($event)"><i class="feather ft-menu font-large-1"></i></div>
+          <div class="badge badge-secondary mb-1">Chat History</div>
+          <div class="chats" #messages>
+            <div class="chat" [ngClass]="{'chat-right': messages.sender == 0 , 'chat-left': messages.sender == 1 }"
+              *ngFor="let messages of contactChat">
+              <div class="chat-avatar">
+                <a [routerLink]="" class="avatar">
+                  <span class="avatar-online"><img [src]="messages.senderImage" /></span>
+                </a>
+              </div>
+              <div class="chat-body">
+                <div class="chat-content">
+                  <p>{{messages.message}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="chat-app-form">
+          <form class="chat-app-input d-flex">
+            <fieldset class="form-group position-relative has-icon-left col-10 m-0">
+              <div class="form-control-position">
+                <i class="icon-emoticon-smile"></i>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="newMessage" name="newmessage" id="iconLeft4"
+                placeholder="Type your message" #box (keyup.enter)="onEnter(box.value)">
+              <div class="form-control-position control-position-right">
+                <i class="feather ft-image"></i>
+              </div>
+            </fieldset>
+            <fieldset class="form-group position-relative has-icon-left col-2 m-0">
+              <button type="button" class="btn btn-primary" (click)="sendMessage()" keyboardShouldPersistTaps={true}><i
+                  class="la la-paper-plane-o d-lg-none"></i><span class="d-none d-lg-block">Send</span></button>
+            </fieldset>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

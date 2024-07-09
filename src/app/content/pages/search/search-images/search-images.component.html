@@ -1,0 +1,225 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!-- Search form-->
+      <section id="search-images" class="card overflow-hidden">
+        <div class="card-header">
+          <h4 class="card-title">Images search results</h4>
+          <div class="heading-elements">
+            <ul class="list-inline mb-0">
+              <li><a data-action="collapse"><i class="feather ft-minus"></i></a></li>
+              <li><a data-action="reload"><i class="feather ft-rotate-cw"></i></a></li>
+              <li><a data-action="expand"><i class="feather ft-maximize"></i></a></li>
+              <li><a data-action="close"><i class="feather ft-x"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body pb-0">
+            <fieldset class="form-group position-relative mb-0">
+              <input type="text" class="form-control form-control-xl input-xl" id="iconLeft1"
+                placeholder="Explore Modern ...">
+              <div class="form-control-position">
+                <i class="feather ft-mic font-medium-4"></i>
+              </div>
+            </fieldset>
+          </div>
+          <!--Search Navbar-->
+          <div id="search-nav" class="card-body">
+            <ul class="nav nav-inline">
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/search/searchWebsite']"><i class="la la-link"></i> Website</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" [routerLink]="['/search/searchImages']"><i class="la la-file-image-o"></i>
+                  Images</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/search/searchVideos']"><i class="la la-file-video-o"></i>
+                  Videos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]=""><i class="la la-map-o"></i> Maps</a>
+              </li>
+              <li ngbDropdown class="dropdown nav-item float-right">
+                <a ngbDropdownToggle [routerLink]="" class="btn dropdown-toggle" data-toggle="dropdown">
+                  <i class="la la-cog"></i> <span class="caret"></span>
+                </a>
+                <ul ngbDropdownMenu class="dropdown-menu">
+                  <li class="dropdown-item"><a [routerLink]="" class="dropdown-link">Languages</a></li>
+                  <li class="dropdown-item"><a [routerLink]="" class="dropdown-link">Search Settings</a></li>
+                  <li class="dropdown-item"><a [routerLink]="" class="dropdown-link">History</a></li>
+                  <li class="dropdown-item"><a [routerLink]="" class="dropdown-link">Search Help</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!--/ Search Navbar-->
+          <!--Search Result-->
+          <div id="search-results">
+            <div class="card-body my-gallery">
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image1"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Maecenas solitudin <span class="font-small-2 text-muted float-right">720 x
+                        600</span></h4>
+                    <p class="card-text">Nulla ac vulputate mauris. Nam tincidunt odio purus..</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image2"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Aliquam vel nib <span class="font-small-2 text-muted float-right">480 x
+                        360</span></h4>
+                    <p class="card-text">Phasellus vitae aliquam felis, et bibendum orci..</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image3"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Molestie accumsan <span class="font-small-2 text-muted float-right">480 x
+                        360</span></h4>
+                    <p class="card-text">Maecenas commodo odio sed nibh viverra vestibulum.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image4"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Nam eu efficitur <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">Donec porttitor massa vitae leo rutrum viverra.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image5"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Porttitor donec <span class="font-small-2 text-muted float-right">560 x
+                        360</span></h4>
+                    <p class="card-text">Sed suscipit velit vitae justo pharetra.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image6"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Velit et interdum <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">Duis auctor velit et interdum maximus..</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image7"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Natoque efficitur <span class="font-small-2 text-muted float-right">800 x
+                        600</span></h4>
+                    <p class="card-text">Cum sociis natoque penatibus et magnis dis.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image8"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Pharetra enim id <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">Mauris imperdiet enim id urna pharetra.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image9"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Integer fermentum <span class="font-small-2 text-muted float-right">380 x
+                        360</span></h4>
+                    <p class="card-text">Vel lacinia cursus, est dui tincidunt sem.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image10"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Donec congue nec <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">Morbi laoreet ultrices mi ut imperdiet.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image11"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Vivamus eget <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">This is a longer card with supporting text below.</p>
+                  </div>
+                </div>
+                <div class="card card-img-top border-grey border-lighten-2 col-md-3">
+                  <a2p-gallery>
+                    <ngxps-gallery [images]="image12"></ngxps-gallery>
+                  </a2p-gallery>
+                  <div class="card-body px-0">
+                    <h4 class="card-title">Aenean pharetra <span class="font-small-2 text-muted float-right">500 x
+                        360</span></h4>
+                    <p class="card-text">Ligula ornare velit porttitor viverra et a felis.</p>
+                  </div>
+                </div>
+              </div>
+              <ngxps-lightbox></ngxps-lightbox>
+            </div>
+
+            <div class="text-center">
+              <nav aria-label="Page navigation">
+                <ul class="pagination pagination-separate pagination-round pagination-flat">
+                  <li class="page-item">
+                    <a class="page-link" [routerLink]="" aria-label="Previous">
+                      <span aria-hidden="true">« Prev</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" [routerLink]="">1</a></li>
+                  <li class="page-item"><a class="page-link" [routerLink]="">2</a></li>
+                  <li class="page-item active"><a class="page-link" [routerLink]="">3</a></li>
+                  <li class="page-item"><a class="page-link" [routerLink]="">4</a></li>
+                  <li class="page-item"><a class="page-link" [routerLink]="">5</a></li>
+                  <li class="page-item">
+                    <a class="page-link" [routerLink]="" aria-label="Next">
+                      <span aria-hidden="true">Next »</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+
+          </div>
+        </div>
+        <!--/ Search Result-->
+      </section>
+      <!--/ Search form-->
+
+    </div>
+  </div>
+</div>

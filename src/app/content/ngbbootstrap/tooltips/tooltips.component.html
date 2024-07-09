@@ -1,0 +1,418 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <!--       Static demo	    -->
+      <section id="static-demo">
+        <div class="row">
+          <div class="col-12" *blockUI="'staticDemo'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadStaticDemo($event)">
+              <ng-container mCardHeaderTitle>
+                Static demo
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Four options are available: top, right, bottom, and left aligned.</p>
+                <div class="row">
+                  <div class="col-xl-3 col-lg-6 col-6 mb-1 text-center">
+                    <h5 class="text-center">Basic Top Tooltip</h5>
+                    <div class="tooltip top show" role="tooltip"
+                      style="display: block; position: relative; margin: 0; padding: 0; z-index: 100;">
+                      <div class="tooltip-arrow"
+                        style="bottom: -5px; left: 50%; margin-left: -5px; border-width: 5px 5px 0; border-top-color: #000;">
+                      </div>
+                      <div class="tooltip-inner" style="max-width: none;">
+                        <i
+                          style="bottom: -5px; left: 50%;margin-left: -5px;border-width: 5px 5px 0;border-top-color: #000;position: absolute;border-style: solid;"></i>
+                        Tooltip on Top</div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="top"</code> to add top tooltip.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 mb-1 text-center">
+                    <h5 class="text-center">Basic Right Tooltip</h5>
+                    <div class="tooltip right show" role="tooltip"
+                      style="display: block; position: relative; margin: 0; padding: 0; z-index: 100;">
+                      <div class="tooltip-arrow"
+                        style="left: -5px;top: 50%;border-width: 5px 5px 5px 0;border-right-color: #000;">
+                      </div>
+                      <div class="tooltip-inner" style="max-width: none;">
+                        <i
+                          style="left: -5px; top: 50%;margin-top: -5px;border-width: 5px 5px 5px 0;border-right-color: #000;position: absolute;border-style: solid;"></i>
+                        Tooltip on Right</div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="right"</code> to add right tooltip.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 mb-1 text-center">
+                    <h5 class="text-center">Basic Bottom Tooltip</h5>
+                    <div class="tooltip bottom show" role="tooltip"
+                      style="display: block; position: relative; margin: 0; padding: 0; z-index: 100;">
+                      <div class="tooltip-arrow"
+                        style="top: -5px;left: 50%;margin-left: -5px;border-width: 0 5px 5px;border-bottom-color: #000;">
+                      </div>
+                      <div class="tooltip-inner" style="max-width: none;">
+                        <i
+                          style="top: -5px; left: 50%;margin-left: -5px;border-width:0 5px 5px;border-bottom-color: #000;position: absolute;border-style: solid;"></i>
+                        Tooltip on Bottom</div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="bottom"</code> to add bottom tooltip.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-6 mb-1 text-center">
+                    <h5 class="text-center">Basic Left Tooltip</h5>
+                    <div class="tooltip left show" role="tooltip"
+                      style="display: block; position: relative; margin: 0; padding: 0; z-index: 100;">
+                      <div class="tooltip-arrow"
+                        style="right: -5px;top: 50%;border-width: 5px 0 5px 5px;border-left-color: #000;">
+                      </div>
+                      <div class="tooltip-inner" style="max-width: none;">
+                        <i
+                          style="right: -5px; top: 50%;margin-top: -5px;border-width: 5px 0 5px 5px;border-left-color: #000;position: absolute;border-style: solid;"></i>
+                        Tooltip on Left</div>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="left"</code> to add left tooltip.</p>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section> <!-- Section Ends -->
+
+      <!-- Tooltip Positions	  -->
+      <section id="tooltip-positions">
+        <div class="row ">
+          <div class="col-12" *blockUI="'tooltipPositions'; message: 'Loading'">
+            <m-card [options]="options" (reloadFunction)="reloadTooltipPositions($event)">
+              <ng-container mCardHeaderTitle>
+                Tooltip Positions
+              </ng-container>
+              <ng-container mCardBody>
+                <p>Four options are available: top, right, bottom, and left aligned.</p>
+                <div class="row">
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                    <h5 class="text-center">Basic Top Tooltip</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary" triggers="click" placement="top" ngbTooltip="Tooltip on top">
+                        Tooltip on top
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="top"</code> to add top tooltip.</p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                    <h5 class="text-center">Basic Right Tooltip</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary" triggers="click" tooltipClass="rightTooltipPosition"
+                        placement="right" ngbTooltip="Tooltip on right">
+                        Tooltip on right
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="right"</code> to add right tooltip.
+                    </p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                    <h5 class="text-center">Basic Bottom Tooltip</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary" triggers="click" placement="bottom" ngbTooltip="Tooltip on bottom">
+                        Tooltip on bottom
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="bottom"</code> to add bottom tooltip.
+                    </p>
+                  </div>
+                  <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                    <h5 class="text-center">Basic Left Tooltip</h5>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-secondary" triggers="click" placement="left" ngbTooltip="Tooltip on left">
+                        Tooltip on left
+                      </button>
+                    </div>
+                    <p class="text-center mt-1">Add <code>placement="left"</code> to add left tooltip.</p>
+                  </div>
+                </div>
+              </ng-container>
+            </m-card>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+
+      <!--       Tooltip Events	  -->
+      <section id="tooltip-events">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Tooltip Events</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Shown Event</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-success" ngbTooltip="Tooltip Shown Event"
+                          triggers="manual" placement="top" #s="ngbTooltip" (click)="s.open()" (shown)="tooltipShownEvent()">
+                          Shown Event Tooltip
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">This event is fired when the tooltip has been made
+                        visible to the
+                        user.</p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Hidden Event</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-success" ngbTooltip="Tooltip Hidden Event"
+                          triggers="manual" placement="top" #hidden="ngbTooltip" (click)="hidden.open()" (hidden)="tooltipHiddenEvent()">
+                          Hidden Event Tooltip
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">This event is fired when the tooltip has finished being
+                        hidden from
+                        the user.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+
+      <!--       Tooltip Methods	  -->
+      <section id="tooltip-methods">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Tooltip Methods</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>This is considered a “manual” triggering of the tooltip. Tooltips with zero-length
+                    titles are
+                    never
+                    displayed.</p>
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Show</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" ngbTooltip="Show Method Tooltip"
+                          [autoClose]="false" triggers="manual" #show="ngbTooltip" (click)="show.open()">
+                          Show Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Reveals an element’s tooltip. Returns to the caller
+                        before the
+                        tooltip
+                        has actually been shown.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Hide</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" [autoClose]="false"
+                         ngbTooltip="Hide Method Tooltip" triggers="manual" #hide= ngbTooltip (mouseenter)="hide.open()" (click)="hide.close()">
+                          Hide Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Hides an element’s tooltip. Returns to the caller before
+                        the tooltip
+                        has actually been hidden.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Toggle</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-danger" triggers="click" [autoClose]="'inside'"
+                          ngbTooltip="Toggle Method Tooltip">
+                          Toggle Method <i class="la la-play-circle ml-1"></i>
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Toggles an element’s tooltip. Returns to the caller
+                        before the
+                        tooltip
+                        has actually been shown or hidden.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+
+      <!--       Tooltip Triggers	  -->
+      <section id="tooltip-triggers">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Tooltip Triggers</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <p>Tooltip is triggered using - click | hover | focus | manual options. You may pass
+                    multiple
+                    triggers; separate them with a space. "manual" cannot be combined with any other
+                    trigger.</p>
+                  <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Click</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="click" [autoClose]="'inside'"
+                          ngbTooltip="Click Triggered">
+                          On Click Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="click"</code> for click trigger.
+                      </p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Focus</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="click:focus" [autoClose]="'outside'"
+                          ngbTooltip="Focus Triggered">
+                          On Focus Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="focus"</code> for focus trigger.
+                      </p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Hover</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="hover:click:hover" [autoClose]="'outside'"
+                          ngbTooltip="Hover Triggered">
+                          On Hover Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="hover"</code> for hover trigger.
+                        This is a
+                        default trigger.</p>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Manual</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-info" triggers="manual" [autoClose]="'true'"
+                          ngbTooltip="Manual Triggered" #manualTrigger="ngbTooltip" (click)="manualTrigger.open()"
+                          (mouseleave)="manualTrigger.close()">
+                          On Manual Trigger
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>triggers="manual"</code> for manual
+                        trigger.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+
+      <!--       Tooltip Options	  -->
+      <section id="tooltip-options">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Tooltip Options</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Supports HTML</h5>
+                      <div class="text-center">
+                        <ng-template #tipContent><b>This </b>is <i>HTML </i><u>tooltip</u> </ng-template>
+                        <button type="button" class="btn btn-warning" triggers="click" [ngbTooltip]="tipContent">
+                          HTML Tooltip
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use<code>ng-template</code> for HTML supported trigger.</p>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Tooltip Template</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-warning template" (click)="doAlert()" [autoClose]="'inside'"
+                          ngbTooltip="Check console for default template structure" triggers="click">
+                          Tooltip Template
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Base HTML to use when creating the tooltip. The
+                        tooltip's title will
+                        be injected into the <code>.tooltip-inner</code>. <code>.tooltip-arrow</code> will
+                        become the
+                        tooltip's arrow.The outermost wrapper element should have the
+                        <code>.tooltip</code> class.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+
+      <!--       Tooltip Colot Options	  -->
+      <section id="tooltip-color-options">
+        <div class="row ">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Tooltip Color Options</h4>
+              </div>
+              <div class="card-collapse">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Custom Tooltip Backround Color</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-primary" triggers="click" ngbTooltip="Custom Background Color"
+                          tooltipClass="background-color">
+                          Custom Bg
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>tooltipClass</code> for Custom
+                        tooltip. You
+                        can change tooltip color using custom class.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Custom Tooltip Text Color</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-primary" triggers="click" ngbTooltip="Custom Background Color"
+                          tooltipClass="text-color">
+                          Custom Text
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>tooltipClass</code> for Custom
+                        tooltip. You
+                        can change tooltip text color using custom class.</p>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-1 text-center">
+                      <h5 class="text-center">Custom Tooltip Background &amp; Text Color</h5>
+                      <div class="text-center">
+                        <button type="button" class="btn btn-primary" triggers="click" ngbTooltip="Custom Background Color"
+                          tooltipClass="background-text">
+                          Custom bg &amp; Text
+                        </button>
+                      </div>
+                      <p class="text-center mt-1">Use <code>tooltipClass</code> for Custom
+                        bordered
+                        colored tooltip. You can change tooltip background and text color using custom class.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section Ends -->
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->

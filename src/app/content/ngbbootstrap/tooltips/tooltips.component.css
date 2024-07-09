@@ -1,0 +1,23 @@
+:host ::ng-deep .background-color .tooltip-inner {
+    background-color: #E83E8C;
+}
+:host ::ng-deep .background-color .arrow::before {
+    border-top-color: #E83E8C;
+}
+
+:host ::ng-deep .text-color .tooltip-inner {
+    color: #1E9FF2;
+}
+
+:host ::ng-deep .background-text .tooltip-inner{
+    color: black;
+    background-color: #FF4961
+}
+
+:host ::ng-deep .rightTooltipPosition{
+    width : 120px;
+}
+
+:host ::ng-deep .block-ui-wrapper {
+  background: rgba(255, 249, 249, 0.5) !important;
+}

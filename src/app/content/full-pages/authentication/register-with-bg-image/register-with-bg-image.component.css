@@ -1,0 +1,7 @@
+html body {
+  height: fit-content !important;
+}
+
+:host ::ng-deep .top_space {
+  padding-top: 0rem !important;
+}

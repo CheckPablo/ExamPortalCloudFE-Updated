@@ -1,0 +1,56 @@
+:host ::ng-deep .content-right {
+  width: calc(100% - 300px) !important;
+}
+ :host ::ng-deep .mx-75 {
+    margin-left: .75rem!important;
+    margin-right: .75rem!important;
+  }
+  :host ::ng-deep .py-75 {
+    padding-bottom: .75rem!important;
+    padding-top: .75rem!important;
+  }
+  :host ::ng-deep .px-1 {
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
+  }
+  :host ::ng-deep .mr-50, .mx-50 {
+    margin-right: .5rem!important;
+    margin-left: .5rem!important;
+  }
+  :host ::ng-deep .mb-50, .my-50 {
+    margin-bottom: .5rem!important;
+  }
+  :host ::ng-deep .dropdown-menu
+  {
+    transform: translate3d(-131px, 18px, 0px) !important;
+  }
+  :host ::ng-deep .chat-sidebar .chat-sidebar-list-wrapper {
+     overflow-y: scroll;
+  }
+  :host ::ng-deep .sidebar-fixed {
+    overflow: hidden !important;
+    width: 300px;
+  }
+
+  :host ::ng-deep .app-content {
+     overflow-y: hidden !important;
+  }
+  :host ::ng-deep .pb-25, .py-25 {
+    padding-bottom: .25rem!important;
+  }
+  :host ::ng-deep .ml-25, .mx-25 {
+    margin-left: .25rem!important;
+  }
+
+  :host ::ng-deep .ps--active-y > .ps__rail-y {
+    display: none;
+  }
+  @media(max-width:767px) {
+    :host ::ng-deep .content-right {
+      width: calc(100% - 0px) !important;
+    }
+  }
+  :host ::ng-deep .d-inline-block {
+    display: inline !important;
+  }
+  

@@ -1,0 +1,22 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1">
+      <app-breadcrumb class="col-12" [breadcrumb]="breadcrumb"></app-breadcrumb>
+    </div>
+    <div class="content-body">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Basic Horizontal Timeline</h4>
+        </div>
+        <div class="card-content collapse show">
+          <div class="card-body">
+            <div class="card-text">
+              <p>This horizontal time line contain just date based post timeline.</p>
+                <app-horizontal-timeline-page [timelineElements]="timeline" [showContent]="true"></app-horizontal-timeline-page>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

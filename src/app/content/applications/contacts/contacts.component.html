@@ -1,0 +1,309 @@
+<div class="app-content content">
+  <div class="content-wrapper">
+    <div class="content-header row mb-1"></div>
+    <div class="content-detached content-right">
+      <div class="content-body">
+        <div class="content-overlay" id='content-overlay' (click)="contentOverlay($event)"></div>
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="bug-list-search">
+                  <div class="bug-list-search-content">
+                    <div class="sidebar-toggle d-block d-lg-none" (click)="sidebar($event)"><i
+                        class="feather ft-menu font-large-1"></i></div>
+                    <form action="">
+                      <div class="position-relative">
+                        <input type="text" id="search-contacts" class="form-control" placeholder="Search contacts..."
+                          (keyup)='updateFilter($event)'>
+                        <div class="form-control-position">
+                          <i class="la la-search text-size-base text-muted la-rotate-270"></i>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-head">
+                <div class="card-header">
+                  <h4 class="card-title">All Contacts</h4>
+                  <div class="heading-elements mt-0">
+                    <button class="btn btn-primary btn-sm gap_contact"
+                      (click)="addTableDataModal(addTableDataModalContent)">
+                      <i class="d-md-none d-block feather ft-plus white"></i>
+                      <span class="d-md-block d-none">Add Contacts</span></button>
+                    <span ngbDropdown class="d-inline-block dropdown gap_contact" [placement]="placement">
+                      <button id="btnSearchDrop1" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="true" class="btn btn-warning dropdown-toggle dropdown-menu-right btn-sm"
+                        ngbDropdownToggle><i class="feather ft-download-cloud white"></i></button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="mt-1">
+                        <button class="dropdown-item"><i class="feather ft-upload"></i> Import</button>
+                        <button class="dropdown-item"><i class="feather ft-download"></i> Export</button>
+                        <button class="dropdown-item"><i class="feather ft-shuffle"></i> Find Duplicate</button>
+                      </div>
+                    </span>
+                    <button class="btn btn-default btn-sm"><i class="feather ft-settings white"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-body">
+                  <!-- Task List table -->
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button type="button" class="btn btn-danger" (click)="deleteCheckedRow()">Delete
+                        All</button>
+                      <span class="pull-right">
+                        Search :
+                        <input type='search'
+                          style='padding:8px;margin:15px auto;width:200px;height: calc(1.875rem + 2px);border-radius: 0.21rem;border: 1px solid #babfc7;'
+                          (keyup)='updateFilter($event)' /></span>
+                    </div>
+                  </div>
+                  <ngx-datatable #table class="bootstrap row contacts-table" [rows]="rows" [columnMode]="'force'" [headerHeight]="50"
+                    [footerHeight]="50" [rowHeight]="70" [limit]="5" [selected]="selected" [selectionType]="'checkbox'"
+                    (select)='onSelectContact($event)' fxFlex="auto" [perfectScrollbar]="config">
+
+                    <ngx-datatable-column [flexGrow]="1" [minWidth]="30" [maxWidth]="50">
+                      <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected"
+                        let-selectFn="selectFn">
+                        <span class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="selectAll" [checked]="allRowsSelected"
+                            (change)="selectFn(!allRowsSelected)" />
+                          <label class="custom-control-label" for="selectAll"></label>
+                        </span>
+                      </ng-template>
+                      <ng-template ngx-datatable-cell-template let-value="value" let-row="row" let-rowIndex="rowIndex"
+                        let-onCheckboxChangeFn="onCheckboxChangeFn" let-isSelected="isSelected">
+                        <div class="custom-control custom-checkbox _center">
+                          <input type="checkbox" class="custom-control-input" id="select{{rowIndex}}"
+                            [checked]="isSelected" (change)="onCheckboxChangeFn($event)" />
+                          <label class="custom-control-label" for="select{{rowIndex}}"></label>
+                        </div>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Name" [flexGrow]="1" [minWidth]="140">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <span class="avatar avatar-sm avatar-{{row.isActive}} rounded-circle">
+                          <img [src]="row.image"><i></i></span>{{row.name}}
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Email" [flexGrow]="1" [minWidth]="140">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a [routerLink]="">{{row.email}}</a>
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Phone" [flexGrow]="1" [minWidth]="140"></ngx-datatable-column>
+                    <ngx-datatable-column name="Favorite" [flexGrow]="1" [minWidth]="90" [cellClass]="'my-custom-cell'">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <img src="../../../assets/images/raty/star-off.png" class="favoriteChange"
+                          *ngIf="!row.isFavorite" (click)="favoriteChange(row)">
+                        <img src="../../../assets/images/raty/star-on.png" class="favoriteChange" *ngIf="row.isFavorite"
+                          (click)="favoriteChange(row)">
+                      </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Actions" [flexGrow]="1" [minWidth]="100">
+                      <ng-template ngx-datatable-cell-template let-row="row">
+                        <a [routerLink]="" class="primary edit mr-1 mrless"
+                          (click)="editTableDataModal(editTableDataModalContent, row)"><i class="la la-pencil"></i>
+                        </a>
+                        <a class="danger delete mr-1 mrless"><i class="la la-trash-o" (click)="deleteRow(row)"></i></a>
+                        <span class="dropdown" ngbDropdown placement="left">
+                          <a [routerLink]="" id="btnSearchDrop27" ngbDropdownToggle id="dropdownBasic1"
+                            class="mrless"><i class="la la-ellipsis-v"></i></a>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <a [routerLink]="" class="dropdown-item edit space"
+                              (click)="editTableDataModal(editTableDataModalContent, row)"><i
+                                class="feather ft-edit-2"></i>Edit</a>
+                            <a [routerLink]="" class="dropdown-item delete space" (click)="deleteRow(row)"><i
+                                class="feather ft-trash-2"></i> Delete</a>
+                            <a [routerLink]="" class="dropdown-item space"><i class="feather ft-plus-circle primary"></i>
+                              Projects</a>
+                            <a [routerLink]="" class="dropdown-item space"><i class="feather ft-plus-circle info"></i>
+                              Team</a>
+                            <a [routerLink]="" class="dropdown-item space"><i class="feather ft-plus-circle warning"></i>
+                              Clients</a>
+                            <a [routerLink]="" class="dropdown-item space"><i class="feather ft-plus-circle success"></i>
+                              Friends</a>
+                          </div>
+
+                        </span>
+                      </ng-template>
+
+                    </ngx-datatable-column>
+                  </ngx-datatable>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="sidebar-detached sidebar-left" id="sidebar-left" fxFlex="auto" [perfectScrollbar]="config">
+      <div class="sidebar">
+        <div class="bug-list-sidebar-content">
+          <!-- Predefined Views -->
+          <div class="card">
+            <div class="card-head">
+              <div class="media p-1">
+                <div class="media-left pr-1"><span class="avatar avatar-sm avatar-online rounded-circle"><img
+                      src="../../../assets/images/portrait/small/avatar-s-1.png" alt="avatar"><i
+                      class="icon"></i></span></div>
+                <div class="media-body media-middle">
+                  <h5 class="media-heading">Margaret Govan</h5>
+                </div>
+              </div>
+            </div>
+
+            <!-- contacts view -->
+            <div class="card-body border-top-blue-grey border-top-lighten-5">
+              <div class="list-group">
+                <a [routerLink]="" class="list-group-item active active">All Contacts</a>
+                <a [routerLink]="" class="list-group-item list-group-item-action">Recently contacted</a>
+                <a [routerLink]="" class="list-group-item list-group-item-action">Favorite contacts</a>
+              </div>
+            </div>
+
+            <!-- Groups-->
+            <div class="card-body">
+              <p class="lead">Groups</p>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <span class="badge badge-primary badge-pill float-right">14</span> <a [routerLink]="" class="info">
+                    Project</a>
+                </li>
+                <li class="list-group-item">
+                  <span class="badge badge-info badge-pill float-right">22</span> <a [routerLink]="" class="info">
+                    Team</a>
+                </li>
+                <li class="list-group-item">
+                  <span class="badge badge-warning badge-pill float-right">10</span> <a [routerLink]="" class="info">
+                    Clients</a>
+                </li>
+                <li class="list-group-item">
+                  <span class="badge badge-success badge-pill float-right">5</span> <a [routerLink]="" class="info">
+                    Friends</a>
+                </li>
+              </ul>
+            </div>
+            <!--/ Groups-->
+
+            <!--More-->
+            <div class="card-body ">
+              <p class="lead">More</p>
+              <ul class="list-group">
+                <a [routerLink]="" class="list-group-item info">Import</a>
+                <a [routerLink]="" class="list-group-item info">Export</a>
+                <a [routerLink]="" class="list-group-item info">Print</a>
+                <a [routerLink]="" class="list-group-item info">Restore contacts</a>
+                <a [routerLink]="" class="list-group-item info">Find duplicate</a>
+              </ul>
+            </div>
+            <!--/More-->
+          </div>
+          <!--/ Predefined Views -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+
+<ng-template #editTableDataModalContent let-c="close" let-d="dismiss">
+  <form (ngSubmit)="onUpdate(editForm,selectedContact.id)" #editForm="ngForm">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Edit Contact</h5>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="selectedContact.name" #editname="ngModel" name="name" id="name"
+          class="name form-control" placeholder="Name"
+          [ngClass]="{ 'is-invalid': editForm.submitted && editname.invalid }" required>
+        <div *ngIf="editForm.submitted && editname.invalid" class="invalid-feedback">
+          <div *ngIf="editname.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="selectedContact.email" #editemail="ngModel" name="email" id="email"
+          class="email form-control" placeholder="Email"
+          [ngClass]="{ 'is-invalid':editForm.submitted && editemail.invalid }" required email>
+        <div *ngIf="editForm.submitted && editemail.invalid" class="invalid-feedback">
+          <div *ngIf="editemail.errors.required">Email is required</div>
+          <div *ngIf="editemail.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="selectedContact.phone" #editphone="ngModel" name="phone" id="phone"
+          class="phone form-control" placeholder="Phone Number" (keyup)="onFormat()" maxlength="14">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="form-group position-relative has-icon-left mb-0">
+        <button type="submit" id="edit-contact-item" class="btn btn-info edit-contact-item" data-dismiss="modal"><i
+            class="la la-paper-plane-o d-lg-none"></i> <span class="d-none d-lg-block">Edit</span></button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #addTableDataModalContent let-c="close" let-d="dismiss">
+  <form (ngSubmit)="addNewContact(addForm)" #addForm="ngForm">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel1">Add New Contact</h5>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="contactName" name="name" id="contact-name" class="contact-name form-control"
+          placeholder="Name" #contactname="ngModel"
+          [ngClass]="{ 'is-invalid': addForm.submitted && contactname.invalid }" required>
+        <div *ngIf="addForm.submitted && contactname.invalid" class="invalid-feedback">
+          <div *ngIf="contactname.errors.required">Name is required</div>
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="contactEmail" name="email" id="contact-email" class="contact-email form-control"
+          placeholder="Email" #contactemail="ngModel"
+          [ngClass]="{ 'is-invalid':addForm.submitted && contactemail.invalid }" required email>
+        <div *ngIf="addForm.submitted && contactemail.invalid" class="invalid-feedback">
+          <div *ngIf="contactemail.errors.required">Email is required</div>
+          <div *ngIf="contactemail.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <input type="text" [(ngModel)]="contactPhone" name="contactPhone" #contactphone="ngModel" id="contact-phone"
+          class="contact-phone form-control" placeholder="Phone Number" (keyup)="onFormat()" maxlength="14">
+      </div>
+      <div class="form-group col-12">
+        <span class="custom-control custom-checkbox">
+          <input type="checkbox" [(ngModel)]="contactFavorite" name="favorite" (change)="addFavoriteImage($event)"
+            id="favorite" class="contact-fav input-chk custom-control-input">
+          <label class="custom-control-label" for="favorite">Favorite</label>
+        </span>
+      </div>
+      <div class="custom-file form-group col-12">
+        <input type="file" class="custom-file-input" accept='contactImage/*' (change)="preview($event)" id="customFile">
+        <label class="custom-file-label">Choose Image</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="form-group position-relative has-icon-left mb-0">
+        <button type="submit" id="add-contact-item" class="btn btn-info add-contact-item"><i
+            class="la la-paper-plane-o d-lg-none"></i> <span class="d-none d-lg-block">Add
+            New</span></button>
+      </div>
+    </div>
+  </form>
+</ng-template>

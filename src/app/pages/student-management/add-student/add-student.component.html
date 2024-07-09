@@ -1,0 +1,324 @@
+<section id="justified-tabs-with-icons">
+    <div class="row match-height">
+        <div class="col-lg-12">
+            <!--<button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/students']">Back</button>-->
+            <!--<button id="btnBack" type="button" class="btn btn-secondary"  (click)="displayStudentInfoTab()">Backkk</button>-->
+            <button id="btnBack" type="button" class="btn btn-secondary"  [routerLink]="['/portal/students/searchgrid-students']">Back</button>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Student Maintenance</h4>
+                    <div class="heading-elements" *ngIf="student">
+                        <a [routerLink]="['/portal/students/add-student']" type="button" id="btnNew" class="btn btn-info btn-min-width mr-1 mb-1">
+                            Add New Student
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="card-body">
+                        <!--<ul ngbNav #Badge="ngbNav" [activeId]="1" class="nav nav-tabs nav-justified mb-3">-->
+                        <ul ngbNav #Badge="ngbNav" [activeId]="active" class="nav nav-tabs nav-justified mb-3">
+                            <li [ngbNavItem]="1">
+                                <a ngbNavLink>
+                                    <i class="la la-info-circle"></i> Student Information
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="StudentInfoTab"></ng-template>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2" [ngClass]="{ 'disabled': !student }" (click)="setActiveTab()">
+                                <a ngbNavLink>
+                                    <i class="la la-link"></i> Link Students to Subjects
+                                </a>
+                                <ng-template ngbNavContent>
+                                    <ng-template [ngTemplateOutlet]="LinkSubjectsTab"></ng-template>
+                                </ng-template>
+                            </li>
+                        </ul>
+                        <div class="tab-content text-muted">
+                            <div [ngbNavOutlet]="Badge"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #StudentInfoTab>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-body">
+            <h4 class="form-section"><i class="feather ft-user"></i> Personal Info</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="name" data-toggle="tooltip" title="First Name">
+                            First Name
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['name'].errors && f['name'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="text" id="name" name="name" maxlength="50"
+                            placeholder="Enter the First Name" formControlName="name"
+                            [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+                        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['name'].errors.required">First Name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="surname" data-toggle="tooltip" title="Surname">
+                            Surname
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['surname'].errors && f['surname'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="text" id="surname" name="surname"
+                            placeholder="Enter the Surname" formControlName="surname" maxlength="50"
+                            [ngClass]="{ 'is-invalid': submitted && f['surname'].errors }">
+                        <div *ngIf="submitted && f['surname'].errors" class="invalid-feedback">
+                            <div *ngIf="f['surname'].errors.required">Surname is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="idNumber" data-toggle="tooltip"
+                            title="ID Number / Date Of Birth">
+                            ID Number / Date Of Birth
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['idNumber'].errors && f['idNumber'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="text" id="idNumber" name="idNumber"
+                            placeholder="Enter the ID Number / Date Of Birth" formControlName="idNumber" maxlength="50"
+                            [ngClass]="{ 'is-invalid': submitted && f['idNumber'].errors }">
+                        <div *ngIf="submitted && f['idNumber'].errors" class="invalid-feedback">
+                            <div *ngIf="f['idNumber'].errors.required">ID Number / Date Of Birth is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="studentNo" data-toggle="tooltip" title="Student Number">
+                            Student Number
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['studentNo'].errors && f['studentNo'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="text" id="studentNo" name="studentNo"
+                            placeholder="Enter the Student Number" formControlName="studentNo" maxlength="50"
+                            [ngClass]="{ 'is-invalid': submitted && f['studentNo'].errors }">
+                        <div *ngIf="submitted && f['studentNo'].errors" class="invalid-feedback">
+                            <div *ngIf="f['studentNo'].errors.required">Student Number is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="emailAddress" data-toggle="tooltip" title="Email Address">
+                            Email Address
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['emailAddress'].errors && f['emailAddress'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="email" id="emailAddress" name="emailAddress"
+                            placeholder="Enter the Email Address" formControlName="emailAddress"
+                            [ngClass]="{ 'is-invalid': submitted && f['emailAddress'].errors }">
+                        <div *ngIf="submitted && f['emailAddress'].errors" class="invalid-feedback">
+                            <div *ngIf="f['emailAddress'].errors.required">Email Address is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="contactNo" data-toggle="tooltip"
+                            title="Contact Number (optional)">
+                            Contact Number (optional)
+                        </label>
+                        <input class="form-control" type="tel" id="contactNo" name="contactNo"
+                            placeholder="Enter the Contact Number (optional)" formControlName="contactNo"
+                            [ngClass]="{ 'is-invalid': submitted && f['contactNo'].errors }">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="gradeId" data-toggle="tooltip" title="Grade">
+                            Grade
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['gradeId'].errors && f['gradeId'].errors.required"></i>
+                        </label>
+                        <select class="form-control" id="gradeId" name="gradeId" formControlName="gradeId"
+                            [ngClass]="{ 'is-invalid': submitted && f['gradeId'].errors }"
+                            (change)="onGradeChange($any($event.target).value)">
+                            <option value="">-- Select Grade --</option>
+                            <option *ngFor="let grade of grades" [value]="grade.id">{{grade.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f['gradeId'].errors" class="invalid-feedback">
+                            <div *ngIf="f['gradeId'].errors.required">Grade is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="password" data-toggle="tooltip" title="Password">
+                            Password
+                        </label>
+                        <input class="form-control" type="text" id="password" name="password"
+                            placeholder="Enter the Password" formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="examNo" data-toggle="tooltip" title="Login Exam Number">
+                            Login Exam Number
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['examNo'].errors && f['examNo'].errors.required"></i>
+                        </label>
+                        <input class="form-control" type="text" id="examNo" name="examNo"
+                            placeholder="Enter the Login Exam Number" formControlName="examNo" readonly="readonly"
+                            [ngClass]="{ 'is-invalid': submitted && f['examNo'].errors }">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="regionId" data-toggle="tooltip" title="Region">
+                            Region
+                            <i class="fa fa-asterisk text-danger"
+                                *ngIf="f['regionId'].errors && f['regionId'].errors.required"></i>
+                        </label>
+                        <select class="form-control" id="regionId" name="regionId" formControlName="regionId"
+                            [ngClass]="{ 'is-invalid': submitted && f['regionId'].errors }">
+                            <option value="">-- Select Region --</option>
+                            <option *ngFor="let region of regions" [value]="region.id">{{region.description}}</option>
+                        </select>
+                        <div *ngIf="submitted && f['regionId'].errors" class="invalid-feedback">
+                            <div *ngIf="f['regionId'].errors.required">Region is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label" for="externalEmail" data-toggle="tooltip" title="External EmailL">
+                        External Email
+                        <i class="fa fa-asterisk text-danger"
+                            *ngIf="f['externalEmail'].errors && f['externalEmail'].errors.required"></i>
+                    </label>
+                    <input class="form-control" type="text" id="externalEmail" name="externalEmail"
+                        placeholder="Enter the External Email" formControlName="externalEmail"
+                        [ngClass]="{ 'is-invalid': submitted && f['externalEmail'].errors }">
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <fieldset>
+                        <div class="form-check">
+                            <input  type="checkbox" formControlName="eligibleForExternalLogin"   id="eligibleForExternalLogin" (change) ="onCheck()">
+                            <label class="form-check-label" for="eligibleForExternalLogin" >
+                                Eligible For External Login
+                            </label>
+                          </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-actions">
+            <button type="submit" id="btnSaveStudent" class="btn btn-primary">
+                <i class="la la-check-square-o"></i>
+                Save
+            </button>
+            <!-- <button type="button" id="btnResetPassword" class="btn btn-primary ml-1" *ngIf="student">
+                <i class="la la-key"></i>
+                Reset Student Password
+            </button> -->
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #LinkSubjectsTab>
+    <section class="with-multi-selection">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="table table- table-small mb-0 back_ground">
+                    <div class="table-responsive">
+                        <table class="table table-column">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <button type="button" class="btn moveall btn-outline-secondary btn-sm btn-block"
+                                            title="Move all" (click)="moveAllToTarget()">&gt;&gt;</button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="ng-star-inserted" *ngFor="let subject of baseSubjects"
+                                    (click)="moveToTarget(subject)">
+                                    <th scope="row">{{ subject.description }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="table table- table-small mb-0 back_ground">
+                    <div class="table-responsive">
+                        <table class="table table-column">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        <button type="button" class="btn moveall btn-outline-secondary btn-sm btn-block"
+                                            title="Move all" (click)="moveAllToSource()">&lt;&lt;</button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="ng-star-inserted" *ngFor="let subject of selectedSubjects"
+                                    (click)="moveToSource(subject)">
+                                    <th scope="row">{{ subject.description }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" id="btnLink" class="btn btn-primary" (click)="onLinkClick()">
+                    <i class="la la-check-square-o"></i>Link
+                </button>
+            </div>
+        </div>
+    </section>
+</ng-template>
+<ng-template #spinnerLoaderModalStudent >
+    <div id="loader" style="z-index: 99999; height: 100%; width: 100%; background: transparent; position: fixed;">
+        <img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" style=" top: 0; left: 0; position: absolute; margin: auto; right: 0; bottom: 0; display: block;">
+    </div>
+    <!--<div class="modal-dialog modal-dialog-centered" role="document" style="background-color: transparent;
+    height: 400px;
+    padding: 20px;
+    border-radius: 10px;">
+<img  src="../../../../assets/images/loaderBlueTrans.gif" > 
+      </div>
+<!-- <div style="position: absolute; left: 50%; top: 50%;">
+    <img  src="../../../../assets/images/loaderBlueTrans.gif" > 
+</div> -->
+    <!--<img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" style="width:10%; margin-left: 0; margin-right: 0;">-->
+   
+</ng-template>
+<app-pop-up content="{{message}}" title="{{title}}" show="{{showModal}}" />
