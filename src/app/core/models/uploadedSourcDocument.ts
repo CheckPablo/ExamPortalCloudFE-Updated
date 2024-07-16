@@ -9,4 +9,5 @@ export interface UploadedSourceDocument extends EntityBase {
     dateModified: string | null;
     filePath: string | null;
     test: Test | null;
+    sourceDocBase64: string | null; 
 }

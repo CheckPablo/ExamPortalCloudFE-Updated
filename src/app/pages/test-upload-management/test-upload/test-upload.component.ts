@@ -66,6 +66,7 @@ import { DocumentEditorContainerComponent } from "@syncfusion/ej2-angular-docume
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { timer } from 'rxjs';
 import { BlockUI } from "primeng/blockui";
+import { date } from "ngx-custom-validators/src/app/date/validator";
 
 declare var window: any;
 
@@ -164,6 +165,7 @@ export class TestUploadComponent {
   sourceDocs: UploadedSourceDocument[] = [];
   answerDocs: UploadedSourceDocument[] = [];
   base64String = ''
+  sourceDocBase64: string | null; 
   showWordPreview: boolean;
   selectedMP3Id?: number;
   docsTabDisabled: boolean;
@@ -365,6 +367,7 @@ export class TestUploadComponent {
     this.testService.getUrl(`${this.testId}/get-answer-documents`)
       .subscribe((data) => {
         this.answerDocs = data;
+        
         this.loadAnswerDoc();
       })
 
@@ -489,11 +492,9 @@ export class TestUploadComponent {
                 const base64Url = 'data:application/pdf;base64,' + data.file;
                 this.pdfViewerSourcePdf.load(base64Url, '');
                 this.pdfViewerSourcePdf.enableHyperlink = false;
-
                 return true;
+
               })
-
-
           }
 
           if (sourceDoc.fileName.includes("docx") || sourceDoc.fileName.includes("DOCX") || sourceDoc.fileName.includes('docx') ||
@@ -504,15 +505,13 @@ export class TestUploadComponent {
                 this.pdfViewerSourcePdf.load(base64Url, '');
                 this.pdfViewerSourcePdf.enableHyperlink = false;
                 return true;
+
               })
-
-
           }
 
         })
 
       });
-
   }
 
   private getTestCategories() {
@@ -599,11 +598,8 @@ export class TestUploadComponent {
       })
   }
 
-  public onAnswerFileSelected(event): void {
-
-
+/*   public onAnswerFileSelected(event): void {
     const file = event.target.files[0];
-
     if (file) {
       this.open(this.content)
       const formData = new FormData();
@@ -611,14 +607,35 @@ export class TestUploadComponent {
       formData.append("file", file, file.name);
       this.testService.postUrl(`${this.testId}/upload-answer-document`, formData)
         .subscribe((data) => {
-
+          console.log(data); 
           timer(this.spinnerDuration).subscribe(() => this.closeSpinnerModal(this.modalReference))
-          this.getAnswerDocuments();
+          this.answerDocs = data;
+          this.loadDocument(data.answerDocBase64);
+          //this.getAnswerDocuments();
           Swal.fire("Answer Document", "The answer document has been uploaded.", "success");
         }, (err) => console.error(err),
           () => console.log("observable complete"));
     }
-  }
+  } */
+
+    public onAnswerFileSelected(event): void {
+      const file = event.target.files[0];
+  
+      if (file) {
+        this.open(this.content)
+        const formData = new FormData();
+  
+        formData.append("file", file, file.name);
+        this.testService.postUrl(`${this.testId}/upload-answer-document`, formData)
+          .subscribe((data) => {
+  
+            timer(this.spinnerDuration).subscribe(() => this.closeSpinnerModal(this.modalReference))
+            this.getAnswerDocuments();
+            Swal.fire("Answer Document", "The answer document has been uploaded.", "success");
+          }, (err) => console.error(err),
+            () => console.log("observable complete"));
+      }
+    }
 
   public onGradeChange(gradeId: number, subjectId: number = 0) {
     this.subjectService.getByGradeId(gradeId).subscribe((data) => {
@@ -746,12 +763,52 @@ export class TestUploadComponent {
       const formData = new FormData();
 
       formData.append("file", file, file.name);
-      this.testService
-        .postUrl(`${this.testId}/upload-source-document`, formData)
+      this.testService.postUrl(`${this.testId}/upload-source-document`, formData)
         .subscribe((data) => {
+          console.log(data); 
+          this.sourceDocs = data;
+          //const base64Url = 'data:application/pdf;base64,' + data.file;
+          console.log(data.length-1)
+          /*console.log(data.length-1)
+          var latestSourceDocBase64 = data[data.length-1];
+          console.log(latestSourceDocBase64);
+          const base64Url = 'data:application/pdf;base64,' + latestSourceDocBase64.sourceDocBase64;*/
+          const base64Url = 'data:application/pdf;base64,' + data[0].sourceDocBase64;
+          this.pdfViewerSourcePdf.load(base64Url, '');
+          this.pdfViewerSourcePdf.enableHyperlink = false;
           timer(this.spinnerDuration).subscribe(() => this.closeSpinnerModal(this.modalReference))
           Swal.fire("Source Document", "The source document has been uploaded.", "success");
-          this.getSourceDocuments();
+          /*this.sourceDocs.some(sourceDoc => {
+            if (sourceDoc.fileName.includes("pdf") || sourceDoc.fileName.includes("PDF") || sourceDoc.fileName.includes('pdf') || sourceDoc.fileName.includes('PDF')) {
+            
+              this.testService.getUrl(`get-file/${sourceDoc.id}/source`)
+                .subscribe((data) => {
+                  const base64Url = 'data:application/pdf;base64,' + data.file;
+                  this.pdfViewerSourcePdf.load(base64Url, '');
+                  this.pdfViewerSourcePdf.enableHyperlink = false;
+  
+                  return true;
+                })
+  
+  
+            }
+  
+            if (sourceDoc.fileName.includes("docx") || sourceDoc.fileName.includes("DOCX") || sourceDoc.fileName.includes('docx') ||
+              sourceDoc.fileName.includes('DOCX')) {
+              this.testService.getUrl(`get-file/${sourceDoc.id}/source`)
+                .subscribe((data) => {
+                  const base64Url = 'data:application/pdf;base64,' + data.file;
+                  this.pdfViewerSourcePdf.load(base64Url, '');
+                  this.pdfViewerSourcePdf.enableHyperlink = false;
+                  return true;
+                })
+  
+  
+            }
+  
+          })*/
+          
+          //this.getSourceDocuments();
         });
     }
   }
@@ -927,19 +984,21 @@ export class TestUploadComponent {
 
         this.testService.create(this.testInformationForm.value)
           .subscribe((data) => {
+            console.log(data);
 
             Swal.fire(
               "Test Information Saved",
               "Test Information Saved.",
               "success"
             );
-
+            this.test = data;
+            this.initForms(data);
             this.selectedGrade = data.sectorId
             this.selectedCenterTest = data.centerId
             this.selectedTestId = data.id
             this.testId = data.toString();
             this.router.navigate(['/portal/testupload', data])
-
+           
             this.toggleDocTabsEnabled();
           });
         this.populateStudentList(this.selectedGrade, 0, this.selectedTestId);
@@ -1132,8 +1191,8 @@ export class TestUploadComponent {
           this.defaultSelect = this.extraTimeIds[x.studentID]['00:00:00'];
         });
 
-         console.log('ReaderIDS from DB populateStudentList function'+'   + onTestLinkClick', this.readerIds);
-         console.log('AccomodationIDS from DB populateStudentList function'+'   + onTestLinkClick', this.accomodationIds); 
+         //console.log('ReaderIDS from DB populateStudentList function'+'   + onTestLinkClick', this.readerIds);
+         //console.log('AccomodationIDS from DB populateStudentList function'+'   + onTestLinkClick', this.accomodationIds); 
          //console.log(this.accomodationIds); 
          //console.log(this.readerIds); 
 
