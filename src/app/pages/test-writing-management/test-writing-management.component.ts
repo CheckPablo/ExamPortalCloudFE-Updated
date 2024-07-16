@@ -904,6 +904,23 @@ export class TestWritingManagementComponent {
 
   }
 
+  changePauseTTSButtonSourceText():void{
+    if (this.ttSourceStatus === 'reading') {
+      if (speechSynthesis) {
+        this.ttStatus = 'paused';
+        speechSynthesis.pause();
+        this.SourcePaperTTSBtnText = 'Resume';
+        //$('#btnPauseStatus').text('Resume');
+      }
+    }
+    else if (this.ttSourceStatus === 'paused') {
+      speechSynthesis.resume();
+      this.SourcePaperTTSBtnText = 'Pause';
+      //$('#btnPauseStatus').text('Pause');
+      this.ttStatus = 'reading';
+    }
+  }
+
   public checkIrregularites(stud: StudentTestAnswer) {
 
     setInterval(() => {
@@ -1228,7 +1245,8 @@ export class TestWritingManagementComponent {
   }
 
   private previewQuestionPaperDocument() {
-    this.testService.getUrl(`get-questionpaper-file/${this.testId}/${this.studentId}`)
+    //this.testService.getUrl(`get-questionpaper-file/${this.testId}/${this.studentId}`)
+    this.testService.getUrl(`get-dbtest-with-file/${this.testId}/${this.studentId}`)
       .subscribe((data) => {
 
         this.test = data.exam;
@@ -1359,8 +1377,7 @@ export class TestWritingManagementComponent {
   }
 
   async getStudentTestChats() {
-    /* 
-      );*/
+    this.studentsChatlist = []; 
     const appRef = collection(this.db, 'CloudMessagingStagePortal')
     //const appQuery = query(appRef,where('testID', '==', String(this.selectedTestId)),where('studentID', '==', String(this.user.id)));
     const appQuery = query(appRef, where('studentID', '==', Number(this.user.id)), where('testID', '==', Number(this.testId)), orderBy('createdAt', 'asc'));
@@ -1392,6 +1409,7 @@ export class TestWritingManagementComponent {
 
 
   async getTestBulkMessages() {
+    this.bulkMessageList = []; 
     const appRef = collection(this.db, 'CloudBroadcastMessaging')
     const appQuery = query(appRef, where('studentID', '==', 0),where('testID', '==',Number(this.testId)), orderBy('createdAt', 'asc')); 
     const querySnapshot = await getDocs(appQuery);

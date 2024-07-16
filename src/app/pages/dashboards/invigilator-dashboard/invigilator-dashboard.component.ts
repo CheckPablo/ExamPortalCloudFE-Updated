@@ -22,6 +22,7 @@ export class InvigilatorDashboardComponent {
   maximumLicense: number | null; 
   studentCount:   number | null; 
   expiryDate:     string | null;
+  currentUserName:string | null;
  
   constructor(
     private storage: TokenStorageService,
@@ -34,11 +35,16 @@ export class InvigilatorDashboardComponent {
   
   {
     this.user = this.storage.getUser();
+    console.log(this.user); 
+    this.currentUserName = localStorage.getItem('currentUser'); 
+    console.log(this.currentUserName);
+    console.log(JSON.parse(this.currentUserName)); 
+    this.getInvigilatorCenter();
   }
 
   ngOnInit(){
     this.getUser(); 
-    this.CenterByUserId();
+    //this.CenterByUserId();
   }
 
   private getUser() {
@@ -48,17 +54,17 @@ export class InvigilatorDashboardComponent {
     //this.userService.getById(this.user.id)
       .subscribe((data) => {
         this.user = data;
-        //this.userDetails.push(data);
         console.log(this.user); 
-        //this.initEditForm(data);
+        
+        //this.CenterByUserId(); 
       })
   }
   
-  private CenterByUserId() {
+  private getInvigilatorCenter() {
     console.log(this.userDetails);
     const user = this.authService.currentUserValue(); 
     console.log(this.user); 
-    this.centerService.getCenterByUserId(this.user.username)
+    this.centerService.getCenterByUserId(this.currentUserName)
     //this.userService.getById(this.user.id)
       .subscribe((data) => {
         this.centerDetails= data;

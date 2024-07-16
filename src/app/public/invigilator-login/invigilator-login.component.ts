@@ -78,6 +78,7 @@ export class InvigilatorLoginComponent {
         .login(credentials)
         .subscribe((res) => {
           console.log(res)
+          this.setUserInStorage(res.username); 
         }, (error) => {
           console.log(error);
           this.title = error.title;
@@ -100,8 +101,9 @@ export class InvigilatorLoginComponent {
   }
 
   setUserInStorage(res) {
-    if (res.user) {
-      localStorage.setItem('currentUser', JSON.stringify(res.user));
+    if (res) {
+      //localStorage.setItem('currentUser', JSON.stringify(res.user));
+      localStorage.setItem('currentUser', JSON.stringify(res));
     } else {
       localStorage.setItem('currentUser', JSON.stringify(res));
     }
