@@ -450,6 +450,8 @@ export class TestUploadComponent {
     //this.testService.getUrl(`get-dbtest-with-file/${this.testId}`)
       .subscribe((data) => {
         this.test = data.test;
+        console.log(this.test); 
+        console.log(data); 
         if (!this.subjects) {
           if (data.test) {
             this.onGradeChange(data.test.sectorId, data.test.subjectId)
@@ -997,7 +999,7 @@ export class TestUploadComponent {
             this.selectedCenterTest = data.centerId
             this.selectedTestId = data.id
             this.testId = data.toString();
-            this.router.navigate(['/portal/testupload', data])
+            //this.router.navigate(['/portal/testupload', data.id])
            
             this.toggleDocTabsEnabled();
           });
