@@ -26,7 +26,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 logiFailure: "The user name or password provided is incorrect.", 
                 registrationFailure: "The password and confirmation password do not match.",
                 studentEntryFailure: "The specified student number already exists",
-                subjectEntryFailure: "The specified subject code and subject code already exists"
+                subjectEntryFailure: "The specified subject code and subject name already exists"
 
             }
             const errors = {
@@ -77,7 +77,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 subjectEntryFailure:{ 
                 title: 'Add/Update Subject Failed',
                 message:[
-                    'The specified subject code and subject code already exists'
+                    'The specified subject code and subject name already exists'
                 ]
             }, 
             invalidOTP: {
@@ -110,7 +110,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                         else if (err.error.includes(errorHandlers.studentEntryFailure)) {
                         _error = errors.studentEntryFailure;
                     }
-                    else if (err.error.includes("The specified subject code and subject code already exists")) {
+                    else if (err.error.includes("The specified subject code and subject name already exists")) {
                         _error = errors.subjectEntryFailure;
                     }
                     //Swal.fire('Error', err.error, 'error')
@@ -141,7 +141,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     else if (err.error.includes("The specified student number already exists")) {
                         _error = errors.studentEntryFailure;
                     }
-                    else if (err.error.includes("The specified subject code and subject code already exists")) {
+                    else if (err.error.includes("The specified subject code and subject name already exists")) {
                         _error = errors.subjectEntryFailure;
                     }
                     else if (err.error.includes(errorHandlers.invalidOTP)) {

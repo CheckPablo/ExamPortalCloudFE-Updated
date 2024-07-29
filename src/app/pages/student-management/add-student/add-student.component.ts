@@ -180,7 +180,6 @@ export class AddStudentComponent implements OnInit {
   }
 
   public moveAllToTarget() {
-
     this.setMoveSubjectsBoolean();
 
     this.selectedSubjects = this.subjects;
@@ -195,10 +194,16 @@ export class AddStudentComponent implements OnInit {
   }
 
   public moveToTarget(subject: Subject) {
+    console.log("Move to target line 198"); 
+    console.log(this.studentId); 
     this.setMoveSubjectsBoolean();
 
     this.selectedSubjects.push(subject);
     this.baseSubjects = this.baseSubjects.filter(x => x.id !== subject.id);
+    console.log("Selected Subjects line 203", this.selectedSubjects); 
+    console.log("Base Subjects line 204", this.baseSubjects); 
+    console.log("Move to target line 206"); 
+    console.log(this.studentId); 
   }
 
   private onGradeChange(gradeId: number) {
@@ -212,12 +217,18 @@ export class AddStudentComponent implements OnInit {
   }
 
   public onLinkClick() {
+    console.log(this.studentId); 
+    this.checkStudentId(); 
     if (this.isMoveAllToSource == true) {
+      console.log("216")
       this.delinkAllStudentSubjects();
       return;
     }
 
     else {
+      console.log("223")
+      console.log(this.studentId); 
+     
       this.studentService.linkSubjects(this.selectedSubjects, this.studentId)
         .subscribe(() => {
           Swal.fire('Student Subjects Linked', 'The subjects have been linked to the student.', 'success');
@@ -227,6 +238,14 @@ export class AddStudentComponent implements OnInit {
 
       this.setMoveSubjectsBoolean();
     }
+  }
+
+  checkStudentId() {
+   if(!this.studentId)
+   {
+    this.studentId = JSON.parse(localStorage.getItem('newStudentId')); 
+    console.log(this.studentId); 
+   }
   }
 
   public delinkAllStudentSubjects() {
@@ -255,22 +274,22 @@ export class AddStudentComponent implements OnInit {
           //data.map
           this.mailData = data; 
           this.student = data; 
-          console.log(data);
-          console.log(JSON.stringify(data)); 
+          this.studentId = String(this.student[0].id); 
+          console.log(this.studentId)
+          //console.log(JSON.stringify(data)); 
           timer(this.spinnerDuration).subscribe(() => this.closeSpinnerModal(this.modalReference))
           Swal.fire('Student Information Saved', 'Student information saved and has been sent to the student via email. You may now link subjects to the student.', 'success');
-          this.studentId = JSON.stringify(data.id); 
-          this.getStudent(); 
-          //window.location.reload(); 
-           this.router.navigate(['/portal/students/view-student', this.studentId]);
-          
+          //this.studentId = JSON.stringify(data.id); 
           //this.initForms();
-          //this.router.navigate(['/portal/students/view-student', data.id]);
+          localStorage.setItem('newStudentId',this.studentId)
+          this.getStudent(); 
+          this.router.navigate(['/portal/students/view-student', this.studentId]);
+
         },error:(error:any) =>{
           console.log(error); 
           this.title = "Add/Update unsuccessful";
           this.message = 'The specified student number already exists';
-          //this.closeSpinnerModal(this.modalReference)
+          this.closeSpinnerModal(this.modalReference)
           this.showModal = true;
           return; 
         },  complete:() =>{ this.mailStudent(this.mailData)}

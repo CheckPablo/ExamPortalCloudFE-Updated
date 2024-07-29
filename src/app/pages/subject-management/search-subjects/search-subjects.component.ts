@@ -41,6 +41,7 @@ export class SearchSubjectsComponent implements OnInit {
   title: string;
   message: string;
   showModal: boolean;
+  isChecked = false;
   constructor(
     public service: TableService,
     private modalService: NgbModal,
@@ -52,6 +53,7 @@ export class SearchSubjectsComponent implements OnInit {
   {
     this.tables$ = service.tables$;
     this.total$ = service.total$;
+    
    }
 
   ngOnInit(): void {
@@ -59,50 +61,32 @@ export class SearchSubjectsComponent implements OnInit {
     this.getSubjects();
     this.getGrades();
     this.initForms();
+  /* const checkbox = document.getElementById(
+      'chkLinktoAll',
+    ) as HTMLInputElement | null;
+
+    checkbox.addEventListener( "change", () => {
+      if ( checkbox.checked ) {
+        alert("checked"); 
+      } else {
+        alert("not checked");
+      }
+   }); */
   }
   get f() { return this.form.controls; }
 
-  public onEditSubmit() {
-    this.submitted = true;
-    const checkbox = document.getElementById(
-      'chkLinktoAll',
-    ) as HTMLInputElement | null;
-    if (checkbox != null) {
-      this.isLinkToAll = true;
-       
-    }
-    else{
-      this.isLinkToAll = true;
- 
-       
-       
-    }
-   
-     
-     
-    if (this.form.invalid) {return;}
 
-   if(!this.isLinkToAll){
-    
-    this.subjectService.update(this.f['id'].value, this.form.value)
-    .subscribe(() => {
-      this.getSubjects();
-      this.initForms();
-      this.modalService.dismissAll();
-      Swal.fire('Subject Updated', 'Subject information updated.', 'success');
-    });
+  
+  onCheckboxChange(event:any){
+   if(event.target.checked){
+    console.log("this.isLinkToAll = true");
+    this.isLinkToAll = true;
+   }
+   else{
+    console.log("this.isLinkToAll = false");
+    this.isLinkToAll = false;
+   }
   }
-  else{
-    this.subjectService.UpdateSubjectLinkToAllStudents(this.f['id'].value,this.form.value)
-    .subscribe(() => {
-      this.getSubjects();
-      this.initForms();
-      this.modalService.dismissAll();
-      Swal.fire('Subject Saved', 'Subject information saved.', 'success');
-    });
-  }
-}
-
 
   public getGrades(){
     this.gradeService.get()
@@ -208,26 +192,11 @@ export class SearchSubjectsComponent implements OnInit {
 
   public onSubmit() {
     this.submitted = true;  
-   
-    const checkbox = document.getElementById(
-      'chkLinktoAll',
-    ) as HTMLInputElement | null;
-    if (checkbox != null) {
-     
-     this.isLinkToAll = false;
-     console.log("checkbox is not null, checkbox set to true");
-     console.log(this.isLinkToAll);
-    }
-    else{
-      this.isLinkToAll = true;
-      console.log("checkbox is not null, checkbox set to true");
-      console.log(this.isLinkToAll);
-    }
-   
     if (this.form.invalid) {return;}
-
+    //this.getCheckBoxValue(); 
+    
     if(!this.isLinkToAll){
-      console.log("creating new subject under", '!this.isLinkToAll')
+      console.log("creating new subject under", 'not isLinkToAll(false)');
       this.subjectService.create(this.form.value).subscribe({
         next :(data:any) =>{
         this.getSubjects();
@@ -238,20 +207,14 @@ export class SearchSubjectsComponent implements OnInit {
         error:(error:any)=>{
           console.log(error, "creating new subject under '!this.isLinkToAll'")
           this.title = "Add/Update unsuccessful";
-          this.message = 'The specified subject code and subject code already exists';
+          this.message = 'The specified subject code and subject name already exists';
           this.showModal = true;
         }, 
         complete:()=>{}
       })
-     /*  .subscribe(() => {
-         this.getSubjects();
-        this.initForms();
-        this.modalService.dismissAll();
-        Swal.fire('Subject Saved', 'Subject information saved.', 'success');
-      }); */
     }
       else{
-        console.log("creating new subject and this.isLinkToAll is true")
+        console.log("creating new subject and this.isLinkToAll is true(true)")
         this.subjectService.LinkSubjectToAllStudents(this.form.value).subscribe({
           next :(data:any) =>{
           this.getSubjects();
@@ -261,19 +224,60 @@ export class SearchSubjectsComponent implements OnInit {
           }, 
           error:(error:any)=>{
             this.title = "Add/Update unsuccessful";
-            this.message = 'The specified subject code and subject code already exists';
+            this.message = 'The specified subject code and subject name already exists';
             this.showModal = true;
           }, 
           complete:()=>{}
         })
-    /*   .subscribe(() => {
-        this.getSubjects();
-        this.initForms();
-        this.modalService.dismissAll();
-        Swal.fire('Subject Saved', 'Subject information saved.', 'success');
-      }); */
+   
       }
   }
+
+  public onEditSubmit() {
+    this.submitted = true;
+    if (this.form.invalid) {return;}
+
+   if(!this.isLinkToAll){
+    //console.log("isLinkToAll = false")
+    console.log("updating new subject under", 'not isLinkToAll(false')
+    this.subjectService.update(this.f['id'].value, this.form.value)
+    .subscribe(() => {
+      this.getSubjects();
+      this.initForms();
+      this.modalService.dismissAll();
+      Swal.fire('Subject Updated', 'Subject information updated.', 'success');
+    });
+  }
+  else{
+    console.log("updating a new subject under", ' this.isLinkToAll is true(true)')
+    this.subjectService.UpdateSubjectLinkToAllStudents(this.f['id'].value,this.form.value)
+    .subscribe(() => {
+      this.getSubjects();
+      this.initForms();
+      this.modalService.dismissAll();
+      Swal.fire('Subject Saved', 'Subject information saved.', 'success');
+    });
+  }
+}
+ /*  getCheckBoxValue() {
+   
+    //if (checkbox != null) {
+      console.log(this.isChecked)
+      if(this.isChecked){
+      console.log(this.isChecked)
+     
+     this.isLinkToAll = true;
+     console.log("checkbox is not null, checkbox set to true");
+     //console.log(this.isLinkToAll);
+    }
+    else{
+      console.log(this.isChecked);
+      this.isLinkToAll = false;
+      console.log("checkbox is not null, checkbox set to true");
+      //console.log(this.isLinkToAll);
+    }
+   
+  } */
 
   public openUpdateModal(modal,subject: Subject) {
     this.initEditForms(subject); 

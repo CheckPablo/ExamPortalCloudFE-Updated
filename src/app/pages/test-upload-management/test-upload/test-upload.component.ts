@@ -738,6 +738,7 @@ export class TestUploadComponent {
         );
         //preview here; 
         this.router.navigate(['/portal/testupload', data.id])
+        //this.populateStudentList(this.selectedGrade, 0, this.selectedTestId);
      
          //this.getSingleTest(); 
       });
@@ -999,7 +1000,7 @@ export class TestUploadComponent {
             this.selectedCenterTest = data.centerId
             this.selectedTestId = data.id
             this.testId = data.toString();
-            //this.router.navigate(['/portal/testupload', data.id])
+            this.router.navigate(['/portal/testupload', data.id])
            
             this.toggleDocTabsEnabled();
           });

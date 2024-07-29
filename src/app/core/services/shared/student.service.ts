@@ -31,6 +31,8 @@ export class StudentService extends ApiService<Student>{
 
   public linkSubjects = (subjects: Subject[], studentId?: string) => {
     const ids = subjects.map((s) => s.id);
+    console.log(ids);
+    console.log(studentId); 
     return this.postUrl(`${studentId}/link-to-subjects`, ids)
   }
 

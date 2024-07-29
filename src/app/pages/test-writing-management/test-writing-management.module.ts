@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { TooltipModule } from 'ng2-tooltip-directive';
 //import { DialogModule } from '@syncfusion/ej2-angular-popups'
 
 //import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
@@ -46,7 +47,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     //BrowserModule,
     ZXingScannerModule, 
     QRCodeModule,
-   
+    TooltipModule,
+    //AnchoredFloatingBoxModule
     //NgxScannerQrcodeModule,
     ///BrowserAnimationsModule,     // required animations module
     //ToastrModule.forRoot(),

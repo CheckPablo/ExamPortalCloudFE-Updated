@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, VERSION, SimpleChanges, HostListener, input, NgZone, Renderer2, EventEmitter, } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, VERSION, SimpleChanges, HostListener, input, NgZone, Renderer2, EventEmitter, TemplateRef, } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PdfViewerComponent } from '@syncfusion/ej2-angular-pdfviewer';
 import { environment } from 'src/environments/environment';
@@ -25,6 +25,9 @@ import { ConnectionService } from 'ng-connection-service';
 import { ToastrService } from 'ngx-toastr';
 import { InTestWriteService } from 'src/app/core/services/shared/inTestWrite.service';
 import { enableRipple } from '@syncfusion/ej2-base';
+import { createPopper } from "@popperjs/core";
+//import { AnchoredFloatingBoxService } from '@babybeet/anchored-floating-box';
+//import { TooltipService, Placement, Theme } from '@lazycuh/angular-tooltip';
 enableRipple(true);
 import {
   LinkAnnotationService,
@@ -51,6 +54,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { DatePipe } from '@angular/common';
 import { AngularFirestore, AngularFirestoreCollection , AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { UploadedSourceDocument } from 'src/app/core/models/uploadedSourcDocument';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 
@@ -109,6 +113,9 @@ export class TestWritingManagementComponent {
   reconnected = 0;
   studentsTestData: StudentTestWriteInformation;
   qrDataUrl: string;
+  ReadMore:boolean = true
+  //hiding info box
+  collapseOptionsVisible:boolean = false
 
   ngVersion = VERSION.full;
   initialTime = '00:00:00';
@@ -196,6 +203,8 @@ export class TestWritingManagementComponent {
   AnsTemplateTTSBtnText: string = "Read Answer";
   imageURLList: string[];
   showEditor = true;
+  collapseQuestionPaper = false;
+  collapseAnswerSheet = false;
   questionPaperFullText: string;
   fullSourcePaperText: string;
   SourcePaperPauseTTSBtnText: string = "Pause";
@@ -257,6 +266,7 @@ export class TestWritingManagementComponent {
     private renderer2: Renderer2,
     private _ngZone: NgZone,
     private authService: AuthService,
+    //private readonly anchoredFloatingBoxService: AnchoredFloatingBoxService,
      
     public datepipe: DatePipe) {
     this.activateRouter.params.subscribe((p) => {
@@ -373,7 +383,17 @@ export class TestWritingManagementComponent {
       }); */
     
     }
-  
+  /*   onOpen(content: TemplateRef<any>, anchor: HTMLButtonElement) {
+      this.anchoredFloatingBoxService.open({
+        content,
+        anchor,
+        className: 'optional-class-name',
+        context: {
+          greeting: 'Hello',
+          $implicit: 'Angular!!!'
+        }
+      });
+    } */
     public async updateReadStatus(c:TestChat){
       
       const appRef = collection(this.db, 'CloudMessagingStagePortal')
@@ -729,6 +749,54 @@ export class TestWritingManagementComponent {
       //return p; 
     }
 
+    // #Start angular pop over for hide and collapse
+    const button = document.querySelector('#button');
+    const tooltip = document.querySelector<any>('#tooltip');
+
+    let popperInstance = null;
+
+    function create() {
+      popperInstance = createPopper(button, tooltip, {
+        modifiers: [
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 8],
+            },
+          },
+        ],
+      });
+    }
+
+    function destroy() {
+      if (popperInstance) {
+        popperInstance.destroy();
+        popperInstance = null;
+      }
+    }
+
+    function show() {
+      tooltip.setAttribute('data-show', '');
+      create();
+    }
+
+    function hide() {
+      tooltip.removeAttribute('data-show');
+      destroy();
+    }
+
+    const showEvents = ['mouseenter', 'focus'];
+    const hideEvents = ['mouseleave', 'blur'];
+
+    showEvents.forEach(event => {
+      button.addEventListener(event, show);
+    });
+
+    hideEvents.forEach(event => {
+      button.addEventListener(event, hide);
+    });
+
+    // #End angular pop over for hide and collapse
   }
 
   private getSourceDocuments = () => {
@@ -1212,6 +1280,10 @@ export class TestWritingManagementComponent {
     this.eventEmitterService.onFirstComponentButtonClick();
   }
 
+  showCollapseOptions(){
+    //alert("Collapse Options")
+    this.collapseOptionsVisible = !this.collapseOptionsVisible
+  }
 
   verifyScanOTP() {
     this.imageURLList = [];
@@ -1654,6 +1726,20 @@ export class TestWritingManagementComponent {
     // this.show = !this.show;
     this.showEditor = !this.showEditor;
     this.cd.detectChanges();
+  }
+
+  toggleQuestionDiv() {
+    alert("Question Div Toggled");
+    // this.show = !this.show;
+    //this.showEditor = !this.showEditor;
+    //this.cd.detectChanges();
+  }
+
+  toggleAnswerDiv() {
+    alert("Answer Div Toggled")
+    // this.show = !this.show;
+    //this.showEditor = !this.showEditor;
+    //this.cd.detectChanges();
   }
 
   getOperatingSystem() {

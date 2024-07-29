@@ -59,11 +59,34 @@
                             <i class="ft ft-chevron-down"></i>
                             Download Answers Offline
                         </button>  
-                        <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
+                        <ng-template #HtmlContent>
+                            <div class ="bg-white shadow-sm p-3">
+                            <a class ="dropdown-item-option" href="#" id="btnCollapseAnswer">Collapse Answer</a><br>
+                            <a class ="dropdown-item-option" href="#" id="btnCollapseQuestion">Collapse Question</a>
+                            </div>
+                          </ng-template>
+                          
+                          <span [tooltip]="HtmlContent"  placement="bottom" hideDelay="2500" contentType="template">
+                            <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
+                          </span>
+                       <!--  <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#" id="btnCollapseAnswer">Collapse Answer</a>
                             <a class="dropdown-item" href="#" id="btnCollapseQuestion">Collapse Question</a>
-                        </div>
+                        </div> -->
+                        <!-- <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showCollapseOptions()">Collapse</button> -->
+                    <!--     <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;"  aria-expanded="false" (click)="showCollapseOptions()">Collapse
+                    </button> -->
+
+                   <!--  <ng-template #HtmlContent>
+                        <p>Hello i'm a <strong>bold</strong> text!</p>
+                      </ng-template>
+                        
+                      <button [tooltip]="HtmlContent" contentType="template">
+                        Ex 2: Tooltip with template content
+                      </button> -->
+                      
+                     
                        <button *ngIf="electronicReader && tts" type="button" id="btnReadAnswer" class="btn btn-secondary" style="margin-left: 5px;" (click)="readAnswerTTSButtonText()">
                             <i class="ft ft-volume-2"></i>
                             <!--<span id="btnAnswerPlayStatus">Read Answer</span> -->
@@ -104,15 +127,7 @@
                             [enableToolbar]="false">
                         </ejs-pdfviewer>
                     </div> 
-                  <!--   (created)="created($event)" -->
-                  <!--   <div id="TestPreview">
-                        <ejs-pdfviewer  #pdfTestViewer id="pdfTestViewer" class="answerEditor"
-                            [serviceUrl]="hostedUrl" [EnablePersistence]=true  [documentPath]='localBase64Url'
-                            [isExtractText]=true [enableNavigationToolbar]="false" [initialRenderPages]='initialRender' (created)="created($event)"
-                            [enableToolbar]="false">
-                        </ejs-pdfviewer>
-                    </div>  -->
-
+             
                 </div>
             </div>
         </div>
