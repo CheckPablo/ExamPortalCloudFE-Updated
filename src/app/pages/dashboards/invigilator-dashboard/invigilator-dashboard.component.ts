@@ -79,6 +79,7 @@ export class InvigilatorDashboardComponent {
   public openModal(modal: any) {
     this.modalService.open(modal, ModalSizes.lg);
   }
+  
   public navigateToGrades() {
     this.modalService.dismissAll();
     this.router.navigate(["portal/grades"]);

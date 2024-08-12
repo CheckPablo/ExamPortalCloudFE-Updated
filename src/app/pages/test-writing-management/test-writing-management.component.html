@@ -59,33 +59,44 @@
                             <i class="ft ft-chevron-down"></i>
                             Download Answers Offline
                         </button>  
-                        <ng-template #HtmlContent>
-                            <div class ="bg-white shadow-sm p-3">
-                            <a class ="dropdown-item-option" href="#" id="btnCollapseAnswer">Collapse Answer</a><br>
-                            <a class ="dropdown-item-option" href="#" id="btnCollapseQuestion">Collapse Question</a>
-                            </div>
-                          </ng-template>
-                          
-                          <span [tooltip]="HtmlContent"  placement="bottom" hideDelay="2500" contentType="template">
-                            <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
-                          </span>
-                       <!--  <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Collapse</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" id="btnCollapseAnswer">Collapse Answer</a>
-                            <a class="dropdown-item" href="#" id="btnCollapseQuestion">Collapse Question</a>
-                        </div> -->
-                        <!-- <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="showCollapseOptions()">Collapse</button> -->
-                    <!--     <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;"  aria-expanded="false" (click)="showCollapseOptions()">Collapse
-                    </button> -->
 
-                   <!--  <ng-template #HtmlContent>
-                        <p>Hello i'm a <strong>bold</strong> text!</p>
-                      </ng-template>
+                        <button *ngIf="collapseQuestionPaper" type="button"  [ngClass]="{'disabled-button': !collapseAnswerSheet}" (click)="toggleQuestion()" [disabled]="!collapseQuestionPaper" id="btnCollapseQuestion" class="btn btn-secondary" style="margin-left: 5px">
+                            Expand Question
+                          </button>
+                          <button *ngIf="!collapseQuestionPaper" type="button"  (click)="toggleQuestion()" id="btnCollapseQuestionExpanded" class="btn btn-secondary" style="margin-left: 5px">
+                            Collapse Question
+                          </button>
+                        <button *ngIf="collapseAnswerSheet" type="button" [ngClass]="{'disabled-button': !collapseQuestionPaper}" (click)="toggleAccommodation()" [disabled]="!collapseAnswerSheet" id="btnCollapseAnswer" class="btn btn-secondary" style="margin-left: 5px">
+                            Expand Answer
+                          </button>
+                          <button *ngIf="!collapseAnswerSheet" type="button"  (click)="toggleAccommodation()" id="btnCollapseAnswerExpanded" class="btn btn-secondary" style="margin-left: 5px">
+                            Collapse Answer
+                          </button> 
+
+<!--                         <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="toggleQuestionPaperDiv()">{{collapseQuestionPaper == true ? 'View Question Paper' : 'Collapse Question Paper' }}</button>
+                        <button *ngIf="accomodation"type="button" class="btn btn-secondary btn-min-width dropdown-toggle" style="margin-left: 5px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="toggleAnswerSheetDiv()"> {{collapseAnswerSheet == true ? 'View Answer Sheet' : 'Collapse Answer Sheet' }}</button> -->
                         
-                      <button [tooltip]="HtmlContent" contentType="template">
-                        Ex 2: Tooltip with template content
-                      </button> -->
-                      
+
+          <!--               <div style="position: absolute; left:auto !important; right: 0 !important; margin-top: 40px;" ngbDropdown class="btn-group dropleft">
+                            <button class="btn adjustbtn dropdown-toggle" style="width: auto; height: 20px;" ngbDropdownToggle>Test</button>
+                            <div ngbDropdownMenu class="dropdown-menu">
+                                <button ngbDropdownItem>All Sports</button>
+                                <button ngbDropdownItem>Basketball</button>
+                                <button ngbDropdownItem>Football</button>
+                            </div>
+                        </div>
+ -->
+                    <!--    <div ngbDropdown> 
+                            <button class="btn btn-secondary" id="gfg" 
+                                    ngbDropdownToggle>Collapse</button> 
+                            <div ngbDropdownMenu="gfg"  class="dropdown-menu"> 
+                              <button ngbDropdownItem (click)="toggleAnswerSheetDiv()">Collapse Answer</button> 
+                              <button ngbDropdownItem (click)="toggleQuestionPaperDiv()">Collapse Question</button> 
+
+                            </div> 
+                          </div>  -->
+ 
+                       
                      
                        <button *ngIf="electronicReader && tts" type="button" id="btnReadAnswer" class="btn btn-secondary" style="margin-left: 5px;" (click)="readAnswerTTSButtonText()">
                             <i class="ft ft-volume-2"></i>
@@ -115,32 +126,55 @@
 
 <section [hidden]="!showEditor" >
     <div id="basic-form-layouts" class="row match-height">
-        <div class="col-md-6">
-            <button type="button" id="refreshPaper" style="margin-left: 80%" class="btn btn-secondary" (click)="refreshQuestionPaper()"> <i class="ft ft-maximize"></i> Refresh Question Paper</button>
+        <div [ngClass]="{'col-md-6': collapseQuestionPaper , 'col-md-12': !(collapseQuestionPaper ), 'd-none': !(collapseAnswerSheet) }" class="left-panel">
+            <button type="button" id="refreshPaper" style="margin-left: 80%" class="btn btn-secondary" (click)="refreshQuestionPaper()"> 
+                <i class="ft ft-maximize"></i> Refresh Question Paper
+            </button>
             <div id="ControlRegion">
-                <div  class="control-section">
-                    
-                   <div id="TestPreview">
-                        <ejs-pdfviewer  #pdfTestViewer id="pdfTestViewer" class="answerEditor"
-                            [serviceUrl]="hostedUrl" [EnablePersistence]=true  [documentPath]='localBase64Url'  [isExtractText]=true
-                            [enableNavigationToolbar]="false" [initialRenderPages]='initialRender' 
+                <div class="control-section">
+                    <div id="TestPreview">
+                        <ejs-pdfviewer  
+                            #pdfTestViewer
+                            id="pdfTestViewer" 
+                            class="answerEditor"
+                            [serviceUrl]="hostedUrl" 
+                            [EnablePersistence]="true"  
+                            [documentPath]='localBase64Url'  
+                            [isExtractText]="true"
+                            [enableNavigationToolbar]="false" 
+                            [initialRenderPages]='initialRender' 
                             [enableToolbar]="false">
                         </ejs-pdfviewer>
                     </div> 
-             
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+    
+        <div [ngClass]="{'col-md-6': collapseAnswerSheet , 'col-md-12': !(collapseAnswerSheet), 'd-none': !(collapseQuestionPaper)}" class="right-panel">
             <label class="label-control" for="userinput1">Word Count: </label>
-            <input   type="text"  style="height: calc(1.25em + 1.5rem + 2px); padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.25; color: #4e5154; background-color: #fff; background-clip: padding-box; border: 1px solid #babfc7; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" id="txtWordCount" placeholder="Select text..." [(ngModel)]="selectedWordCount" disabled />
+            <input 
+                type="text" 
+                style="height: calc(1.25em + 1.5rem + 2px); padding: 0.75rem 1rem; font-size: 1rem; font-weight: 400; line-height: 1.25; color: #4e5154; background-color: #fff; background-clip: padding-box; border: 1px solid #babfc7; border-radius: 0.25rem; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;" 
+                id="txtWordCount" 
+                placeholder="Select text..." 
+                [(ngModel)]="selectedWordCount" 
+                disabled 
+            />
             <hr />
             <div id='divStudentAnswerDoc'>
-                <app-test-writing-answertemplate [testId]="testId" [studentId]="studentId" [studentsTestData]="studentsTestData" [imageURLList]="imageURLList" [isFullScreenExited]="isFullScreenExited" [operatingSystem]="operatingSystem" [securityTestLevelId]="securityTestLevelId"></app-test-writing-answertemplate>
+                <app-test-writing-answertemplate 
+                    [testId]="testId" 
+                    [studentId]="studentId" 
+                    [studentsTestData]="studentsTestData" 
+                    [imageURLList]="imageURLList" 
+                    [isFullScreenExited]="isFullScreenExited" 
+                    [operatingSystem]="operatingSystem" 
+                    [securityTestLevelId]="securityTestLevelId">
+                </app-test-writing-answertemplate>
             </div>
         </div>
-   
-</div>
+    
+    </div>
 
 </section>
 </div>

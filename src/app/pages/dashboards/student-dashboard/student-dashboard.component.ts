@@ -12,6 +12,7 @@ import { TestChat } from 'src/app/core/models/testChat';
 import { Firestore, collection, addDoc, getDocs, query, where, serverTimestamp, orderBy } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { PaginationService } from 'src/app/core/services/pagination.service';
+import { EventEmitterService } from 'src/app/core/services/shared/event-emitter.service';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -56,6 +57,7 @@ export class StudentDashboardComponent {
     private studentTestService: StudentsTestService,
     private router: Router,
     private storageService: TokenStorageService,
+    private eventEmitterService: EventEmitterService,
   ) { }
 
   ngOnInit() {
@@ -293,7 +295,7 @@ export class StudentDashboardComponent {
 
     this.storageService.saveSelectedTestSecurityLevel(String(this.selectedTestSecurityId))
     let otpToValidate = document.getElementById('otpToValidate')['value'];
-    
+    this.eventEmitterService.onSetStudentUserName(this.user.fullName);
  
     this.studentTestService.validateTestOTP(this.testId, this.centerId, otpToValidate).subscribe((data) => {
       if (data != null) {
@@ -304,22 +306,30 @@ export class StudentDashboardComponent {
             .map(el => el.replace(/-/g, '+').replace(/_/g, '/'))
             .map(el => JSON.parse(window.atob(el)));
           this.uniqueName = payload.unique_name;
-          
-          this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName]);
+         /*  alert(this.uniqueName);
+          alert(this.user.id);
+          alert(this.user);
+          alert(JSON.stringify(this.user)); */
+         // this.eventEmitterService.onSetAnswerPitchValue(this.selectedPitch)
+          //localStorage.clear(); 
+          this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName, this.user.fullName]);
 
           if (os == "Windows") {
-            window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-sebsettings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}`;
-            this.router.navigate(["/portal"]);
+            //alert(this.uniqueName)
+            window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-sebsettings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}/${this.user.fullName}`;
+            //localStorage.clear();
+            //this.router.navigate(["/portal"]);
           } else if(os == "Mac") {
-            window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-seb-mac-settings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}`;
-            this.router.navigate(["/portal"]);
+            window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-seb-mac-settings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}/${this.user.fullName}`;
+            //localStorage.clear(); 
+            //this.router.navigate(["/portal"]);
           }
           else{
-            this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName]);
+            this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName,this.user.fullName]);
           }
         } 
         else{
-          this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName]);
+          this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName,this.user.fullName]);
         }
       }
     },(error) => {

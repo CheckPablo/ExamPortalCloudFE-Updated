@@ -87,6 +87,7 @@ export class StudentLoginComponent {
     if(this.isMicrosoftLogin)return; 
     this.submitted = true;
     this.f.password.value.trim(); 
+    //localStorage.clear(); 
     this.authService
       .loginStudent(this.StudentloginForm.value)
       .subscribe((response) => {

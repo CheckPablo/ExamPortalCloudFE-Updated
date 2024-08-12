@@ -22,6 +22,8 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { NgbModule } 
+from '@ng-bootstrap/ng-bootstrap';
 //import { DialogModule } from '@syncfusion/ej2-angular-popups'
 
 //import { NgxScannerQrcodeModule, LOAD_WASM } from 'ngx-scanner-qrcode';
@@ -48,6 +50,7 @@ import { TooltipModule } from 'ng2-tooltip-directive';
     ZXingScannerModule, 
     QRCodeModule,
     TooltipModule,
+    NgbModule,
     //AnchoredFloatingBoxModule
     //NgxScannerQrcodeModule,
     ///BrowserAnimationsModule,     // required animations module

@@ -38,7 +38,6 @@ export class AuthService extends ApiService<User> {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(user));
       this.currentUser = this.currentUserSubject.asObservable();
     }
-
     this.userLoggedIn.next(false);
   }
 
@@ -55,8 +54,6 @@ export class AuthService extends ApiService<User> {
     const token = this.storageService.getToken();
 
     if (token && token !== "undefined") {
-
-
       if (this.jwtHelper.isTokenExpired(token)) {
         localStorage.removeItem("token");
 
@@ -139,8 +136,6 @@ export class AuthService extends ApiService<User> {
       (response: any) => {
         if (response) {
 
-
-
           this.storageService.saveUser(response);
           this.storageService.saveToken(response.token);
 
@@ -169,7 +164,7 @@ export class AuthService extends ApiService<User> {
           this.currentUserSubject.next(response);
           this.userLoggedIn.next(true);
           // this.router.navigate(['/portal/test-writing/test-writing-management', payload.testId , payload.userId, payload.testName, "HJHJHJ"]);
-          this.router.navigate(['/portal/test-writing/test-writing-management', 4407, 9504, "this.testName", "dfdfdfdsfsd"]);
+          //this.router.navigate(['/portal/test-writing/test-writing-management', 4407, 9504, "this.testName", "dfdfdfdsfsd"]);
         }
       }
     ));

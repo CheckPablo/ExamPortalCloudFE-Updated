@@ -228,6 +228,12 @@ export class TestUploadComponent {
     this.total$ = service.total$;
   }
 
+  onAnswerTabClick() {
+    setTimeout(() => {
+        window.dispatchEvent(new Event('resize')); 
+      });
+    }
+
   ngOnInit(): void {
 
     this.service.setData([]);

@@ -7,8 +7,10 @@ import { PdfViewerModule } from '@syncfusion/ej2-angular-pdfviewer';
   providedIn: 'root'    
 })    
 export class EventEmitterService {
+ 
   //public onChange: EventEmitter<MyServiceEvent> = new EventEmitter<MyServiceEvent>()
   invokeFirstComponentFunction = new EventEmitter();  
+  invokeSetStudentUserNameFunction = new EventEmitter(); 
   invokeValidateScannedImagesOTP = new EventEmitter();     
   invokeOnReadAnswerTTSButtonClick = new EventEmitter();  
   invokeOnReadAnswerChangeTTSBtnText = new EventEmitter();  
@@ -18,9 +20,14 @@ export class EventEmitterService {
   invokeOnChangeAnswerButtonText = new EventEmitter(); 
   invokeOnSetWordText = new EventEmitter(); 
   invokeSetTestSecurityLevel = new EventEmitter(); 
+  invokeSetStudentsFullName = new EventEmitter(); 
+  invokeSetTestName  = new EventEmitter(); 
+
  public invokeInvigilatorInTestMessage = new EventEmitter(); 
 
-  subsVar: Subscription;    
+  subsVar: Subscription; 
+  testVar:Subscription; 
+  studentFullname:Subscription;    
   answerEvent:Subscription;
   changePlayBtnOnAnsRead: Subscription;
   selectedVoiceAnsTxt: Subscription;
@@ -37,6 +44,18 @@ export class EventEmitterService {
   onFirstComponentButtonClick() {    
     this.invokeFirstComponentFunction.emit();    
   }    
+
+  onSetStudentUserName(studentUserName:string) {    
+    this.invokeSetStudentUserNameFunction.emit(studentUserName);    
+  }  
+
+  onSetStudentsHeaderDetailsName(studentsFullName: string,testName:string) {
+    this.invokeSetStudentsFullName.emit(studentsFullName); 
+    this.invokeSetStudentsFullName.emit(testName)
+  }
+  onSetStudentsHeaderDetailsTestName(testName:string) {
+    this.invokeSetTestName.emit(testName)
+  }
 
   onValidateScannedImagesOTP(data:string[]) {    
     this.invokeValidateScannedImagesOTP.emit(data);    

@@ -135,6 +135,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   exitedTest: boolean = false;
   invalidKeyPress: boolean =false;
   wordCountInputValue: number;
+  currentTestNameSEB: string;
+  currentStudentNameSEB: string;
   //answerTextRate: any;
 
   constructor(
@@ -159,12 +161,10 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       Swal.fire({
         title: 'Changes you made may not be saved, do you want to proceed?',
         showDenyButton: true,
-      
         confirmButtonText: 'Yes',
         denyButtonText: 'No',
         customClass: {
           actions: 'my-actions',
-          
           confirmButton: 'order-2',
           denyButton: 'order-3',
       },
@@ -177,7 +177,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
         history.pushState(null, '', location.href);
         this.exitedTest = true; 
         this.saveTestAnswerDoc(); 
-      
       }
     })
    
@@ -199,8 +198,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   private unlistener: () => void;
 
   ngOnChanges(changes: SimpleChanges) {
-
-
     if (changes.imageURLList?.currentValue?.length > 0) {
 
       this.imageURLList = changes.imageURLList.currentValue;
@@ -213,9 +210,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   ngAfterViewInit() {
-
-
-
     /*this.documentEditors.forEach(editor => {
           editor.selectionChange = (args: SelectionChangeEventArgs) => {
             // Handle selection change here
@@ -233,11 +227,44 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
 
   ngOnInit(): void {
     //this.onCreate(); 
+   /*  if (this.eventEmitterService.testVar == undefined) { // subVar will be defined at this point so we use a different variable testvar
+      this.eventEmitterService.testVar = this.eventEmitterService.
+        invokeSetTestName.subscribe((data) => {
+          this.currentTestName = data; 
+        });
+    } */
+    let userAgentString = navigator.userAgent;
+    if (userAgentString.includes("SEB")) {
+    const decodedUrl = decodeURIComponent(this.router.url);
+    const urlPath = decodedUrl.split('/'); 
+   /*  alert("Index 4"+''+ urlPath[4]); 
+    alert("Index 5"+''+ urlPath[5])
+    alert("Index 6"+''+ urlPath[6])
+    alert("Index 7"+''+ urlPath[7])
+    alert("Index 8"+''+ urlPath[8]) */
+    this.currentTestNameSEB = urlPath[7]; 
+    this.currentStudentNameSEB = urlPath[8]
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if (this.eventEmitterService.subsVar == undefined) { 
+      this.eventEmitterService.subsVar = this.eventEmitterService.
+        invokeSetStudentsFullName.subscribe((data) => {
+        this.setHeaderData(data); 
+        
+        //this.user.fullName = data; 
+        //this.currentTestName = data[1]; 
+          //this.navBarSetStudentName(data);
+          //alert("Role 3"+ data); 
+        });
+    } 
     this.user = this.storageService.getUser();
     this.getStudentTestDetails()
     this.getAnswerFile();
-
-  
     window.addEventListener("keyup", (event) => {
 
       if (this.securityTestLevelId) {
@@ -280,8 +307,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
         //
       }
     });
-
-
 
     if (this.eventEmitterService.subsVar == undefined) {
       this.eventEmitterService.subsVar = this.eventEmitterService.
@@ -349,13 +374,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
         event.preventDefault();
         //
         this.keyCombination = "Ctrl + Alt + Delete";
-
         this.keyPress(this.keyCombination);
       }
 
       if (event.altKey && event.key === 'F4') {
         event.preventDefault();
-
         this.keyCombination = "Alt + F4";
         this.keyPress(this.keyCombination);
       }
@@ -382,11 +405,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       this.keyPress(this.keyCombination);
     } */
 
-
   }
   handleKeyboardEvent(event: KeyboardEvent) {
-
-
     this.keypressed = event.key;
     this.iskeyPressed = true;
     //if (this.securityTestLevelId == 3) {
@@ -451,7 +471,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   getReadAnswerSelectedRate(rateValue: any) {
     this.ansTextRateValue = rateValue;
   }
-
 
   firstFunction() {
     this.saveAsBlob();
@@ -712,9 +731,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     else {
       //Returning from bypassing invalid submit on exit fullscreen"
       return;
-
     }
-   
   }
 
   public saveInvalidKeyPress(keyPressEvent: string, reason: string | null) {
@@ -738,11 +755,25 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   public getAnswerFile() {
+     /*   if (this.eventEmitterService.subsVar == undefined) { 
+        this.eventEmitterService.subsVar = this.eventEmitterService.
+          invokeSetStudentsFullName.subscribe((data) => {
+          this.setHeaderData(data); 
+          });
+      } 
+    if (this.eventEmitterService.testVar == undefined) { // subVar will be defined at this point so we use a different variable testvar
+      this.eventEmitterService.testVar = this.eventEmitterService.
+        invokeSetTestName.subscribe((data) => {
+          this.currentTestName = data; 
+          alert(data); 
+          alert(this.currentTestName)
+        });
+    }  */
 
     //this.container.showPropertiesPane = false;
-    const studentsTestData = JSON.parse(localStorage.getItem('studenttestdatakey'));
-    this.currentTestName = studentsTestData.testName;
-    studentsTestData.accomodation = true;
+    //const studentsTestData = JSON.parse(localStorage.getItem('studenttestdatakey'));
+    //this.currentTestName = studentsTestData.testName;
+    //studentsTestData.accomodation = true;
     this.accomodation = true;
     if (this.accomodation) {
       this.serviceLink = `${environment.syncfusionHostedWordUrl}`;
@@ -763,6 +794,9 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
     // 
 
+  }
+  setHeaderData(data: any) {
+    console.log("Child"+'  '+data); 
   }
 
   public getUploadedAnswerTemplate() {
@@ -880,8 +914,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
           this.studentExtraTime = data[0].studentExtraTime,
           this.tts = data[0].tts,
           this.studentName = data[0].studentName,
-          this.workOffline = data[0].workOffline,
-          this.testName = data[0].testName;
+          this.workOffline = data[0].workOffline;
+          //this.testName = data[0].testName;
         const testDuration = data[0].testDuration.split(":");
 
 
@@ -1270,10 +1304,20 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   private loadDocument(documentBase64: string): void {
+    let userAgentString = navigator.userAgent;
     this.testWriteDate = new Date();
     this.transformDate = this.datePipe.transform(this.testWriteDate, 'yyyy/M/dd');
-
     this.container.showPropertiesPane = false;
+
+    if (userAgentString.includes("SEB")) {  
+     this.currentTestName = this.currentTestNameSEB
+     this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
+    }
 
     try {
       this.container.documentEditor.open(documentBase64);
@@ -1341,10 +1385,20 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   private loadBlankDocument(): void {
-
+    let userAgentString = navigator.userAgent;
     this.testWriteDate = new Date();
     this.transformDate = this.datePipe.transform(this.testWriteDate, 'yyyy/M/dd');
     /*this.container.documentEditor.openBlank(); */
+    if (userAgentString.includes("SEB")) {
+     this.currentTestName = this.currentTestNameSEB
+     this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
+    }
+
     try {
       let defaultCharacterFormat: CharacterFormatProperties = {
         bold: false,
@@ -1511,11 +1565,19 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
  
      if (!this.container) {
     }
-    console.log('ExitTestBoolean' , this.exitedTest)
-  /*   if(this.status = "ONLINE"){
-      //alert("online"); 
-      this.exitedTest = false; 
-    } */
+    console.log('ExitTestBoolean' , this.exitedTest);
+    let userAgentString = navigator.userAgent;
+
+    if (userAgentString.includes("SEB")) {
+     this.currentTestName = this.currentTestNameSEB
+     this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
+    }
+
     var base64DataLocal;
     var reader = new FileReader();
     var studentTestSave: StudentTestAnswerSave;
@@ -1541,7 +1603,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       formData.append("file", exportedDocument, "TestId:" + this.testId + "StudentID:" + this.studentId + 'sample.docx');
      /// var reader = new FileReader();
 
-
+      //alert('Testid before saving:'+' '+ this.testId)
+      //alert('studentId before saving:'+' '+ this.studentId)
       formData.append("data", JSON.stringify(studentTestSave));
       console.log(exportedDocument); 
       reader.readAsDataURL(exportedDocument);
@@ -1580,8 +1643,18 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
 
   public async saveTestAnswerDocNew() {
     console.log('saveTestAnswerDoc');
-
     if (!this.container) {
+    }
+
+    let userAgentString = navigator.userAgent;
+    if (userAgentString.includes("SEB")) {
+     this.currentTestName = this.currentTestNameSEB
+     this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
     }
 
     var base64DataLocal;
@@ -1614,6 +1687,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
         localStorage.setItem("EncryptedAnswers: " + this.testId, this.currentTestName + ' ||' + this.testId + ' ||' + base64DataLocal);
       };
 
+      //alert('saveTestAnswerDocNewMethod'+' '+ 'Testid before saving:'+' '+ this.testId)
+      //alert('studentId before saving:'  +' '+ this.studentId)
       const reader = new FileReader();
 
       reader.onload = async () => {
@@ -1695,8 +1770,19 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   public saveLocalImageDoc(): void {
 
     console.log('saveLocalImageDoc');
-
     if (!this.container) {
+    }
+
+    let userAgentString = navigator.userAgent;
+
+    if (userAgentString.includes("SEB")) {
+     this.currentTestName = this.currentTestNameSEB
+     this.user.fullName = this.currentStudentNameSEB
+    }
+
+    if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameSEB
+      this.user.fullName = this.currentStudentNameSEB
     }
 
     var base64DataLocal;

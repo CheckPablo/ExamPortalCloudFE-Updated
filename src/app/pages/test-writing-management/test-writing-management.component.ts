@@ -115,7 +115,8 @@ export class TestWritingManagementComponent {
   qrDataUrl: string;
   ReadMore:boolean = true
   //hiding info box
-  collapseOptionsVisible:boolean = false
+  collapseOptionsVisible:boolean = false; 
+  isMenuOpened: boolean = false;
 
   ngVersion = VERSION.full;
   initialTime = '00:00:00';
@@ -203,8 +204,8 @@ export class TestWritingManagementComponent {
   AnsTemplateTTSBtnText: string = "Read Answer";
   imageURLList: string[];
   showEditor = true;
-  collapseQuestionPaper = false;
-  collapseAnswerSheet = false;
+/*   collapseQuestionPaper = false;
+  collapseAnswerSheet = false; */
   questionPaperFullText: string;
   fullSourcePaperText: string;
   SourcePaperPauseTTSBtnText: string = "Pause";
@@ -242,6 +243,7 @@ export class TestWritingManagementComponent {
   sourceDocId: number;
   base64UrlSource: string;
   isSourceDocClicked: boolean;
+  studentFullName: string;
   
   //datepipe: any;
 
@@ -267,20 +269,50 @@ export class TestWritingManagementComponent {
     private _ngZone: NgZone,
     private authService: AuthService,
     //private readonly anchoredFloatingBoxService: AnchoredFloatingBoxService,
-     
-    public datepipe: DatePipe) {
+    public datepipe: DatePipe
+    ) {
     this.activateRouter.params.subscribe((p) => {
       this.testId = p['id']
       this.studentId = p['studentId']
+      //alert('Test ID in Params'+''+ this.testId)
+      //alert('Student ID in Params'+''+ this.studentId)
+      let userAgentString = navigator.userAgent;
 
+      if (userAgentString.includes("SEB")) {
+        const decodedUrl = decodeURIComponent(this.router.url);
+        ///alert('decodedUrl Inside Params'+'  '+ decodedUrl)
+        const urlPath = decodedUrl.split('/'); 
+        ///alert(urlPath)
+        //const sebURL = this.router.url.split('?')[0];
+        //const testName = Number(decodedUrl.split('/')[4]);
+      /*alert('Index 0'+' '+ urlPath[0]);
+        alert('Index 1'+' '+ urlPath[1]);
+        alert('Index 2'+' '+ urlPath[2]); 
+        alert('Index 3'+' '+ urlPath[3]);
+        alert('Index 4'+' '+ urlPath[4]);
+        alert('Index 5'+' '+ urlPath[5]);
+        alert('Index 6'+' '+ urlPath[6]);
+        alert('Index 7'+' '+ urlPath[7]);
+        alert('Index 8'+' '+ urlPath[8]);
+        alert('Index 9'+' '+ urlPath[9]); */
+        ///alert("decodeURL Inside init"+'  '+ urlPath);
+        const studentUserId = urlPath[6];
+        this.user = this.storage.getUser();
+        //this.user.id   =  Number(studentUserId);
+        //this.studentId =  Number(studentUserId); 
+        //alert('StudentID'+'  '+ Number(studentUserId));
+      }
+      else{
+        this.user = this.storage.getUser();
+        console.log(this.user); 
+      }
+     
       if (this.studentTestAnswer) {
         this.studentTestAnswer.testId = this.testId = p['id']
-
 
       }
       if (this.studentTestAnswer) {
         this.studentTestAnswer.studentId = this.studentId = p['studentId']
-
 
       }
       this.testName = p['testName'];
@@ -299,9 +331,8 @@ export class TestWritingManagementComponent {
     this.operatingSystem = this.getOperatingSystem();
     setInterval(() => this.checkFullScreen()
       , 1000)
-  
-    this.user = this.storage.getUser();
-    console.log(this.user); 
+    
+   
     const privateChatListener = query(collection(db, "CloudMessagingStagePortal"),where('studentID', '==', Number(this.user.id)), where('testID', '==', Number(this.testId)), orderBy('createdAt', 'asc'));
     const unsubscribe = onSnapshot(privateChatListener, (querySnapshot) => {
     const changesArray = [];
@@ -459,7 +490,6 @@ export class TestWritingManagementComponent {
 
   }
 
-
   onPitchValueChanged(event: number) {
     this.selectedPitch = event;
     this.eventEmitterService.onSetAnswerPitchValue(this.selectedPitch)
@@ -469,6 +499,7 @@ export class TestWritingManagementComponent {
   @HostListener('document:fullscreenchange', ['$event'])
   onResize(): void {
     this.lockscreen();
+    this.pdfTestViewer?.refresh();
   }
 
   @HostListener('copy', ['$event']) blockCopy(e: KeyboardEvent) {
@@ -633,20 +664,52 @@ export class TestWritingManagementComponent {
   ngAfterViewInit() {}
 
   ngOnInit(): void {
+    const userBehaviourSubject = this.authService.currentUserValue();
     if (localStorage.getItem('curent_testsecurity_levelId')) {
       this.securityTestLevelId = JSON.parse(localStorage.getItem('curent_testsecurity_levelId'));
     };
-
-
     this.user = this.storage.getUser();
     let userAgentString = navigator.userAgent;
-    if (userAgentString.indexOf('SEB') > -1) {
+    if (userAgentString.includes("SEB")) {
+    const decodedUrl = decodeURIComponent(this.router.url);
+    const urlPath = decodedUrl.split('/'); 
+    
+    //const sebURL = this.router.url.split('?')[0];
+    //const testName = Number(decodedUrl.split('/')[4]);
 
+   /***  const studentUserId = urlPath[5]; 
+    const secureTestId = Number(urlPath[6]);
+    const [header, payload] = decodedUrl;
+    const testName = urlPath[7];
+    this.studentFullName = urlPath[8]; 
+    this.testName = testName;   ***/
+
+  /***   alert('studentUserId'+' '+studentUserId);
+    alert('secureTestId'+''+ secureTestId);
+    alert('studentFullName' + this.studentFullName); 
+    alert('TestName'+' '+ this.testName);
+    alert("decodeURL Inside init"+'  '+ urlPath); ***/
+   
+  /****    const SecureTestpayload = {
+      //uniqueExamNo: payload
+      uniqueExamNo:  studentUserId
+    } ***/
+  
+    /* this.testId = secureTestId;
+    this.testName = testName; 
+    this.studentId = Number(studentUserId) */
+
+    //alert("Path" +'   '+ urlPath[8])
+    //alert('664   '+ this.studentFullName)
+    this.eventEmitterService.onSetStudentUserName(this.studentFullName);
+    //alert(decodedUrl);
+    //alert('Test Writing Page'+'SEB Parameters'+'   '+studentUserId+'  '+ this.testId+' '+ this.testName+'  '+this.studentFullName); 
+  /* alert(JSON.stringify(this.user)); 
+      alert("BHV" + userBehaviourSubject); 
+      alert("BHV" + JSON.stringify(userBehaviourSubject)); */
+      //localStorage.clear(); 
     }
-    else {
-
-    }
-
+  
     this.openSm(this.content);
     this.windowKeyDown();
     window.addEventListener("keyup", (event) => {
@@ -666,7 +729,6 @@ export class TestWritingManagementComponent {
 
 
     document.addEventListener("visibilitychange", () => {
-
       //if (this.securityTestLevelId === 3) {
         if (this.securityTestLevelId > 1) {
         this.OffScreenEvent("Left Test Screen")
@@ -748,55 +810,7 @@ export class TestWritingManagementComponent {
       )
       //return p; 
     }
-
-    // #Start angular pop over for hide and collapse
-    const button = document.querySelector('#button');
-    const tooltip = document.querySelector<any>('#tooltip');
-
-    let popperInstance = null;
-
-    function create() {
-      popperInstance = createPopper(button, tooltip, {
-        modifiers: [
-          {
-            name: 'offset',
-            options: {
-              offset: [0, 8],
-            },
-          },
-        ],
-      });
-    }
-
-    function destroy() {
-      if (popperInstance) {
-        popperInstance.destroy();
-        popperInstance = null;
-      }
-    }
-
-    function show() {
-      tooltip.setAttribute('data-show', '');
-      create();
-    }
-
-    function hide() {
-      tooltip.removeAttribute('data-show');
-      destroy();
-    }
-
-    const showEvents = ['mouseenter', 'focus'];
-    const hideEvents = ['mouseleave', 'blur'];
-
-    showEvents.forEach(event => {
-      button.addEventListener(event, show);
-    });
-
-    hideEvents.forEach(event => {
-      button.addEventListener(event, hide);
-    });
-
-    // #End angular pop over for hide and collapse
+    window.addEventListener('resize', this.onResize.bind(this));
   }
 
   private getSourceDocuments = () => {
@@ -905,6 +919,30 @@ export class TestWritingManagementComponent {
      /* this.getStudentTestChats();
      this.getTestBulkMessages(); */
    }
+   
+   collapseAnswerSheet = true;
+   collapseQuestionPaper = true;
+
+   toggleAccommodation() {
+      
+    this.collapseAnswerSheet = !this.collapseAnswerSheet;
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize')); 
+  });
+  }
+
+  toggleQuestion() {
+    
+    this.collapseQuestionPaper = !this.collapseQuestionPaper;
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize')); 
+  });
+  }
+
+  isAnyExpanded() {
+    return !this.collapseQuestionPaper || !this.collapseAnswerSheet;
+  }
+
 
   getAnswerButtonText(answerButtonText: string) {
     this.AnsTemplateTTSBtnText = answerButtonText;
@@ -913,10 +951,14 @@ export class TestWritingManagementComponent {
 
   //public loginStudentToSecureBrowser(SecureTestpayload: { uniqueExamNo: any; testId: number; userId: string; testName: string; })
   public loginStudentToSecureBrowser(SecureTestpayload: any) {
-
+    /* alert(SecureTestpayload); 
+    alert(JSON.stringify(SecureTestpayload)); */
+    //alert("test-writing");
+    //localStorage.clear();
     this.authService.loginStudentToTest(SecureTestpayload).subscribe(() => {
-      this.router.navigate(['/portal/test-writing/test-writing-management', SecureTestpayload.testId, SecureTestpayload.userId, SecureTestpayload.testName, "HJHJHJ"]);
-
+    //alert("inner html" + document.getElementById('studentUserName')['innerHTML'] )
+    ///document.getElementById('studentUserName')['innerHTML'] = 'Welcome '+ this.user.fullName
+    this.router.navigate(['/portal/test-writing/test-writing-management', SecureTestpayload.testId, SecureTestpayload.userId, SecureTestpayload.testName, this.studentFullName]);
       //window.location.reload(); 
     },
       async () => {
@@ -1309,6 +1351,8 @@ export class TestWritingManagementComponent {
 
       this.previewQuestionPaperDocument();
       this.getQuestionPaperText();
+      console.log(this.collapseQuestionPaper); 
+      console.log(this.collapseAnswerSheet); 
     }
     else {
 
@@ -1381,10 +1425,7 @@ export class TestWritingManagementComponent {
 
   private getStudentTestDetails() {
     //this.getQuestionPaperText();
-
-
     if (!this.testId) return;
-
     this.studentTestWriteService.getStudentTestDetails(this.testId, this.studentId)
       .subscribe((data) => {
         this.setStudentsTestData(data[0]);
@@ -1421,10 +1462,15 @@ export class TestWritingManagementComponent {
     this.getTestDurationTime(studentTestData.testDuration);
     this.setCountDown();
     this.setStartDate(this.testId, this.studentId);
-
+    //alert(JSON.stringify(studentTestData)); 
+    ///alert('setStudentsTestData TestId '   +'  '+ this.testId) 
+    ///alert('setStudentsTestData StudentId '+'  '+ this.studentId) 
+    ///alert('setStudentsTestData UserId '   +'  '+ this.user.id) 
     this.studentsTestData = {
-      id: this.user.id,
-      studentId: this.user.id,
+     /*  id: this.user.id,
+      studentId: this.user.id, */
+      id: this.studentId,
+      studentId: this.studentId,
       testID: this.testId,
       testName: this.testName,
       tts: this.tts,
@@ -1442,10 +1488,14 @@ export class TestWritingManagementComponent {
       //Data 
       questionPageCount: 0
     }
-
+    //alert("Parent" +'  '+ this.testName); 
+    this.eventEmitterService.onSetStudentsHeaderDetailsName(this.studentName, this.testName);
+ 
     this.storageService.saveStudentData(this.studentsTestData);
     // this.previewQuestionPaperDocument();
+    //alert("TEST NAME" +'  '+this.testName)
     this.getQuestionPaperText();
+    //this.eventEmitterService.onSetStudentsHeaderDetailsTestName(this.testName); 
   }
 
   async getStudentTestChats() {
@@ -1579,7 +1629,6 @@ export class TestWritingManagementComponent {
   }*/
   public enableScanner() {
     this.scannerEnabled = !this.scannerEnabled;
-    /*this.information = "No se ha detectado informaciÃ³n de ningÃºn cÃ³digo. Acerque un cÃ³digo QR para escanear.";*/
   }
 
   public openStudentsTestChats() {
@@ -1707,6 +1756,8 @@ export class TestWritingManagementComponent {
     localStorage.setItem('onclose', 'closed');
     localStorage.removeItem('isFullScreenExited');
     this.storageService.removeSelectedTestSecurityId();
+    localStorage.removeItem('user');
+    localStorage.clear(); 
     this.unlistener();
     speechSynthesis.cancel();
   }
@@ -1728,18 +1779,24 @@ export class TestWritingManagementComponent {
     this.cd.detectChanges();
   }
 
-  toggleQuestionDiv() {
-    alert("Question Div Toggled");
-    // this.show = !this.show;
-    //this.showEditor = !this.showEditor;
-    //this.cd.detectChanges();
+  toggleQuestionPaperDiv() {
+    //console.log("Question Div Toggled");
+    this.collapseQuestionPaper = !this.collapseQuestionPaper; 
+    this.cd.detectChanges();
   }
 
-  toggleAnswerDiv() {
-    alert("Answer Div Toggled")
-    // this.show = !this.show;
-    //this.showEditor = !this.showEditor;
-    //this.cd.detectChanges();
+  toggleAnswerSheetDiv() {
+   // alert("Answer Div Toggled"); 
+    this.collapseAnswerSheet = !this.collapseAnswerSheet; 
+    this.cd.detectChanges();
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpened = !this.isMenuOpened;
+  }
+
+  clickedOutside(): void {
+    this.isMenuOpened = false;
   }
 
   getOperatingSystem() {

@@ -33,21 +33,13 @@ export class IndexComponent {
   
   
   if (userAgentString.indexOf('SEB') > -1) {
-    
-  
-      
-      
     const decodedUrl = decodeURIComponent(this.router.url);
-     
+    
     //const sebURL = this.router.url.split('?')[0];
     //const testName = Number(decodedUrl.split('/')[4]);
     const studentUserId = decodedUrl.split('/')[5];
     const secureTestId = Number(decodedUrl.split('/')[6]);
     const [header, payload] = decodedUrl;
-    
-    
-    
-    
     const testName = decodedUrl.split('/')[8];
     this.testName = testName;  
     const SecureTestpayload = {
@@ -55,7 +47,10 @@ export class IndexComponent {
       uniqueExamNo:  studentUserId
     }
   
-    this.testId = secureTestId; this.testName = testName; this.studentId = Number(studentUserId)
+    this.testId = secureTestId;
+    this.testName = testName; 
+    this.studentId = Number(studentUserId)
+    //alert(studentUserId+'  '+ this.testId+' '+ this.testName); 
     
     this.loginStudentToSecureBrowser(SecureTestpayload);
   }
@@ -63,8 +58,8 @@ export class IndexComponent {
     
     
   }
-  const decodedUrl = decodeURIComponent(this.router.url);
-/*   this.route.url.subscribe((segments) => {
+  /* const decodedUrl = decodeURIComponent(this.router.url);
+  this.route.url.subscribe((segments) => {
     // Construct the current URL from the segments
     this.currentUrl = segments.map((segment) => segment.path).join('/');
      
@@ -132,9 +127,10 @@ export class IndexComponent {
 
   public loginStudentToSecureBrowser(SecureTestpayload: any) {
     
-    
+     //localStorage.clear(); 
      this.authService.loginStudentToTest(SecureTestpayload).subscribe((response) => {
-       this.router.navigate(['/portal/test-writing/test-writing-management', SecureTestpayload.testId, SecureTestpayload.userId, SecureTestpayload.testName, "HJHJHJ"]);
+     //alert("Index");
+     this.router.navigate(['/portal/test-writing/test-writing-management', SecureTestpayload.testId, SecureTestpayload.userId, SecureTestpayload.testName, "HJHJHJ"]);
  
      },
        async (error) => {

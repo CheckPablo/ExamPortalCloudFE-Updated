@@ -14,6 +14,7 @@ import { User } from 'src/app/core/models/user';
 import { CenterAdminMenuService } from '../../settings/center-admin-menu.service';
 import { CenterUserMenuService } from '../../settings/center-user-menu.service';
 import { StudentAdminMenuService } from '../../settings/student-admin-menu.service';
+import { EventEmitterService } from 'src/app/core/services/shared/event-emitter.service';
 
 const docElmWithBrowsersFullScreenFunctions = document.documentElement as HTMLElement & {
   mozRequestFullScreen(): Promise<void>;
@@ -55,6 +56,8 @@ export class VerticalComponent implements OnInit, AfterViewInit {
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
   @ViewChild(PerfectScrollbarDirective, { static: true }) directiveRef?: PerfectScrollbarDirective;
   user: User | null;
+  studentFullName: string;
+  studentUserName: string;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -68,7 +71,8 @@ export class VerticalComponent implements OnInit, AfterViewInit {
     private router: Router,
     private elementRef: ElementRef,
     private storage: TokenStorageService,
-    private authService: AuthService
+    private authService: AuthService, 
+    private eventEmitterService: EventEmitterService,
   ) {
     this._unsubscribeAll = new Subject();
     this._unsubscribeAllMenu = new Subject();
@@ -122,14 +126,27 @@ export class VerticalComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/portal/users/view-user', user.id]);
   }
   ngOnInit() {
+   /*  if (this.eventEmitterService.subsVar == undefined) {
+      this.eventEmitterService.subsVar = this.eventEmitterService.
+        invokeSetStudentUserNameFunction.subscribe((data) => {
+          this.navBarSetStudentName(data);
+        });
+    } */ 
+    const decodedUrl = decodeURIComponent(this.router.url);
+    const urlPath = decodedUrl.split('/'); 
+    /*const sebURL = this.router.url.split('?')[0];
+    const testName = Number(decodedUrl.split('/')[4]);*/
+    const studentUserId = urlPath[5]; 
+    const secureTestId = Number(urlPath[6]);
+    const [header, payload] = decodedUrl;
+    const testName = urlPath[7];
+    this.studentFullName = urlPath[8]; 
     this.user = this.storage.getUser();
     //console.log("INIT VERTICAL"); 
-    this.href = this.router.url;
-    //console.log(this.router.url);
-    //console.log(this.href); 
-    //console.log(this.user); 
+    this.href = this.router.url; 
     this.isMobile = window.innerWidth < AppConstants.MOBILE_RESPONSIVE_WIDTH;
     if (!this.isMobile) {
+      //alert("Mobile Check")
       this.showNavbar = true;
     }
     if (localStorage.getItem('currentUser')) {
@@ -141,9 +158,11 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       .subscribe((config) => {
         this._themeSettingsConfig = config;
         this.refreshView();
+        //alert("theme settings config")
       });
 
     if (this.user.role == 1) {
+      //alert(JSON.stringify(this.user));
       this._vsoftAdminMenuService.config
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((config) => {
@@ -160,6 +179,36 @@ export class VerticalComponent implements OnInit, AfterViewInit {
                 
       });
     } else if (this.user.role == 3) {
+      //alert("Role 3");
+      let userAgentString = navigator.userAgent;
+     
+      const decodedUrl = decodeURIComponent(this.router.url);
+      const urlPath = decodedUrl.split('/'); 
+   /*    console.log("index 0", urlPath[0])
+      console.log("index 1",urlPath[1]);
+      console.log("index 2",urlPath[2]);
+      console.log("index 3",urlPath[3]);
+      console.log("index 4",urlPath[4]);
+      console.log("index 5",urlPath[5]);
+      console.log("index 6",urlPath[6]);
+      console.log("index 7",urlPath[7]);
+      console.log("index 8",urlPath[8]);
+      console.log("index 9",urlPath[9]); */
+      if (userAgentString.includes("SEB")) {
+      this.user.fullName = urlPath[8];
+      }
+
+      //alert("else if role 3" + decodedUrl); 
+      //alert("else if role 3" +  urlPath)
+
+     /*  if (this.eventEmitterService.subsVar == undefined) {
+        this.eventEmitterService.subsVar = this.eventEmitterService.
+          invokeSetStudentUserNameFunction.subscribe((data) => {
+            this.navBarSetStudentName(data);
+            alert("Role 3"+ data); 
+          });
+      }  */
+      //this.user.fullName = 
       //return; 
        this._studentAdminMenuService.config
        .pipe(takeUntil(this._unsubscribeAll))
@@ -168,20 +217,31 @@ export class VerticalComponent implements OnInit, AfterViewInit {
                  
        });
     }
-    
+    //alert("after role check")
     this.maximize = this._themeSettingsConfig.headerIcons.maximize;
     this.search = this._themeSettingsConfig.headerIcons.search;
     this.internationalization = this._themeSettingsConfig.headerIcons.internationalization;
     this.notification = this._themeSettingsConfig.headerIcons.notification;
     this.email = this._themeSettingsConfig.headerIcons.email;
   }
+  navBarSetStudentName(studentUserName:string) {
+    //alert("SET STUDENT NAME HERE"); 
+    //location.reload(); 
+    //alert("navBar Method" + studentUserName); 
+    this.studentUserName = studentUserName;
+    this.user.fullName = this.studentUserName;
+  }
+  
 
   ngAfterViewInit(): void {
     this.refreshView();
+    //alert("After View init SEB")
+    //this.user = this.storage.getUser();
   }
 
   refreshView() {
     try {
+      //alert("refresh View")
       const iconElement = document.getElementsByClassName('toggle-icon');
       const menuColorElement = document.getElementsByClassName('main-menu');
       const navigationElement = document.getElementsByClassName('main-menu');
@@ -190,6 +250,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       const element = document.getElementsByClassName('navbar-header');
       const boxelement = document.getElementById('customizer');
       if (iconElement) {
+        //alert("icon element")
         if (this._themeSettingsConfig.colorTheme === 'semi-light' || this._themeSettingsConfig.colorTheme === 'light') {
           this._renderer.removeClass(iconElement.item(0), 'white');
           this._renderer.addClass(iconElement.item(0), 'blue-grey');
@@ -215,6 +276,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
         this.selectedNavBarHeaderClass = this._themeSettingsConfig.color;
       }
       if (menuColorElement) {
+        //alert("Menu element")
         if (this._themeSettingsConfig.menuColor === 'menu-dark') {
           this._renderer.removeClass(menuColorElement.item(0), 'menu-light');
           this._renderer.addClass(menuColorElement.item(0), 'menu-dark');
@@ -225,6 +287,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       }
   
       if (themeColorElement) {
+        //alert("Theme element")
         if (this._themeSettingsConfig.colorTheme === 'semi-light') {
           this._renderer.removeClass(themeColorElement.item(0), 'navbar-semi-dark');
           this._renderer.removeClass(themeColorElement.item(0), 'navbar-dark');
@@ -245,6 +308,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       }
   
       if (navigationElement) {
+        //alert("navElement")
         if (this._themeSettingsConfig.navigation === 'menu-native-scroll') {
           this._renderer.addClass(navigationElement.item(0), 'menu-native-scroll');
         } else if (this._themeSettingsConfig.navigation === 'menu-icon-right') {
@@ -261,6 +325,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       }
   
       if (navbarElement) {
+        //alert("NavBar element")
         if (this._themeSettingsConfig.menu === 'navbar-static-top') {
           this._renderer.addClass(navbarElement.item(0), 'navbar-static-top');
           this._renderer.addClass(navigationElement.item(0), 'menu-static');
@@ -268,6 +333,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       }
   
       if (navbarElement) {
+        //alert("NavBar element")
         if (this._themeSettingsConfig.menu === 'semi-light') {
           this._renderer.addClass(navbarElement.item(0), 'navbar-semi-light bg-gradient-x-grey-blue');
         } else if (this._themeSettingsConfig.menu === 'semi-dark') {
@@ -545,7 +611,14 @@ export class VerticalComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize(event) { 
+/*     let userAgentString = navigator.userAgent;
+    alert("I am resizing");
+    alert(JSON.stringify(this.user));
+  
+    if (userAgentString.includes("SEB")) {
+      this.user.username = ""; 
+     } */
     if (event.target.innerWidth < AppConstants.MOBILE_RESPONSIVE_WIDTH) {
       this.isMobile = true;
       this.showNavbar = false;
@@ -553,6 +626,10 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       this.isMobile = false;
       this.showNavbar = true;
     }
+  }
+  ngOnDestroy(){
+     
+    //localStorage.removeItem('user');
   }
 
 }

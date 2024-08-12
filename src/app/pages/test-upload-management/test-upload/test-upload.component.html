@@ -27,7 +27,7 @@
                                 </ng-template>
                             </li>
                             <li [ngbNavItem]="3" [disabled]="!docsTabDisabled">
-                                <a ngbNavLink>
+                                <a ngbNavLink (click)="onAnswerTabClick()">
                                     <i class="la la-info-circle"></i> Answer Template
                                 </a>
                                 <ng-template ngbNavContent>

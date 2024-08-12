@@ -61,17 +61,6 @@ export class SearchSubjectsComponent implements OnInit {
     this.getSubjects();
     this.getGrades();
     this.initForms();
-  /* const checkbox = document.getElementById(
-      'chkLinktoAll',
-    ) as HTMLInputElement | null;
-
-    checkbox.addEventListener( "change", () => {
-      if ( checkbox.checked ) {
-        alert("checked"); 
-      } else {
-        alert("not checked");
-      }
-   }); */
   }
   get f() { return this.form.controls; }
 

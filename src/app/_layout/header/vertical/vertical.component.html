@@ -30,10 +30,10 @@
         <ul class="nav navbar-nav float-right">
           <li class="dropdown-user nav-item" ngbDropdown>
             <a class="nav-link dropdown-user-link" ngbDropdownToggle>
-              <span *ngIf="user?.fullName" class="mr-1 user-name text-bold-700">
+              <span id ="navBarUserName" *ngIf="user?.fullName" class="mr-1 user-name text-bold-700">
                 Welcome {{user?.fullName}}
               </span>
-              <span *ngIf="!user?.fullName" class="mr-1 user-name text-bold-700">Welcome {{ user?.username }}</span>
+              <span id= "studentUserName" *ngIf="!user?.fullName" class="mr-1 user-name text-bold-700">Welcome {{studentFullName}}</span>
             </a>
             <div  *ngIf="!user.username.includes('VST')" ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownProfileMenu">
               <a *ngIf="user.role != 3"class="dropdown-item" [routerLink]="" (click)="onViewUser(user)">
