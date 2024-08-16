@@ -118,12 +118,14 @@ export class SearchSubjectsComponent implements OnInit {
   }
 
     public linkSubjectToAllStudents(event:any): void {
-        if (event.target.checked == true) {
+      console.log("Link To All Subjects Method"); 
+      if (event.target.checked == true) {
       this.isLinkToAll = true;
+      console.log("Link to all is true"); 
        
     } else {
-      
       this.isLinkToAll = false;
+      console.log("Link to all is false"); 
     }
     //return (this.selectedStudentIds.some(x => x === studentId))
   }
