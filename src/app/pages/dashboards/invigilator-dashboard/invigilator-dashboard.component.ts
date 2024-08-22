@@ -123,6 +123,7 @@ export class InvigilatorDashboardComponent {
   }
 
   public navigateToCenterAttendance(){
+    this.modalService.dismissAll();
     this.router.navigate(["portal/center-attendance-management"]);
   }
   public navigateToCenters() {
@@ -132,6 +133,21 @@ export class InvigilatorDashboardComponent {
     this.modalService.dismissAll();
     this.router.navigate(["portal/live-test-monitoring"])
    }
+
+   public navigateToCenterSummary(){
+    this.modalService.dismissAll();
+    this.router.navigate(["portal/center-summary"])
+  }
+
+  public navigateToBulkImport(){
+    this.modalService.dismissAll();
+    this.router.navigate(["portal/bulk-import"])
+  }
+
+  public navigateToExportStudentAnswers(){
+    this.modalService.dismissAll();
+    this.router.navigate(["portal/students/export-student-answers"])
+  }
 
   public navigateToTestChat() {
     this.modalService.dismissAll();

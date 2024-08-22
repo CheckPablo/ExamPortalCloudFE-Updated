@@ -118,38 +118,31 @@ export class ListGradesComponent implements OnInit {
      
     if (this.form.invalid) {return;}
 
+   /*  const newGradeCode = this.form.value.code;
+    const existingGrade = this.grades.find(grade => grade.code === newGradeCode);
+
+    if (existingGrade) {
+        Swal.fire('Error', 'Grade with this code already exists.', 'error');
+        return;
+    }
+ */
     this.gradeService.update(this.f['id'].value, this.form.value)
-    .subscribe(() => {
+    .subscribe({next: (value: any) => {
       this.getGrades();
       this.initForms();
       this.modalService.dismissAll();
       Swal.fire('Grade Updated', 'Grade information updated.', 'success');
+       },
+      error: (error: any) => { 
+      console.log(error); 
+      this.title = "Add grade unsuccessful";
+      this.message = 'Grade Already Exists';
+      this.showModal = true;
+      return; 
+      },
+      complete: () => { }
     });
   }
-
-  // public onSort(a: any) 
-  // {
-      
-  // }
-  // onSort({ column, direction }: SortEvent) {
-  //   // resetting other headers
-  //   this.headers.forEach((header) => {
-  //     if (header.sortable !== column) {
-  //       header.direction = '';
-  //     }
-  //   });
-
-  //   // sorting countries
-  //   if (direction === '' || column === '') {
-  //     this.grades = this.data;
-  //   } else {
-  //     this.grades = [...this.data].sort((a, b) => {
-  //       const res = compare(a[column], b[column]);
-  //       return direction === 'asc' ? res : -res;
-  //     });
-  //   }
-  // }
-
   /**
  *Sortable Table
  * '@param' param0

@@ -182,8 +182,21 @@ export class SearchSubjectsComponent implements OnInit {
   }
 
   public onSubmit() {
+    //console.log(JSON.stringify(this.form))
+    console.log(this.form); 
+    console.log("sector Id form vale",this.f.sectorId.value); 
+    if(this.f.sectorId.value == null){
+      Swal.fire('Error', 'Please select a grade.', 'error');
+      return; 
+    }
+    /* if(this.f.sectorId){
+      alert("checking b"); 
+      return; 
+    } */
     this.submitted = true;  
     if (this.form.invalid) {return;}
+   
+ 
     //this.getCheckBoxValue(); 
     
     if(!this.isLinkToAll){
@@ -232,12 +245,20 @@ export class SearchSubjectsComponent implements OnInit {
     //console.log("isLinkToAll = false")
     console.log("updating new subject under", 'not isLinkToAll(false')
     this.subjectService.update(this.f['id'].value, this.form.value)
-    .subscribe(() => {
+    .subscribe({next :(data:any) =>{
       this.getSubjects();
       this.initForms();
       this.modalService.dismissAll();
       Swal.fire('Subject Updated', 'Subject information updated.', 'success');
-    });
+    },
+    error:(error:any)=>{
+      console.log(error, "creating new subject under '!this.isLinkToAll'")
+      this.title = "Add/Update unsuccessful";
+      this.message = 'The specified subject code and subject name already exists';
+      this.showModal = true;
+    }, 
+    complete:()=>{}
+   });
   }
   else{
     console.log("updating a new subject under", ' this.isLinkToAll is true(true)')

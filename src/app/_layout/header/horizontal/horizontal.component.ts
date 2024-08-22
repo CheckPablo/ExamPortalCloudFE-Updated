@@ -175,6 +175,7 @@ export class HorizontalComponent implements OnInit, AfterViewInit {
     }
   }
   toggleNavigation(e) {
+
     const sidenav = document.getElementById('sidenav-overlay');
     const sidebarLeft = document.getElementById('sidebar-left') || document.getElementById('email-app-menu') ||
     document.getElementById('sidebar-todo');

@@ -142,7 +142,8 @@ export class VerticalComponent implements OnInit, AfterViewInit {
     const testName = urlPath[7];
     this.studentFullName = urlPath[8]; 
     this.user = this.storage.getUser();
-    //console.log("INIT VERTICAL"); 
+    console.log()
+    console.log("INIT VERTICAL"); 
     this.href = this.router.url; 
     this.isMobile = window.innerWidth < AppConstants.MOBILE_RESPONSIVE_WIDTH;
     if (!this.isMobile) {
@@ -180,7 +181,7 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       });
     } else if (this.user.role == 3) {
       //alert("Role 3");
-      let userAgentString = navigator.userAgent;
+      let userAgentString = navigator.userAgent;  
      
       const decodedUrl = decodeURIComponent(this.router.url);
       const urlPath = decodedUrl.split('/'); 
@@ -198,6 +199,25 @@ export class VerticalComponent implements OnInit, AfterViewInit {
       this.user.fullName = urlPath[8];
       }
 
+      if (userAgentString.includes("CrOS")) {
+     /* alert("Chrome  Index 4"+'  '+ urlPath[4]); 
+        alert("Chrome  Index 5"+'  '+ urlPath[5]);
+        alert("Chrome  Index 6"+'  '+ urlPath[6]);
+        alert("Chrome  Index 7"+'  '+ urlPath[7]);
+        alert("Chrome  Index 8"+'  '+ urlPath[8]); */
+        console.log("CrOs", this.user.fullName)
+        //this.user.fullName = urlPath[8];
+      }
+
+      if(userAgentString.includes("Mac"))
+      {
+     /*    alert("MAC Index 4"+'  '+ urlPath[4]); 
+        alert("MAC Index 5"+'  '+ urlPath[5]);
+        alert("MAC Index 6"+'  '+ urlPath[6]);
+        alert("MAC Index 7"+'  '+ urlPath[7]);
+        alert("MAC Index 8"+'  '+ urlPath[8]); */
+        this.user.fullName =  urlPath[8];
+      }
       //alert("else if role 3" + decodedUrl); 
       //alert("else if role 3" +  urlPath)
 

@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     const self = this;
-
+    //alert("horizontal bar"); 
     // Subscribe to config changes
     this._themeSettingsService.config
       .pipe(takeUntil(this._unsubscribeAll))

@@ -71,6 +71,8 @@ export class AuthService extends ApiService<User> {
     return res.pipe(map(
       (response: any) => {
         if (response) {
+          console.log("response");
+          console.log(response); 
           this.storageService.saveUser(response);
           this.storageService.saveToken(response.token);
 

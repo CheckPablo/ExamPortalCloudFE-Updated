@@ -137,6 +137,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   wordCountInputValue: number;
   currentTestNameSEB: string;
   currentStudentNameSEB: string;
+  currentTestNameChrome: string;
+  currentStudentNameChrome: string;
+  currentTestNameMac: string;
+  currentStudentNameMac: string;
+  
   //answerTextRate: any;
 
   constructor(
@@ -247,8 +252,26 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
 
     if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
+      const decodedUrl = decodeURIComponent(this.router.url);
+      const urlPath = decodedUrl.split('/'); 
+     /*  alert(" Chrome Index 4"+''+ urlPath[4]); 
+      alert(" Chrome Index 5"+''+ urlPath[5])
+      alert(" Chrome Index 6"+''+ urlPath[6])
+      alert(" ChromeIndex 7"+''+ urlPath[7])
+      alert(" Chrome Index 8"+''+ urlPath[8])  */
+      this.currentTestNameChrome = urlPath[7]
+      this.currentStudentNameChrome = urlPath[8]
+    }
+    if(userAgentString.includes("Mac")){
+      const decodedUrl = decodeURIComponent(this.router.url);
+      const urlPath = decodedUrl.split('/'); 
+     /*  alert(" Mac Index 4"+''+ urlPath[4]); 
+      alert(" Mac Index 5"+''+ urlPath[5])
+      alert(" Mac Index 6"+''+ urlPath[6])
+      alert(" Mac Index 7"+''+ urlPath[7])
+      alert(" Mac Index 8"+''+ urlPath[8])  */
+      this.currentTestNameMac = urlPath[7]
+      this.currentStudentNameMac = urlPath[8]
     }
 
     if (this.eventEmitterService.subsVar == undefined) { 
@@ -1314,11 +1337,17 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
      this.user.fullName = this.currentStudentNameSEB
     }
 
+ 
     if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
-    }
+      this.currentTestName = this.currentTestNameChrome
+      this.user.fullName = this.currentStudentNameChrome
+    } 
 
+    
+    if(userAgentString.includes("Mac")){
+      this.currentTestName = this.currentTestNameMac
+      this.user.fullName = this.currentStudentNameMac
+    } 
     try {
       this.container.documentEditor.open(documentBase64);
       let defaultCharacterFormat: CharacterFormatProperties = {
@@ -1394,10 +1423,17 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
      this.user.fullName = this.currentStudentNameSEB
     }
 
-    if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
-    }
+     if(userAgentString.includes("CrOS")){
+      this.currentTestName = this.currentTestNameChrome
+      this.user.fullName = this.currentStudentNameChrome
+    } 
+
+    
+    if(userAgentString.includes("Mac")){
+      this.currentTestName = this.currentTestNameMac
+      this.user.fullName = this.currentStudentNameMac
+    } 
+
 
     try {
       let defaultCharacterFormat: CharacterFormatProperties = {
@@ -1574,8 +1610,13 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
 
     if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
+      this.currentTestName = this.currentTestNameChrome
+      this.user.fullName = this.currentStudentNameChrome
+    }
+
+    if(userAgentString.includes("Mac")){
+     this.currentTestName = this.currentTestNameMac; 
+     this.user.fullName = this.currentStudentNameMac
     }
 
     var base64DataLocal;
@@ -1653,8 +1694,13 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
 
     if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
+      this.currentTestName = this.currentTestNameChrome
+      this.user.fullName = this.currentStudentNameChrome
+    }
+
+    if(userAgentString.includes("Mac")){
+     this.currentTestName = this.currentTestNameMac; 
+     this.user.fullName = this.currentStudentNameMac
     }
 
     var base64DataLocal;
@@ -1781,10 +1827,14 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
 
     if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameSEB
-      this.user.fullName = this.currentStudentNameSEB
+      this.currentTestName = this.currentTestNameChrome
+      this.user.fullName = this.currentStudentNameChrome
     }
 
+    if(userAgentString.includes("Mac")){
+     this.currentTestName = this.currentTestNameMac; 
+     this.user.fullName = this.currentStudentNameMac
+    }
     var base64DataLocal;
     var reader = new FileReader();
    

@@ -95,6 +95,8 @@ export class TokenStorageService {
   }
 
   public saveUser(user: any): void {
+    console.log(user)
+    console.log(JSON.stringify(user));
     window.localStorage.removeItem(USER_KEY);
     window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
