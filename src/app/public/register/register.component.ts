@@ -23,6 +23,7 @@ export class RegisterComponent {
   title: string;
   message: string;
   showModal: boolean;
+  confirmPasswordBool: boolean = true;
 
   constructor (
     private authService: AuthService,
@@ -159,6 +160,18 @@ export class RegisterComponent {
         this.signupForm.reset(); 
         
       }); */
+  }
+
+  public confirmPassword(){
+    //alert("Blur detetected");
+    if(this.f.password.value != this.f.confirmPassword.value){
+      this.confirmPasswordBool = false
+      console.log("inputs dont match",this.confirmPasswordBool)
+    }
+    else{
+      this.confirmPasswordBool = true; 
+      console.log("inputs do match",this.confirmPasswordBool)
+    }
   }
 
   public toggleFieldTextType() {

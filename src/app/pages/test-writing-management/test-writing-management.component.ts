@@ -244,6 +244,7 @@ export class TestWritingManagementComponent {
   base64UrlSource: string;
   isSourceDocClicked: boolean;
   studentFullName: string;
+  selectedWordCountValue: string;
   
   //datepipe: any;
 
@@ -673,6 +674,15 @@ export class TestWritingManagementComponent {
     if (userAgentString.includes("SEB")) {
     const decodedUrl = decodeURIComponent(this.router.url);
     const urlPath = decodedUrl.split('/'); 
+
+
+  /*   if (this.eventEmitterService.wordCount == undefined) {
+      this.eventEmitterService.wordCount = this.eventEmitterService.
+        invokeOnSetWordText.subscribe((wordCount) => {
+          //alert(wordCount); 
+          //this.firstFunction();
+        });
+    } */
     
     //const sebURL = this.router.url.split('?')[0];
     //const testName = Number(decodedUrl.split('/')[4]);
@@ -811,6 +821,17 @@ export class TestWritingManagementComponent {
       //return p; 
     }
     window.addEventListener('resize', this.onResize.bind(this));
+  }
+
+  @HostListener('document:mousemove', ['$event']) 
+  onMouseMove(e) {
+    if (localStorage.getItem('selected_wordcount_key')) {
+    /* let selectedWordCount = localStorage.getItem('selected_wordcount_key');
+      this.selectedWordCountValue = Number(selectedWordCount); */
+      this.selectedWordCountValue = JSON.parse(localStorage.getItem('selected_wordcount_key'));
+      //alert(this.selectedWordCountValue); 
+    }
+
   }
 
   private getSourceDocuments = () => {

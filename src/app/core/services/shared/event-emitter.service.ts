@@ -26,6 +26,7 @@ export class EventEmitterService {
  public invokeInvigilatorInTestMessage = new EventEmitter(); 
 
   subsVar: Subscription; 
+  offlineInTestDownloadVar:Subscription;
   testVar:Subscription; 
   studentFullname:Subscription;    
   answerEvent:Subscription;

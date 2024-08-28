@@ -318,11 +318,11 @@ export class StudentDashboardComponent {
             //alert(this.uniqueName)
             window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-sebsettings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}/${this.user.fullName}`;
             //localStorage.clear();
-            //this.router.navigate(["/portal"]);
+            this.router.navigate(["/portal"]);
           } else if(os == "Mac") {
             window.location.href = `${environment.sebLaunchUrlSandboxWithS}api/InTestWrite/get-student-seb-mac-settings/${this.uniqueName}/${this.testId}/${this.user.id}/${this.testName}/${environment.domain}/${this.user.fullName}`;
             //localStorage.clear(); 
-            //this.router.navigate(["/portal"]);
+            this.router.navigate(["/portal"]);
           }
           else{
             this.router.navigate(['/portal/test-writing/test-writing-management', 0, this.testId, this.user.id, this.testName,this.user.fullName]);

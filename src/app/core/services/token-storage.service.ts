@@ -19,6 +19,7 @@ const CURRENT_STUDENTANSWERDOC_KEY = 'currentstudentanswerdockey'
 const CURRENT_TRACKINGTEXT_KEY = 'currenttrackingtextkey'
 const CURRENT_PAGENUMBER_INFOCUS_KEY = 'current_pagenumber_infocuskey'
 const CURRENT_TESTSECURITYLEVELID_KEY = 'curent_testsecurity_levelId'
+const SELECTED_WORDCOUNT_KEY = 'selected_wordcount_key'
 
 const CURRENT_REGNAME_KEY = 'curent_regname_key'
 const CURRENT_REGSURNAME_KEY = 'curent_regsurname_key'
@@ -114,6 +115,11 @@ export class TokenStorageService {
 
   public saveSelectedGrade(selectedGrade: string): void {
     window.localStorage.setItem(CURRENT_SELECTEDGRADE_KEY, JSON.stringify(selectedGrade));
+    return null;
+  }
+
+  public saveSelectedWordCount(selectedWordCount: string): void {
+    window.localStorage.setItem(SELECTED_WORDCOUNT_KEY, JSON.stringify(selectedWordCount));
     return null;
   }
 

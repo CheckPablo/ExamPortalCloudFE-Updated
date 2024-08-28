@@ -95,7 +95,7 @@
             </div>
         </div>
 
-        <div class="col-xl-4 col-lg-6 col-10" *ngIf="user.centerId == 2 && user.isSchoolAdmin == true" >
+        <div class="col-xl-4 col-lg-6 col-10" *ngIf="user.centerId == 2 || user.isSchoolAdmin == true" >
             <div class="card pull-up" (click)="openModal(adminsOptionsModal)">
                 <div class="card-content">
                     <div class="card-body">

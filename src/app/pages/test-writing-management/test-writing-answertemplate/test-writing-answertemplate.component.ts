@@ -46,7 +46,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
 
   // destroyRef = inject(DestroyRef);
   @ViewChild('documentEditor') public container!: DocumentEditorContainerComponent;
-  //@ViewChild('wordCountInput') wordCountInput: ElementRef;
+  @ViewChild('wordCountInput') wordCountInput: ElementRef;
   //#wordCountInput
   @ViewChildren(DocumentEditorContainerComponent) documentEditors: QueryList<DocumentEditorContainerComponent>;
   studentsTestData: StudentTestWriteInformation;
@@ -141,6 +141,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   currentStudentNameChrome: string;
   currentTestNameMac: string;
   currentStudentNameMac: string;
+  selectedWordCount: string;
   
   //answerTextRate: any;
 
@@ -331,8 +332,8 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       }
     });
 
-    if (this.eventEmitterService.subsVar == undefined) {
-      this.eventEmitterService.subsVar = this.eventEmitterService.
+    if (this.eventEmitterService.offlineInTestDownloadVar == undefined) {
+      this.eventEmitterService.offlineInTestDownloadVar = this.eventEmitterService.
         invokeFirstComponentFunction.subscribe(() => {
           this.firstFunction();
         });
@@ -686,6 +687,9 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       console.log(text.split(' ').length);
       //wordCCountInput.textContent;
       this.wordCountInputValue = text.split(' ').length; 
+      this.storageService.saveSelectedWordCount(String(this.wordCountInputValue));
+ 
+      //this.selectedWordCount = String( this.wordCountInputValue);
       this.eventEmitterService.onSetWordCount(this.wordCountInputValue);
       //this.wordCountInput.nativeElement.value = "update input value";
       //this.container.documentEditor.selection.selectAll();
@@ -693,6 +697,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       //this.selectAll = true;
     }
     else{
+      this.storageService.saveSelectedWordCount(null);
       console.log("no selection"); 
     }
     /*var documenteditor;

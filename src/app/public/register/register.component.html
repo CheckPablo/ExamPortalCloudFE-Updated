@@ -144,7 +144,8 @@
                                                             formControlName="confirmPassword" class="form-control"
                                                             placeholder="Confirm Password" tabindex="6"
                                                             data-validation-matches-match="password"
-                                                            data-validation-matches-message="Password &amp; Confirm Password must be the same.">
+                                                            data-validation-matches-message="Password &amp; Confirm Password must be the same."
+                                                            (blur)="confirmPassword()">
                                                         <div class="form-control-position">
                                                             <i class="la la-key"></i>
                                                         </div>
@@ -156,7 +157,11 @@
                                                     </div> -->
                                                 </div>
                                             </div>
-                                            <div *ngIf="submitted && f['confirmPassword'] !== f['password']" class="invalid-feedback">
+
+                                            <!-- <div *ngIf="submitted && f['confirmPassword'] !== f['password']" class="invalid-feedback">
+                                                <div>"Password &amp; Confirm Password must be the same."</div>
+                                            </div> -->
+                                            <div *ngIf="!confirmPasswordBool" class="invalid-feedback">
                                                 <div>"Password &amp; Confirm Password must be the same."</div>
                                             </div>
                                            
