@@ -8,7 +8,8 @@
             </div>
         </div>
     </div>
-    <h4>Live monitoring for: {{student.name}} {{student.surname}}</h4>
+    <!-- <h4>Live monitoring for: {{student.name}} {{student.surname}}</h4> -->
+     <h4>Live monitoring for: {{studentName}}</h4>
     <h6>Test start time: {{student.startDate | date:'full'}} End date: {{(student.endDate | date:'dd MMM yyyy')
         || "Test not yet completed"}}</h6>
 </section>
@@ -263,7 +264,6 @@
                                                                         *ngFor="let item of irregularityPaginationService.paginatedData">
                                                                         <td>{{item.event}}</td>
                                                                         <td>{{item.reason}}</td>
-                                                                        <!--<td>{{item.dateModified | date:'dd MMM yyyy'}}-->
                                                                         <td>{{item.dateModified | date:'yyyy/MM/dd HH:mm:ss'}}
                                                                  
                                                 
@@ -394,6 +394,30 @@
                             </label>
                         </div>
                     </li>
+
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <a routerLink="." (click)="displayTestAttemptLog(studentTestLogsModal)"> Test Attempts</a>
+                            </label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <a routerLink="."(click)="displayOfflineCountLog(offlineCountModal)"> Offline Count</a>
+                            </label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                <a routerLink="."(click)="displayStudentTestIrregularityLog(irregularityLogModal)"> Irregularity Log</a>
+                            </label>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -427,9 +451,9 @@
                     <div>
                          <br>
                     <div  class="col-md-9 mx-auto" style="text-align:left;">
-<textarea readonly class="form-control"id="testChatMessageArea"style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:left" rows="15" cols="90" wrap="hard">
-    {{messages}}
-</textarea>
+                    <textarea readonly class="form-control"id="testChatMessageArea"style="background-color:rgba(128, 128, 128, 0.075);color:black;text-align:left" rows="15" cols="90" wrap="hard">
+                        {{messages}}
+                    </textarea>
                     </div> 
                 </div>
                 </div>
@@ -484,3 +508,351 @@
             (click)="d('Cross click')"></button>
     </div> -->
 </ng-template>
+
+<ng-template #studentTestLogsModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Student Test Logs</h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="extraTimeForm">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+
+            <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                <br /><br />
+                <div class="table-responsive" style="width:100%">
+                    <table id="StudentLogListTable" style="width:100%">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th>Start Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr *ngFor="let testLogLink of testLogLinks"> -->
+                            <tr *ngFor="let testLogLink of testLogsPaginationService.paginatedData">
+
+                                <td>
+                                    {{testLogLink.processDate | date:'yyyy/MM/dd HH:mm:ss'}}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <div class="row justify-content-md-between align-items-md-candidate mt-2"
+                                            *ngIf="testLogsPaginationService.totalItems">
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                                                    aria-live="polite">Showing
+                                                    {{testLogsPaginationService.startIndex}} to
+                                                    {{testLogsPaginationService.endIndex}} of
+                                                    <span
+                                                        *ngIf="testLogsPaginationService.searchTerm">{{testLogsPaginationService.searchTotal}}
+                                                        search results from
+                                                    </span>
+                                                    {{testLogsPaginationService.totalItems}} entries
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-5">
+                                                <div class="text-md-right float-md-end pagination-rounded">
+                                                    <ul class="pagination">
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': testLogsPaginationService.currentPage == 1 }"
+                                                            (click)="testLogsPaginationService.setPage(1)">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">««</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': testLogsPaginationService.currentPage == 1 }"
+                                                            (click)="testLogsPaginationService.goToPreviousPage()">
+                                                            <a aria-label="Previous" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">«</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted" aria-current="page"
+                                                            [ngClass]="{ 'active': testLogsPaginationService.currentPage == page }"
+                                                            *ngFor="let page of testLogsPaginationService.paginationLinks"
+                                                            (click)="testLogsPaginationService.setPage(page)">
+                                                            <a href="javascript:void(0);"
+                                                                class="page-link ng-star-inserted">
+                                                                {{ page }}
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': testLogsPaginationService.currentPage == testLogsPaginationService.totalPages }"
+                                                            (click)="testLogsPaginationService.goToNextPage()">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»</span>
+                                                            </a>
+                                                        </li>
+                                                        <li class="page-item ng-star-inserted"
+                                                            [ngClass]="{ 'disabled': testLogsPaginationService.currentPage == testLogsPaginationService.totalPages }"
+                                                            (click)="testLogsPaginationService.setPage(testLogsPaginationService.totalPages)">
+                                                            <a aria-label="Next" href="javascript:void(0);"
+                                                                class="page-link">
+                                                                <span aria-hidden="true"
+                                                                    class="ng-star-inserted">»»</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                ngbAutofocus>
+                Close
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+
+<ng-template #offlineCountModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Offline Count </h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="extraTimeForm" (ngSubmit)="onExtraTimeSubmit()">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+
+            <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                <br /><br />
+                <div class="table-responsive" style="width:100%">
+                    <table id="StudentLogListTable" style="width:100%">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th>Offline Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr *ngFor="let testOfflineLogLink of testLogLinks"> -->
+                            <tr *ngFor="let item of offlineTestLogsPaginationService.paginatedData">
+
+                                <td>
+                                    {{item.dateModifed | date:'yyyy/MM/dd HH:mm:ss'}}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="row justify-content-md-between align-items-md-candidate mt-2"
+                    *ngIf="offlineTestLogsPaginationService.totalItems">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                            aria-live="polite">Showing
+                            {{offlineTestLogsPaginationService.startIndex}} to
+                            {{offlineTestLogsPaginationService.endIndex}} of
+                            <span
+                                *ngIf="offlineTestLogsPaginationService.searchTerm">{{offlineTestLogsPaginationService.searchTotal}}
+                                search results from
+                            </span>
+                            {{offlineTestLogsPaginationService.totalItems}} entries
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                        <div class="text-md-right float-md-end pagination-rounded">
+                            <ul class="pagination">
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == 1 }"
+                                    (click)="offlineTestLogsPaginationService.setPage(1)">
+                                    <a aria-label="Previous" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">««</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == 1 }"
+                                    (click)="offlineTestLogsPaginationService.goToPreviousPage()">
+                                    <a aria-label="Previous" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">«</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted" aria-current="page"
+                                    [ngClass]="{ 'active': offlineTestLogsPaginationService.currentPage == page }"
+                                    *ngFor="let page of offlineTestLogsPaginationService.paginationLinks"
+                                    (click)="offlineTestLogsPaginationService.setPage(page)">
+                                    <a href="javascript:void(0);"
+                                        class="page-link ng-star-inserted">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == offlineTestLogsPaginationService.totalPages }"
+                                    (click)="offlineTestLogsPaginationService.goToNextPage()">
+                                    <a aria-label="Next" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">»</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == offlineTestLogsPaginationService.totalPages }"
+                                    (click)="offlineTestLogsPaginationService.setPage(offlineTestLogsPaginationService.totalPages)">
+                                    <a aria-label="Next" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">»»</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                ngbAutofocus>
+                Close
+            </button>
+        </div>
+    </form>
+</ng-template>
+
+<ng-template #irregularityLogModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">Irregularity Log </h4>
+        <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+    </div>
+    <form [formGroup]="extraTimeForm">
+        <div class="modal-body">
+            <div class="row">
+                <input type="hidden" id="CenterID" class="form-control">
+            </div>
+
+            <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                <br /><br />
+                <div class="table-responsive" style="width:100%">
+                    <table id="StudentLogListTable" style="width:100%">
+                        <thead class="bg-info white">
+                            <tr>
+                                <th sortable="name">
+                                    Irregularity
+                                    <i class="la la-sort float-md-end"></i>
+                                </th>
+                              
+                                <th sortable="name">
+                                    Date
+                                    <i class="la la-sort float-md-end"></i>
+                                </th>
+
+                                <th sortable="name">
+                                   Offline
+                                    <i class="la la-sort float-md-end"></i>
+                                </th>
+
+                                <th sortable="name">
+                                    Offline Time
+                                     <i class="la la-sort float-md-end"></i>
+                                 </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let item of irregularityPaginationService.paginatedData">
+                                <td>{{item.event}}</td>
+                                <td>{{item.dateModified | date:'yyyy/MM/dd HH:mm:ss'}} </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <div class="row justify-content-md-between align-items-md-candidate mt-2"
+                    *ngIf="offlineTestLogsPaginationService.totalItems">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info mb-2" id="tickets-table_info" role="status"
+                            aria-live="polite">Showing
+                            {{offlineTestLogsPaginationService.startIndex}} to
+                            {{offlineTestLogsPaginationService.endIndex}} of
+                            <span
+                                *ngIf="offlineTestLogsPaginationService.searchTerm">{{offlineTestLogsPaginationService.searchTotal}}
+                                search results from
+                            </span>
+                            {{offlineTestLogsPaginationService.totalItems}} entries
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-5">
+                        <div class="text-md-right float-md-end pagination-rounded">
+                            <ul class="pagination">
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == 1 }"
+                                    (click)="offlineTestLogsPaginationService.setPage(1)">
+                                    <a aria-label="Previous" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">««</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == 1 }"
+                                    (click)="offlineTestLogsPaginationService.goToPreviousPage()">
+                                    <a aria-label="Previous" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">«</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted" aria-current="page"
+                                    [ngClass]="{ 'active': offlineTestLogsPaginationService.currentPage == page }"
+                                    *ngFor="let page of offlineTestLogsPaginationService.paginationLinks"
+                                    (click)="offlineTestLogsPaginationService.setPage(page)">
+                                    <a href="javascript:void(0);"
+                                        class="page-link ng-star-inserted">
+                                        {{ page }}
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == offlineTestLogsPaginationService.totalPages }"
+                                    (click)="offlineTestLogsPaginationService.goToNextPage()">
+                                    <a aria-label="Next" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">»</span>
+                                    </a>
+                                </li>
+                                <li class="page-item ng-star-inserted"
+                                    [ngClass]="{ 'disabled': offlineTestLogsPaginationService.currentPage == offlineTestLogsPaginationService.totalPages }"
+                                    (click)="offlineTestLogsPaginationService.setPage(offlineTestLogsPaginationService.totalPages)">
+                                    <a aria-label="Next" href="javascript:void(0);"
+                                        class="page-link">
+                                        <span aria-hidden="true"
+                                            class="ng-star-inserted">»»</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                ngbAutofocus>
+                Close
+            </button>
+        </div>
+    </form>
+</ng-template>
+

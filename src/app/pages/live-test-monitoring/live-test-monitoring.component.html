@@ -17,6 +17,12 @@
                 (click)="openExtraTimeModal(addExtraTimeModal)">
                 Add Extra Time
             </button>
+
+            <button type="button" class="btn btn-info btn-min-width mr-1 mb-1" type="button" id="addExtraTime"
+            (click)="openExtraTimeModal(EndTestModal)">
+            End Test
+            </button>
+
         </div>
     </div>
 
@@ -189,6 +195,11 @@
                             <i class="la la-check-square-o"></i>
                             Add Time
                         </button>
+<!-- 
+                        <button type="button" class="btn btn-info" [disabled]="!studentIds.length"
+                        (click)="onEndTestClick()">
+                         End Test
+                        </button> -->
 
                         <br /><br />
                         <input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll"
@@ -399,5 +410,80 @@
                 </div>
             </form>
         </ng-template>
+
+     <ng-template #EndTestModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel1">End Test</h4>
+                <button type="button" class="btn-close" aria-hidden="true" (click)="d('Cross click')"></button>
+            </div>
+            <form [formGroup]="extraTimeForm" (ngSubmit)="onEndTestClick()">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="CenterID" class="form-control">
+                    </div>
+
+                    <div class="tab-pane" id="tab3" aria-labelledby="base-tab3">
+                        <button id="btnLinkTest" class="btn btn-info" [disabled]="!studentIds.length"
+                            (click)="onEndTestClick()">
+                            <i class="la la-check-square-o"></i>
+                            End Test
+                        </button>
+
+                        <br /><br />
+                        <input type="checkbox" id="cbxCheckAll" name="cbxCheckAll" value="SelectAll"
+                            [checked]="isAllSelected" (change)="onSelectAll()">
+                        <label for="cbxCheckAll"> Select All</label>
+
+                        <div class="table-responsive" style="width:100%">
+                            <table id="StudentListTable" style="width:100%">
+                                <thead class="bg-info white">
+                                    <tr>
+                                        <th style="display:none">StudentID</th>
+                                        <th>Link</th>
+                                        <th>Surname</th>
+                                        <th>Fore Names</th>
+                                        <th>Exam Number</th>
+                                        <th>ID Number</th>
+                                        <!--<th style="display:none">Extra Time Val</th>-->
+                                        <!--<th>Extra Time (Minutes)</th>-->
+                                   </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let link of links">
+                                        <td>
+                                            <input type="checkbox" id="cbxCheckStudentLink" [value]="link.studentID"
+                                                (click)="onStudentClick(link.studentID)"
+                                                [checked]="isStudentSelected(link.studentID)">
+                                        </td>
+                                        <td>
+                                            {{link.surname}}
+                                        </td>
+                                        <td>
+                                            {{link.name}}
+                                        </td>
+                                        <td>
+                                            {{link.examNo}}
+
+                                        </td>
+                                        <td>
+                                            {{link.idNumber}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn grey btn-outline-secondary" (click)="d('Close modal')"
+                        ngbAutofocus>
+                        Close
+                    </button>
+                </div>
+            </form>
+        </ng-template>  
         <app-pop-up content="{{message}}" title="{{title}}" show="{{showModal}}" />
 

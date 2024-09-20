@@ -129,11 +129,11 @@
                                                         <div class="help-block font-small-3"></div>
                                                     </fieldset>
                                                  
-                                                    <!--<div *ngIf="f['password'].errors?.minlength">password must be 8 characers or more</div>
+                                                    <div *ngIf="submitted && !isValid" class="invalid-feedback">Password must contain more than 8 characters, 1 upper case letter, and 1 special character</div>
                                                     <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
-                                                        <div *ngIf="f['password'].errors.required">Password is required</div>
+                                                        <div *ngIf="f['password'].errors.required && !isValid ">Password is required</div>
                                                        
-                                                    </div>-->
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-sm-6 col-md-6">
@@ -164,6 +164,9 @@
                                             <div *ngIf="!confirmPasswordBool" class="invalid-feedback">
                                                 <div>"Password &amp; Confirm Password must be the same."</div>
                                             </div>
+                                            <div *ngIf="signupForm.get('password').hasError('weakPassword') && signupForm.get('password').touched">
+                                                Password must contain more than 8 characters, 1 uppercase letter, and 1 special character.
+                                              </div>
                                            
                                             <div *ngIf="f['password'].errors?.minLength" class="invalid-feedback">
                                                 <div>"Password must contain more than 8 characters"</div>
@@ -386,7 +389,7 @@
                                         <div class="row">
                                             <div   class="col-12 col-sm-6 col-md-6">
                                                 <button id="btnRegister" class="btn btn-info btn-lg btn-block"
-                                                    type="submit" [disabled]="!f['cbxAgree'].value">
+                                                    type="submit" [disabled]="!f['cbxAgree'].value || submitted">
                                                     <i class="la la-user"></i>
                                                     Register
                                                 </button>

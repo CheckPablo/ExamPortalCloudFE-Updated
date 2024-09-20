@@ -581,8 +581,18 @@
                     <div class="col-lg-12">
                         <div *ngIf="isSourceDocClicked" id="docSection" >
                        <div id='divSourceDoc' style="height:800px;">                  
-                            <ejs-pdfviewer #pdfViewerSourcePdf id="pdfViewerSourcePdf" 
-                            [serviceUrl]="hostedUrl" [documentPath]='base64UrlSource' [initialRenderPages]='initialRender'></ejs-pdfviewer>
+                            <ejs-pdfviewer #pdfViewerSourcePdf 
+                            id="pdfViewerSourcePdf" 
+                            [serviceUrl]="hostedUrl" 
+                            [EnablePersistence] ="true"
+                            [documentPath]='base64UrlSource'   
+                            [isExtractText]="true"
+                            [enableNavigationToolbar] ="false"
+                            [initialRenderPages]='initialRender'
+                            [enableToolBar] = "false"
+                            (textSelectionEnd)="onTextSelectionEnd($event)">
+                        
+                        </ejs-pdfviewer>
                        </div> 
                             <!--<ejs-dialog id='dialog' #ejDialog isModal='false' [showCloseIcon]='true' [visible]='true'>
                                 <ejs-pdfviewer id="pdfViewer" [serviceUrl]='hostedUrl' [documentPath]='base64UrlSource' style="height:800px;display:block">

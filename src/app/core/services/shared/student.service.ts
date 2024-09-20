@@ -56,4 +56,8 @@ export class StudentService extends ApiService<Student>{
     return this.postUrl('send-student-email', mailData)
   }
 
+  public finishTestDashBoardredirect = (studentId: number): Observable<any> => {
+    return this.postUrl('finishtest-dashboard-redirect', studentId)
+  }
+
 }

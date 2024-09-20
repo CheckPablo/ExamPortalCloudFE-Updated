@@ -148,7 +148,6 @@ export class AuthService extends ApiService<User> {
           this.userLoggedIn.next(true);
           this.router.navigate(["/portal"]);
 
-
         }
       }
     ));

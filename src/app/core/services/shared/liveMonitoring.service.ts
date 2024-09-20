@@ -6,6 +6,7 @@ import { LiveMonitoring } from '../../models/liveMonitoring';
 import { Injectable } from '@angular/core';
 import { AnswerProgressTracking } from '../../models/answerProgressTracking';
 import { KeyPressTracking } from '../../models/keyPressTracking';
+import { StudentTestLog } from '../../models/studentTestLog';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,33 @@ export class LiveMonitoringService extends ApiService<LiveMonitoring>{
   public getIrregularities = (studentId :number ,testId : number):Observable<KeyPressTracking[]> => {
 
     const url = `GetLiveMonitoringIrregularities?`
+              + `testId=${testId}`
+              + `&studentId=${studentId}`;
+    return this.postUrl(url,null);
+  }
+
+  public getStudentTestLogs = (studentId :number ,testId : number):Observable<any[]> => {
+    console.log("getStudentTestLogs studentId",studentId); 
+    console.log("getStudentTestLogs testId",testId)
+    const url = `GetStudentTestLogs?`
+              + `testId=${testId}`
+              + `&studentId=${studentId}`;
+    return this.postUrl(url,null);
+  }
+
+  public getStudentOfflineTestLogs = (studentId :number ,testId : number):Observable<any[]> =>{
+    console.log("getStudentOfflineTestLogs studentId"+'  '+studentId); 
+    console.log("getStudentOfflineTestLogs testId",testId)
+    const url = `GetStudentOfflineTestLogs?`
+              + `testId=${testId}`
+              + `&studentId=${studentId}`;
+    return this.postUrl(url,null);
+  }
+
+  public getStudentTestIrregularityLog  = (studentId :number ,testId : number):Observable<any[]> =>{
+    console.log("getIrregularityTestLogs studentId"+'  '+studentId); 
+    console.log("getIrregularityTestLogs testId",testId)
+    const url = `GetIrregularityTestLogs?`
               + `testId=${testId}`
               + `&studentId=${studentId}`;
     return this.postUrl(url,null);

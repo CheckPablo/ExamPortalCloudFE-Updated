@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, ViewChild, AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, VERSION, SimpleChanges, HostListener, input, NgZone, Renderer2, EventEmitter, TemplateRef, } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PdfViewerComponent } from '@syncfusion/ej2-angular-pdfviewer';
+import { PdfViewerComponent, TextSelectionEndEventArgs } from '@syncfusion/ej2-angular-pdfviewer';
 import { environment } from 'src/environments/environment';
 import { Firestore, collection, addDoc, getDocs, query, where, serverTimestamp, orderBy, DocumentReference } from '@angular/fire/firestore';
 import { TestService } from 'src/app/core/services/shared/test.service';
@@ -55,7 +55,7 @@ import { DatePipe } from '@angular/common';
 import { AngularFirestore, AngularFirestoreCollection , AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { UploadedSourceDocument } from 'src/app/core/models/uploadedSourcDocument';
 import { TooltipModule } from 'ng2-tooltip-directive';
-
+import { Location } from '@angular/common';
 
 
 type RouteData = {
@@ -245,6 +245,8 @@ export class TestWritingManagementComponent {
   isSourceDocClicked: boolean;
   studentFullName: string;
   selectedWordCountValue: string;
+  selectedSourceText: string;
+  isFinishTestClicked: boolean = false;
   
   //datepipe: any;
 
@@ -269,7 +271,7 @@ export class TestWritingManagementComponent {
     private renderer2: Renderer2,
     private _ngZone: NgZone,
     private authService: AuthService,
-    //private readonly anchoredFloatingBoxService: AnchoredFloatingBoxService,
+    private location: Location,
     public datepipe: DatePipe
     ) {
     this.activateRouter.params.subscribe((p) => {
@@ -322,8 +324,13 @@ export class TestWritingManagementComponent {
         this.isConnected = isConnected.hasInternetAccess
         if (this.isConnected) {
           this.status = "ONLINE";
+          if(localStorage.getItem('studentDisconnected')){
+            // clear
+            // save the 
+          }
         } else {
           this.status = "OFFLINE"
+          localStorage.setItem('studentDisconnected', this.status+'  '+ new Date());
         }
 
       });
@@ -648,7 +655,11 @@ export class TestWritingManagementComponent {
   checkFullScreen() {
     if (!this.disclaimerAccepted) {
       return;
-    }
+    } 
+   /*  if(this.isFinishTestClicked){
+      this.router.navigate(["/portal"]); 
+      return; 
+    }  */
     if (!document.fullscreenElement && !this.isFullScreenExited && this.securityTestLevelId > 1) {
       this.keyPress('LEFT EXAM AREA')
 
@@ -656,6 +667,7 @@ export class TestWritingManagementComponent {
       
       localStorage.setItem('isFullScreenExited', 'true' );
     }
+  
   }
 
   ngOnChanges(): void {
@@ -897,6 +909,8 @@ export class TestWritingManagementComponent {
           .subscribe((data) => {
            this.base64UrlSource = 'data:application/pdf;base64,' + data.file;
             console.log(this.base64UrlSource); 
+            //this.pdfViewerSourcePdf.isExtractText = true;
+            this.pdfViewerSourcePdf.enableTextSelection = true;
             this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
             this.pdfViewerSourcePdf.enableHyperlink = false;
        
@@ -915,6 +929,9 @@ export class TestWritingManagementComponent {
           .subscribe((data) => {
             this.base64UrlSource = 'data:application/pdf;base64,' + data.file;
             console.log(this.base64UrlSource); 
+            console.log("PDF HERE",this.pdfViewerSourcePdf);
+            this.pdfViewerSourcePdf.isExtractText = true;
+            this.pdfViewerSourcePdf.enableTextSelection = true;
             this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
             this.pdfViewerSourcePdf.enableHyperlink = false;
             
@@ -923,6 +940,7 @@ export class TestWritingManagementComponent {
           })
           this.getSourcePaperText();
           this.isSourceDocClicked = true; 
+          console.log("PDF HERE",this.pdfViewerSourcePdf);
           //alert(this.isSourceDocClicked); 
           //this.ejDialog.show(true);
       }
@@ -987,11 +1005,7 @@ export class TestWritingManagementComponent {
         //await this.loginPopup();
       });
   }
-  handleSourceButtonPlayClick(speed: number) {
-    //alert("Voice clicked"); 
-    //this.checkButtonTextAnsPaper()
-
-
+  /*handleSourceButtonPlayClick(speed: number) {
     if(this.SourcePaperTTSBtnText === 'Stop Source Document' && this.SourcePaperPauseTTSBtnText === 'Resume'){
       this.SourcePaperTTSBtnText = "Read Source Document"
       this.SourcePaperPauseTTSBtnText = "Pause"; 
@@ -1005,25 +1019,20 @@ export class TestWritingManagementComponent {
       this.ttSourceStatus = 'reading';
       console.log(this.fullSourcePaperText); 
 
-      //var temp = this.pdfViewerSourcePdf.textSelection.selectionRangeArray[0];
+        if(!this.isNullOrUndefined(this.selectedSourceText)){
+          console.log("selected text", this.selectedSourceText);
+          this.ttsText = this.selectedSourceText; 
+        }
 
-      //if (this.isNullOrUndefined(temp)) {
-
-
-        //this.ttsText  ="Read out the entire question from top to bottom until the pause or stop button is clicked";
         if(this.isNullOrUndefined(this.fullQuestionPaperText)){
           this.getSourcePaperText(); 
-          this.ttsText = this.fullSourcePaperText; 
+          //this.ttsText = this.fullSourcePaperText; 
+          this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
         }
   
-        this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
-        console.log(this.ttsText); 
-     // }
-      //if (!this.isNullOrUndefined(temp)) {
-       // this.ttsText = this.pdfViewerSourcePdf.textSelection.selectionRangeArray[0].textContent;
-      //}
 
-      this.speechSynthStart(this.ttsText, speed);
+        console.log(this.ttsText); 
+        this.speechSynthStart(this.ttsText, speed);
     }
     else {
       //this.QstnPaperTTSBtnText = 'Play';
@@ -1033,24 +1042,77 @@ export class TestWritingManagementComponent {
 
     }
 
-  }
+  }*/
+
+    handleSourceButtonPlayClick(speed: number) {
+      //alert("Voice clicked"); 
+      //this.checkButtonTextAnsPaper()
+    //check pause
+    console.log('check pause status', this.ttSourceStatus);
+    if (this.ttSourceStatus === 'paused' ) {
+      speechSynthesis.resume();
+      this.SourcePaperTTSBtnText = 'Stop Source Document';
+      //$('#btnPauseStatus').text('Pause');
+      this.ttSourceStatus = 'reading'
+      return;
+    }
+    // end check pause
+  
+      if(this.SourcePaperTTSBtnText === 'Stop Source Document' && this.SourcePaperPauseTTSBtnText === 'Resume'){
+        console.log(" 1.Check for resume here ",this.SourcePaperTTSBtnText); 
+        this.SourcePaperTTSBtnText = "Read Source Document"
+        this.SourcePaperPauseTTSBtnText = "Pause"; 
+        speechSynthesis.cancel();
+        return; 
+      }
+  
+      if (this.SourcePaperTTSBtnText === 'Read Source Document') {
+        console.log(" 1.Check for resume here ",this.SourcePaperTTSBtnText);
+        speechSynthesis.cancel();
+        this.SourcePaperTTSBtnText = 'Stop Source Document';
+        this.ttSourceStatus = 'reading';
+        console.log(this.fullSourcePaperText); 
+
+       if(!this.isNullOrUndefined(this.selectedSourceText)){
+            console.log("selected text", this.selectedSourceText);
+            this.ttsText = this.selectedSourceText; 
+        }
+        else{
+        this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
+        console.log(this.ttsText);
+        } 
+        this.speechSynthStart(this.ttsText, speed);
+        this.selectedSourceText = null;
+      }
+
+      else {
+        //this.QstnPaperTTSBtnText = 'Play';
+        this.SourcePaperTTSBtnText = "Read Source Document";
+        this.ttSourceStatus = "";
+        speechSynthesis.cancel();
+      }
+  
+    }
+  
 
   changePauseTTSButtonSourceText():void{
+    console.log('source doc reading status', this.ttSourceStatus)
     if (this.ttSourceStatus === 'reading') {
       if (speechSynthesis) {
-        this.ttStatus = 'paused';
+        this.ttSourceStatus = 'paused';
         speechSynthesis.pause();
         this.SourcePaperTTSBtnText = 'Resume';
         //$('#btnPauseStatus').text('Resume');
       }
     }
-    else if (this.ttSourceStatus === 'paused') {
+
+ /*    else if (this.ttSourceStatus === 'paused') {
       speechSynthesis.resume();
       this.SourcePaperTTSBtnText = 'Pause';
       //$('#btnPauseStatus').text('Pause');
-      this.ttStatus = 'reading';
-    }
-  }
+      this.ttSourceStatus = 'reading';
+    } */
+  };
 
   public checkIrregularites(stud: StudentTestAnswer) {
 
@@ -1167,10 +1229,10 @@ export class TestWritingManagementComponent {
     if (this.isNullOrUndefined(this.rateValue)) {
       this.rateValue = 100;
     }
-
     let QstnPaperTTSBtnText = this.QstnPaperTTSBtnText;
     let QstnPaperPauseTTSBtnText = this.QstnPaperPauseTTSBtnText;
     let ttStatus = this.ttStatus
+    let ttSStatus = this.ttSourceStatus
 
     const textToSpeech = new SpeechSynthesisUtterance(text);
 
@@ -1189,6 +1251,7 @@ export class TestWritingManagementComponent {
     };
 
     this.ttStatus = ttStatus;
+    this.ttSourceStatus = this.ttSourceStatus;
     this.QstnPaperTTSBtnText = QstnPaperTTSBtnText;
     this.QstnPaperPauseTTSBtnText = QstnPaperPauseTTSBtnText;
 
@@ -1237,7 +1300,7 @@ export class TestWritingManagementComponent {
 
   checkButtonTextQstnPaper() {
     if (this.QstnPaperTTSBtnText === 'Stop') {
-      this.QstnPaperTTSBtnText = 'Play'
+        this.QstnPaperTTSBtnText = 'Play'
     }
   }
 
@@ -1318,6 +1381,13 @@ export class TestWritingManagementComponent {
           this.pdfViewerSourcePdf.enableHyperlink = false;
         })
     
+  }
+
+  onTextSelectionEnd(args: TextSelectionEndEventArgs): void {
+    this.selectedSourceText = args.textContent;
+    console.log('Selected Text: ', args.textContent);
+    console.log('Page Index: ', args.pageIndex);
+    console.log('Text Bounds: ', args.textBounds);
   }
 
   public dismissModal() {
@@ -1479,6 +1549,7 @@ export class TestWritingManagementComponent {
     this.studentName = studentTestData.studentName,
     this.workOffline = studentTestData.workOffline,
     this.testName = studentTestData.testName;
+    localStorage.removeItem('endTime');
     const testDuration = studentTestData.testDuration.split(":");
     this.getTestDurationTime(studentTestData.testDuration);
     this.setCountDown();
@@ -1695,14 +1766,48 @@ export class TestWritingManagementComponent {
 
   private setCountDown() {
     this.countDown = timer(0, this.tick).subscribe(() => this.counter > 0 ? --this.counter : 0);
-
     this.countDown$ = interval(1000).pipe(
       map(() => {
         const time = this.testDuration.getTime() - new Date().getTime();
+        console.log('time', time); 
         if (time > 0) {
           localStorage.setItem('remainingTime', String(time));
-          this.addExtratime()
-          return Math.floor(time / 1000);
+          this.addExtratime();
+          if(localStorage.getItem('endTime')=="00:00:30")      
+          /* if(localStorage.getItem('endTime')!='undefined') */
+            {
+              localStorage.removeItem('endTime'); 
+               const timeOutSwwal = setInterval(() => {
+                Swal.fire({
+                  title: 'Time is Up',
+                  text: 'Your test time has ran out due to your teacher ending your test. Your answers have been saved. Please click on the OK button to return to the assessment screen.',
+                  icon: 'info'
+                }).then(() => {
+                  this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
+                    next: (data: any) => {
+                      this.countDown.unsubscribe();
+                      //this.eventEmitterService.onFinishSave();
+                      this.router.navigate(["/portal"])
+                      return;
+                    },
+                    error: (error) => {
+                      Swal.fire({
+                        title: "Finish Test Unsuccesful",
+                        text: "Please contact administrator",
+                        icon: "error"
+                      });
+                      this.router.navigate(["/portal"]); 
+                      return;
+                    },
+                    complete: () => {this.isFinishTestClicked = true; clearInterval(timeOutSwwal)},
+                   
+                  });
+                });
+              }, 30000)
+              this.isTestComplete = true;
+              return 0;
+            }
+            return Math.floor(time / 1000);
         }
         else {
           if (!this.isTestComplete && !isNaN(time)) {
@@ -1718,7 +1823,7 @@ export class TestWritingManagementComponent {
                 },
                 error: (error) => {
                   Swal.fire({
-                    title: "Finish Test Unsuccesful",
+                    title: "Finish Test Unsuccessful",
                     text: "Please contact administrator",
                     icon: "error"
                   });
@@ -1735,7 +1840,6 @@ export class TestWritingManagementComponent {
       }));
   }
 
-
   public setStartDate(testId: number, id: number) {
 
     this.studentTestService.setStudenTestStartDate(testId, id)
@@ -1744,17 +1848,40 @@ export class TestWritingManagementComponent {
       })
   }
 
-
-  public lockscreen() {
-    if (!document.fullscreenElement) {
+ /*  public lockscreen() {
+    if(this.isFinishTestClicked){
+      console.log("if", "lockscreen attempt here")
+      //this.router.navigate(["/portal"])
+      //document.exitFullscreen(); 
+      if(document.fullscreenElement)
+      {
+        document.exitFullscreen(); 
+      } 
+      return; 
+    }
+    //if (!document.fullscreenElement) {
+    else{
+      console.log("else", "lockscreen attempt here")
       this.openfullscreen();
     }
-
-  }
+  } */
+    public lockscreen() {
+      if (!document.fullscreenElement) {
+        this.openfullscreen();
+      }
+  
+    }
 
   openfullscreen() {
     // Trigger fullscreen
     // eslint-disable-next-line no-shadow,@typescript-eslint/no-shadow
+  /*   if(this.isFinishTestClicked){
+      if(document.fullscreenElement)
+      {
+        document.exitFullscreen(); 
+      }
+      return; 
+    } */
     const docElmWithBrowsersFullScreenFunctions = document.documentElement as HTMLElement & {
       mozRequestFullScreen(): Promise<void>;
       webkitRequestFullscreen(): Promise<void>;
@@ -1774,13 +1901,34 @@ export class TestWritingManagementComponent {
   }
 
   ngOnDestroy() {
+    console.log('All Local Storage Variables Test Writing Management',localStorage);
     localStorage.setItem('onclose', 'closed');
     localStorage.removeItem('isFullScreenExited');
     this.storageService.removeSelectedTestSecurityId();
-    localStorage.removeItem('user');
-    localStorage.clear(); 
+    const keyToKeep = 'user';
+    const keyToKeepToken = 'token';
+    const valueToKeep = localStorage.getItem(keyToKeep);
+    const valueToKeepToken = localStorage.getItem(keyToKeepToken)
+    localStorage.clear();
+   //Restore the key-value pair
+   if (valueToKeep !== null) {
+    localStorage.setItem(keyToKeep, valueToKeep);
+   }
+   if (valueToKeepToken !== null) {
+    localStorage.setItem(keyToKeepToken, valueToKeepToken);
+   }
+ /* if(!this.isFinishTestClicked){ // only clearing these when user is leaving for other reasons apart from finish test and end test from invigilator
+      localStorage.removeItem('user');
+      localStorage.clear();
+    }
+    else{
+      localStorage.setItem('isFinishTestClicked','isFinishTestClicked')
+    } */
     this.unlistener();
     speechSynthesis.cancel();
+   /*  if(this.isFinishTestClicked){
+      this.router.navigate(["/portal"])
+    } */
   }
 
   ngAfterViewChecked() {
@@ -1840,7 +1988,11 @@ export class TestWritingManagementComponent {
   }
 
   public keyPress(keyPressEvent: string) {
-
+   if(this.isFinishTestClicked){
+    console.log("Test is finished"); 
+    ///this.router.navigate(["/portal"])
+    return; 
+   }
     if ((keyPressEvent !== null) && (keyPressEvent !== undefined)) {
       Swal.fire({
         title: 'Locked out',
@@ -1878,6 +2030,9 @@ export class TestWritingManagementComponent {
 
 
   public OffScreenEvent(offScreenEvent: string) {
+    if(this.isFinishTestClicked){
+      return; 
+    }
     this.toastr.error('Confirm leaving the screen. Confirm Invalid Naviagation!!', 'Invalid Navigation');
     const confirmed = confirm("Confirm Invalid Navigation!!?");
     // Check the user's response
@@ -1888,7 +2043,7 @@ export class TestWritingManagementComponent {
     }
   }
 
-  public finishTestWrite() {
+ /*  public finishTestWrite() {
     //alert("FINISHING");
     this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
     next: (data: any) => {
@@ -1905,13 +2060,20 @@ export class TestWritingManagementComponent {
           },
         }).then((result) => {
           if (result.isConfirmed) { 
-        localStorage.setItem('RemainingTime', '0');
+        //this.router.navigate(["/"])
+        //this.location.back();
          Swal.fire(
           'Test Completed',
-          'You have successfully completed your test. Resume from test list or close your browser.',
-          'success'
-          ); 
-            this.router.navigate(["/portal"])
+          'You have successfully completed your test. Resume from test list or close your browser.'+' '+  this.router.navigate(["/portal"]),
+          'success', 
+          
+          ).then(() => {
+            this.countDown.unsubscribe();
+              //this.eventEmitterService.onFinishSave();
+              this.router.navigate(["/portal"])
+              return; });
+          //this.router.navigate(["/"])
+          //this.location.back(); 
           } else if (result.isDenied) {
            // stay on current page
           }
@@ -1921,7 +2083,7 @@ export class TestWritingManagementComponent {
        },
        error: (error) => { 
         Swal.fire({
-          title: "Finish Test Unsuccesful",
+          title: "Finish Test Unsuccessful",
           text: "Please contact administrator",
           icon: "error"
         });
@@ -1930,9 +2092,100 @@ export class TestWritingManagementComponent {
         complete: () => { }
       }); 
       this.isTestComplete = true;
- 
-  }
+  } */
 
+      public finishTestWrite() {
+        //alert("FINISHING");
+        //document.exitFullscreen(); 
+        this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
+        next: (data: any) => {
+          //document.exitFullscreen(); 
+          setTimeout(() => {
+            Swal.fire({
+              title: 'Are you sure you want to finish your test,  return to the test list?',
+              showDenyButton: true,
+              confirmButtonText: 'Yes',
+              denyButtonText: 'No',
+              customClass: {
+                actions: 'my-actions',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
+              },
+            }).then((result) => { 
+            if (result.isConfirmed) { 
+            //document.exitFullscreen(); 
+            console.log("finishing")
+            localStorage.setItem('RemainingTime', '0');
+            this.isFinishTestClicked = true; 
+          /*   this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
+              next: (data: any) => {
+            //this.ngOnDestroy(); 
+            
+            
+            }}) */
+             this.router.navigate(["/portal"])
+             Swal.fire(
+              'Test Completed',
+              'You have successfully completed your test. Resume from test list or close your browser.',
+              'success'
+              );  
+                //this.router.navigate(["/portal"]) 
+              } else if (result.isDenied) {
+               // stay on current page */
+            }
+              
+            })
+          }, 2000);
+           
+           },
+           error: (error) => { 
+            Swal.fire({
+              title: "Finish Test Unsuccessful",
+              text: "Please contact administrator",
+              icon: "error"
+            });
+            return; 
+            },
+            complete: () => { }
+          }); 
+          this.isTestComplete = true;
+     
+      }
+      //import{StudentDashboardComponent} from './student-dashboard/student-dashboard.component'    
+
+      /*public redirectStudentToDashboard(payload: any): Observable<any> {
+        payload.password.toString().trim();
+        ///payload.password.trim(); 
+        const res = super.postEndpoint('LoginStudent', payload);
+    
+        return res.pipe(map(
+          (response: any) => {
+            if (response) {
+    
+              this.storageService.saveUser(response);
+              this.storageService.saveToken(response.token);
+    
+              if (this.currentUserSubject) {
+                this.currentUserSubject.next(response);
+              }
+    
+              this.userLoggedIn.next(true);
+              this.router.navigate(["/portal"]);
+    
+            }
+          }
+        ));
+      }*/
+
+        //solar
+
+
+        //flagship
+
+        //rubber at the house
+        //gas at the emerald 
+
+        //
 
   public OffScreenEvent2() {
     const swalWithBootstrapButtons = Swal.mixin({

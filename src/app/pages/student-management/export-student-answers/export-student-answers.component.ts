@@ -471,18 +471,15 @@ public downloadBlob(blob, name = 'OfflineAnswersExported.docx') {
     
         return;
       }
-    
+     console.log("searchAnswersForm Stringified", JSON.stringify(this.searchAnswersForm.value)); 
+     console.log("searchAnswersForm" , this.searchAnswersForm.value)
       this.studentTestService.getStudentAnswerList(this.searchAnswersForm.value)
        .subscribe((data) => {
           this.resulting = data; 
           this.testName = this.resulting[0].testName;
-
-           
           data.forEach(x => {
-             
            this.studentIds.push(x.studentID); 
           });
-
           this.initForms();
        })
         

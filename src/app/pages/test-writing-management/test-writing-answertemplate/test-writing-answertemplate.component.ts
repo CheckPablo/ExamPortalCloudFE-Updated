@@ -141,6 +141,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   currentStudentNameChrome: string;
   currentTestNameMac: string;
   currentStudentNameMac: string;
+  currentStudentNameWin: string; 
   selectedWordCount: string;
   
   //answerTextRate: any;
@@ -239,7 +240,21 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
           this.currentTestName = data; 
         });
     } */
+       
+
     let userAgentString = navigator.userAgent;
+    const decodedUrl = decodeURIComponent(this.router.url);
+    const urlPath = decodedUrl.split('/');
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+     console.log("Index 4"+''+ urlPath[4]); 
+     console.log("Index 5"+''+ urlPath[5])
+     console.log("Index 6"+''+ urlPath[6])
+     console.log("Index 7"+''+ urlPath[7])
+     console.log("Index 8"+''+ urlPath[8]) 
+     this.currentTestName = urlPath[7]; 
+     this.currentStudentNameWin = urlPath[8]
+    }
+
     if (userAgentString.includes("SEB")) {
     const decodedUrl = decodeURIComponent(this.router.url);
     const urlPath = decodedUrl.split('/'); 
@@ -677,24 +692,43 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   @HostListener('document:mousemove', ['$event']) 
   onMouseMove(e) {
     if (this.container.documentEditor.selection.text.length >= 1) {
+      let count = 0; 
       var text = this.container.documentEditor.selection.text;
-      let wordCCountInput = document.getElementById('txtWordCount'); 
-     
-      //s = document.getElementById("inputString").value;
-      text = text.replace(/(^\s*)|(\s*$)/gi, "");
+      console.log("Original string",text);
+      if(this.container.documentEditor.selection)
+      //extendToLineEnd
+      //extendToNextLinetext , characterFormat ,getBlock,selectColumn
+      {
+        console.log("new row found");
+        count++; 
+      }
+
+      if(this.container)
+
+  /*     if(this.container.documentEditor.selection.extendToLineEnd)
+        //extendToLineEnd
+         //extendToNextLinetext , characterFormat ,getBlock,selectColumn
+       {
+         console.log("new row found");
+         count++; 
+       } */
+ 
+
+      /*if(this.container.documentEditor.selection.containsRow)
+        // extendToLineEnd
+         //extendToNextLinetext , characterFormat ,getBlock,selectColumn
+       {
+         console.log("new line found");
+       }*/
+      /* text = text.replace(/(^\s*)|(\s*$)/gi, "");
       text = text.replace(/[ ]{2,}/gi, " ");
-      text = text.replace(/\n /, "\n");
+      text = text.replace(/\n /, "\n"); */
+      text = text.replace('\n', ' ');
       console.log(text.split(' ').length);
-      //wordCCountInput.textContent;
+   
       this.wordCountInputValue = text.split(' ').length; 
       this.storageService.saveSelectedWordCount(String(this.wordCountInputValue));
- 
-      //this.selectedWordCount = String( this.wordCountInputValue);
       this.eventEmitterService.onSetWordCount(this.wordCountInputValue);
-      //this.wordCountInput.nativeElement.value = "update input value";
-      //this.container.documentEditor.selection.selectAll();
-      //this.container.documentEditor.scrollToPage(1);
-      //this.selectAll = true;
     }
     else{
       this.storageService.saveSelectedWordCount(null);
@@ -944,7 +978,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
           this.studentName = data[0].studentName,
           this.workOffline = data[0].workOffline;
           //this.testName = data[0].testName;
-        const testDuration = data[0].testDuration.split(":");
+           const testDuration = data[0].testDuration.split(":");
 
 
         this.updatedTestDuration = new Date(Date.parse(new Date().toString()) + this.toMillesecond(Number(testDuration[0]), Number(testDuration[1]), Number(testDuration[2])));
@@ -1302,7 +1336,6 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
 
   }
 
-
   selectionChanges() {
     //Get the start index of current selection
     //Get the end index of current selection
@@ -1342,17 +1375,20 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
      this.user.fullName = this.currentStudentNameSEB
     }
 
- 
     if(userAgentString.includes("CrOS")){
       this.currentTestName = this.currentTestNameChrome
       this.user.fullName = this.currentStudentNameChrome
     } 
+    console.log("loadDocument saveTestAnswerDoc", this.currentTestName)
 
-    
     if(userAgentString.includes("Mac")){
       this.currentTestName = this.currentTestNameMac
       this.user.fullName = this.currentStudentNameMac
     } 
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+      this.user.fullName = this.currentStudentNameWin
+    }
+
     try {
       this.container.documentEditor.open(documentBase64);
       let defaultCharacterFormat: CharacterFormatProperties = {
@@ -1424,21 +1460,24 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     this.transformDate = this.datePipe.transform(this.testWriteDate, 'yyyy/M/dd');
     /*this.container.documentEditor.openBlank(); */
     if (userAgentString.includes("SEB")) {
-     this.currentTestName = this.currentTestNameSEB
-     this.user.fullName = this.currentStudentNameSEB
+     this.currentTestName = this.currentTestNameSEB;
+     this.user.fullName = this.currentStudentNameSEB;
     }
 
      if(userAgentString.includes("CrOS")){
-      this.currentTestName = this.currentTestNameChrome
-      this.user.fullName = this.currentStudentNameChrome
+      this.currentTestName = this.currentTestNameChrome;
+      this.user.fullName = this.currentStudentNameChrome;
     } 
 
     
     if(userAgentString.includes("Mac")){
-      this.currentTestName = this.currentTestNameMac
-      this.user.fullName = this.currentStudentNameMac
+      this.currentTestName = this.currentTestNameMac;
+      this.user.fullName = this.currentStudentNameMac;
     } 
 
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+      this.user.fullName = this.currentStudentNameWin; 
+    }
 
     try {
       let defaultCharacterFormat: CharacterFormatProperties = {
@@ -1624,7 +1663,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
      this.user.fullName = this.currentStudentNameMac
     }
 
-    var base64DataLocal;
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+      this.user.fullName = this.currentStudentNameWin
+    }
+    
+   var base64DataLocal;
     var reader = new FileReader();
     var studentTestSave: StudentTestAnswerSave;
     const remainingTime = localStorage.getItem('remainingTime');
@@ -1667,6 +1710,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
           .subscribe((data) => {
             if (data) {
              localStorage.setItem('extraTime', data.studentExtraTime);
+             localStorage.setItem('endTime',data.studentEndTime);
             }
             else {
 
@@ -1706,6 +1750,10 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     if(userAgentString.includes("Mac")){
      this.currentTestName = this.currentTestNameMac; 
      this.user.fullName = this.currentStudentNameMac
+    }
+
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+      this.user.fullName = this.currentStudentNameWin
     }
 
     var base64DataLocal;
@@ -1758,6 +1806,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
             .subscribe((data) => {
               if (data) {
                 localStorage.setItem('extraTime', data.studentExtraTime);
+                
               }
               else {
 
@@ -1840,6 +1889,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
      this.currentTestName = this.currentTestNameMac; 
      this.user.fullName = this.currentStudentNameMac
     }
+    
+    if (!userAgentString.includes("SEB") || !userAgentString.includes("CrOS") || !userAgentString.includes("Mac") ) {
+      this.user.fullName = this.currentStudentNameWin
+    }
+
     var base64DataLocal;
     var reader = new FileReader();
    
@@ -2011,7 +2065,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   ngOnDestroy() {
-   
+    console.log('All Local Storage Variables Test Writing Answer Management', localStorage);
     this.blankloaded = false;
     this.unlistener();
     //this.storageService.removePageNumberInFocus(); 

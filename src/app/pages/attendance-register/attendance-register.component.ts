@@ -183,9 +183,7 @@ export class AttendanceRegisterComponent {
   }
   public onSubmit() {
     this.submitted = true;
-
     //if (this.searchForm.invalid) return;
-  
     this.getAttendanceRegister();
   }
 

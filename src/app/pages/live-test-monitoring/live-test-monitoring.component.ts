@@ -20,6 +20,7 @@ import { LiveMonitoring } from 'src/app/core/models/liveMonitoring';
 import { TestChat } from 'src/app/core/models/testChat';
 import { Firestore, collection, addDoc, getDocs, query, where, serverTimestamp, orderBy } from '@angular/fire/firestore';
 import { PaginationService } from 'src/app/core/services/pagination.service';
+import { StudentTestWriteService } from 'src/app/core/services/shared/studentTestWrite.service';
 
 @Component({
   selector: 'app-live-test-monitoring',
@@ -98,6 +99,7 @@ export class LiveTestMonitoringComponent {
     private router: Router,
     private subjectService: SubjectService,
     private liveMonitoringService: LiveMonitoringService,
+    private studentTestWriteService: StudentTestWriteService,
     private testService: TestService,
     private formBuilder: UntypedFormBuilder,
     private modalService: NgbModal,
@@ -561,10 +563,7 @@ export class LiveTestMonitoringComponent {
         this.studentList = data;
         this.cdRef.detectChanges();
 
-
         data.forEach(x => {
-
-
           if (x.linked) this.studentIds.push(x.studentID)
           if (x.accomodation) this.accomodationIds.push(x.studentID)
           if (x.electronicReader) this.readerIds.push(x.studentID)
@@ -601,7 +600,6 @@ export class LiveTestMonitoringComponent {
 
   };
 
-
   stingify(key: string, data: any) {
     localStorage.setItem(key, JSON.stringify(data));
   }
@@ -609,7 +607,6 @@ export class LiveTestMonitoringComponent {
   parse(key: string) {
     return JSON.parse(localStorage.getItem(key));
   }
-
 
   onRedirect() {
     if (this.parse('form')) {
@@ -640,9 +637,7 @@ export class LiveTestMonitoringComponent {
   }
 
   public onSendOTPClicked() {
-
     this.openSm(this.otpContent);
-
   }
 
   toggleChatButtons() {
@@ -703,8 +698,6 @@ export class LiveTestMonitoringComponent {
       }
       x++;
     }
-    //console.log('Atfer',this.liveMonitoringCanidateList);
-    //console.log(duplicates);
   }
  
   stopTimer() {
@@ -719,7 +712,30 @@ export class LiveTestMonitoringComponent {
   public startTimer(interval) {
     this.timer = setInterval(() => {
         --this.duration;
-      
     }, interval);
   }
+
+  public onEndTestClick() {
+    let payload = {
+      testId: this.searchForm.value['testId'],
+      studentIds: this.studentIds,
+    }
+
+    this.liveMonitoringService.postUrl(`end-test`, payload)
+      .subscribe((studentIds) => {
+        if (studentIds.length > 0) {
+          const studentErrorList = studentIds.filter(x => x == this.links)
+          const items = [];
+          for (const item in studentErrorList) {
+            items.push(`${item['name']} ${item['surname']}\n`);
+          }
+          let output = `The following students exams were not ended because they not allowed to write the test.\n ${items.join('')}`;
+          Swal.fire('End Test Time', output, 'error');
+        }
+        else {
+          Swal.fire('End Test Time Success', 'Test ended was successfully', 'success');
+
+        }
+      })
+  } 
 }

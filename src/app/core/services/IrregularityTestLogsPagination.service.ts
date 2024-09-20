@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class IrregularityPaginationService {
+export class IrregularityTestLogsPaginationService {
   currentPage: number;
-  pageSize: number;   
+  pageSize: number;
   totalItems: number;
   sortConfig: { key: string; direction: 'asc' | 'desc' };
   searchTerm: string;

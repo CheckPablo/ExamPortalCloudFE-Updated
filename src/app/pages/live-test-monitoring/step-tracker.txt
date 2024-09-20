@@ -1,0 +1,25 @@
+StopTestButton
+when no box is checked
+ boolean stopTestAll = true
+   stopTestButton.text = "stop test(All)"
+
+  When one or more boxes is checked 
+   boolean stopTestAll = false
+  stopTestButton.text = "stop test"
+
+
+
+Pull out studentId(rowId for student)
+ refer to testUpload.html linking pane and ts filter
+Create end point that takes in studentId and testId and calls 
+ call(finishTest)
+
+Create end point that takes in multiple studentId's and testId's and calls 
+Create FinishTestAll(); 
+
+Keep log of startimes
+ 
+ 
+
+
+Call(FinishTestAll)

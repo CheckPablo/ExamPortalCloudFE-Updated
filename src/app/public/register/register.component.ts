@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, AbstractControl, ValidationErrors, ValidatorFn  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from 'src/app/core/helpers/customValidators';
 import { Center } from 'src/app/core/models/center';
@@ -7,11 +7,27 @@ import { AuthService } from 'src/app/core/services/shared/auth.service';
 import { CenterService } from 'src/app/core/services/shared/center.service';
 import Swal from 'sweetalert2';
 
+/* export function passwordValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) return null; // If the control is empty, no validation errors
+
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+    const isValidLength = value.length > 8;
+
+    const valid = hasUpperCase && hasSpecialChar && isValidLength;
+
+    return !valid ? { weakPassword: true } : null;
+  };
+} */
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent {
 
   centers: Center[] = [];
@@ -24,6 +40,7 @@ export class RegisterComponent {
   message: string;
   showModal: boolean;
   confirmPasswordBool: boolean = true;
+  isValid: boolean;
 
   constructor (
     private authService: AuthService,
@@ -41,7 +58,6 @@ export class RegisterComponent {
 
   get f() { return this.signupForm.controls; }
 
-
   private getCenters()
   {
     this.centerService.get()
@@ -51,11 +67,23 @@ export class RegisterComponent {
       //this.paginationService.setData(res);     
     });
   }
+
   get passwordMatchError() {
     return (
       this.signupForm.getError("mismatch") &&
       this.signupForm.get("confirmPassword")?.touched
     );
+  }
+
+  isPasswordValid(password: string): boolean {
+    if (!password) return false; // If the password is empty, it's invalid
+  
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const isValidLength = password.length >= 8;
+
+    if(hasUpperCase && hasSpecialChar && isValidLength){this.isValid=true}
+    return hasUpperCase && hasSpecialChar && isValidLength;
   }
 
   private initForms(): void {
@@ -95,6 +123,7 @@ export class RegisterComponent {
       [CustomValidators.MatchValidator("password", "password2")]
     );
   }
+
   /*password: new FormControl(
     null,
     Validators.compose([
@@ -114,6 +143,7 @@ export class RegisterComponent {
       })
     ])
   ),*/
+
   redirectLogin() {
     this.router.navigate(["/invigilator-login"]);
     }
@@ -126,14 +156,18 @@ export class RegisterComponent {
     console.log(this.signupForm.status);
 
     this.submitted = true;
-   /*  if(this.f.confirmPassword != this.f.password){
+    console.log('passwordValidator',this.isPasswordValid(this.f.password.value))
+    if(!this.isPasswordValid(this.f.password.value)){this.submitted = false; return;} 
+
+   /*if(this.f.confirmPassword != this.f.password){
       return
       //alert("Password and confirm passsword not matching"); 
     }; 
     if(this.f.password.errors.Validators.minLength(8)){
       return
       //alert("Password and confirm passsword not matching"); 
-    };  */
+    }; */
+
     console.log(this.signupForm);
 
     if (this.signupForm.invalid) return;
@@ -146,20 +180,23 @@ export class RegisterComponent {
           this.signupForm.reset();
          },
         error: (error) => { 
-        console.log(error); 
+        console.log('error1',error); 
+        Swal.fire('Username fail', 'Username is already in use. Please use a differnt username', 'error');
+        this.submitted = false;
+        /* if(error = 'The specified username already exists')
         this.title = "Registration Unsuccesful";
-        this.message = 'Please check your form, correct and resubmit';
-        this.showModal = true;
+        this.message = error;
+        this.showModal = true; */
         return; 
         },
-        complete: () => { }
+        complete: () => { this.submitted = false;}
       });
-     /*  .subscribe(() => {
+
+     /*.subscribe(() => {
         Swal.fire('User Saved', 'You have successfully captured the user. You may capture a new User.', 'success');
         this.router.navigate(["/"]);
         this.signupForm.reset(); 
-        
-      }); */
+      });*/
   }
 
   public confirmPassword(){
@@ -181,4 +218,5 @@ export class RegisterComponent {
   public toggleFieldTextType2() {
     this.fieldTextType2 = !this.fieldTextType2;
   }
+
 }

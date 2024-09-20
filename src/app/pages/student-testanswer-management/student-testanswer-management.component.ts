@@ -118,7 +118,6 @@ public OfflineAnswers(iBlob: any) {
   }
 
    public checkLocalStorage(){
-   
       var str = localStorage.getItem('EncryptedAnswers: ' + `${this.testId}`);
       if (str !== null) {
         console.log(str); 
@@ -256,8 +255,6 @@ public OfflineAnswers(iBlob: any) {
           //this.isAnswersUploaded = true; 
          }
   }); 
-
-
    /*  Swal.fire(
       'Test Completed',
       'You have successfully completed your test. Please return to the test list or close your browser.',

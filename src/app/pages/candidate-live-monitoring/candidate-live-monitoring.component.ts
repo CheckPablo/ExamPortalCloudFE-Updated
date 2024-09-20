@@ -16,6 +16,11 @@ import { ModalSizes } from 'src/app/core/utilities/modal-sizes';
 import { DatePipe } from '@angular/common';
 import { AnswerProgressTracking } from 'src/app/core/models/answerProgressTracking';
 import { IrregularityPaginationService } from 'src/app/core/services/IrregularityPagination.service';
+import { InTestWriteService } from 'src/app/core/services/shared/inTestWrite.service';
+import { TestLogsPaginationService } from 'src/app/core/services/TestLogsPagination.service';
+import { StudentTest } from 'src/app/core/models/studentTest';
+import { OfflineTestLogsPaginationService } from 'src/app/core/services/OfflineTestLogsPagination.service';
+import { IrregularityTestLogsPaginationService } from 'src/app/core/services/IrregularityTestLogsPagination.service';
 
 @Component({
   selector: 'app-candidate-live-monitoring',
@@ -48,19 +53,30 @@ export class CandidateLiveMonitoringComponent implements AfterViewInit{
   @ViewChild("CandidateLiveChatModal",{static:true}) content:ElementRef;
   answerText: any;
   modalAnswerText: AnswerProgressTracking;
+  testAttemptCount: number;
+  testLogLinks: any[];
+  offlineTestLogLinks:any[]; 
+  testIrregularityLogLinks: any[];
+  studentName:string; 
   
   constructor(private storage: TokenStorageService,
     private liveMonitoringService: LiveMonitoringService,
     private activateRouter: ActivatedRoute,
     public paginationService: PaginationService,
     public irregularityPaginationService: IrregularityPaginationService,
+    public testLogsPaginationService: TestLogsPaginationService,
+    //public IrregularityTestLogsPaginationService: IrregularityTestLogsPaginationService,
+    public offlineTestLogsPaginationService: OfflineTestLogsPaginationService,
+    public irregularityTestLogsPaginationService:IrregularityTestLogsPaginationService,
     private exportAsService: ExportAsService,
     private router: Router,
     private db: Firestore, 
     private formBuilder: UntypedFormBuilder,
     private datePipe: DatePipe,
     private modalService: NgbModal,
-    private testService: TestService
+    private testService: TestService, 
+    private testWritingService : InTestWriteService, 
+    
     //private eventEmitterService: EventEmitterService   
     // public studentTestPagination: StudDashboardPaginationService, 
   ) {
@@ -75,14 +91,24 @@ export class CandidateLiveMonitoringComponent implements AfterViewInit{
       .subscribe((p) => {
         console.log(p); 
         this.student = p;
+        this.studentName = this.student.name+' '+ this.student.surname;
+        localStorage.setItem('StudentFullName',this.studentName); 
+
+        if(!this.studentName){
+          console.log("Student name is now null after refresh", this.studentName); 
+        }
         console.log(p);
         
       })
 
-    this.getIrregularKeyPresses(); 
+    this.getIrregularKeyPresses();  
     setInterval(() => {
       this.getStudentAnswerProgress();
+  
     },30000); 
+    if(!this.studentName){
+      this.studentName = JSON.stringify(localStorage.getItem('StudentFullName'))
+    }
     this.initForms(); 
   }
 
@@ -150,13 +176,59 @@ async getCandidateLiveChats() {
 
   getIrregularKeyPresses(){
     this.liveMonitoringService.getInvalidKeyPresses(this.student.studentID, this.student.testID).subscribe((data) => {
-      console.log(data); 
+      console.log("irregular key presses",data); 
       this.hasAnswerProgress = data.length > 0;
       this.hasIrregularities = data.length > 0;
 
       this.irregularityPaginationService.setData(data);
+      this.getTestAttemptLog();
+      
     });
   }
+
+ getTestAttemptLog(){  
+    //alert(this.student.studentID); 
+    //alert(this.student.testID);
+    this.liveMonitoringService.getStudentTestLogs(this.student.studentID, this.student.testID).subscribe((data) => {
+      console.log(data);
+      this.testLogLinks = data
+      this.testLogsPaginationService.setData(data);
+      this.getOfflineCountLog(); 
+  }); 
+}
+
+ getOfflineCountLog(){  
+  this.liveMonitoringService.getStudentOfflineTestLogs(this.student.studentID, this.student.testID).subscribe((data) => {
+    console.log(data);
+    this.offlineTestLogLinks = data
+    this.offlineTestLogsPaginationService.setData(data);
+    this.getStudentTestIrregularityLog();
+}); 
+}
+
+  displayTestAttemptLog(modal: any){
+    this.modalService.open(modal, ModalSizes.lg);
+  }
+
+  displayOfflineCountLog(modal: any){ 
+    this.modalService.open(modal, ModalSizes.lg);
+  }
+
+  displayIrregularityLog(modal: any){ 
+    this.modalService.open(modal, ModalSizes.lg);
+  }
+
+  displayStudentTestIrregularityLog(modal: any){
+    this.modalService.open(modal, ModalSizes.lg);
+  }
+
+  getStudentTestIrregularityLog(){
+    this.liveMonitoringService.getStudentTestIrregularityLog(this.student.studentID, this.student.testID).subscribe((data) => {
+      console.log(data);
+      this.testIrregularityLogLinks = data
+      this.irregularityTestLogsPaginationService.setData(data);
+  });
+}
 
   getStudentAnswerProgress() {
     this.liveMonitoringService.getStudentAnswerProgress(this.student.studentID, this.student.testID).subscribe((data) => {
@@ -238,6 +310,10 @@ async getCandidateLiveChats() {
 
 openSm(content) {
   this.modalService.open(content, ModalSizes.lg);
+}
+ngOnDestroy(){
+  localStorage.removeItem('StudentFullName')
+  console.log("On Destroy method for Candidate Live Monitoring"); 
 }
 
 }

@@ -61,8 +61,10 @@ export class StudentDashboardComponent {
   ) { }
 
   ngOnInit() {
+    console.log("student dashboard init",JSON.stringify(this.user)); 
     this.user = this.storage.getUser();
-    
+    console.log("student dashboard init",JSON.stringify(this.user)); 
+    console.log("CURRENT TIME", new Date());
     this.getStudentTestList();
     this.startTimer(1000);
     setTimeout(() => {
@@ -94,8 +96,10 @@ export class StudentDashboardComponent {
   //get g() { return this.testOTPForm.controls; }
 
   public getStudentTestList = () => {
+    console.log("student dashboard getStudentTestList",JSON.stringify(this.user)); 
     this.studentTestService.searchStudentTestList(this.user.id)
       .subscribe((data) => {
+        console.log("student dashboard getStudentTestList data",JSON.stringify(data)); 
         const sortedLinks = {};
         for(const item of data){
             sortedLinks[item.id] = item;
