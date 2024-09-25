@@ -1,6 +1,8 @@
 <ejs-documenteditorcontainer  id="answerDocContainer" *ngIf="accomodation" [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
    style="display:block" (documentChange)="onDocumentChange()" (contentChange)="onContentChange()" (selectionChange)="selectionChanges()" height="800" width="100%" #documentEditor   [locale]="culture" [enableToolbar]=true [isReadOnly]=false [enableEditor]=true >
 </ejs-documenteditorcontainer>
+
+
 <!--(selectionChange)="onSelectionChange($event)"-->
 <!--<ejs-documenteditorcontainer *ngIf="accomodation && !dataloaded" serviceUrl="https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"
 style="display:block" (contentChange)="onContentChange()"

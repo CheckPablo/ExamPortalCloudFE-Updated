@@ -899,10 +899,9 @@ export class TestWritingManagementComponent {
   }
 
   viewClickedSourceDoc(id:number, fileName:string, item:UploadedSourceDocument[]){
-
-    //this.clickedSourceFileName = JSON.stringify(item.file)
-   //console.log(fileName); 
-    //item.some(sourceDoc => {
+    this.SourcePaperTTSBtnText = "Read Source Document";
+    this.SourcePaperPauseTTSBtnText = "Pause";
+      this.sourceDocId = id; 
       if (fileName.includes("pdf") || fileName.includes("PDF") || fileName.includes('pdf') ||fileName.includes('PDF')) {
         console.log("PDF file");
         this.testService.getUrl(`get-file/${id}/source`)
@@ -934,10 +933,10 @@ export class TestWritingManagementComponent {
             this.pdfViewerSourcePdf.enableTextSelection = true;
             this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
             this.pdfViewerSourcePdf.enableHyperlink = false;
-            
-            //this.ejDialog.show(true);
+            console.log("this executes to get source paper text of second clicked document", 'line 937')
             return true;
           })
+          console.log("this executes to get source paper text of second clicked document", 'line 941')
           this.getSourcePaperText();
           this.isSourceDocClicked = true; 
           console.log("PDF HERE",this.pdfViewerSourcePdf);
@@ -1062,7 +1061,12 @@ export class TestWritingManagementComponent {
         console.log(" 1.Check for resume here ",this.SourcePaperTTSBtnText); 
         this.SourcePaperTTSBtnText = "Read Source Document"
         this.SourcePaperPauseTTSBtnText = "Pause"; 
+        if(!this.isNullOrUndefined(this.selectedSourceText)){
+          console.log(""); 
+        }
+        else{
         speechSynthesis.cancel();
+        }
         return; 
       }
   
@@ -1081,6 +1085,7 @@ export class TestWritingManagementComponent {
         this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
         console.log(this.ttsText);
         } 
+
         this.speechSynthStart(this.ttsText, speed);
         this.selectedSourceText = null;
       }
@@ -1189,14 +1194,11 @@ export class TestWritingManagementComponent {
       this.ttStatus = 'reading';
 
       var temp = this.pdfTestViewer.textSelection.selectionRangeArray[0];
-
       if (this.isNullOrUndefined(temp)) {
-
-
         //this.ttsText  ="Read out the entire question from top to bottom until the pause or stop button is clicked";
         this.ttsText = JSON.stringify(this.fullQuestionPaperText);
       }
-      if (!this.isNullOrUndefined(temp)) {
+      if(!this.isNullOrUndefined(temp)) {
         this.ttsText = this.pdfTestViewer.textSelection.selectionRangeArray[0].textContent;
       }
 
@@ -1269,9 +1271,7 @@ export class TestWritingManagementComponent {
     this.QstnPaperPauseTTSBtnText = 'Pause';
   }
   getSelectedVoiceName(): SpeechSynthesisVoice {
-
     var selectedVoiceEntry = this.selectedVoice;
-
     this.voices.forEach(voiceEntry => {
       //voiceEntry.name === this.selectedVoice.name;
       if (voiceEntry.name == this.selectedVoice.name)
@@ -1394,9 +1394,8 @@ export class TestWritingManagementComponent {
     this.modalService.dismissAll();
     if (this.disclaimerChecked) {
       this.disclaimerAccepted = true;
-      //this.acceptDisclaimerMethod(); 
+       //this.acceptDisclaimerMethod(); 
       //this.onPdfViewerLoad(); 
-
     }
     else {
       this.disclaimerAccepted = false;
@@ -1437,16 +1436,13 @@ export class TestWritingManagementComponent {
   }
 
   private onPdfViewerLoad() {
-
     if (this.disclaimerAccepted) {
-
       this.previewQuestionPaperDocument();
       this.getQuestionPaperText();
       console.log(this.collapseQuestionPaper); 
       console.log(this.collapseAnswerSheet); 
     }
     else {
-
       this.openSm(this.content);
     }
   }
@@ -1486,7 +1482,6 @@ export class TestWritingManagementComponent {
   }
 
   private getQuestionPaperText() {
-
     this.testService.getUrl(`get-questionpaper-text/${this.testId}`)
       .subscribe((data) => {
         this.fullQuestionPaperText = data
@@ -1494,9 +1489,10 @@ export class TestWritingManagementComponent {
       });
   }
 
-  private getSourcePaperText() {
+ private getSourcePaperText() {
  console.log(this.testId);
-    this.testService.getUrl(`get-sourcepaper-text/${this.testId}`)
+    //this.testService.getUrl(`get-sourcepaper-text/${this.testId}`)
+    this.testService.getUrl(`get-sourcepaper-text/${this.sourceDocId}`)
       .subscribe((data) => {
         this.fullSourcePaperText = data
         console.log(data); 

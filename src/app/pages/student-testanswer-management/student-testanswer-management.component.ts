@@ -46,10 +46,7 @@ export class StudentTestanswerManagementComponent implements AfterViewInit{
         this.testId = p['id']
         this.studentId = p['studentId']
         this.testName = p['testName']
-          
-          
-         
-         //this.loadOfflineDoc(); 
+        //this.loadOfflineDoc(); 
       })
   }
 

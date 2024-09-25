@@ -38,11 +38,18 @@ export class WordPreviewComponent {
     try {
       //this.container.documentEditor.enableTablePropertiesDialog = false;
       //this.container.documentEditor.enableEditor = false; 
-      this.container.documentEditor.enableSpellCheck = false; 
+      //this.container.documentEditor.enableSpellCheck = false; 
       this.container.documentEditor.open(documentBase64);
  
     } catch (error) {
       console.error('Failed to decode base64 string:', error);
     }
+  }
+
+  onDocumentChange(): void {
+    /* if (!isNullOrUndefined(this.titleBar)) {
+        this.titleBar.updateDocumentTitle();
+    } */
+    this.container.documentEditor.focusIn();
   }
 }

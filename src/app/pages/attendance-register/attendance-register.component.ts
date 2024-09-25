@@ -83,7 +83,6 @@ export class AttendanceRegisterComponent {
       .subscribe((res) => {
         this.centers = res;
         
-        
         this.centerId = res[0].id;
         this.initForms();
         //this.paginationService.setData(res); 

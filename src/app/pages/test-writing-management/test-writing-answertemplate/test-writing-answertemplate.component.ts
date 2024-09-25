@@ -817,25 +817,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   public getAnswerFile() {
-     /*   if (this.eventEmitterService.subsVar == undefined) { 
-        this.eventEmitterService.subsVar = this.eventEmitterService.
-          invokeSetStudentsFullName.subscribe((data) => {
-          this.setHeaderData(data); 
-          });
-      } 
-    if (this.eventEmitterService.testVar == undefined) { // subVar will be defined at this point so we use a different variable testvar
-      this.eventEmitterService.testVar = this.eventEmitterService.
-        invokeSetTestName.subscribe((data) => {
-          this.currentTestName = data; 
-          alert(data); 
-          alert(this.currentTestName)
-        });
-    }  */
-
-    //this.container.showPropertiesPane = false;
-    //const studentsTestData = JSON.parse(localStorage.getItem('studenttestdatakey'));
-    //this.currentTestName = studentsTestData.testName;
-    //studentsTestData.accomodation = true;
+  
+    /*this.container.showPropertiesPane = false;
+    const studentsTestData = JSON.parse(localStorage.getItem('studenttestdatakey'));
+    this.currentTestName = studentsTestData.testName;
+    studentsTestData.accomodation = true;*/
     this.accomodation = true;
     if (this.accomodation) {
       this.serviceLink = `${environment.syncfusionHostedWordUrl}`;
