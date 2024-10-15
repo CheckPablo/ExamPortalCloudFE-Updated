@@ -160,7 +160,7 @@ export class ViewTestsComponent {
        .subscribe((data) => {
           this.tests = data
           this.paginationService.setData(data)
-          this.initForms();
+          //this.initForms();
 
        })
     }

@@ -13,6 +13,7 @@ import { Firestore, collection, addDoc, getDocs, query, where, serverTimestamp, 
 import { environment } from 'src/environments/environment';
 import { PaginationService } from 'src/app/core/services/pagination.service';
 import { EventEmitterService } from 'src/app/core/services/shared/event-emitter.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -46,6 +47,7 @@ export class StudentDashboardComponent {
   content: string;
   show: boolean;
   studentTestOTPMessage: string;
+  currentDateTime = new Date();
 
   constructor(
     private storage: TokenStorageService,
@@ -53,7 +55,7 @@ export class StudentDashboardComponent {
     private db: Firestore,
     private formBuilder: UntypedFormBuilder,
     private modalService: NgbModal,
-    public paginationService: PaginationService,
+    public  paginationService: PaginationService,
     private studentTestService: StudentsTestService,
     private router: Router,
     private storageService: TokenStorageService,
@@ -64,7 +66,8 @@ export class StudentDashboardComponent {
     console.log("student dashboard init",JSON.stringify(this.user)); 
     this.user = this.storage.getUser();
     console.log("student dashboard init",JSON.stringify(this.user)); 
-    console.log("CURRENT TIME", new Date());
+    console.log("CURRENT TIME", this.currentDateTime);
+    localStorage.setItem('isFinishTestClicked','isFinishTestClicked')
     this.getStudentTestList();
     this.startTimer(1000);
     setTimeout(() => {
@@ -100,6 +103,7 @@ export class StudentDashboardComponent {
     this.studentTestService.searchStudentTestList(this.user.id)
       .subscribe((data) => {
         console.log("student dashboard getStudentTestList data",JSON.stringify(data)); 
+        
         const sortedLinks = {};
         for(const item of data){
             sortedLinks[item.id] = item;
@@ -211,11 +215,28 @@ export class StudentDashboardComponent {
  }
 
   public openOTPValidationModal(modal, studentTest: StudentTest) {
-
+    console.log("open otp check test date", JSON.stringify(studentTest))
+    let castedExamDate = new Date(studentTest.examDate);
+    let castedExpiryDate = new Date(studentTest.paperExpiryDate)
+    
+    if(this.currentDateTime < castedExamDate){
+      Swal.fire('Test Date Time Not Reached', 'Start Test Not Successful');
+      return; 
+    }
+    /* console.log('Current Date:', this.currentDateTime);
+    console.log('Exam Date:', castedExamDate);
+    console.log('Expiry Date:', castedExpiryDate); */
+    if(this.currentDateTime >= castedExpiryDate ){
+      console.log('Expired',castedExpiryDate);
+      Swal.fire('Test has expired', 'Start Test Not Successful');
+      return; 
+    }
+    
     this.selectedTestSecurityId = studentTest.testSecurityLevelId;
     this.testId = studentTest.id;
     this.initOTPForms(studentTest)
     this.modalService.open(modal, ModalSizes.lg);
+    
   }
 
   public openOfflineAnswerPane(studentTest: StudentTest) {

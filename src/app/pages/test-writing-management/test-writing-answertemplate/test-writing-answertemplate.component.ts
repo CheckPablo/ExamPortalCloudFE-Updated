@@ -732,7 +732,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     }
     else{
       this.storageService.saveSelectedWordCount(null);
-      console.log("no selection"); 
+      //console.log("no selection"); 
     }
     /*var documenteditor;
     var documenteditorElement = document.getElementById("container2");
@@ -764,6 +764,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
   */
   public keyPress(keyPressEvent: string) {
+    if(localStorage.getItem('isFinishTestClicked')) return;
     this.invalidKeyPress = true; 
     if ((keyPressEvent !== null) && (keyPressEvent !== undefined)) {
       Swal.fire({
@@ -1387,7 +1388,9 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
         fontSize: 8
       }
       this.container.showPropertiesPane = false;
-      this.container.documentEditor.zoomFactor = 0.80;
+      //if(!userAgentString.includes("CrOS")){
+       this.container.documentEditor.zoomFactor = 0.80;
+      //}
       /*this.container.documentEditor.fireZoomFactorChange;
       this.container.documentEditor.zoomFactorChange;*/
       this.container.documentEditor.setDefaultCharacterFormat(defaultCharacterFormat);
@@ -1631,7 +1634,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
  
      if (!this.container) {
     }
-    console.log('ExitTestBoolean' , this.exitedTest);
+    //console.log('ExitTestBoolean' , this.exitedTest);
     let userAgentString = navigator.userAgent;
 
     if (userAgentString.includes("SEB")) {
@@ -1671,7 +1674,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       fileName: "FileName",
       timeRemaining: remainingTime || '00:00' 
     }
-    console.log(studentTestSave);
+    //console.log(studentTestSave);
     this.container.documentEditor.saveAsBlob('Docx').then((exportedDocument: Blob) => {
 
       let formData: FormData = new FormData();
@@ -1681,11 +1684,11 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       //alert('Testid before saving:'+' '+ this.testId)
       //alert('studentId before saving:'+' '+ this.studentId)
       formData.append("data", JSON.stringify(studentTestSave));
-      console.log(exportedDocument); 
+      //console.log(exportedDocument); 
       reader.readAsDataURL(exportedDocument);
       reader.onload = () => {
       base64DataLocal = reader.result;
-      console.log(base64DataLocal); 
+      //console.log(base64DataLocal); 
       this.storageService.saveStudentAnswerDocLocal(base64DataLocal); 
         
         localStorage.setItem("EncryptedAnswers: " + this.testId, this.currentTestName + ' ||' + this.testId + ' ||' + base64DataLocal);

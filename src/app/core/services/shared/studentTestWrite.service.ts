@@ -40,4 +40,9 @@ export class StudentTestWriteService extends ApiService<StudentTest>{
     const payload = {testId,studentId}
     return this.postUrl('finish-test', payload);
     }
+
+  public finishStudentTestPreviewPane = (testId:number, studentId:number): Observable<any> => {
+      const payload = {testId,studentId}
+      return this.postUrl('complete-studentTest-previewpane-test', payload);
+  }
 }

@@ -287,10 +287,11 @@ export class AddStudentComponent implements OnInit {
 
         },error:(error:any) =>{
           console.log(error); 
-          this.title = "Add/Update unsuccessful";
+          /* this.title = "Add/Update unsuccessful";
           this.message = 'The specified student number already exists';
+          this.showModal = true; */ 
           this.closeSpinnerModal(this.modalReference)
-          this.showModal = true;
+          Swal.fire('Student Information Not Saved', 'The specified student number already exists.', 'error');
           return; 
         },  complete:() =>{ this.mailStudent(this.mailData)}
       

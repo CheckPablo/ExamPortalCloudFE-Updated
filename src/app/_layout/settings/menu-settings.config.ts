@@ -234,7 +234,7 @@ export const CenterAdminMenu: MenuConfig = {
             },
             {
               title: 'Export student answers',
-              page: ' portal/students/export-student-answers',
+              page: 'portal/students/export-student-answers',
             },
           ]
         }
@@ -278,10 +278,6 @@ export const CenterAdminMenu: MenuConfig = {
             {
               title: 'User Approval',
               page: '/portal/users/approval',
-            },
-            {
-              title: 'Centre Attendance',
-              page: '/portal/center-attendance-management',
             },
           ]
         }
@@ -360,7 +356,7 @@ export const CenterUserMenu: MenuConfig = {
             },
             {
               title: 'Export student answers',
-              page: '/portal/students/export-student-answers',
+              page: 'portal/students/export-student-answers',
             },
           ]
         }

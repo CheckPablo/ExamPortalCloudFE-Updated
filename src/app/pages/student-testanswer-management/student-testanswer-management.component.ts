@@ -131,7 +131,18 @@ public OfflineAnswers(iBlob: any) {
         text: 'There are no local answers found. However, answers have been saved in the database. Please complete your test by clicking the Finish button below',
         icon: 'info',
     })
-      
+    
+    this.studentsTestWriteService.finishStudentTestPreviewPane(this.testId, this.studentId)
+    .subscribe((data) => {
+      if(data){
+        console.log(data); 
+        console.log("checking complete test status was successfully changed"); 
+       }
+       else{
+          console.log("Error!, complete test status was not changed"); 
+         }
+    }); 
+     this.router.navigate(["/portal"]); 
     }
   }
 
@@ -278,9 +289,12 @@ public OfflineAnswers(iBlob: any) {
       if (result.value) {
         this.uploadOfflineAnswers(); 
         console.log(result.value); 
+        this.isAnswersUploaded = true;
+        Swal.fire('Offline Answers Uploaded', 'Answers have uploaded successfully', 'success');
       }
       else{
         console.log(result.value); 
+        Swal.fire('Offline Answers Uploaded', 'Answers upload was unsuccessfully', 'error');
         return; 
         //this.isAnswersUploaded = false; 
         //result.dismiss
@@ -292,7 +306,7 @@ public OfflineAnswers(iBlob: any) {
   uploadOfflineAnswers() {
 
     if(!this.container){
-    
+    console.log("Container out of scope")
     }
 
      var answerDataLocal;
@@ -313,7 +327,7 @@ public OfflineAnswers(iBlob: any) {
         fileName:"FileName",
         timeRemaining :"00:00",}
         
-        
+       this.container.documentEditor.enableEditor = true; 
        this.container.documentEditor.saveAsBlob('Docx').then((exportedDocument: Blob) => {
        let formData: FormData = new FormData();
        
@@ -336,11 +350,23 @@ public OfflineAnswers(iBlob: any) {
                   //this.isAnswersUploaded = true; 
                  }
           }); 
-      
+
+        this.studentsTestWriteService.finishStudentTestPreviewPane(this.testId, this.studentId)
+          .subscribe((data) => {
+            if(data){
+              console.log(data); 
+              console.log("checking complete test status was successfully changed"); 
+             }
+             else{
+                console.log("Error!, complete test status was not changed"); 
+               }
+          }); 
+       
           this.container.documentEditor.saveAsBlob('Docx').then((exportedDocument: Blob) => {
-            let formData: FormData = new FormData();
+          let formData: FormData = new FormData();
           formData.append("file",exportedDocument,"TestId:"+ this.testId + "StudentID:"+this.studentId + 'sample.docx');
           formData.append("data", JSON.stringify(studentTestSave));
+          this.container.documentEditor.enableEditor = false; 
           
         }
       )

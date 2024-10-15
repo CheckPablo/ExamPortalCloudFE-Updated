@@ -67,7 +67,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { timer } from 'rxjs';
 import { BlockUI } from "primeng/blockui";
 import { date } from "ngx-custom-validators/src/app/date/validator";
-
+import { ToastrService } from "ngx-toastr";
 declare var window: any;
 
 export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
@@ -182,6 +182,8 @@ export class TestUploadComponent {
   modalReference: NgbModalRef;
   navs = [1, 2, 3, 4, 5];
   counter = this.navs.length + 1;
+  title: string;
+  message: string;
 
   close(event: MouseEvent, toRemove: number) {
     this.navs = this.navs.filter((id) => id !== toRemove);
@@ -212,11 +214,11 @@ export class TestUploadComponent {
     private sanitizer: DomSanitizer,
     private storageService: TokenStorageService,
     private modalService: NgbModal,
+    private toastr: ToastrService,
 
   ) {
     this.route.params.subscribe((p) => {
       this.testId = p["id"];
-
 
       this.selectedTestId = p["id"];
       this.getSingleTest();
@@ -234,6 +236,25 @@ export class TestUploadComponent {
       });
     }
 
+    isChromebookAndDimensionsMatch(): void {
+      // Check if the device is a Chromebook
+      const isChromebook = navigator.userAgent.includes("CrOS");
+      // Get window dimensions
+      const viewportWidth = window.screen.width;
+      const viewportHeight = window.screen.height;
+      // Check for specific dimensions
+      const dimensionsMatch = (viewportWidth === 1366 && viewportHeight === 768);
+      // Log results
+      if (isChromebook && dimensionsMatch) {
+          console.log("This is a Chromebook with dimensions 1366x768.");
+          this.toastr.error('If you are having trouble seeing the answer sheet. Please go to your browser setting and change your zoom settings', 'Answer Template', { "timeOut": 60000 });
+      } else if (isChromebook) {
+          console.log("This is a Chromebook but dimensions do not match.");
+      } else {
+          console.log("This is not a Chromebook.");
+      }
+  }
+
   ngOnInit(): void {
 
     this.service.setData([]);
@@ -243,8 +264,7 @@ export class TestUploadComponent {
     this.getTestSecurityLevels();
     this.getTestCategories();
     this.initForms();
-
-
+    this.isChromebookAndDimensionsMatch();
     this.selectedGrade = 0;
     this.generateTimeDurations();
     this.getAnswerDocuments();
@@ -276,7 +296,6 @@ export class TestUploadComponent {
       byteArrays.push(byteArray);
     }
 
-
     const blob = new Blob(byteArrays, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
     const url = URL.createObjectURL(blob);
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
@@ -285,7 +304,6 @@ export class TestUploadComponent {
   private generateExtraTimeDurations = () => {
 
     const increment = 5;
-
     for (let minutes = increment; minutes <= 1 * 60; minutes += increment) {
       const hours = Math.floor(minutes / 60);
       const remainingMinutes = minutes % 60;
@@ -324,11 +342,9 @@ export class TestUploadComponent {
   convertDataURIToBinary(dataURI) {
     dataURI = 'data:audio/ogg;base64,' + dataURI;
 
-
     var BASE64_MARKER = ';base64,';
     var base64Index = dataURI.toString().indexOf(BASE64_MARKER) + BASE64_MARKER.length;
     var base64 = dataURI.toString().substring(base64Index);
-
 
     const decode = (str: string): string => Buffer.from(str, 'base64').toString('binary')
     var raw = decode(base64);
@@ -341,10 +357,8 @@ export class TestUploadComponent {
     return array;
   }
 
-
   private generateTimeDurations = () => {
     const increment = 15;
-
     for (let minutes = increment; minutes <= 24 * 60; minutes += increment) {
       const hours = Math.floor(minutes / 60);
       const remainingMinutes = minutes % 60;
@@ -376,7 +390,6 @@ export class TestUploadComponent {
         
         this.loadAnswerDoc();
       })
-
   }
 
   public loadAnswerDoc(): void {
@@ -384,16 +397,15 @@ export class TestUploadComponent {
       subscribe((data) => {
          
         this.loadDocument(JSON.stringify(data));
-
       })
   }
 
   private loadDocument(documentBase64: string): void {
     try {
-      this.container.documentEditor.enableEditor = false;
-      this.container.documentEditor.enableSpellCheck = false;
+      /* this.container.documentEditor.enableEditor = false;
+      this.container.documentEditor.enableSpellCheck = false; */
       this.container.documentEditor.open(documentBase64);
-      this.container.documentEditor.enableEditor = false;
+     /*  this.container.documentEditor.enableEditor = false; */
 
     } catch (error) {
       console.error('Failed to decode base64 string:', error);
@@ -401,7 +413,6 @@ export class TestUploadComponent {
   }
 
   public getAudioUrl(): string {
-
     if (!this.selectedMP3Id) return;
     return `https://localhost:7066/api/Tests/get-audio-file/${this.selectedMP3Id}`;
   }
@@ -540,7 +551,6 @@ export class TestUploadComponent {
     });
   }
 
-
   public hasAccomodation(studentId: number): boolean {
     //return (this.accomodationIds.some(x => x === studentId))
     return (this.accomodationIds.has(studentId))
@@ -552,10 +562,8 @@ export class TestUploadComponent {
   }
 
   private initForms(test?: Test): void {
-
     const examDate = (!test) ? '' : this.datePipe.transform(test.examDate, 'yyyy-MM-dd HH:mm');
     const expiryDate = (!test) ? '' : this.datePipe.transform(test.paperExpiryDate, 'yyyy-MM-dd HH:mm');
-
 
     const grade = test?.sectorId ?? '';
     const testId = test?.id ?? 0;
@@ -582,7 +590,6 @@ export class TestUploadComponent {
     });
 
     if (grade != '') {
-
       this.populateStudentList(grade, 0, testId);
       this.selectedGrade = grade;
       this.selectedTestId = testId;
@@ -647,11 +654,11 @@ export class TestUploadComponent {
 
   public onGradeChange(gradeId: number, subjectId: number = 0) {
     this.subjectService.getByGradeId(gradeId).subscribe((data) => {
-      this.subjects = data;
-      this.selectedSubject = subjectId;
-      this.testInformationForm.controls['subjectId'].setValue(this.test?.subjectId);
-      this.selectedGrade = gradeId;
-      this.populateStudentList(gradeId,0,this.selectedTestId);
+    this.subjects = data;
+    this.selectedSubject = subjectId;
+    this.testInformationForm.controls['subjectId'].setValue(this.test?.subjectId);
+    this.selectedGrade = gradeId;
+    this.populateStudentList(gradeId,0,this.selectedTestId);
     });
   }
   public onChangeSubject(subjectId: number) {
@@ -709,13 +716,15 @@ export class TestUploadComponent {
       }
     }
   }
+
   uploadTestDoc(event: any) {
     const formData = new FormData();
     if (this.selectedFile) {// adds a file
       formData.append("file", this.selectedFile, this.selectedFile.name);
       formData.append("data", JSON.stringify(this.testInformationForm.value));
       this.testService.postUrl('add-questionpaper', formData)
-      .subscribe((data) => {
+      .subscribe({
+        next: (data) =>{
         console.log(data); 
         console.log(data.testDocBase64); 
         console.log(data.testDocument);
@@ -736,6 +745,10 @@ export class TestUploadComponent {
         this.pdfViewer.enableHyperlink = false;
         this.pdfViewer.enablePersistence = true;
         //this.getUploadedTest(); 
+        //timer(this.spinnerDuration).subscribe(() => this.closeSpinnerModal(this.modalReference))
+        Swal.fire('Test document uploaded', 'Test document uploaded successfully.', 'success');
+        //this.studentId = JSON.stringify(data.id); 
+        //this.initForms();
         location.reload(); 
         Swal.fire(
           "Test document uploaded.",
@@ -747,8 +760,19 @@ export class TestUploadComponent {
         //this.populateStudentList(this.selectedGrade, 0, this.selectedTestId);
      
          //this.getSingleTest(); 
-      });
-  }}
+      },
+      error:(error:any) =>{
+        console.log(error); 
+        this.title = "Test document uploaded unsuccessful";
+        this.message = 'The document uploaded was unsuccessful';
+        this.closeSpinnerModal(this.modalReference)
+        //this.showModal = true;
+        return;
+      },
+      complete:() =>{Swal.fire('Test document uploaded', 'Test document uploaded successfully.', 'success');}
+   })
+  }
+  }
 
   onPostWordDoc(event): void {
     if (this.testInformationForm.invalid) return;
@@ -843,7 +867,6 @@ export class TestUploadComponent {
     console.log(this.accomodationIds)
   }
 
-
   checkAllCheckBox(ev: any) { // Angular 13
     this.links.forEach(x => x.checked = ev.target.checked)
     console.log("ALERT LINE NEAR 691","checkAllCheckBox")
@@ -878,13 +901,9 @@ export class TestUploadComponent {
       'cbxCheckStudentAccomdationLink',
     ) as HTMLInputElement | null;
     if (checkbox != null) {
-
-
-      checkbox.checked = true;
-
+      checkbox.checked = true
     }
     else {
-
     }
   }
 
@@ -909,7 +928,6 @@ export class TestUploadComponent {
       const studentIds = this.links.map((x, _) => x.studentID)
       this.studentIds = new Set(studentIds);
     }
-
   }
 
  /*  public onStudentClick(studentId: number) {
@@ -986,9 +1004,7 @@ export class TestUploadComponent {
         this.populateStudentList(this.selectedGrade, 0, this.selectedTestId);
         /* 
         */
-
       }
-
       if (!this.selectedFile) {// adds a test without a file
 
         this.testService.create(this.testInformationForm.value)
@@ -1019,9 +1035,6 @@ export class TestUploadComponent {
     else {
       const formData = new FormData(); //This is declared twice, it can be declared once. 
       if (!this.selectedFile) {
-
-
-
         formData.append("data", JSON.stringify(this.testInformationForm.value));
         this.testService.postUrl('add-test', formData)
           .subscribe((data) => {
@@ -1148,7 +1161,7 @@ export class TestUploadComponent {
   }
 
   private resetLinks = () => {
-  /*   this.studentIds = [];
+  /* this.studentIds = [];
     this.accomodationIds = [];
     this.readerIds = []; */
     this.studentIds.clear();

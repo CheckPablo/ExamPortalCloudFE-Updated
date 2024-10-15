@@ -247,6 +247,7 @@ export class TestWritingManagementComponent {
   selectedWordCountValue: string;
   selectedSourceText: string;
   isFinishTestClicked: boolean = false;
+  InvalidKeyPopedUp: boolean;
   
   //datepipe: any;
 
@@ -661,11 +662,17 @@ export class TestWritingManagementComponent {
       return; 
     }  */
     if (!document.fullscreenElement && !this.isFullScreenExited && this.securityTestLevelId > 1) {
-      this.keyPress('LEFT EXAM AREA')
+/*       this.keyPress('LEFT EXAM AREA')
 
       this.isFullScreenExited = true;
       
-      localStorage.setItem('isFullScreenExited', 'true' );
+      localStorage.setItem('isFullScreenExited', 'true' ); */
+      if (!this.InvalidKeyPopedUp) {
+        this.InvalidKeyPopedUp = true;  // Set the flag to true
+        this.keyPress('LEFT EXAM AREA');
+        this.isFullScreenExited = true;
+        localStorage.setItem('isFullScreenExited', 'true');
+    }
     }
   
   }
@@ -677,6 +684,8 @@ export class TestWritingManagementComponent {
   ngAfterViewInit() {}
 
   ngOnInit(): void {
+    localStorage.removeItem('selectedText'); 
+    localStorage.removeItem('isFinishTestClicked');
     const userBehaviourSubject = this.authService.currentUserValue();
     if (localStorage.getItem('curent_testsecurity_levelId')) {
       this.securityTestLevelId = JSON.parse(localStorage.getItem('curent_testsecurity_levelId'));
@@ -871,11 +880,11 @@ export class TestWritingManagementComponent {
                 console.log(this.base64UrlSource); 
                 this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
                 this.pdfViewerSourcePdf.enableHyperlink = false;
+                this.pdfViewerSourcePdf.enableTextSelection = true;
+                this.pdfViewerSourcePdf.isExtractText = true;
                 
                 return true;
               })
-
-
           }
 
           if (sourceDoc.fileName.includes("docx") || sourceDoc.fileName.includes("DOCX") || sourceDoc.fileName.includes('docx') ||
@@ -887,7 +896,8 @@ export class TestWritingManagementComponent {
                 console.log(this.base64UrlSource); 
                 this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
                 this.pdfViewerSourcePdf.enableHyperlink = false;
-        
+                this.pdfViewerSourcePdf.enableTextSelection = true;
+                this.pdfViewerSourcePdf.isExtractText = true;        
                 return true;
               })
           }
@@ -908,10 +918,12 @@ export class TestWritingManagementComponent {
           .subscribe((data) => {
            this.base64UrlSource = 'data:application/pdf;base64,' + data.file;
             console.log(this.base64UrlSource); 
-            //this.pdfViewerSourcePdf.isExtractText = true;
-            this.pdfViewerSourcePdf.enableTextSelection = true;
+          
             this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
-            this.pdfViewerSourcePdf.enableHyperlink = false;
+            this.pdfViewerSourcePdf.enableTextSelection = true;
+            this.pdfViewerSourcePdf.enableHyperlink = false;  
+            this.pdfViewerSourcePdf.isExtractText = true;
+            
        
             //this.ejDialog.show(true);
             return true;
@@ -929,11 +941,12 @@ export class TestWritingManagementComponent {
             this.base64UrlSource = 'data:application/pdf;base64,' + data.file;
             console.log(this.base64UrlSource); 
             console.log("PDF HERE",this.pdfViewerSourcePdf);
-            this.pdfViewerSourcePdf.isExtractText = true;
-            this.pdfViewerSourcePdf.enableTextSelection = true;
             this.pdfViewerSourcePdf.load(this.base64UrlSource, '');
+            this.pdfViewerSourcePdf.enableTextSelection = true;
             this.pdfViewerSourcePdf.enableHyperlink = false;
             console.log("this executes to get source paper text of second clicked document", 'line 937')
+            this.pdfViewerSourcePdf.isExtractText = true;
+           
             return true;
           })
           console.log("this executes to get source paper text of second clicked document", 'line 941')
@@ -1044,38 +1057,242 @@ export class TestWritingManagementComponent {
   }*/
 
     handleSourceButtonPlayClick(speed: number) {
+      //Start speech block   
+      console.log('speechSynthesis object NON stringified',speechSynthesis)
+      console.log('speechSynthesis object stringified',JSON.stringify(speechSynthesis))
+
+      var sourcePdf = (<any>document.getElementById("pdfViewerSourcePdf")).ej2_instances[0];
+      sourcePdf.serviceUrl = "https://ej2services.syncfusion.com/angular/development/api/pdfviewer";       
+      sourcePdf.dataBind();
+      
+      if(!speechSynthesis.paused && !speechSynthesis.speaking && this.SourcePaperTTSBtnText === 'Read Source Document' && this.SourcePaperPauseTTSBtnText === 'Pause' ){ 
+        speechSynthesis.cancel(); 
+      //this.pdfViewerSourcePdf.load("https://cdn.syncfusion.com/content/pdf/annotations.pdf",null); 
+      //if(this.pdfViewerSourcePdf.textSelection.selectionRangeArray[0])
+      //this.pdfTestViewer.tex
+      //this.pdfViewerSourcePdf.enableTextSelection = true;
+      //this.pdfViewerSourcePdf.isExtractText = true;
+       //var isTextCurrentlySelected = this.pdfViewerSourcePdf.textSelection.selectionRangeArray[0];  
+       sourcePdf.enableTextSelection = true;
+       sourcePdf.isExtractText = true;
+       var isTextCurrentlySelected = sourcePdf.textSelection.selectionRangeArray[0]
+       if(!this.isNullOrUndefined(isTextCurrentlySelected))
+        {
+          this.ttsText = sourcePdf.textSelection.selectionRangeArray[0].textContent; 
+          console.log("Text is currently selected", this.ttsText  )
+        //}
+       // if(localStorage.getItem('selectedText')){  //Start speech block if highlighted
+          console.log('Start speech block if highlighted');
+          //console.log(JSON.stringify(localStorage.getItem('selectedText')));
+          //this.ttsText = JSON.stringify(localStorage.getItem('selectedText'));
+          this.speechSynthStart(this.ttsText, speed);
+          this.ttSourceStatus = 'reading';
+          this.SourcePaperTTSBtnText = 'Stop Source Document';
+          this.SourcePaperPauseTTSBtnText === 'Pause';
+          return;
+        }
+        else{  //Start speech block if not highlighted
+          console.log('Start speech block if NOT highlighted');
+          if(!this.ttsText){
+            this.getSourcePaperText(); 
+          }
+          this.ttsText = JSON.stringify(this.fullSourcePaperText);
+          //console.log(this.ttsText); 
+          this.speechSynthStart(this.ttsText, speed);
+          this.ttSourceStatus = 'reading';
+          this.SourcePaperTTSBtnText = 'Stop Source Document' 
+          this.SourcePaperPauseTTSBtnText === 'Pause' 
+          this.selectedSourceText = null;
+          return; 
+        }
+      }
+
+      //Stop speech block if 
+      if(speechSynthesis.speaking && this.SourcePaperTTSBtnText === 'Stop Source Document' && this.SourcePaperPauseTTSBtnText === 'Pause' ){
+       
+        //Stop speech block if highlighted
+        //if((localStorage.getItem('selectedText')))
+        sourcePdf.enableTextSelection = true;
+        sourcePdf.isExtractText = true;
+        var isTextCurrentlySelected = sourcePdf.textSelection.selectionRangeArray[0]; 
+       
+        if(!this.isNullOrUndefined(isTextCurrentlySelected))
+        {
+          if(speechSynthesis.speaking && speechSynthesis.paused)
+          {
+            speechSynthesis.cancel(); 
+            this.SourcePaperPauseTTSBtnText = 'Pause'; 
+            this.SourcePaperTTSBtnText = 'Stop Source Document'; 
+            //return; 
+          }
+          else{
+            console.log('pause speech block if highlighted');
+            //speechSynthesis.pause(); 
+            speechSynthesis.cancel(); 
+            this.SourcePaperPauseTTSBtnText = 'Pause'; 
+            this.SourcePaperTTSBtnText = 'Read Source Document'; 
+          }
+        }
+
+        else{   //Stop speech block if not highlighted
+          console.log('Stop speech block if not highlighted');
+          //this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
+          speechSynthesis.cancel(); 
+          //this.ttSourceStatus = 'reading';
+          this.SourcePaperTTSBtnText = 'Read Source Document' 
+          this.SourcePaperPauseTTSBtnText === 'Pause' 
+          this.selectedSourceText = null;
+          localStorage.removeItem('selectedText'); 
+        }
+
+      }
+      //Paused speech block if 
+      if(speechSynthesis.paused && this.SourcePaperTTSBtnText === 'Read Source Document' && this.SourcePaperPauseTTSBtnText === 'Resume' ){
+       console.log("Check")
+        //Paused speech block if highlighted
+        //if((localStorage.getItem('selectedText')) && this.isNullOrUndefined(isTextCurrentlySelected))
+        sourcePdf.enableTextSelection = true;
+        sourcePdf.isExtractText = true;
+        var isTextCurrentlySelected = sourcePdf.textSelection.selectionRangeArray[0]
+        if(!this.isNullOrUndefined(isTextCurrentlySelected))
+        {
+          console.log('Paused speech block if highlighted'); 
+          console.log('Check if TEXT IS CURRENTLY selected', isTextCurrentlySelected)
+          speechSynthesis.resume(); 
+          this.SourcePaperPauseTTSBtnText = 'Pause'; 
+          this.SourcePaperTTSBtnText = 'Stop Source Document'; 
+        }
+
+        else{  //Paused speech block if not highlighted 
+          console.log('Paused speech block if not highlighted')
+          //this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
+         console.log("Looking for deselection here",isTextCurrentlySelected)
+          if(this.isNullOrUndefined(isTextCurrentlySelected) && speechSynthesis.speaking || speechSynthesis.paused){
+          //sourcePdf.textSelection.selectionRangeArray[0].textContent;
+            speechSynthesis.cancel();
+            this.ttsText = JSON.stringify(this.fullSourcePaperText);
+            this.speechSynthStart(this.ttsText, speed);
+            console.log('Highlighted OR NOT CANCEL?')
+          }
+          else{
+           speechSynthesis.resume();
+           console.log('Highlighted OR NOT RESUME?')
+          } 
+          //this.ttSourceStatus = 'reading';
+          this.SourcePaperTTSBtnText = 'Stop Source Document';
+          this.SourcePaperPauseTTSBtnText = 'Pause' 
+        }
+        //play and resume 
+   
+    }
+
+    if(speechSynthesis.speaking && this.SourcePaperTTSBtnText === 'Read Source Document' && this.SourcePaperPauseTTSBtnText === 'Resume' ){
+      let userAgentString = navigator.userAgent;
+      console.log(userAgentString)
+      if (!userAgentString.includes("Chrome")) { 
+        console.log("Check Chrome here")
+        return; 
+      }
+     
+       //Paused speech block if highlighted
+       //if((localStorage.getItem('selectedText')) && this.isNullOrUndefined(isTextCurrentlySelected))
+       sourcePdf.enableTextSelection = true;
+       sourcePdf.isExtractText = true;
+       var isTextCurrentlySelected = sourcePdf.textSelection.selectionRangeArray[0]
+       if(!this.isNullOrUndefined(isTextCurrentlySelected))
+       {
+         console.log('Paused speech block if highlighted'); 
+         console.log('Check if TEXT IS CURRENTLY selected', isTextCurrentlySelected)
+         speechSynthesis.resume(); 
+         this.SourcePaperPauseTTSBtnText = 'Pause'; 
+         this.SourcePaperTTSBtnText = 'Stop Source Document'; 
+       }
+
+       else{  //Paused speech block if not highlighted 
+         console.log('Paused speech block if not highlighted')
+         //this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
+        console.log("Looking for deselection here",isTextCurrentlySelected)
+         if(this.isNullOrUndefined(isTextCurrentlySelected) && speechSynthesis.speaking || speechSynthesis.paused){
+         //sourcePdf.textSelection.selectionRangeArray[0].textContent;
+           speechSynthesis.cancel();
+           this.ttsText = JSON.stringify(this.fullSourcePaperText);
+           this.speechSynthStart(this.ttsText, speed);
+           console.log('Highlighted OR NOT CANCEL?')
+         }
+         else{
+          speechSynthesis.resume();
+          console.log('Highlighted OR NOT RESUME?')
+         } 
+         //this.ttSourceStatus = 'reading';
+         this.SourcePaperTTSBtnText = 'Stop Source Document';
+         this.SourcePaperPauseTTSBtnText = 'Pause' 
+       }
+       //play and resume 
+  
+   }
+      //if(this.ss)
+    /*   if(speechSynthesis.paused){
+        console.log("checking for pause STATUS here");
+        speechSynthesis.resume(); 
+      } */
       //alert("Voice clicked"); 
       //this.checkButtonTextAnsPaper()
     //check pause
-    console.log('check pause status', this.ttSourceStatus);
-    if (this.ttSourceStatus === 'paused' ) {
-      speechSynthesis.resume();
-      this.SourcePaperTTSBtnText = 'Stop Source Document';
+    //console.log(speechSynthesis)
+    //console.log('check pause status', this.ttSourceStatus);
+  /*   if (this.ttSourceStatus === 'paused' ) {
+      //speechSynthesis.resume();
+      ///this.SourcePaperTTSBtnText = 'Stop Source Document';
       //$('#btnPauseStatus').text('Pause');
       this.ttSourceStatus = 'reading'
       return;
-    }
+    } */
     // end check pause
-  
+
+    //check stop
+    /*  if(this.SourcePaperTTSBtnText === 'Stop Source Document' && this.SourcePaperPauseTTSBtnText === 'Pause'){
+      console.log("INITIATING PAUSING STATUS source document here");
+      speechSynthesis.pause(); 
+     } */
+    //end check stop
+  /* 
       if(this.SourcePaperTTSBtnText === 'Stop Source Document' && this.SourcePaperPauseTTSBtnText === 'Resume'){
-        console.log(" 1.Check for resume here ",this.SourcePaperTTSBtnText); 
-        this.SourcePaperTTSBtnText = "Read Source Document"
+        ///console.log(" 1061  .Check for resume here ",this.SourcePaperTTSBtnText); 
+        ///this.SourcePaperTTSBtnText = "Read Source Document"
         this.SourcePaperPauseTTSBtnText = "Pause"; 
+        console.log("1064  selected text",this.selectedSourceText)
+        //if(!this.isNullOrUndefined(this.selectedSourceText)){
+        if(localStorage.getItem('selectedText')){
+          console.log("checking if text is still selected"); 
+        }
+        else{
+        console.log("speech canceled here")
+        speechSynthesis.cancel();
+        }
+        return; 
+      } */
+
+     /*  if(this.SourcePaperTTSBtnText === 'Read Source Document' && this.SourcePaperPauseTTSBtnText === 'Pause'){
+        console.log(" 1074  . Read Pause Check here  ",this.SourcePaperTTSBtnText); 
+        this.SourcePaperTTSBtnText = "Read Source Document"
+        this.SourcePaperPauseTTSBtnText = "Resume"; 
+        console.log("1077 selected text",this.selectedSourceText)
         if(!this.isNullOrUndefined(this.selectedSourceText)){
-          console.log(""); 
+          console.log("checking if text is still selected"); 
+          speechSynthesis.resume(); 
         }
         else{
         speechSynthesis.cancel();
         }
         return; 
-      }
-  
+      }  */
+  /* 
       if (this.SourcePaperTTSBtnText === 'Read Source Document') {
         console.log(" 1.Check for resume here ",this.SourcePaperTTSBtnText);
         speechSynthesis.cancel();
         this.SourcePaperTTSBtnText = 'Stop Source Document';
         this.ttSourceStatus = 'reading';
-        console.log(this.fullSourcePaperText); 
+        //console.log(this.fullSourcePaperText); 
 
        if(!this.isNullOrUndefined(this.selectedSourceText)){
             console.log("selected text", this.selectedSourceText);
@@ -1083,33 +1300,79 @@ export class TestWritingManagementComponent {
         }
         else{
         this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
-        console.log(this.ttsText);
+        //console.log(this.ttsText);
         } 
 
         this.speechSynthStart(this.ttsText, speed);
         this.selectedSourceText = null;
-      }
-
+      } */
+/* 
       else {
         //this.QstnPaperTTSBtnText = 'Play';
         this.SourcePaperTTSBtnText = "Read Source Document";
         this.ttSourceStatus = "";
         speechSynthesis.cancel();
-      }
+      } */
   
     }
   
-
   changePauseTTSButtonSourceText():void{
     console.log('source doc reading status', this.ttSourceStatus)
-    if (this.ttSourceStatus === 'reading') {
-      if (speechSynthesis) {
+    console.log("Chrome",speechSynthesis); 
+    let userAgentString = navigator.userAgent;
+    if(userAgentString.includes("Chrome")){
+
+      if (speechSynthesis.speaking && this.SourcePaperPauseTTSBtnText == 'Resume') {
         this.ttSourceStatus = 'paused';
-        speechSynthesis.pause();
-        this.SourcePaperTTSBtnText = 'Resume';
-        //$('#btnPauseStatus').text('Resume');
-      }
+        this.SourcePaperTTSBtnText = 'Stop Source Document';
+        this.SourcePaperPauseTTSBtnText = 'Pause';
+        console.log("resume Chrome speaking with button check")
+        speechSynthesis.resume();
+        return; 
     }
+
+     if (speechSynthesis.speaking) {
+            this.ttSourceStatus = 'paused';
+            this.SourcePaperTTSBtnText = 'Read Source Document';
+            this.SourcePaperPauseTTSBtnText = 'Resume';
+            console.log("pause Chrome speaking")
+            speechSynthesis.pause();
+            return; 
+        
+    }
+
+    if (speechSynthesis.paused) {
+          this.ttSourceStatus = 'paused';
+          this.SourcePaperTTSBtnText = 'Stop Source Document';
+          this.SourcePaperPauseTTSBtnText = 'Pause';
+          console.log("resume Chrome speaking")
+          speechSynthesis.resume();
+      }
+      return; 
+  }
+    if (speechSynthesis.speaking) {
+      //if (speechSynthesis) {
+        this.ttSourceStatus = 'paused';
+       
+        //this.SourcePaperTTSBtnText = 'Resume';
+        this.SourcePaperTTSBtnText = 'Read Source Document';
+        this.SourcePaperPauseTTSBtnText = 'Resume';
+        speechSynthesis.pause();
+        //$('#btnPauseStatus').text('Resume');
+      //}
+    }
+
+    if (speechSynthesis.paused) {
+      //if (speechSynthesis) {
+        this.ttSourceStatus = 'paused';
+        speechSynthesis.resume();
+        //this.SourcePaperTTSBtnText = 'Resume';
+        this.SourcePaperTTSBtnText = 'Stop Source Document';
+        this.SourcePaperPauseTTSBtnText = 'Pause';
+        //$('#btnPauseStatus').text('Resume');
+      //}
+    }
+
 
  /*    else if (this.ttSourceStatus === 'paused') {
       speechSynthesis.resume();
@@ -1249,6 +1512,8 @@ export class TestWritingManagementComponent {
       ttStatus = "";
       this.QstnPaperTTSBtnText = 'Play';
       this.QstnPaperPauseTTSBtnText = 'Pause';
+      this.SourcePaperTTSBtnText = 'Read Source Document'; 
+      this.SourcePaperPauseTTSBtnText = 'Pause'
 
     };
 
@@ -1262,7 +1527,7 @@ export class TestWritingManagementComponent {
     };
 
     textToSpeech.onstart = function () {
-      console.info('SpeechSynthesisUtterance.onstart');
+      //console.info('SpeechSynthesisUtterance.onstart');
     };
 
     const voice = this.getSelectedVoiceName();
@@ -1377,19 +1642,24 @@ export class TestWritingManagementComponent {
       this.testService.getUrl(`get-file/${this.sourceDocId}/source`)
         .subscribe((data) => {
           const base64Url = 'data:application/pdf;base64,' + data.file;
-          this.pdfViewerSourcePdf.load(base64Url, '');
+          this.pdfViewerSourcePdf.load(base64Url, '');   
+          this.pdfViewerSourcePdf.enableTextSelection = true;
+          this.pdfViewerSourcePdf.isExtractText = true; 
+       
           this.pdfViewerSourcePdf.enableHyperlink = false;
         })
     
   }
 
-  onTextSelectionEnd(args: TextSelectionEndEventArgs): void {
+ /*  onTextSelectionEnd(args: TextSelectionEndEventArgs): void {
+    console.log(args.textContent);
     this.selectedSourceText = args.textContent;
-    console.log('Selected Text: ', args.textContent);
-    console.log('Page Index: ', args.pageIndex);
-    console.log('Text Bounds: ', args.textBounds);
+    localStorage.setItem('selectedText', this.selectedSourceText)
+    console.log('SETTING Selected Text');
+    //console.log('Page Index: ', args.pageIndex);
+    //console.log('Text Bounds: ', args.textBounds);
   }
-
+ */
   public dismissModal() {
     this.modalService.dismissAll();
     if (this.disclaimerChecked) {
@@ -1495,7 +1765,7 @@ export class TestWritingManagementComponent {
     this.testService.getUrl(`get-sourcepaper-text/${this.sourceDocId}`)
       .subscribe((data) => {
         this.fullSourcePaperText = data
-        console.log(data); 
+        //console.log(data); 
 
       });
   }
@@ -1537,7 +1807,8 @@ export class TestWritingManagementComponent {
   }
 
   public setStudentsTestData(studentTestData: StudentTestWriteInformation) {
-    this.electronicReader = true,
+    //this.electronicReader = true,
+    this.electronicReader = studentTestData.electronicReader,
     this.answerScanningAvailable = studentTestData.answerScanningAvailable,
     this.accomodation = studentTestData.accomodation,
     this.studentExtraTime = studentTestData.studentExtraTime,
@@ -1765,7 +2036,7 @@ export class TestWritingManagementComponent {
     this.countDown$ = interval(1000).pipe(
       map(() => {
         const time = this.testDuration.getTime() - new Date().getTime();
-        console.log('time', time); 
+        //console.log('time', time); 
         if (time > 0) {
           localStorage.setItem('remainingTime', String(time));
           this.addExtratime();
@@ -1903,8 +2174,10 @@ export class TestWritingManagementComponent {
     this.storageService.removeSelectedTestSecurityId();
     const keyToKeep = 'user';
     const keyToKeepToken = 'token';
+    /* const keyToKeepFinishedTest = 'isFinishTestClicked'; */
     const valueToKeep = localStorage.getItem(keyToKeep);
-    const valueToKeepToken = localStorage.getItem(keyToKeepToken)
+    const valueToKeepToken = localStorage.getItem(keyToKeepToken);
+   /*  const valueToKeepFinishedTest = localStorage.getItem(keyToKeepFinishedTest); */
     localStorage.clear();
    //Restore the key-value pair
    if (valueToKeep !== null) {
@@ -1913,6 +2186,10 @@ export class TestWritingManagementComponent {
    if (valueToKeepToken !== null) {
     localStorage.setItem(keyToKeepToken, valueToKeepToken);
    }
+  /*  if (valueToKeepFinishedTest !== null) {
+    localStorage.setItem(keyToKeepFinishedTest, valueToKeepFinishedTest);
+   } */
+
  /* if(!this.isFinishTestClicked){ // only clearing these when user is leaving for other reasons apart from finish test and end test from invigilator
       localStorage.removeItem('user');
       localStorage.clear();
@@ -1984,12 +2261,15 @@ export class TestWritingManagementComponent {
   }
 
   public keyPress(keyPressEvent: string) {
-   if(this.isFinishTestClicked){
-    console.log("Test is finished"); 
+   if(this.isFinishTestClicked || localStorage.getItem('isFinishTestClicked')){
+    console.log("Test is finished or exited"); 
     ///this.router.navigate(["/portal"])
     return; 
+    
    }
-    if ((keyPressEvent !== null) && (keyPressEvent !== undefined)) {
+    if(this.InvalidKeyPopedUp = false) return; 
+
+    if((keyPressEvent !== null) && (keyPressEvent !== undefined)) {
       Swal.fire({
         title: 'Locked out',
         text: "You have pressed an invalid key",
@@ -2014,7 +2294,9 @@ export class TestWritingManagementComponent {
         //this.invalidCheck(keyPressEvent, document.getElementsByClassName('swal2-textarea')['value'])
         this.saveInvalidKeyPress(keyPressEvent, result.value);
         this.lockscreen(); 
+        this.InvalidKeyPopedUp = false;
       });
+     
     }
     else {
       //Returning from bypassing invalid submit on exit fullscreen"
@@ -2029,7 +2311,7 @@ export class TestWritingManagementComponent {
     if(this.isFinishTestClicked){
       return; 
     }
-    this.toastr.error('Confirm leaving the screen. Confirm Invalid Naviagation!!', 'Invalid Navigation');
+    this.toastr.error('Confirm leaving the screen. Confirm Invalid Navigation!!', 'Invalid Navigation');
     const confirmed = confirm("Confirm Invalid Navigation!!?");
     // Check the user's response
     if (confirmed) {
@@ -2038,57 +2320,6 @@ export class TestWritingManagementComponent {
       // Cancel the operation
     }
   }
-
- /*  public finishTestWrite() {
-    //alert("FINISHING");
-    this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
-    next: (data: any) => {
-      setTimeout(() => {
-        Swal.fire({
-          title: 'Are you sure you want to finish your test,  return to the test list?',
-          showDenyButton: true,
-          confirmButtonText: 'Yes',
-          denyButtonText: 'No',
-          customClass: {
-            actions: 'my-actions',
-            confirmButton: 'order-2',
-            denyButton: 'order-3',
-          },
-        }).then((result) => {
-          if (result.isConfirmed) { 
-        //this.router.navigate(["/"])
-        //this.location.back();
-         Swal.fire(
-          'Test Completed',
-          'You have successfully completed your test. Resume from test list or close your browser.'+' '+  this.router.navigate(["/portal"]),
-          'success', 
-          
-          ).then(() => {
-            this.countDown.unsubscribe();
-              //this.eventEmitterService.onFinishSave();
-              this.router.navigate(["/portal"])
-              return; });
-          //this.router.navigate(["/"])
-          //this.location.back(); 
-          } else if (result.isDenied) {
-           // stay on current page
-          }
-        })
-      }, 2000);
-
-       },
-       error: (error) => { 
-        Swal.fire({
-          title: "Finish Test Unsuccessful",
-          text: "Please contact administrator",
-          icon: "error"
-        });
-        return; 
-        },
-        complete: () => { }
-      }); 
-      this.isTestComplete = true;
-  } */
 
       public finishTestWrite() {
         //alert("FINISHING");
@@ -2113,12 +2344,6 @@ export class TestWritingManagementComponent {
             console.log("finishing")
             localStorage.setItem('RemainingTime', '0');
             this.isFinishTestClicked = true; 
-          /*   this.studentTestWriteService.finishTest(this.testId, this.studentId).subscribe({
-              next: (data: any) => {
-            //this.ngOnDestroy(); 
-            
-            
-            }}) */
              this.router.navigate(["/portal"])
              Swal.fire(
               'Test Completed',

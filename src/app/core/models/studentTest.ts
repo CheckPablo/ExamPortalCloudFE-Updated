@@ -30,5 +30,6 @@ export interface StudentTest extends EntityBase {
     questionCount: number | null;
     testName: string | null;
     testSecurityLevelId: number | null;
+    paperExpiryDate: string | null;
 
 }

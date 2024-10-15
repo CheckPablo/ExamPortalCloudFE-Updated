@@ -55,21 +55,21 @@
                             <i class="ft ft-chevron-down"></i>
                             Source Documents
                         </button> 
-                        <button type="button" id="btnDownloadOffline" class="btn btn-secondary" style="margin-left: 5px;" (click)="downloadOfflineClicked()">
+                        <button *ngIf="accomodation" type="button" id="btnDownloadOffline" class="btn btn-secondary" style="margin-left: 5px;" (click)="downloadOfflineClicked()">
                             <i class="ft ft-chevron-down"></i>
                             Download Answers Offline
                         </button>  
 
-                        <button *ngIf="collapseQuestionPaper" type="button"  [ngClass]="{'disabled-button': !collapseAnswerSheet}" (click)="toggleQuestion()" [disabled]="!collapseQuestionPaper" id="btnCollapseQuestion" class="btn btn-secondary" style="margin-left: 5px">
+                        <button *ngIf="collapseQuestionPaper && accomodation" type="button"  [ngClass]="{'disabled-button': !collapseAnswerSheet}" (click)="toggleQuestion()" [disabled]="!collapseQuestionPaper" id="btnCollapseQuestion" class="btn btn-secondary" style="margin-left: 5px">
                             Expand Question
                           </button>
-                          <button *ngIf="!collapseQuestionPaper" type="button"  (click)="toggleQuestion()" id="btnCollapseQuestionExpanded" class="btn btn-secondary" style="margin-left: 5px">
+                          <button *ngIf="!collapseQuestionPaper && accomodation" type="button"  (click)="toggleQuestion()" id="btnCollapseQuestionExpanded" class="btn btn-secondary" style="margin-left: 5px">
                             Collapse Question
                           </button>
-                        <button *ngIf="collapseAnswerSheet" type="button" [ngClass]="{'disabled-button': !collapseQuestionPaper}" (click)="toggleAccommodation()" [disabled]="!collapseAnswerSheet" id="btnCollapseAnswer" class="btn btn-secondary" style="margin-left: 5px">
+                        <button *ngIf="collapseAnswerSheet && accomodation" type="button" [ngClass]="{'disabled-button': !collapseQuestionPaper}" (click)="toggleAccommodation()" [disabled]="!collapseAnswerSheet" id="btnCollapseAnswer" class="btn btn-secondary" style="margin-left: 5px">
                             Expand Answer
                           </button>
-                          <button *ngIf="!collapseAnswerSheet" type="button"  (click)="toggleAccommodation()" id="btnCollapseAnswerExpanded" class="btn btn-secondary" style="margin-left: 5px">
+                          <button *ngIf="!collapseAnswerSheet && accomodation" type="button"  (click)="toggleAccommodation()" id="btnCollapseAnswerExpanded" class="btn btn-secondary" style="margin-left: 5px">
                             Collapse Answer
                           </button> 
 
@@ -98,7 +98,7 @@
  
                        
                      
-                       <button *ngIf="electronicReader && tts" type="button" id="btnReadAnswer" class="btn btn-secondary" style="margin-left: 5px;" (click)="readAnswerTTSButtonText()">
+                       <button *ngIf="electronicReader && tts && accomodation" type="button" id="btnReadAnswer" class="btn btn-secondary" style="margin-left: 5px;" (click)="readAnswerTTSButtonText()">
                             <i class="ft ft-volume-2"></i>
                             <!--<span id="btnAnswerPlayStatus">Read Answer</span> -->
                             <span id="btnAnswerPlayStatus">{{AnsTemplateTTSBtnText}}</span>
@@ -126,7 +126,7 @@
 
 <section [hidden]="!showEditor" >
     <div id="basic-form-layouts" class="row match-height">
-        <div [ngClass]="{'col-md-6': collapseQuestionPaper , 'col-md-12': !(collapseQuestionPaper ), 'd-none': !(collapseAnswerSheet) }" class="left-panel">
+        <div [ngClass]="{'col-md-6': collapseQuestionPaper , 'col-md-12': !(accomodation), 'd-none': !(collapseAnswerSheet)|| !(collapseQuestionPaper )   }" class="left-panel">
             <button type="button" id="refreshPaper" style="margin-left: 80%" class="btn btn-secondary" (click)="refreshQuestionPaper()"> 
                 <i class="ft ft-maximize"></i> Refresh Question Paper
             </button>
@@ -150,7 +150,7 @@
             </div>
         </div>
     
-        <div [ngClass]="{'col-md-6': collapseAnswerSheet , 'col-md-12': !(collapseAnswerSheet), 'd-none': !(collapseQuestionPaper)}" class="right-panel">
+        <div *ngIf="accomodation" [ngClass]="{'col-md-6': collapseAnswerSheet , 'col-md-12': !(collapseAnswerSheet), 'd-none': !(collapseQuestionPaper)}" class="right-panel">
             <label class="label-control" for="userinput1">Word Count: </label>
             <input 
                 type="text" 
@@ -552,7 +552,7 @@
                 <div class=" modal-body" style="width: 100%;">
                     <div *ngIf="isSourceDocClicked" >
                         <div  class="media align-items-stretch">
-                            <button *ngIf="electronicReader" type="button" id="btnPlay" class="btn btn-secondary" (click)="handleSourceButtonPlayClick($event, 1)">
+                            <button *ngIf="electronicReader" type="button" id="btnSource    Play" class="btn btn-secondary" (click)="handleSourceButtonPlayClick($event, 1)">
                                 <i class="ft ft-volume-2"></i>
                                 <!--<span id="btnPlayStatus">Play</span>-->
                                 <span id="btnPlaySourceStatus">{{SourcePaperTTSBtnText}}</span>

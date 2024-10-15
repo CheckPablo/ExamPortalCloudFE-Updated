@@ -150,15 +150,46 @@ export class RegisterComponent {
 
   public onSubmit() {
 
-    console.log(this.signupForm.value);
-    console.log(this.signupForm); 
-    console.log(this.signupForm.getError); 
-    console.log(this.signupForm.status);
+   /*  console.log('status1',this.signupForm.value);
+    console.log('status2',this.signupForm); 
+    console.log('status3',this.signupForm.getError); 
+    console.log('status4',this.signupForm.status);
+    console.log(this.signupForm); */
+   /*  console.log(this.f.firstName);
+    console.log(this.f.surname);
+    console.log(this.f.username);
+    console.log(this.f.email);
+    console.log(this.f.contactDetails);
+    console.log(this.f.noOfCandidates);
+    console.log(this.f.centerId);
+    console.log(this.f.centerTypeId);
+    console.log(this.f.passsword); */
 
+    /* console.log('status5',this.signupForm.controls.password.value );
+    console.log('status6',this.signupForm.controls.confirmPassword.value ); */
+
+    
+    if(this.signupForm.controls.firstName.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your name', 'error');return;}
+    if(this.signupForm.controls.surname.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your surname', 'error');return;}
+    if(this.signupForm.controls.username.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your username', 'error');return;}
+    if(this.signupForm.controls.email.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your email', 'error');return;}
+    if(!this.isEmailValid(this.f.email.value)){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in a valid email', 'error');return;}
+   /*if(this.signupForm.controls.passsword.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your passsword', 'error');return;}
+    if(this.signupForm.controls.confirmPassword.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your confirmed password', 'error');return;}  */
+    if(this.signupForm.controls.contactDetails.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your contactDetails', 'error');return;}
+    if(this.signupForm.controls.noOfCandidates.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please select your number of Candidates', 'error');return;}
+    if(this.signupForm.controls.centerId.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your center', 'error');return;}
+    if(this.signupForm.controls.centerTypeId.value == ""){this.submitted = false;  Swal.fire('Registration failed', 'Please fill in your center type', 'error');return;}
+    if(!this.isPasswordValid(this.f.password.value)){this.submitted = false;  Swal.fire('Password Validation failed', 'Password must contain more than 8 characters, 1 upper case letter, and 1 special character','error');return;} 
+    if(this.f.password.value != this.f.confirmPassword.value){this.submitted = false;  Swal.fire('Registration failed', 'Passwords do not match', 'error');return;}
+    
+
+    
+    //console.log('passwordValidator',this.isPasswordValid(this.f.password.value))
+    //if(!this.isPasswordValid(this.f.password.value)){this.submitted = false;  Swal.fire('Password Validation failed', 'Password must contain more than 8 characters, 1 upper case letter, and 1 special character','error');return;} 
+    
+    
     this.submitted = true;
-    console.log('passwordValidator',this.isPasswordValid(this.f.password.value))
-    if(!this.isPasswordValid(this.f.password.value)){this.submitted = false; return;} 
-
    /*if(this.f.confirmPassword != this.f.password){
       return
       //alert("Password and confirm passsword not matching"); 
@@ -168,20 +199,20 @@ export class RegisterComponent {
       //alert("Password and confirm passsword not matching"); 
     }; */
 
-    console.log(this.signupForm);
+    
 
     if (this.signupForm.invalid) return;
 
     this.authService
       .register(this.signupForm.value).subscribe({
         next: (value: any) => {
-          Swal.fire('User Saved', 'You have successfully captured the user. You may capture a new User.', 'success');
+          Swal.fire('User Saved', 'You have successfully captured the user.','success');
           this.router.navigate(["/"]);
           this.signupForm.reset();
          },
         error: (error) => { 
         console.log('error1',error); 
-        Swal.fire('Username fail', 'Username is already in use. Please use a differnt username', 'error');
+        Swal.fire('Username fail', 'Username is already in use. Please use a differnt username','error');
         this.submitted = false;
         /* if(error = 'The specified username already exists')
         this.title = "Registration Unsuccesful";
@@ -209,6 +240,11 @@ export class RegisterComponent {
       this.confirmPasswordBool = true; 
       console.log("inputs do match",this.confirmPasswordBool)
     }
+  }
+
+ isEmailValid(email: string):boolean{
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
   }
 
   public toggleFieldTextType() {
