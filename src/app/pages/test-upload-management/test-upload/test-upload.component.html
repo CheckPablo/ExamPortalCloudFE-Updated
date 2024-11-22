@@ -19,7 +19,7 @@
                                 </ng-template>
                             </li>
                             <li [ngbNavItem]="2"   [disabled]="!docsTabDisabled">
-                                <a ngbNavLink>
+                                <a ngbNavLink (click)="onSourceTabClick()">
                                     <i class="la la-info-circle" ></i> Source Document
                                 </a>
                                 <ng-template ngbNavContent>
@@ -516,11 +516,21 @@
                 <h4 class="form-section"><i class="feather ft-file"></i> Answer Document Preview</h4>
                 <hr />
                 <br>
+
+            <ejs-documenteditorcontainer  [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
+                style="display:block" (documentChange)="onDocumentChange()" height="800" width="100%" #documentEditorAnswerUpload   [locale]="culture" [enableToolbar]=false [isReadOnly]=true [enableEditor]=false >
+             </ejs-documenteditorcontainer>
+
+             <!--  <ejs-documenteditorcontainer [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
+                style="display:block" (documentChange)="onDocumentChange()" height:"800" width:"100%" #documentEditorAnswerUpload  [locale]="culture" [enableToolbar]=false [showPropertiesPane]="false">
+             </ejs-documenteditorcontainer> -->
                 <!-- <div id="divAnswerDocUpload"> -->
-                    <ejs-documenteditorcontainer [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
+                   <!--  <ejs-documenteditorcontainer [serviceUrl]='"https://ej2services.syncfusion.com/production/web-services/api/documenteditor/"' 
                     style="display:block;height:800px;width:720px" #documentEditorAnswerUpload [enableToolbar]=false [showPropertiesPane]="false" >
-                </ejs-documenteditorcontainer>
+                </ejs-documenteditorcontainer> -->
                 <!-- </div> -->
+
+               
                 <br>
                <!--  <div id='divAnswerDoc' *ngIf="isAnswerFileUpload" style="height:800px;display:block"> -->
                     <word-preview *ngIf="isAnswerFileUpload" [testId]="testId"></word-preview>
@@ -571,10 +581,10 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <!--<input type="checkbox" id="cbxCheckStudentReaderLink" name="cbxCheckStudentAccomdationLink" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()">
         <label for="cbxCheckAll"> Select All</label>-->
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
         <!--<input type="checkbox" id="cbxCheckStudentAccomdationLink" name="cbxCheckStudentAccomdationLink" value="SelectAll"[checked]="isAllSelected" (change)="onSelectAll()"> 
@@ -755,6 +765,7 @@
     <!--<img src="../../../../assets/images/loaderBlueTrans.gif" id="bg" alt="" style="width:10%; margin-left: 0; margin-right: 0;">-->
    
 </ng-template>
+<!--<app-pop-uptestupload content="{{message}}" title="{{title}}" show="{{showModal}}" />-->
 
 <!--<template #content let-c="close" let-d="dismiss">
     <div class="modal-header">

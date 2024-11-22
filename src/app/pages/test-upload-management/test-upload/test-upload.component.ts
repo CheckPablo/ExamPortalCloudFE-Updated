@@ -184,6 +184,11 @@ export class TestUploadComponent {
   counter = this.navs.length + 1;
   title: string;
   message: string;
+  showModal: boolean;
+  errorTitle: string;
+  errorMessage: string;
+  isAnswerDocLoaded: boolean;
+  IsSourceDocLoaded: boolean;
 
   close(event: MouseEvent, toRemove: number) {
     this.navs = this.navs.filter((id) => id !== toRemove);
@@ -222,8 +227,8 @@ export class TestUploadComponent {
 
       this.selectedTestId = p["id"];
       this.getSingleTest();
-      this.getSourceDocuments();
-      this.getAnswerDocuments();
+      //this.getSourceDocuments();
+      //this.getAnswerDocuments();
 
     });
     this.tables$ = service.tables$;
@@ -231,9 +236,24 @@ export class TestUploadComponent {
   }
 
   onAnswerTabClick() {
+    if(!this.isAnswerDocLoaded)
+     {
+       this.getAnswerDocuments();
+     }
     setTimeout(() => {
         window.dispatchEvent(new Event('resize')); 
       });
+    }
+
+    onSourceTabClick(){
+      if(!this.IsSourceDocLoaded)
+        {
+          this.getSourceDocuments();
+        }
+       setTimeout(() => {
+           window.dispatchEvent(new Event('resize')); 
+         });
+
     }
 
     isChromebookAndDimensionsMatch(): void {
@@ -267,8 +287,8 @@ export class TestUploadComponent {
     this.isChromebookAndDimensionsMatch();
     this.selectedGrade = 0;
     this.generateTimeDurations();
-    this.getAnswerDocuments();
-    this.getSourceDocuments();
+    //this.getAnswerDocuments();
+    //this.getSourceDocuments();
     this.toggleDocTabsEnabled();
     const today = moment().startOf('day')
     this.generateExtraTimeDurations()
@@ -383,33 +403,62 @@ export class TestUploadComponent {
   private getAnswerDocuments = () => {
     if (this.testId.includes("test-upload")) return;
     if (!this.testId) return;
-    //this.loadAnswerDoc();
+    console.log('getAnswerDocuments method');
     this.testService.getUrl(`${this.testId}/get-answer-documents`)
       .subscribe((data) => {
         this.answerDocs = data;
-        
+        //console.log(data); 
+        //console.log(data[0]); 
+        //console.log(data[0].answerDocBase64)
+        //this.loadDocument(JSON.stringify(data[0].answerDocBase64));
         this.loadAnswerDoc();
       })
   }
 
+
   public loadAnswerDoc(): void {
-    this.testService.getUrl(`${this.testId}/get-answer-file`).
+    console.log('load Answer Doc');
+    this.testService.getUrl(`${this.testId}/get-answer-documents`).
+    //this.testService.getUrl(`${this.testId}/get-answer-file`).
       subscribe((data) => {
-         
-        this.loadDocument(JSON.stringify(data));
+        console.log(data);
+        //this.loadDocument(JSON.stringify(data));
+        this.loadDocument(data[0].answerDocBase64)
+        this.isAnswerDocLoaded = true; 
       })
   }
 
+/* 
+  public loadAnswerDoc(): void {
+    console.log('load Answer Doc');
+    this.testService.getUrl(`${this.testId}/get-answer-file`).
+      subscribe((data) => {
+        console.log(data);
+        this.loadDocument(JSON.stringify(data));
+      })
+  }
+ */
   private loadDocument(documentBase64: string): void {
     try {
-      /* this.container.documentEditor.enableEditor = false;
-      this.container.documentEditor.enableSpellCheck = false; */
+     /*this.container.documentEditor.enableEditor = false;
+       this.container.documentEditor.enableSpellCheck = false; */
       this.container.documentEditor.open(documentBase64);
-     /*  this.container.documentEditor.enableEditor = false; */
+      this.container.documentEditor.isReadOnly = true; 
+      this.container.documentEditor.enableEditor = false; 
+      this.container.showPropertiesPane = false;    this.container.showPropertiesPane = false;
+     /*this.container.documentEditor.enableEditor = false; */
 
     } catch (error) {
       console.error('Failed to decode base64 string:', error);
     }
+  }
+
+  
+  onDocumentChange(): void {
+    /* if (!isNullOrUndefined(this.titleBar)) {
+        this.titleBar.updateDocumentTitle();
+    } */
+    this.container.documentEditor.focusIn();
   }
 
   public getAudioUrl(): string {
@@ -531,6 +580,7 @@ export class TestUploadComponent {
         })
 
       });
+      this.IsSourceDocLoaded = true
   }
 
   private getTestCategories() {
@@ -1006,16 +1056,13 @@ export class TestUploadComponent {
         */
       }
       if (!this.selectedFile) {// adds a test without a file
-
-        this.testService.create(this.testInformationForm.value)
-          .subscribe((data) => {
+       
+        //this.testService.create(this.testInformationForm.value).subscribe((data) => {
+        this.testService.create(this.testInformationForm.value).subscribe({
+          next: (data: any) => {
             console.log(data);
 
-            Swal.fire(
-              "Test Information Saved",
-              "Test Information Saved.",
-              "success"
-            );
+       
             this.test = data;
             this.initForms(data);
             this.selectedGrade = data.sectorId
@@ -1025,8 +1072,38 @@ export class TestUploadComponent {
             this.router.navigate(['/portal/testupload', data.id])
            
             this.toggleDocTabsEnabled();
-          });
-        this.populateStudentList(this.selectedGrade, 0, this.selectedTestId);
+          },
+          error: (error: any) => { 
+            console.log(error); 
+            console.log(error.title);
+            this.errorTitle = error.Title;
+            this.errorMessage = error.message[0]; 
+
+            console.log(error.message[0]);
+            console.log(error.message[1]);
+            console.log(error.message[2]);
+            console.log(error.message[3]);
+            console.log(error.message[4]);
+            console.log(error.message[5]);
+            this.title = "Add test unsuccessful";
+            this.message = error.message[0];
+            this.showModal = true;
+            Swal.fire(
+              this.errorTitle,
+              this.errorMessage,
+             "error"
+           )
+            return; 
+            },
+            complete: () => {this.populateStudentList(this.selectedGrade, 0, this.selectedTestId)
+              Swal.fire(
+                "Test Information Saved",
+                "Test information Saved.",
+                "success"
+              );
+            }
+        });
+     
         /**/
 
       }

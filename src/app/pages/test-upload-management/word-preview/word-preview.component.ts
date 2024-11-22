@@ -24,14 +24,14 @@ export class WordPreviewComponent {
     //if(this.testId == 'test-upload')return; 
     //if(this.testId typeof() undefined)
     this.serviceLink = `${environment.syncfusionHostedWordUrl}`;
-    this.testService.getUrl(`${this.testId}/get-answer-file`)
+    ///this.testService.getUrl(`${this.testId}/get-answer-file`)
     //check testId here its causing an exception
-      .subscribe((data) => {
+     /// .subscribe((data) => {
        
-        this.loadDocument(data); 
+        ///this.loadDocument(data); 
         //this.container.documentEditor.enableEditor = false; 
          
-      })
+      //})
   }
 
   private loadDocument(documentBase64: string): void {

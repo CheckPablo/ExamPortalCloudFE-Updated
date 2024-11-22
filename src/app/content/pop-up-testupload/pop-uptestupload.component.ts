@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
-  selector: 'app-pop-up',
+  selector: 'app-popuptestupload',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './pop-up.component.html',
-  styleUrl: './pop-up.component.css'
+  templateUrl: './pop-uptestupload.component.html',
+  styleUrl: './pop-uptestupload.component.css'
 })
 
 
-export class PopUpComponent {
+export class PopUpTestUploadComponent {
   @Input({ required: true }) content!: string;
   @Input({ required: true }) title!: string;
   @Input({ required: true }) show!: boolean;
@@ -22,8 +22,5 @@ export class PopUpComponent {
 
   closeModal() {
     this.show = false;
-    if (!this.refresh) {
-      window.location.reload();
-    }
   }
 }

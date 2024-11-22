@@ -54,7 +54,7 @@
                                         <table class="table table-striped table-bordered no-footer dataTable" source>
                                             <thead class="bg-info white">
                                                 <tr>
-                                                    <th scope="col" sortable="code" (sort)="onSort($event)">
+                                                    <th scope="col" sortable="code" (click)="sortColumns('code')">
                                                         code
                                                         <i class="la la-sort float-md-end"></i>
                                                     </th>
@@ -64,9 +64,10 @@
                                                     </th>
                                                     <th>Delete Grade</th>
                                                 </tr>
-                                            </thead>
+                                            </thead>ch
                                                 <tbody>
-                                                <tr *ngFor="let grade of paginationService.paginatedData | gradeSort:filter" (dblclick)="openUpdateModal(editGradeModal, grade)" >
+<!--                                                 <tr *ngFor="let grade of paginationService.paginatedData | gradeSort:filter" (dblclick)="openUpdateModal(editGradeModal, grade)" >
+ -->                                                <tr *ngFor="let grade of paginationService.paginatedData" (dblclick)="openUpdateModal(editGradeModal, grade)" >
                                                     <!-- <tr *ngFor="let grade of paginationService.paginatedData| grade:filter" (dblclick)="openUpdateModal(editGradeModal, grade)" ></tr> -->
                                                    <!--<td>
                                                         <a href='javascript: void(0);'><u><ngb-highlight [result]="grade.code" [term]="paginationService.searchTerm"></ngb-highlight></u></a>                                 

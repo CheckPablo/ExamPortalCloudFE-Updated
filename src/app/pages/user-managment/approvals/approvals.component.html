@@ -96,7 +96,7 @@
                                                     </th>
                                                     <th class ="sorting" sortable="code" (sort)="onSort($event)">
                                                         Active
-                                                        <i class="la la-sort"></i>
+                                                        <i class="la la-sort" ></i>
                                                     </th>
                                                     <th class ="sorting" sortable="code" (sort)="onSort($event)" *ngIf="loggedInUser.role == 1">
                                                         Admin
@@ -104,7 +104,12 @@
                                                     </th>
                                                     <th class ="sorting" sortable="centerName" (sort)="onSort($event)">
                                                         Center Name
-                                                        <i class="la la-sort"></i>
+                                                          <i class="la la-sort" (click)="sortColumns('centerName')"></i>
+                                                       <!--  <i class="la la-sort" (click)="paginationService.sortData('centerName')"></i>  -->
+                                                     <!--    <i class="la la-sort" (click)="paginationService.setSortConfig('centerName')"></i> -->
+                                                      
+                                                       <!--<i class="la la-sort" (click)="paginationService.sortData('paginationService.paginatedData')"></i> -->
+                                                       
                                                     </th>
                                                     <th class ="sorting" sortable="code" (sort)="onSort($event)">
                                                         Username
@@ -130,7 +135,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let user of paginationService.paginatedData |approvalsSort:filter" (dblclick)="onViewUser(user)">
+                                                <tr *ngFor="let user of paginationService.paginatedData" (dblclick)="onViewUser(user)">
                                                     <td>
                                                         <input type="checkbox" (click)="onUserClick(user.id)"
                                                             [checked]="isUserSelected(user.id)" />

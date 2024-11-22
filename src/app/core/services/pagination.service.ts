@@ -17,6 +17,7 @@ export class PaginationService {
   paginationLinks: number[] = [];
   totalPages: number = 1;
   searchTotal: number = 0;
+  sortField: string;
 
   constructor() {
     this.currentPage = 1;
@@ -86,6 +87,23 @@ export class PaginationService {
   setSortConfig(key: string, direction: 'asc' | 'desc'): void {
     this.sortConfig.key = key;
     this.sortConfig.direction = direction;
+  }
+
+  sortDataDesc(field:string): void {
+    console.log('field',field)
+    console.log(this.sourceData); 
+    if(this.sortField == field)
+    {
+     this.sourceData = this.sourceData.sort((a, b) => b[field] - a[field]);
+      this.sortField = ''; 
+    }
+    else{
+      this.sourceData = this.sourceData.sort((a, b) => a[field] - b[field]);
+      this.sortField = field ; 
+    } 
+   
+   
+    this.paginate(); 
   }
 
   setSearchQuery(query: string): void {

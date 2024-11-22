@@ -26,7 +26,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 logiFailure: "The user name or password provided is incorrect.", 
                 registrationFailure: "The password and confirmation password do not match.",
                 studentEntryFailure: "The specified student number already exists",
-                subjectEntryFailure: "The specified subject code and subject name already exists"
+                subjectEntryFailure: "The specified subject code and subject name already exists", 
+                testEntryFailure: "The specified test name already exists for this grade", 
+                invalidExamNo: "The exam number provided is incorrect", 
+                invalidStudentPassword:"The password provided is incorrect",
+                centerLicenseLimit: "This center has reached its student license limit. Please contact support to renew"
 
             }
             const errors = {
@@ -36,6 +40,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                         'Dear Exam Portal Cloud User',
                         'Unfortunately, your Exam Portal Cloud license has expired. Please contact the support desk from V-Soft Technologies at the following email address: support@v-soft.co.za',
                         'Thank you for your support.'
+                    ]
+                },
+
+                centerLicenseLimit: {
+                    title: 'Student License Limit Reache',
+                    message: [
+                       'This center has reached its student license limit. Please contact support to renew'
                     ]
                 },
                 logiFailure: {
@@ -91,8 +102,25 @@ export class ErrorInterceptor implements HttpInterceptor {
                 message: [
                     'The OTP you entered has expired'
                 ]
-            }
-
+            },
+            testNameExists: {
+                title: 'Test Name Exists',
+                message: [
+                    'The specified test name already exists for this grade'
+                ]
+            }, 
+            invalidExamNo: {
+                title: 'INcorrect Exam No',
+                message: [
+                    'The exam number provided is incorrect'
+                ]
+            },
+            invalidStudentPassword: {
+                title:" Incorrect Password",
+                message:[
+                    ' The password provided is incorrect'
+                ]
+                }
             };
 
             const serverError = 'An error occured at the server. Please contact the System Administrator.';
@@ -112,6 +140,16 @@ export class ErrorInterceptor implements HttpInterceptor {
                     }
                     else if (err.error.includes("The specified subject code and subject name already exists")) {
                         _error = errors.subjectEntryFailure;
+                    }
+                    else if (err.error.includes(errorHandlers.testEntryFailure)) {
+                        _error = errors.testNameExists;
+                    }
+                    else if (err.error.includes(errorHandlers.invalidStudentPassword)) {
+                        _error = errors.invalidStudentPassword;
+                    }
+
+                    else if (err.error.includes(errorHandlers.centerLicenseLimit)) {
+                        _error = errors.centerLicenseLimit;
                     }
                     //Swal.fire('Error', err.error, 'error')
                     break;
@@ -150,6 +188,20 @@ export class ErrorInterceptor implements HttpInterceptor {
                     else if (err.error.includes(errorHandlers.expiredOTP)) {
                         _error = errors.expiredOTP;
                     }
+                    else if (err.error.includes(errorHandlers.testEntryFailure)) {
+                        _error = errors.testNameExists;
+                    }
+               
+                    else if (err.error.includes(errorHandlers.invalidStudentPassword)) {
+                        _error = errors.invalidStudentPassword;
+                    }
+                    else if (err.error.includes(errorHandlers.invalidExamNo)) {
+                        _error = errors.invalidExamNo;
+                    }
+                    else if (err.error.includes(errorHandlers.centerLicenseLimit)) {
+                        _error = errors.centerLicenseLimit;
+                    }
+                    
                     else {
                         _error['message'] = [serverError]
                     }

@@ -74,6 +74,29 @@ export class ListGradesComponent implements OnInit {
       });
   }
 
+  currentSortKey: string = ''; // Keeps track of the current sort column
+  sortDirection: string = 'asc'; // 'asc' for ascending, 'desc' for descending
+ 
+  
+  sortColumns(column:string){
+   this.paginationService.setSortConfig(column, 'desc'); 
+   this.paginationService.paginate(); 
+  }
+  sort(column: string) {
+    if (this.currentSortKey === column) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.currentSortKey = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.grades.sort((a, b) => {
+      if (a[column] < b[column]) return this.sortDirection === 'asc' ? -1 : 1;
+      if (a[column] > b[column]) return this.sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
   private initEditForms(grade: Grade): void {
     this.form = this.formBuilder.group({
       id: [grade.id, [Validators.required]],

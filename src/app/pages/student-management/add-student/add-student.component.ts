@@ -291,8 +291,15 @@ export class AddStudentComponent implements OnInit {
           this.message = 'The specified student number already exists';
           this.showModal = true; */ 
           this.closeSpinnerModal(this.modalReference)
-          Swal.fire('Student Information Not Saved', 'The specified student number already exists.', 'error');
-          return; 
+          
+          if(error.message[0] =="This center has reached its student license limit. Please contact support to renew"){
+            Swal.fire('Student Information Not Saved',error.message[0], 'error');
+            return; 
+          }
+          else{
+            Swal.fire('Student Information Not Saved', 'The specified student number already exists.', 'error');
+            return; 
+          }
         },  complete:() =>{ this.mailStudent(this.mailData)}
       
       });

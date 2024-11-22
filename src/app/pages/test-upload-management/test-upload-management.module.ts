@@ -23,7 +23,8 @@ import { DocumentEditorContainerAllModule, DocumentEditorModule } from '@syncfus
 import { SafePipe } from './safe.pipe';
 import { ViewTestsPipe } from './view-tests/viewTests.pipe';
 import { SortableHeaderDirective } from 'src/app/core/directives/sortable-header.directive';
-
+import { PopUpComponent } from 'src/app/content/pop-up/pop-up.component';
+import { PopUpTestUploadComponent } from 'src/app/content/pop-up-testupload/pop-uptestupload.component';
 @NgModule({
   declarations: [
     ViewTestsComponent,
@@ -58,7 +59,9 @@ import { SortableHeaderDirective } from 'src/app/core/directives/sortable-header
     NgxDocViewerModule,
     //NgxExtendedPdfViewerModule,
     DocumentEditorContainerAllModule,
-    DocumentEditorModule
+    DocumentEditorModule, 
+    PopUpTestUploadComponent
+/*     PopUpComponent */
   ],
   exports: [
     WordPreviewComponent

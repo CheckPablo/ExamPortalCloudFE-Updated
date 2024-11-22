@@ -5,6 +5,7 @@ import { Grade } from 'src/app/core/models/grade';
 @Pipe({ name: 'gradeSort' })
 export class GradesPipe implements PipeTransform {
   transform(values: Grade[], filter: string): Grade[] {
+    console.log("inside grades pipe"); 
     if (!filter || filter.length === 0) {
       return values;
     }

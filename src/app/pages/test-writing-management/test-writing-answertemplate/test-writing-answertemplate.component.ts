@@ -823,6 +823,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     const studentsTestData = JSON.parse(localStorage.getItem('studenttestdatakey'));
     this.currentTestName = studentsTestData.testName;
     studentsTestData.accomodation = true;*/
+    console.log("getAnswerFile() => answer template")
     this.accomodation = true;
     if (this.accomodation) {
       this.serviceLink = `${environment.syncfusionHostedWordUrl}`;
@@ -849,7 +850,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   }
 
   public getUploadedAnswerTemplate() {
-
+    console.log("getUploadedAnswerTemplate() => get-answer-template"); 
     this.testService.getUrl(`${this.testId}/get-answer-file`)
       .subscribe((data) => {
         // 
@@ -863,7 +864,7 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
           this.dataloaded = false
           this.loadBlankDocument();
 
-        }
+        } 
       })
   }
 

@@ -176,6 +176,10 @@ export class ListUsersComponent implements OnInit {
       })
   }
 
+  public sortDataDesc(sortString: string) {
+  this.paginationService.sortDataDesc(sortString)
+  }
+
   public onChangeGrade(gradeId: number) {
     if (gradeId == 0) return;
     this.selectedGrade = gradeId;
@@ -213,7 +217,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   onSort({ column, direction }: SortEvent) {
-    
+    console.log("inside sort function");
     //resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

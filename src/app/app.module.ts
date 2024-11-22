@@ -70,6 +70,7 @@ import { environment } from 'src/environments/environment';
 import { Ng2ImgMaxModule } from 'ng2-img-max';
 import {NgxPhotoEditorModule} from "ngx-photo-editor";
 import { PopUpComponent } from "./content/pop-up/pop-up.component";
+import { PopUpTestUploadComponent } from "./content/pop-up-testupload/pop-uptestupload.component"
 import { CommonModule } from '@angular/common';
 
 //import { ServiceWorkerModule } from '@angular/service-worker';
@@ -195,7 +196,8 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
            registrationStrategy: 'registerWhenStable:30000'
          }), */
         MsalModule,
-        PopUpComponent
+        PopUpComponent, 
+        PopUpTestUploadComponent
     ]
 })
 export class AppModule { }

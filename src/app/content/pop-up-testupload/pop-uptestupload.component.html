@@ -1,0 +1,15 @@
+<div [class.show]="show" class="modal" id="approveModal" tabindex="-1" aria-labelledby="myModalLabel9" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title white" id="modal-header">{{title}}</h4>
+            </div>
+            <div class="modal-body" style="text-align: center!important">
+            <div [innerHTML]="content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn grey btn-outline-secondary" (click)="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

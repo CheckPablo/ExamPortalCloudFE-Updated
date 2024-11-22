@@ -24,6 +24,7 @@ export class ApprovalsComponent implements OnInit {
   users: User[] = [];
   loggedInUser: User;
   @ViewChildren(SortableHeaderDirective) headers: QueryList<SortableHeaderDirective>;
+  sortDirection: boolean;
 
   constructor(
     private router: Router,
@@ -162,6 +163,14 @@ export class ApprovalsComponent implements OnInit {
   /*public onSort = (a: any) => {
         
   }*/
+
+   
+  sortColumns(column:string){
+    const direction = this.sortDirection ? 'desc':'asc'
+    this.paginationService.setSortConfig(column, direction); 
+    this.paginationService.paginate(); 
+    this.sortDirection = !this.sortDirection; 
+   }
 
   public onUpdateUsersClick = () => {
     Swal.fire({
