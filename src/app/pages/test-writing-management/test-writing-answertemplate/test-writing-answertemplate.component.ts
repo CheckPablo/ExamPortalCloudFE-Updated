@@ -518,6 +518,9 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
   readAnswerFunction(buttonText: string) {
     if (buttonText === 'Read Answer') {
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
       this.ttStatus = 'reading';
       this.playButtonChangeText = 'Stop';
       this.pauseButtonChangeText = "";
@@ -548,6 +551,9 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
 
       this.ttStatus = "";
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
     }
 
   }
@@ -569,6 +575,12 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
       this.eventEmitterService.onSetAnswerButtonText("Read Answer");
     };
 
+    interface WindowsSpeechRequest {
+      selectedVoice: string;
+      selectedText: string;
+      selectedRate: string
+  }
+
     /* textToSpeech.onend = function () {
          console.info('SpeechSynthesisUtterance.onend');
        
@@ -588,9 +600,29 @@ export class TestWritingAnswertemplateComponent implements OnChanges {
     /*   const voice = speechSynthesis.getVoices().filter((voice) => {
         return voice.name === this.routeData.voice;
       })[0]; */
-    textToSpeech.voice = voice;
+
+      const requestedData: WindowsSpeechRequest = {
+        selectedText: text,
+        selectedVoice: this.selectedVoiceEntry.name,
+        selectedRate: textToSpeech.rate.toString(),
+    };
+
+    //textToSpeech.voice = voice;
+
+    if(voice.name.includes('Vocalizer'))
+      {
+        this.inTestWriteService.postUrl('windowstts', requestedData).subscribe((data) => {
+          console.log(data)
+        });
+      }
+      else{
+        textToSpeech.voice = voice;
 
     this.synthesis.speak(textToSpeech);
+        
+      }
+
+    
   }
 
   private isTextSpeechNullOrUndefined(value: any): boolean {

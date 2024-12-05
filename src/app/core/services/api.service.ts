@@ -78,6 +78,13 @@ export abstract class ApiService<T> {
     }));
   }
 
+  public post(endPoint: string): Observable<any> {
+    return this.httpClient.post(this.apiURL + `${this.actionUrl}/${endPoint}`,  httpOptions).pipe(catchError(err => {
+          
+      throw 'error in source. Details: ' + JSON.stringify(err);
+    }));
+  }
+
   public updateUrl(endPoint: string, model: any): Observable<any> {
     return this.httpClient.put(this.apiURL + `${this.actionUrl}/${endPoint}`, model, httpOptions);
   }

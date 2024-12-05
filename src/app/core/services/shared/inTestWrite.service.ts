@@ -62,6 +62,8 @@ export class InTestWriteService extends ApiService<StudentTestWriteInformation>{
    return this.http.post<OperationResponse>("", imageScan);
  }
 
+ 
+
  /*public qrCodeScanResultString =(imageScan: string): Observable<OperationResponse> =>{
   // return this.http.post<OperationResponse>(this.baseUrl, imageScan); 
  return this.http.post<OperationResponse>("", imageScan);

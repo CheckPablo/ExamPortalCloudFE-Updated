@@ -185,6 +185,7 @@ export class TestWritingManagementComponent {
   _voices$: any;
   defaultVoiceName: string;
   voices: SpeechSynthesisVoice[]
+  installedVoices = [];
   public sayCommand: string;
   public rates: number[];
   public selectedVoice: SpeechSynthesisVoice | null;
@@ -836,6 +837,7 @@ export class TestWritingManagementComponent {
           .then((result) => {
             // 1
             //this.checkBrowser();
+             //this.getInstalledVoices(); 
             this.voices = [...this.voices, ...result]
           })
       )
@@ -1067,6 +1069,9 @@ export class TestWritingManagementComponent {
       
       if(!speechSynthesis.paused && !speechSynthesis.speaking && this.SourcePaperTTSBtnText === 'Read Source Document' && this.SourcePaperPauseTTSBtnText === 'Pause' ){ 
         speechSynthesis.cancel(); 
+        this.inTestWriteService.post('stoptts').subscribe((data) => {
+          console.log(data)
+        });
       //this.pdfViewerSourcePdf.load("https://cdn.syncfusion.com/content/pdf/annotations.pdf",null); 
       //if(this.pdfViewerSourcePdf.textSelection.selectionRangeArray[0])
       //this.pdfTestViewer.tex
@@ -1121,6 +1126,9 @@ export class TestWritingManagementComponent {
           if(speechSynthesis.speaking && speechSynthesis.paused)
           {
             speechSynthesis.cancel(); 
+            this.inTestWriteService.post('stoptts').subscribe((data) => {
+              console.log(data)
+            })
             this.SourcePaperPauseTTSBtnText = 'Pause'; 
             this.SourcePaperTTSBtnText = 'Stop Source Document'; 
             //return; 
@@ -1129,6 +1137,9 @@ export class TestWritingManagementComponent {
             console.log('pause speech block if highlighted');
             //speechSynthesis.pause(); 
             speechSynthesis.cancel(); 
+            this.inTestWriteService.post('stoptts').subscribe((data) => {
+              console.log(data)
+            })
             this.SourcePaperPauseTTSBtnText = 'Pause'; 
             this.SourcePaperTTSBtnText = 'Read Source Document'; 
           }
@@ -1138,6 +1149,9 @@ export class TestWritingManagementComponent {
           console.log('Stop speech block if not highlighted');
           //this.ttsText = JSON.stringify(this.fullSourcePaperText); // remove this and put it in the if statement above.
           speechSynthesis.cancel(); 
+          this.inTestWriteService.post('stoptts').subscribe((data) => {
+            console.log(data)
+          })
           //this.ttSourceStatus = 'reading';
           this.SourcePaperTTSBtnText = 'Read Source Document' 
           this.SourcePaperPauseTTSBtnText === 'Pause' 
@@ -1159,6 +1173,9 @@ export class TestWritingManagementComponent {
           console.log('Paused speech block if highlighted'); 
           console.log('Check if TEXT IS CURRENTLY selected', isTextCurrentlySelected)
           speechSynthesis.resume(); 
+          this.inTestWriteService.post('resumetts').subscribe((data) => {
+            console.log(data)
+          });
           this.SourcePaperPauseTTSBtnText = 'Pause'; 
           this.SourcePaperTTSBtnText = 'Stop Source Document'; 
         }
@@ -1170,12 +1187,18 @@ export class TestWritingManagementComponent {
           if(this.isNullOrUndefined(isTextCurrentlySelected) && speechSynthesis.speaking || speechSynthesis.paused){
           //sourcePdf.textSelection.selectionRangeArray[0].textContent;
             speechSynthesis.cancel();
+            this.inTestWriteService.post('stoptts').subscribe((data) => {
+              console.log(data)
+            });
             this.ttsText = JSON.stringify(this.fullSourcePaperText);
             this.speechSynthStart(this.ttsText, speed);
             console.log('Highlighted OR NOT CANCEL?')
           }
           else{
            speechSynthesis.resume();
+           this.inTestWriteService.post('resumetts').subscribe((data) => {
+            console.log(data)
+          });
            console.log('Highlighted OR NOT RESUME?')
           } 
           //this.ttSourceStatus = 'reading';
@@ -1204,6 +1227,9 @@ export class TestWritingManagementComponent {
          console.log('Paused speech block if highlighted'); 
          console.log('Check if TEXT IS CURRENTLY selected', isTextCurrentlySelected)
          speechSynthesis.resume(); 
+         this.inTestWriteService.post('resumetts').subscribe((data) => {
+          console.log(data)
+        });
          this.SourcePaperPauseTTSBtnText = 'Pause'; 
          this.SourcePaperTTSBtnText = 'Stop Source Document'; 
        }
@@ -1215,12 +1241,18 @@ export class TestWritingManagementComponent {
          if(this.isNullOrUndefined(isTextCurrentlySelected) && speechSynthesis.speaking || speechSynthesis.paused){
          //sourcePdf.textSelection.selectionRangeArray[0].textContent;
            speechSynthesis.cancel();
+           this.inTestWriteService.post('stoptts').subscribe((data) => {
+            console.log(data)
+          });
            this.ttsText = JSON.stringify(this.fullSourcePaperText);
            this.speechSynthStart(this.ttsText, speed);
            console.log('Highlighted OR NOT CANCEL?')
          }
          else{
           speechSynthesis.resume();
+          this.inTestWriteService.post('resumetts').subscribe((data) => {
+            console.log(data)
+          });
           console.log('Highlighted OR NOT RESUME?')
          } 
          //this.ttSourceStatus = 'reading';
@@ -1328,6 +1360,9 @@ export class TestWritingManagementComponent {
         this.SourcePaperPauseTTSBtnText = 'Pause';
         console.log("resume Chrome speaking with button check")
         speechSynthesis.resume();
+        this.inTestWriteService.post('resumetts').subscribe((data) => {
+          console.log(data)
+        });
         return; 
     }
 
@@ -1337,6 +1372,9 @@ export class TestWritingManagementComponent {
             this.SourcePaperPauseTTSBtnText = 'Resume';
             console.log("pause Chrome speaking")
             speechSynthesis.pause();
+            this.inTestWriteService.post('pausetts').subscribe((data) => {
+              console.log(data)
+            });
             return; 
         
     }
@@ -1347,6 +1385,9 @@ export class TestWritingManagementComponent {
           this.SourcePaperPauseTTSBtnText = 'Pause';
           console.log("resume Chrome speaking")
           speechSynthesis.resume();
+          this.inTestWriteService.post('resumetts').subscribe((data) => {
+            console.log(data)
+          });
       }
       return; 
   }
@@ -1358,6 +1399,9 @@ export class TestWritingManagementComponent {
         this.SourcePaperTTSBtnText = 'Read Source Document';
         this.SourcePaperPauseTTSBtnText = 'Resume';
         speechSynthesis.pause();
+        this.inTestWriteService.post('pausetts').subscribe((data) => {
+          console.log(data)
+        });
         //$('#btnPauseStatus').text('Resume');
       //}
     }
@@ -1366,6 +1410,9 @@ export class TestWritingManagementComponent {
       //if (speechSynthesis) {
         this.ttSourceStatus = 'paused';
         speechSynthesis.resume();
+        this.inTestWriteService.post('resumetts').subscribe((data) => {
+          console.log(data)
+        });
         //this.SourcePaperTTSBtnText = 'Resume';
         this.SourcePaperTTSBtnText = 'Stop Source Document';
         this.SourcePaperPauseTTSBtnText = 'Pause';
@@ -1438,10 +1485,15 @@ export class TestWritingManagementComponent {
   }
 
   public getInstalledVoices() {
+    if (/firefox/i.test(navigator.userAgent))return;
     this.installedVoiceService.getAllInstalledVoices()
       .subscribe((data) => {
-        this.voices.push(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+        this.voices.push(...data);
+      
       })
+
+
+
   }
 
   get f() { return this.form.controls; }
@@ -1453,6 +1505,9 @@ export class TestWritingManagementComponent {
     this.checkButtonTextAnsPaper()
     if (this.QstnPaperTTSBtnText === 'Play') {
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
       this.QstnPaperTTSBtnText = 'Stop';
       this.ttStatus = 'reading';
 
@@ -1471,6 +1526,9 @@ export class TestWritingManagementComponent {
       this.QstnPaperTTSBtnText = 'Play';
       this.ttStatus = "";
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
     }
   }
 
@@ -1487,6 +1545,9 @@ export class TestWritingManagementComponent {
     else {
       this.QstnPaperTTSBtnText = 'Play';
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
     }
   }
 
@@ -1531,9 +1592,35 @@ export class TestWritingManagementComponent {
     };
 
     const voice = this.getSelectedVoiceName();
-    textToSpeech.voice = voice;
-    this.synthesis.speak(textToSpeech);
-    this.QstnPaperPauseTTSBtnText = 'Pause';
+
+    interface WindowsSpeechRequest {
+      selectedVoice: string;
+      selectedText: string;
+      selectedRate: string;
+  }
+
+  const requestData: WindowsSpeechRequest = {
+    selectedText: text,
+    selectedVoice: this.selectedVoice.name,
+    selectedRate: textToSpeech.rate.toString(),
+
+};
+if (voice.name.includes('Vocalizer'))
+  {
+    /* console.log("entered in the if statement",JSON.stringify(requestData.selectedVoice));
+    console.log("entered in the if statement1",JSON.stringify(requestData.selectedText)); */
+    //this.installedVoiceService.synthesizeSpeechWindowsOS(JSON.stringify(requestData.selectedText),JSON.stringify(requestData.selectedVoice));
+    this.inTestWriteService.postUrl('windowstts', requestData).subscribe((data) => {
+      console.log(data)
+    });
+  }
+  else{
+  console.log("voice",voice);
+  textToSpeech.voice = voice;
+  console.log(textToSpeech.voice)
+  this.synthesis.speak(textToSpeech);
+  this.QstnPaperPauseTTSBtnText = 'Pause';
+  }
   }
   getSelectedVoiceName(): SpeechSynthesisVoice {
     var selectedVoiceEntry = this.selectedVoice;
@@ -1560,6 +1647,9 @@ export class TestWritingManagementComponent {
     } else {
       this.AnsTemplateTTSBtnText = 'Read Answer'
       speechSynthesis.cancel();
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
     }
   }
 
@@ -1574,12 +1664,18 @@ export class TestWritingManagementComponent {
       if (speechSynthesis) {
         this.ttStatus = 'paused';
         speechSynthesis.pause();
+        this.inTestWriteService.post('pausetts').subscribe((data) => {
+          console.log(data)
+        });
         this.QstnPaperPauseTTSBtnText = 'Resume';
         //$('#btnPauseStatus').text('Resume');
       }
     }
     else if (this.ttStatus === 'paused') {
       speechSynthesis.resume();
+      this.inTestWriteService.post('resumetts').subscribe((data) => {
+        console.log(data)
+      });
       this.QstnPaperPauseTTSBtnText = 'Pause';
       //$('#btnPauseStatus').text('Pause');
       this.ttStatus = 'reading';
@@ -1589,6 +1685,9 @@ export class TestWritingManagementComponent {
   public stop(): void {
     if (speechSynthesis.speaking) {
       speechSynthesis.cancel()
+      this.inTestWriteService.post('stoptts').subscribe((data) => {
+        console.log(data)
+      });
     }
   }
 
@@ -1664,6 +1763,7 @@ export class TestWritingManagementComponent {
     this.modalService.dismissAll();
     if (this.disclaimerChecked) {
       this.disclaimerAccepted = true;
+      this.getInstalledVoices()
        //this.acceptDisclaimerMethod(); 
       //this.onPdfViewerLoad(); 
     }
@@ -2199,6 +2299,9 @@ export class TestWritingManagementComponent {
     } */
     this.unlistener();
     speechSynthesis.cancel();
+    this.inTestWriteService.post('stoptts').subscribe((data) => {
+      console.log(data)
+    });
    /*  if(this.isFinishTestClicked){
       this.router.navigate(["/portal"])
     } */
